@@ -29,13 +29,17 @@ import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,6 +50,7 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     private int _SCRIPT_ADDR = 0x3e000; 
     protected String _pathToBoard = "";
     protected AbbozzaCalliopeFrame frame;
+    protected String installPath;
 
     
     public static void main (String args[]) {
@@ -53,7 +58,6 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         abbozza.init("calliope");
         
         abbozza.startServer();
-        // abbozza.startBrowser("calliope.html");        
     }
 
     
@@ -72,7 +76,31 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         frame.setState(JFrame.ICONIFIED);
     }
         
+    @Override
+    public void setPaths() {
+        // Search the path to the jar
+        URI uri = null;
+        File installFile = new File("/");
+        try {
+            uri = AbbozzaCalliope.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+            installFile = new File(uri);
+        } catch (URISyntaxException ex) {
+            JOptionPane.showMessageDialog(null, "Unexpected error: Malformed URL " + uri.toString()
+                    + "Start installer from jar!", "abbozza! installation error", JOptionPane.ERROR_MESSAGE);
+        }
+        installPath = installFile.getParentFile().getParent();
+        System.out.println(installPath);
+  
+        // sketchbookPath = PreferencesData.get("sketchbook.path");
+        // localJarPath = sketchbookPath + "/tools/Abbozza/tool/";
+        // globalJarPath = PreferencesData.get("runtime.ide.path") + "/";
+        // runtimePath = globalJarPath;
+        
+        // localPluginPath = sketchbookPath + "/tools/Abbozza/plugins";
+        // globalPluginPath = globalJarPath + "/tools/Abbozza/plugins";
+    }
     
+
     public void setPathToBoard(String path) {
         _pathToBoard = path;
         if (_pathToBoard != null) {
