@@ -24,6 +24,7 @@ package de.uos.inf.did.abbozza.calliope;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -111,12 +112,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 out.close();
 
                 // Now compile it by calling "yt build" in _buildPath
-                String scriptName = "compile.sh";
-                String osName = System.getProperty("os.name");
-                if (osName.indexOf("Windows") != -1) {
-                    scriptName = "compile.bat";
-                }
-                Process proc = Runtime.getRuntime().exec(_buildPath + scriptName);
+                String scriptName = "yt build";
+                // String osName = System.getProperty("os.name");
+                // if (osName.indexOf("Windows") != -1) {
+                //     scriptName = "compile.bat";
+                // }
+                Process proc = Runtime.getRuntime().exec(_buildPath + scriptName,null,new File(_buildPath));
                 err = proc.getErrorStream();
                 stdout = proc.getInputStream();
 
