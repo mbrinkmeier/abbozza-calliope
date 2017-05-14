@@ -89,15 +89,13 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
                     + "Start installer from jar!", "abbozza! installation error", JOptionPane.ERROR_MESSAGE);
         }
         installPath = installFile.getParentFile().getParent();
-        System.out.println(installPath);
   
-        // sketchbookPath = PreferencesData.get("sketchbook.path");
-        // localJarPath = sketchbookPath + "/tools/Abbozza/tool/";
-        // globalJarPath = PreferencesData.get("runtime.ide.path") + "/";
-        // runtimePath = globalJarPath;
+        sketchbookPath = installPath + "/sketches/";
+        localJarPath = installPath + "/lib/";
+        globalJarPath = localJarPath;
         
-        // localPluginPath = sketchbookPath + "/tools/Abbozza/plugins";
-        // globalPluginPath = globalJarPath + "/tools/Abbozza/plugins";
+        localPluginPath = installPath + "/tools/Abbozza/plugins";
+        globalPluginPath = installPath + "/tools/Abbozza/plugins";
     }
     
 
@@ -248,10 +246,7 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     
     public void findJarsAndDirs(JarDirHandler jarHandler) {
         jarHandler.clear();
-        jarHandler.addDir(localJarPath, "Local directory");
-        jarHandler.addJar(localJarPath + "/lib/abbozza-calliope.jar", "Local jar");
-        jarHandler.addDir(globalJarPath, "Global directory");
-        jarHandler.addJar(globalJarPath + "/lib/abbozza-calliope.jar", "Global jar");
+        jarHandler.addJar(localJarPath + "abbozza-calliope.jar", "Jar");
     }
 
 }
