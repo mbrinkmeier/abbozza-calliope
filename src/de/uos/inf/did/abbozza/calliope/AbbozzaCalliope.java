@@ -31,11 +31,14 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -51,6 +54,8 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     protected String _pathToBoard = "";
     protected AbbozzaCalliopeFrame frame;
     protected String installPath;
+    
+    protected File userDir;
 
     
     public static void main (String args[]) {
@@ -78,6 +83,15 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         
     @Override
     public void setPaths() {
+        userDir = new File(System.getProperty("user.home") + "/.abbozza/");
+        Properties props = new Properties();
+        try {
+            props.load(new FileReader(userDir + "/calliope/abbozza.cfg"));
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }        
+        System.out.println(props);
+        
         // Search the path to the jar
         URI uri = null;
         File installFile = new File("/");
