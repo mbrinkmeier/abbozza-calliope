@@ -53,22 +53,20 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     private int _SCRIPT_ADDR = 0x3e000; 
     protected String _pathToBoard = "";
     protected AbbozzaCalliopeFrame frame;
-    protected String installPath;
-    
-    protected File userDir;
-
+    protected String installPath;     // The path into which abbozza was installed
+    protected String runtimePath;     // The parent directory of jarPath, containig lib, plugins, bin ...
     
     public static void main (String args[]) {
         AbbozzaCalliope abbozza = new AbbozzaCalliope();
-        abbozza.init("calliope");
-        
-        abbozza.startServer();
+        abbozza.init("calliope");        
     }
 
     
     public void init(String system) {
         super.init(system);
     
+        setAdditionalPaths();
+        
         setPathToBoard(this.config.getOptionStr("pathToBoard"));        
         
         // Open Frame
@@ -79,39 +77,44 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         frame.setLocation(x, y);
         frame.setVisible(true);
         frame.setState(JFrame.ICONIFIED);
+        
+        startServer();
+        startBrowser(system+".html");
     }
         
-    @Override
+    
     public void setPaths() {
-        userDir = new File(System.getProperty("user.home") + "/.abbozza/");
-        Properties props = new Properties();
-        try {
-            props.load(new FileReader(userDir + "/calliope/abbozza.cfg"));
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) {
-        }        
-        System.out.println(props);
+        super.setPaths();
         
-        // Search the path to the jar
-        URI uri = null;
-        File installFile = new File("/");
-        try {
-            uri = AbbozzaCalliope.class.getProtectionDomain().getCodeSource().getLocation().toURI();
-            installFile = new File(uri);
-        } catch (URISyntaxException ex) {
-            JOptionPane.showMessageDialog(null, "Unexpected error: Malformed URL " + uri.toString()
-                    + "Start installer from jar!", "abbozza! installation error", JOptionPane.ERROR_MESSAGE);
-        }
-        installPath = installFile.getParentFile().getParent();
-  
-        sketchbookPath = installPath + "/sketches/";
-        localJarPath = installPath + "/lib/";
-        globalJarPath = localJarPath;
-        
-        localPluginPath = installPath + "/tools/Abbozza/plugins";
+        localJarPath = jarPath;
+        globalJarPath = jarPath;
+        sketchbookPath = "";
+        localPluginPath = jarPath + "/plugins";
         globalPluginPath = installPath + "/tools/Abbozza/plugins";
     }
     
+    public void setAdditionalPaths() {
+        installPath = config.getProperty("installPath");
+        sketchbookPath = config.getProperty("sketchbookPath");
+        
+        runtimePath = new File(jarPath).getParent();
+                
+        AbbozzaLogger.out("jarPath = " + jarPath);
+        AbbozzaLogger.out("runtimePath = " + runtimePath);
+        AbbozzaLogger.out("installPath = " + installPath);
+        AbbozzaLogger.out("userPath = " + userPath);
+        AbbozzaLogger.out("sketchbookPath = " + sketchbookPath);
+        AbbozzaLogger.out("localJarPath = " + localJarPath);
+        AbbozzaLogger.out("localPluginPath = " + localPluginPath);
+        AbbozzaLogger.out("globalPluginPath = " + globalPluginPath);
+        AbbozzaLogger.out("browserPath = " + config.getBrowserPath());
+    }
+    
+    public void findJarsAndDirs(JarDirHandler jarHandler) {
+        jarHandler.clear();
+        jarHandler.addJar(jarPath + "/abbozza-calliope.jar", "Jar");
+    }
+
 
     public void setPathToBoard(String path) {
         _pathToBoard = path;
@@ -258,9 +261,4 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         return runtime;
     }
     
-    public void findJarsAndDirs(JarDirHandler jarHandler) {
-        jarHandler.clear();
-        jarHandler.addJar(localJarPath + "abbozza-calliope.jar", "Jar");
-    }
-
 }

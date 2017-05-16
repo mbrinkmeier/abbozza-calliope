@@ -21,7 +21,9 @@
  */
 package de.uos.inf.did.abbozza.calliope;
 
+import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
+import de.uos.inf.did.abbozza.install.InstallTool;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,8 +34,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,6 +53,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     protected String _buildPath;
     protected String _hexPath;
     protected int _exitValue;
+    
+    protected String errMsg;
+    protected String outMsg;
     
     public static void main(String args[]) {
         AbbozzaCalliopeC abbozza = new AbbozzaCalliopeC();
@@ -60,6 +72,21 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      */
     public void init(String system) {
         super.init(system);
+        
+        // Check if <userPath>/build/ exists
+        File buildDir = new File(userPath + "/build/");
+        if ( !buildDir.exists() ) {
+            AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
+            // TODO Copy build directory from runtimeDir
+            File original = new File(runtimePath + "/build/");
+            buildDir.mkdirs();           
+            try {
+                InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
+            } catch (IOException ex) {
+                Logger.getLogger(AbbozzaCalliopeC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }
 
     /**
@@ -74,9 +101,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             this.setBoardName("calliope");
         }
         
-        _buildPath = System.getProperty("user.home") + "/abbozza/build/" + this._boardName + "/";
-        
-        
+        _buildPath = userPath + "/build/" + this._boardName + "/";
+                
         // _hexPath = _buildPath + "build/calliope-mini-classic-gcc/source/abbozza-combined.hex";
         if ( this._boardName.equals("microbit") ) {
             _hexPath = _buildPath + "build/bbc-microbit-classic-gcc/source/abbozza-combined.hex";
@@ -94,8 +120,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         
         _exitValue = 1;
         
-        InputStream err;
-        InputStream stdout;
+        // InputStream err;
+        // InputStream stdout;
 
         // Redirect error stream
         // PrintStream origErr = System.err;
@@ -111,55 +137,106 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 out.flush();
                 out.close();
 
-                // Now compile it by calling "yt build" in _buildPath
-                String scriptName = "yt build";
-                // String osName = System.getProperty("os.name");
-                // if (osName.indexOf("Windows") != -1) {
-                //     scriptName = "compile.bat";
-                // }
-                Process proc = Runtime.getRuntime().exec(_buildPath + scriptName,null,new File(_buildPath));
-                err = proc.getErrorStream();
-                stdout = proc.getInputStream();
-
-                proc.waitFor();
-                
-                _exitValue = proc.exitValue();
-                
+                _exitValue = compile(_buildPath);
+                                
                 AbbozzaLogger.out("Exit value: " + _exitValue, AbbozzaLogger.INFO);
                 
-                BufferedReader buf = new BufferedReader(new InputStreamReader(err));
-                while (buf.ready()) {
-                    errMsg = errMsg + "\n" + buf.readLine();
-                }
-                
-                buf = new BufferedReader(new InputStreamReader(stdout));
-                while (buf.ready()) {
-                    stdMsg = stdMsg + "\n" + buf.readLine();
-                }
             } catch (FileNotFoundException ex) {
-                AbbozzaLogger.out(ex.getLocalizedMessage(), AbbozzaLogger.ERROR);
-            } catch (IOException ex) {
-                AbbozzaLogger.out(ex.getLocalizedMessage(), AbbozzaLogger.ERROR);
-            } catch (InterruptedException ex) {
                 AbbozzaLogger.out(ex.getLocalizedMessage(), AbbozzaLogger.ERROR);
             }
 
-            // Reset error stream
-            // newErr.flush();
-            // System.setErr(origErr);
-            // Fetch response
             if (_exitValue > 0) {
+                AbbozzaLogger.out(outMsg, AbbozzaLogger.ERROR);
                 AbbozzaLogger.out(errMsg, AbbozzaLogger.ERROR);
             } else {
                 errMsg = "";
-                stdMsg = "";
+                outMsg = "";
                 AbbozzaLogger.out("Compilation successful", AbbozzaLogger.INFO);
             }
         }
 
-        return stdMsg;
+        return outMsg + errMsg;
     }
 
+
+    public int compile(String buildPath) {
+        errMsg = "";
+        outMsg = "";
+        
+        String osName = System.getProperty("os.name");
+        
+        ProcessBuilder procBuilder = null;
+        
+        if (osName.indexOf("Linux") != -1) {
+            procBuilder = buildProcLinux(buildPath);
+        } else if (osName.indexOf("Mac") != -1) {
+            procBuilder = buildProcMac(buildPath);
+        } else if (osName.indexOf("Windows") != -1) {
+            procBuilder = buildProcWindows(buildPath);
+        }
+        
+        if ( procBuilder == null) return 2;
+        
+        try {
+            procBuilder.redirectOutput(ProcessBuilder.Redirect.PIPE);
+            procBuilder.redirectError(ProcessBuilder.Redirect.PIPE);
+            Process proc = procBuilder.start();
+            
+            InputStream es = proc.getErrorStream();
+            InputStream os = proc.getInputStream();
+            
+            BufferedReader error = new BufferedReader(new InputStreamReader(es));
+            BufferedReader out = new BufferedReader(new InputStreamReader(os));
+
+            while ( proc.isAlive() ) {
+                String line;
+                if ( error.ready() ) {
+                    line = error.readLine();
+                    AbbozzaLogger.err(line);
+                    errMsg = errMsg + "\n" + line;
+                }
+                if ( out.ready() ) {
+                    line = out.readLine();
+                    AbbozzaLogger.out(line);
+                    outMsg = outMsg + "\n" + line;
+                }
+            }
+            
+            return proc.exitValue();
+            
+        } catch (IOException ex) {
+            AbbozzaLogger.err("Compilation failed");
+        }
+        
+        return 1;
+    }
+    
+    
+    public ProcessBuilder buildProcLinux(String buildPath) {
+        ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
+        procBuilder.directory(new File(buildPath));
+        
+        return procBuilder;
+    }
+    
+    
+    public ProcessBuilder buildProcMac(String buildPath) {
+        return null;
+    }
+
+    
+    public ProcessBuilder buildProcWindows(String buildPath) {
+        String yottaPath = System.getenv("YOTTA_PATH");
+        String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
+
+        ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");
+        procBuilder.directory(new File(buildPath));
+        procBuilder.environment().put("PATH", runtimePath + "\\lib\\srecord\\" + ";" + yottaPath + ";" + System.getenv("PATH"));
+
+        return procBuilder;
+    }
+    
+    
     @Override
     public String uploadCode(String code) {
 

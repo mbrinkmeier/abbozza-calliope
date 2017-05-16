@@ -1,0 +1,11 @@
+{
+  "name": "abbozza",
+  "version": "1.0.0",
+  "description": "Abbozza! build system for the micro:bit",
+  "license": "MIT",
+  "dependencies": {
+    "microbit": "lancaster-university/microbit"
+  },
+  "targetDependencies": {},
+  "bin": "./source"
+}
