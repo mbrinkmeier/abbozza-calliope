@@ -63,12 +63,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         menuBar2 = new java.awt.MenuBar();
         menu3 = new java.awt.Menu();
         menu4 = new java.awt.Menu();
-        sourcePanel = new javax.swing.JScrollPane();
-        sourceArea = new javax.swing.JTextArea();
         tabs = new javax.swing.JTabbedPane();
         LogoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        sourcePanel = new javax.swing.JScrollPane();
+        sourceArea = new javax.swing.JTextArea();
         logPanel = new javax.swing.JScrollPane();
         consoleArea = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -90,14 +90,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         menu4.setLabel("Edit");
         menuBar2.add(menu4);
-
-        sourcePanel.setMaximumSize(null);
-        sourcePanel.setRequestFocusEnabled(false);
-
-        sourceArea.setEditable(false);
-        sourceArea.setColumns(20);
-        sourceArea.setRows(5);
-        sourcePanel.setViewportView(sourceArea);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("abbozza! Calliope");
@@ -136,6 +128,19 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         );
 
         tabs.addTab("Info", LogoPanel);
+
+        sourcePanel.setMaximumSize(null);
+        sourcePanel.setPreferredSize(null);
+        sourcePanel.setRequestFocusEnabled(false);
+
+        sourceArea.setEditable(false);
+        sourceArea.setColumns(20);
+        sourceArea.setRows(5);
+        sourcePanel.setViewportView(sourceArea);
+
+        tabs.addTab(AbbozzaLocale.entry("gui.sourceCode"), sourcePanel);
+
+        logPanel.setPreferredSize(null);
 
         consoleArea.setEditable(false);
         consoleArea.setColumns(20);
@@ -186,7 +191,9 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         tabs.getAccessibleContext().setAccessibleName(AbbozzaLocale.entry("gui.sourceCode"));
