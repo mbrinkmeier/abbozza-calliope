@@ -108,14 +108,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         LogoPanelLayout.setHorizontalGroup(
             LogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LogoPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addGroup(LogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(88, 88, 88))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(124, 124, 124))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         LogoPanelLayout.setVerticalGroup(
             LogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +127,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         tabs.addTab("Info", LogoPanel);
 
         sourcePanel.setMaximumSize(null);
-        sourcePanel.setPreferredSize(null);
         sourcePanel.setRequestFocusEnabled(false);
 
         sourceArea.setEditable(false);
@@ -139,8 +135,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sourcePanel.setViewportView(sourceArea);
 
         tabs.addTab(AbbozzaLocale.entry("gui.sourceCode"), sourcePanel);
-
-        logPanel.setPreferredSize(null);
 
         consoleArea.setEditable(false);
         consoleArea.setColumns(20);
