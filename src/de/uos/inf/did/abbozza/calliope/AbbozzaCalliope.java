@@ -93,6 +93,8 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         globalPluginPath = installPath + "/tools/Abbozza/plugins";
     }
     
+    
+    
     public void setAdditionalPaths() {
         installPath = config.getProperty("installPath");
         sketchbookPath = config.getProperty("sketchbookPath");
