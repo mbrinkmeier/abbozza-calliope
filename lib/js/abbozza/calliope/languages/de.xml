@@ -2,6 +2,7 @@
 <language id="de">
     <blocks>
         <msg id="block.MAIN">Hauptprogramm</msg> 
+        <msg id="block.print">Zeige</msg>
         <msg id="block.led">Led Zeile: # Spalte: #</msg>
         <msg id="block.scroll">Laufschrift</msg>
         <msg id="block.displayImage">Stelle Bild dar</msg>
@@ -23,6 +24,8 @@
         <msg id="dev.ACCEL_X">links-rechts</msg>
         <msg id="dev.ACCEL_Y">vor-zurück</msg>
         <msg id="dev.ACCEL_Z">hoch-runter</msg>
+        <msg id="dev.ACCEL_PITCH">Steigung</msg>
+        <msg id="dev.ACCEL_ROLL">Neigung</msg>
         <msg id="dev.GESTURE">Geste</msg>
         <msg id="dev.ACCEL_GESTURE">Letzte Geste</msg>
         <msg id="dev.ACCEL_IS_GESTURE">Aktuelle Geste ist</msg>
@@ -38,6 +41,15 @@
         <msg id="dev.6G">6G</msg>
         <msg id="dev.8G">8G</msg>
         <msg id="dev.SHAKE">Geschüttelt</msg>
+        <msg id="dev.COMPASS_HEADING">Kompassrichtung (° zu Nord)</msg>
+        <msg id="dev.COMPASS_GET_FS">Kompass Feldstärke </msg>
+        <msg id="dev.COMPASS_X">in x-Richtung</msg>
+        <msg id="dev.COMPASS_Y">in y-Richtung</msg>
+        <msg id="dev.COMPASS_Z">in z-Richtung</msg>
+        <msg id="dev.COMPASS_OVERALL">gesamt</msg>
+        <msg id="dev.COMPASS_CALIBRATE">Kompass kalibrieren</msg>
+        <msg id="dev.COMPASS_IS_CALIBRATED">Ist Kompass kalibriert?</msg>
+        <msg id="dev.THERMOMETER_GET">Temperatur</msg>
         
         <msg id="io.TOUCHEDPIN">wird berührt</msg>
     </blocks>
@@ -48,9 +60,13 @@
     <gui>
         <msg id="gui.quit">Beenden</msg>
         <msg id="gui.clear">Lösche Meldungen</msg>        
+        <msg id="gui.settings">Einstellungen</msg>
         <msg id="gui.console">Meldungen</msg>
         <msg id="gui.sourceCode">Quelltext</msg>
         <msg id="gui.startBrowser">Starte Browser</msg>
+        <msg id="gui.sketch_menu">Sketch</msg>
+        <msg id="gui.compile">Kompilieren</msg>
+        <msg id="gui.upload">Kompilieren und Hochladen</msg>
     </gui>
     <image>
         <msg id="Image.HEART">Herz</msg>
