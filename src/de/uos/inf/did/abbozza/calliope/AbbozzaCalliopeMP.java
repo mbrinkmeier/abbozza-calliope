@@ -48,7 +48,7 @@ import javax.swing.JOptionPane;
  *
  * @author michael
  */
-public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
+public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
 
     private int _SCRIPT_ADDR = 0x3e000; 
     protected String _pathToBoard = "";
@@ -57,8 +57,8 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     protected String runtimePath;     // The parent directory of jarPath, containig lib, plugins, bin ...
     
     public static void main (String args[]) {
-        AbbozzaCalliope abbozza = new AbbozzaCalliope();
-        abbozza.init("calliope");        
+        AbbozzaCalliopeMP abbozza = new AbbozzaCalliopeMP();
+        abbozza.init("calliopeMP");        
     }
 
     
@@ -172,7 +172,7 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
                     out.flush();
                     out.close();
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(AbbozzaCalliope.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AbbozzaCalliopeMP.class.getName()).log(Level.SEVERE, null, ex);
                 }
         } else {
         }
