@@ -162,13 +162,13 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
     @Override
     public String uploadCode(String code) {
         this.frame.setCode(code);        
-        String java = embed(hexlify(code));
+        String hex = embed(hexlify(code));
         AbbozzaLogger.out("Writing hex code to " + _pathToBoard + "/abbozza.hex",4);
         
-        if ( java != "" ) {
+        if ( hex != "" ) {
                 try {
                     PrintWriter out = new PrintWriter(_pathToBoard + "/abbozza.hex");
-                    out.write(java);
+                    out.write(hex);
                     out.flush();
                     out.close();
                 } catch (FileNotFoundException ex) {
@@ -254,7 +254,7 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
         // of the runtime code.
         String runtime = "";
         try {
-            runtime = new String(this.jarHandler.getBytes("/js/abbozza/calliope/runtimes/calliope.hex"));
+            runtime = new String(this.jarHandler.getBytes("/js/abbozza/calliopeMP/runtimes/calliope.hex"));
         } catch (Exception ex) {
             return "";
         }
