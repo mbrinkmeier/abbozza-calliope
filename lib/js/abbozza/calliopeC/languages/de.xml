@@ -13,6 +13,11 @@
         <msg id="block.displayOff">Schalte Anzeige an</msg>
         <msg id="block.displayIsOn">Ist Anzeige an?</msg>
         <msg id="block.asString"></msg>
+        <msg id="block.getLightLevel">Umgebungshelligkeit</msg>
+        <msg id="block.radioReceive">Empfangene Nachricht</msg>
+        <msg id="block.radioSend">Sende Nachricht</msg>
+        <msg id="block.radioPower">Setze Sendestärke auf</msg>
+        <msg id="block.radioChannel">Setze Kanal auf</msg>
         
         <msg id="dev.BUTTON_A">Knopf A</msg>
         <msg id="dev.BUTTON_B">Knopf B</msg>
@@ -42,6 +47,7 @@
     <cat>
         <msg id="cat.DISPLAY">Anzeige</msg>
         <msg id="cat.BUTTONS">Knöpfe</msg>
+        <msg id="cat.RADIO">Funk</msg>
     </cat>
     <gui>
         <msg id="gui.quit">Beenden</msg>
@@ -49,6 +55,7 @@
         <msg id="gui.console">Meldungen</msg>
         <msg id="gui.sourceCode">Quelltext</msg>
         <msg id="gui.startBrowser">Starte Browser</msg>
+        <msg id="gui.radio">Funk</msg>
     </gui>
     <image>
         <msg id="Image.HEART">Herz</msg>

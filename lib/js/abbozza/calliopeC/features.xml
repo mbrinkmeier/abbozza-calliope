@@ -141,8 +141,8 @@
             <block type="dev_accel_was_gesture"></block>
             <block type="dev_compass_get"></block>
             <block type="dev_thermometer_get"></block>
-        </category>
-        	            
+            <block type="display_light_level"></block>
+        </category>        	                                   
     </feature>
 		
     <feature id="feat.FUNC">
@@ -150,6 +150,15 @@
             <block type="func_decl"></block>
             <block type="func_call"></block>
             <block type="func_return"></block>
+        </category>
+    </feature>
+
+    <feature id="feat.RADIO">
+        <category id="cat.RADIO">
+            <block type="radio_receive"></block>
+            <block type="radio_send"></block>
+            <block type="radio_power"></block>
+            <block type="radio_channel"></block>
         </category>
     </feature>
 	
