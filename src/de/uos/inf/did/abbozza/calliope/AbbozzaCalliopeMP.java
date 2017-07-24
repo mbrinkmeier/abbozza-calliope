@@ -48,7 +48,7 @@ import javax.swing.JOptionPane;
  *
  * @author michael
  */
-public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
+public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
 
     private int _SCRIPT_ADDR = 0x3e000; 
     protected String _pathToBoard = "";
@@ -57,8 +57,8 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     protected String runtimePath;     // The parent directory of jarPath, containig lib, plugins, bin ...
     
     public static void main (String args[]) {
-        AbbozzaCalliope abbozza = new AbbozzaCalliope();
-        abbozza.init("calliope");        
+        AbbozzaCalliopeMP abbozza = new AbbozzaCalliopeMP();
+        abbozza.init("calliopeMP");        
     }
 
     
@@ -92,6 +92,8 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         localPluginPath = jarPath + "/plugins";
         globalPluginPath = installPath + "/tools/Abbozza/plugins";
     }
+    
+    
     
     public void setAdditionalPaths() {
         installPath = config.getProperty("installPath");
@@ -160,17 +162,17 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     @Override
     public String uploadCode(String code) {
         this.frame.setCode(code);        
-        String java = embed(hexlify(code));
+        String hex = embed(hexlify(code));
         AbbozzaLogger.out("Writing hex code to " + _pathToBoard + "/abbozza.hex",4);
         
-        if ( java != "" ) {
+        if ( hex != "" ) {
                 try {
                     PrintWriter out = new PrintWriter(_pathToBoard + "/abbozza.hex");
-                    out.write(java);
+                    out.write(hex);
                     out.flush();
                     out.close();
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(AbbozzaCalliope.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AbbozzaCalliopeMP.class.getName()).log(Level.SEVERE, null, ex);
                 }
         } else {
         }
@@ -252,7 +254,7 @@ public class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
         // of the runtime code.
         String runtime = "";
         try {
-            runtime = new String(this.jarHandler.getBytes("/js/abbozza/calliope/runtimes/calliope.hex"));
+            runtime = new String(this.jarHandler.getBytes("/js/abbozza/calliopeMP/runtimes/calliope.hex"));
         } catch (Exception ex) {
             return "";
         }

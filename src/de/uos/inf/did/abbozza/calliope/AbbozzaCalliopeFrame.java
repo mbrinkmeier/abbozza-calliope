@@ -63,10 +63,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         menuBar2 = new java.awt.MenuBar();
         menu3 = new java.awt.Menu();
         menu4 = new java.awt.Menu();
-        tabs = new javax.swing.JTabbedPane();
-        LogoPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
         sourcePanel = new javax.swing.JScrollPane();
         sourceArea = new javax.swing.JTextArea();
         logPanel = new javax.swing.JScrollPane();
@@ -77,7 +74,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         clearItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        settingsItem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         quitItem = new javax.swing.JMenuItem();
+        sketchMenu = new javax.swing.JMenu();
+        compileMenuItem = new javax.swing.JMenuItem();
+        uploadMenuItem = new javax.swing.JMenuItem();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -94,61 +96,27 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("abbozza! Calliope");
 
-        tabs.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/img/abbozza200.png"))); // NOI18N
-        jLabel1.setToolTipText("");
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/img/calliope_logo_small.png"))); // NOI18N
-
-        javax.swing.GroupLayout LogoPanelLayout = new javax.swing.GroupLayout(LogoPanel);
-        LogoPanel.setLayout(LogoPanelLayout);
-        LogoPanelLayout.setHorizontalGroup(
-            LogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LogoPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(LogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(88, 88, 88))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LogoPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(124, 124, 124))))
-        );
-        LogoPanelLayout.setVerticalGroup(
-            LogoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LogoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        tabs.addTab("Info", LogoPanel);
+        jSplitPane1.setDividerLocation(300);
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         sourcePanel.setMaximumSize(null);
-        sourcePanel.setPreferredSize(null);
         sourcePanel.setRequestFocusEnabled(false);
 
-        sourceArea.setEditable(false);
         sourceArea.setColumns(20);
         sourceArea.setRows(5);
         sourcePanel.setViewportView(sourceArea);
 
-        tabs.addTab(AbbozzaLocale.entry("gui.sourceCode"), sourcePanel);
-
-        logPanel.setPreferredSize(null);
+        jSplitPane1.setLeftComponent(sourcePanel);
 
         consoleArea.setEditable(false);
         consoleArea.setColumns(20);
-        consoleArea.setRows(5);
+        consoleArea.setLineWrap(true);
+        consoleArea.setRows(1);
+        consoleArea.setWrapStyleWord(true);
         consoleArea.setMaximumSize(null);
         logPanel.setViewportView(consoleArea);
 
-        tabs.addTab(AbbozzaLocale.entry("gui.console"), logPanel);
+        jSplitPane1.setBottomComponent(logPanel);
 
         jMenu1.setText("abbozza!");
 
@@ -170,6 +138,15 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         jMenu1.add(clearItem);
         jMenu1.add(jSeparator1);
 
+        settingsItem.setText(AbbozzaLocale.entry("gui.settings"));
+        settingsItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(settingsItem);
+        jMenu1.add(jSeparator3);
+
         quitItem.setText(AbbozzaLocale.entry("gui.quit")
         );
         quitItem.addActionListener(new java.awt.event.ActionListener() {
@@ -181,22 +158,43 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         jMenuBar1.add(jMenu1);
 
+        sketchMenu.setText(AbbozzaLocale.entry("gui.sketch_menu"));
+
+        compileMenuItem.setText(AbbozzaLocale.entry("gui.compile"));
+        compileMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compileMenuItemActionPerformed(evt);
+            }
+        });
+        sketchMenu.add(compileMenuItem);
+
+        uploadMenuItem.setText(AbbozzaLocale.entry("gui.upload"));
+        uploadMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadMenuItemActionPerformed(evt);
+            }
+        });
+        sketchMenu.add(uploadMenuItem);
+
+        jMenuBar1.add(sketchMenu);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
-
-        tabs.getAccessibleContext().setAccessibleName(AbbozzaLocale.entry("gui.sourceCode"));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -216,17 +214,41 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         abbozza.startBrowser(abbozza.getSystem()+".html");
     }//GEN-LAST:event_startBrowserItemActionPerformed
 
+    private void compileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileMenuItemActionPerformed
+        AbbozzaServer abbozza = AbbozzaServer.getInstance();
+        String response = abbozza.compileCode(this.sourceArea.getText());
+        if ( response != null ) {
+            if ( response.equals("")) {
+                response = AbbozzaLocale.entry("gui.compilation_success");
+            }
+            this.consoleArea.setText(response);
+        }
+    }//GEN-LAST:event_compileMenuItemActionPerformed
+
+    private void uploadMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadMenuItemActionPerformed
+        AbbozzaServer abbozza = AbbozzaServer.getInstance();
+        String response = abbozza.uploadCode(this.sourceArea.getText());
+        if ( response != null ) {
+            this.consoleArea.setText(response);
+        }
+    }//GEN-LAST:event_uploadMenuItemActionPerformed
+
+    private void settingsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsItemActionPerformed
+        AbbozzaServer abbozza = AbbozzaServer.getInstance();
+        abbozza.openConfigDialog();
+    }//GEN-LAST:event_settingsItemActionPerformed
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel LogoPanel;
     private javax.swing.JMenuItem clearItem;
+    private javax.swing.JMenuItem compileMenuItem;
     private javax.swing.JTextArea consoleArea;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JScrollPane logPanel;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
@@ -235,10 +257,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private java.awt.MenuBar menuBar1;
     private java.awt.MenuBar menuBar2;
     private javax.swing.JMenuItem quitItem;
+    private javax.swing.JMenuItem settingsItem;
+    private javax.swing.JMenu sketchMenu;
     private javax.swing.JTextArea sourceArea;
     private javax.swing.JScrollPane sourcePanel;
     private javax.swing.JMenuItem startBrowserItem;
-    private javax.swing.JTabbedPane tabs;
+    private javax.swing.JMenuItem uploadMenuItem;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -248,6 +272,5 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     
     public void setCode(String code) {
         this.sourceArea.setText(code);
-        this.tabs.setSelectedComponent(this.sourcePanel);
     }
 }
