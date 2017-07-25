@@ -52,7 +52,7 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
 
     private int _SCRIPT_ADDR = 0x3e000; 
     protected String _pathToBoard = "";
-    protected AbbozzaCalliopeFrame frame;
+    protected AbbozzaCalliopeGUI frame;
     protected String installPath;     // The path into which abbozza was installed
     protected String runtimePath;     // The parent directory of jarPath, containig lib, plugins, bin ...
     
@@ -71,12 +71,15 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
         
         // Open Frame
         frame = new AbbozzaCalliopeFrame();
+        frame.open();
+        /*
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
         frame.setVisible(true);
         frame.setState(JFrame.ICONIFIED);
+        */
         
         startServer();
         startBrowser(system+".html");

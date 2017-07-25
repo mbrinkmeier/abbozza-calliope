@@ -21,14 +21,21 @@
  */
 package de.uos.inf.did.abbozza.calliope;
 
+import org.fife.ui.autocomplete.*;
+import org.fife.ui.rtextarea.*;
+import org.fife.ui.rsyntaxtextarea.*;
 import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaLoggerListener;
 import de.uos.inf.did.abbozza.AbbozzaServer;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
@@ -36,15 +43,30 @@ import javax.swing.JTextPane;
  *
  * @author mbrinkmeier
  */
-public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements AbbozzaLoggerListener {
+public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements AbbozzaLoggerListener, AbbozzaCalliopeGUI {
 
     private PrintStream _console;
+    private RTextScrollPane sourcePanel;
+    private RSyntaxTextArea sourceArea;
 
     /**
      * Creates new form AbbozzaCalliopeFrame
      */
     public AbbozzaCalliopeFrame() {
         initComponents();
+        
+        sourceArea = new RSyntaxTextArea(20, 60);
+        sourceArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
+        sourceArea.setCodeFoldingEnabled(true);        
+        sourcePanel = new RTextScrollPane(sourceArea);
+        this.jSplitPane1.setLeftComponent(sourcePanel);
+        
+        CompletionProvider provider = createCompletionProvider();
+        AutoCompletion ac = new AutoCompletion(provider);
+        ac.install(sourceArea);
+
+        pack();
+        
         AbbozzaLogger.addListener(this);
     }
 
@@ -57,15 +79,9 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuBar1 = new java.awt.MenuBar();
-        menu1 = new java.awt.Menu();
-        menu2 = new java.awt.Menu();
-        menuBar2 = new java.awt.MenuBar();
-        menu3 = new java.awt.Menu();
-        menu4 = new java.awt.Menu();
+        sourcePanel2 = new javax.swing.JScrollPane();
+        sourceArea2 = new javax.swing.JTextArea();
         jSplitPane1 = new javax.swing.JSplitPane();
-        sourcePanel = new javax.swing.JScrollPane();
-        sourceArea = new javax.swing.JTextArea();
         logPanel = new javax.swing.JScrollPane();
         consoleArea = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -81,32 +97,18 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         compileMenuItem = new javax.swing.JMenuItem();
         uploadMenuItem = new javax.swing.JMenuItem();
 
-        menu1.setLabel("File");
-        menuBar1.add(menu1);
+        sourcePanel2.setMaximumSize(null);
+        sourcePanel2.setRequestFocusEnabled(false);
 
-        menu2.setLabel("Edit");
-        menuBar1.add(menu2);
-
-        menu3.setLabel("File");
-        menuBar2.add(menu3);
-
-        menu4.setLabel("Edit");
-        menuBar2.add(menu4);
+        sourceArea2.setColumns(20);
+        sourceArea2.setRows(5);
+        sourcePanel2.setViewportView(sourceArea2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("abbozza! Calliope");
 
         jSplitPane1.setDividerLocation(300);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-
-        sourcePanel.setMaximumSize(null);
-        sourcePanel.setRequestFocusEnabled(false);
-
-        sourceArea.setColumns(20);
-        sourceArea.setRows(5);
-        sourcePanel.setViewportView(sourceArea);
-
-        jSplitPane1.setLeftComponent(sourcePanel);
 
         consoleArea.setEditable(false);
         consoleArea.setColumns(20);
@@ -250,17 +252,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JScrollPane logPanel;
-    private java.awt.Menu menu1;
-    private java.awt.Menu menu2;
-    private java.awt.Menu menu3;
-    private java.awt.Menu menu4;
-    private java.awt.MenuBar menuBar1;
-    private java.awt.MenuBar menuBar2;
     private javax.swing.JMenuItem quitItem;
     private javax.swing.JMenuItem settingsItem;
     private javax.swing.JMenu sketchMenu;
-    private javax.swing.JTextArea sourceArea;
-    private javax.swing.JScrollPane sourcePanel;
+    private javax.swing.JTextArea sourceArea2;
+    private javax.swing.JScrollPane sourcePanel2;
     private javax.swing.JMenuItem startBrowserItem;
     private javax.swing.JMenuItem uploadMenuItem;
     // End of variables declaration//GEN-END:variables
@@ -273,4 +269,32 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     public void setCode(String code) {
         this.sourceArea.setText(code);
     }
+
+    @Override
+    public void open() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+        int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+        this.setLocation(x, y);
+        this.setVisible(true);
+        this.setState(JFrame.ICONIFIED);
+    }
+    
+    /**
+    * Create a simple provider that adds some calliope related completions.
+    */
+   private CompletionProvider createCompletionProvider() {
+      AbbozzaServer abbozza = AbbozzaServer.getInstance();
+      
+      DefaultCompletionProvider provider = new DefaultCompletionProvider();
+      try {
+        InputStream autoCompleteXML = abbozza.getJarHandler().getInputStream("lib/" + abbozza.getSystem() + "_ac.xml");
+        provider.loadFromXML(autoCompleteXML);  
+      } catch (IOException ex) {
+          AbbozzaLogger.err("Could not load autocomplete file: lib/" + abbozza.getSystem() + "_ac.xml");
+      }
+              
+      return provider;
+
+   }
 }
