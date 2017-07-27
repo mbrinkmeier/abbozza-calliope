@@ -55,11 +55,30 @@
         <msg id="dev.COMPASS_CALIBRATE">Kompass kalibrieren</msg>
         <msg id="dev.COMPASS_IS_CALIBRATED">Ist Kompass kalibriert?</msg>
         <msg id="dev.THERMOMETER_GET">Temperatur</msg>
+        
+        <msg id="dev.SOUND_MUTE">Ton aus</msg>
+        <msg id="dev.SOUND_PLAY">Spiele Frequenz [Hz]</msg>
+        <msg id="dev.SOUND_PLAY_DUR">Spiele Frequenz [Hz] # Dauer [ms]</msg>
+        <msg id="dev.SOUND_NOTE_INT">Ton # aus</msg>
+
+        <msg id="dev.MOTOR_ON">Setze Motor # auf [Prozent] </msg>
+        <msg id="dev.MOTOR_OFF">Stoppe Motor</msg>
+
+        <msg id="event.HANDLER">Ereignishandler</msg>
+        <msg id="event.BUTTON_LISTEN">Falls Knopf # # führe # aus</msg>
+        <msg id="event.BUTTON_UP">losgelassen wird</msg>
+        <msg id="event.BUTTON_DOWN">gedrückt wird</msg>
+        <msg id="event.BUTTON_CLICK">geklickt wird</msg>
+        <msg id="event.BUTTON_LONG_CLICK">lang geklickt wird</msg>
+        <msg id="event.BUTTON_HOLD">gehalten wird</msg>
+        <msg id="event.BUTTON_DOUBLE_CLICK">doppelt geklickt wird</msg>
     </blocks>
     <cat>
         <msg id="cat.DISPLAY">Anzeige</msg>
         <msg id="cat.BUTTONS">Knöpfe</msg>
         <msg id="cat.RADIO">Funk</msg>
+        <msg id="cat.MOTOR">Motoren</msg>
+        <msg id="cat.EVENTS">Ereignisse</msg>
     </cat>
     <gui>
         <msg id="gui.quit">Beenden</msg>

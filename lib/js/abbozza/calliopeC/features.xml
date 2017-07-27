@@ -95,6 +95,35 @@
             <block type="display_on"></block>
             <block type="display_off"></block>
             <block type="display_is_on"></block>
+            <block type="dev_rgb_led_set_color">
+                <value name ="RED">
+                    <block type="math_number"></block>
+                </value>
+                <value name ="GREEN">
+                    <block type="math_number"></block>
+                </value>
+                <value name ="BLUE">
+                    <block type="math_number"></block>
+                </value>
+                <value name ="WHITE">
+                    <block type="math_number"></block>
+                </value>
+            </block>
+            <block type="dev_rgb_led_set_color2"></block>
+        </category>
+
+        <category name="Töne" id="cat.SOUND" color="150">
+            <block type="dev_speaker_play"></block>
+            <block type="dev_speaker_play_dur"></block>
+            <!-- block type="dev_speaker_note"></block>
+            <block type="dev_speaker_note_dur"></block -->
+            <block type="dev_speaker_note_int"></block>
+            <block type="dev_speaker_mute"></block>
+        </category>
+
+        <category name="Motor" id="cat.MOTOR" color="150">
+            <block type="dev_motor_on"></block>
+            <block type="dev_motor_off"></block>
         </category>
 
         <category name="Ein- und Ausgabe" id="cat.INOUT">
@@ -176,5 +205,12 @@
             <block type="radio_channel"></block>
         </category>
     </feature>
-	
+
+    <feature id="feat.EVENTS">
+        <category id="cat.EVENTS">
+            <block type="int_isr"></block>
+            <block type="event_button_listen"></block>
+        </category>
+    </feature>
+        	
 </features>

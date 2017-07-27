@@ -10,6 +10,7 @@
         <item name="gui.usb" option="usb" default="true">
             <item name="gui.messages" option="messages" default="true"/>
         </item>
+        <item name="gui.radio" option="events" default="true"/>
         <group name="gui.arrays">
             <choice name="gui.no_arrays" option="noArrays" default="false"/> 
             <choice name="gui.lin_arrays" option="linArrays" default="false"/> 
