@@ -28,17 +28,18 @@ import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaLoggerListener;
 import de.uos.inf.did.abbozza.AbbozzaServer;
+import de.uos.inf.did.abbozza.Tools;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
-import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextPane;
+import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author mbrinkmeier
@@ -49,21 +50,38 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private RTextScrollPane sourcePanel;
     private RSyntaxTextArea sourceArea;
 
+    private File lastSourceFile = null;
     /**
      * Creates new form AbbozzaCalliopeFrame
      */
     public AbbozzaCalliopeFrame() {
+        
+        /* try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MetalLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+        } catch (InstantiationException ex) {
+        } catch (IllegalAccessException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
+        } */
+        
+        Font f = new Font("sans-serif", Font.PLAIN, 12);
+        UIManager.put("Menu.font", f);
+        
         initComponents();
         
-        sourceArea = new RSyntaxTextArea(20, 60);
+        sourceArea = new RSyntaxTextArea(50, 120);
         sourceArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
         sourceArea.setCodeFoldingEnabled(true);        
         sourcePanel = new RTextScrollPane(sourceArea);
-        this.jSplitPane1.setLeftComponent(sourcePanel);
+        // this.splitPane.setLeftComponent(sourcePanel);
+        editorPane.add(sourcePanel, java.awt.BorderLayout.CENTER);
         
         CompletionProvider provider = createCompletionProvider();
         AutoCompletion ac = new AutoCompletion(provider);
         ac.install(sourceArea);
+        ac.setAutoActivationDelay(500);
+        ac.setAutoActivationEnabled(true);
+        
 
         pack();
         
@@ -79,12 +97,17 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sourcePanel2 = new javax.swing.JScrollPane();
-        sourceArea2 = new javax.swing.JTextArea();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        splitPane = new javax.swing.JSplitPane();
         logPanel = new javax.swing.JScrollPane();
         consoleArea = new javax.swing.JTextArea();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        editorPane = new javax.swing.JPanel();
+        toolbar = new javax.swing.JToolBar();
+        compileButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JToolBar.Separator();
+        compileButton1 = new javax.swing.JButton();
+        compileButton2 = new javax.swing.JButton();
+        menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         startBrowserItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -97,18 +120,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         compileMenuItem = new javax.swing.JMenuItem();
         uploadMenuItem = new javax.swing.JMenuItem();
 
-        sourcePanel2.setMaximumSize(null);
-        sourcePanel2.setRequestFocusEnabled(false);
-
-        sourceArea2.setColumns(20);
-        sourceArea2.setRows(5);
-        sourcePanel2.setViewportView(sourceArea2);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("abbozza! Calliope");
 
-        jSplitPane1.setDividerLocation(300);
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        splitPane.setDividerLocation(500);
+        splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         consoleArea.setEditable(false);
         consoleArea.setColumns(20);
@@ -118,7 +134,72 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         consoleArea.setMaximumSize(null);
         logPanel.setViewportView(consoleArea);
 
-        jSplitPane1.setBottomComponent(logPanel);
+        splitPane.setBottomComponent(logPanel);
+
+        editorPane.setLayout(new java.awt.BorderLayout());
+
+        toolbar.setFloatable(false);
+        toolbar.setRollover(true);
+        toolbar.setMinimumSize(new java.awt.Dimension(18, 18));
+
+        compileButton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        compileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/generate.png"))); // NOI18N
+        compileButton.setToolTipText(AbbozzaLocale.entry("gui.compile"));
+        compileButton.setFocusable(false);
+        compileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        compileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        compileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compileActionPerformed(evt);
+            }
+        });
+        toolbar.add(compileButton);
+
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/upload.png"))); // NOI18N
+        jButton1.setToolTipText(AbbozzaLocale.entry("gui.upload"));
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadActionPerformed(evt);
+            }
+        });
+        toolbar.add(jButton1);
+
+        jSeparator5.setOrientation(javax.swing.SwingConstants.HORIZONTAL);
+        toolbar.add(jSeparator5);
+
+        compileButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        compileButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/load.png"))); // NOI18N
+        compileButton1.setToolTipText(AbbozzaLocale.entry("gui.load"));
+        compileButton1.setFocusable(false);
+        compileButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        compileButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        compileButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadActionPerformed(evt);
+            }
+        });
+        toolbar.add(compileButton1);
+
+        compileButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        compileButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/save.png"))); // NOI18N
+        compileButton2.setToolTipText(AbbozzaLocale.entry("gui.save"));
+        compileButton2.setFocusable(false);
+        compileButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        compileButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        compileButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
+        toolbar.add(compileButton2);
+
+        editorPane.add(toolbar, java.awt.BorderLayout.NORTH);
+
+        splitPane.setLeftComponent(editorPane);
 
         jMenu1.setText("abbozza!");
 
@@ -158,14 +239,19 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         });
         jMenu1.add(quitItem);
 
-        jMenuBar1.add(jMenu1);
+        menuBar.add(jMenu1);
 
         sketchMenu.setText(AbbozzaLocale.entry("gui.sketch_menu"));
+        sketchMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compileActionPerformed(evt);
+            }
+        });
 
         compileMenuItem.setText(AbbozzaLocale.entry("gui.compile"));
         compileMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                compileMenuItemActionPerformed(evt);
+                compileActionPerformed(evt);
             }
         });
         sketchMenu.add(compileMenuItem);
@@ -173,14 +259,14 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         uploadMenuItem.setText(AbbozzaLocale.entry("gui.upload"));
         uploadMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadMenuItemActionPerformed(evt);
+                uploadActionPerformed(evt);
             }
         });
         sketchMenu.add(uploadMenuItem);
 
-        jMenuBar1.add(sketchMenu);
+        menuBar.add(sketchMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,14 +274,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE))
+                .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
         );
 
         pack();
@@ -211,12 +294,24 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     }//GEN-LAST:event_clearItemActionPerformed
 
     private void startBrowserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBrowserItemActionPerformed
-        System.out.println("Starting Browser");
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
         abbozza.startBrowser(abbozza.getSystem()+".html");
     }//GEN-LAST:event_startBrowserItemActionPerformed
 
-    private void compileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileMenuItemActionPerformed
+    private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
+        AbbozzaServer abbozza = AbbozzaServer.getInstance();
+        String response = abbozza.uploadCode(this.sourceArea.getText());
+        if ( response != null ) {
+            this.consoleArea.setText(response);
+        }
+    }//GEN-LAST:event_uploadActionPerformed
+
+    private void settingsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsItemActionPerformed
+        AbbozzaServer abbozza = AbbozzaServer.getInstance();
+        abbozza.openConfigDialog();
+    }//GEN-LAST:event_settingsItemActionPerformed
+
+    private void compileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileActionPerformed
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
         String response = abbozza.compileCode(this.sourceArea.getText());
         if ( response != null ) {
@@ -225,42 +320,106 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
             this.consoleArea.setText(response);
         }
-    }//GEN-LAST:event_compileMenuItemActionPerformed
+    }//GEN-LAST:event_compileActionPerformed
 
-    private void uploadMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadMenuItemActionPerformed
+    private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
-        String response = abbozza.uploadCode(this.sourceArea.getText());
-        if ( response != null ) {
-            this.consoleArea.setText(response);
+        String path;
+        try {
+            path = ((lastSourceFile != null) ? lastSourceFile.getCanonicalPath() : abbozza.getSketchbookPath());
+        } catch (IOException ex) {
+            path = System.getProperty("user.home");
         }
-    }//GEN-LAST:event_uploadMenuItemActionPerformed
+        JFileChooser chooser = new JFileChooser(path);
+        
+        chooser.setFileFilter(new FileNameExtensionFilter("abbozza! (*.cpp)", "cpp"));
+        if ( (lastSourceFile != null) && (lastSourceFile.isDirectory()) ) {
+            chooser.setCurrentDirectory(lastSourceFile);            
+        } else {
+            chooser.setSelectedFile(lastSourceFile);
+        }
+        
+        int choice = chooser.showOpenDialog(null);
+        if (choice == JFileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();                        
+            lastSourceFile = file;
+            loadCode(file);
+        }
+        
+    }//GEN-LAST:event_loadActionPerformed
 
-    private void settingsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsItemActionPerformed
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
-        abbozza.openConfigDialog();
-    }//GEN-LAST:event_settingsItemActionPerformed
+        String path;
+        try {
+            path = ((lastSourceFile != null) ? lastSourceFile.getCanonicalPath() : abbozza.getSketchbookPath());
+        } catch (IOException ex) {
+            path = System.getProperty("user.home");
+        }
+        JFileChooser chooser = new JFileChooser(path);
+        
+        chooser.setFileFilter(new FileNameExtensionFilter("abbozza! (*.cpp)", "cpp"));
+        if ( (lastSourceFile != null) && (lastSourceFile.isDirectory()) ) {
+            chooser.setCurrentDirectory(lastSourceFile);            
+        } else {
+            chooser.setSelectedFile(lastSourceFile);
+        }
+        
+        int choice = chooser.showOpenDialog(null);
+        if (choice == JFileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();                        
+            lastSourceFile = file;
+            saveCode(file);
+        }
+    }//GEN-LAST:event_saveActionPerformed
 
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem clearItem;
+    private javax.swing.JButton compileButton;
+    private javax.swing.JButton compileButton1;
+    private javax.swing.JButton compileButton2;
     private javax.swing.JMenuItem compileMenuItem;
     private javax.swing.JTextArea consoleArea;
+    private javax.swing.JPanel editorPane;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JScrollPane logPanel;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem quitItem;
     private javax.swing.JMenuItem settingsItem;
     private javax.swing.JMenu sketchMenu;
-    private javax.swing.JTextArea sourceArea2;
-    private javax.swing.JScrollPane sourcePanel2;
+    private javax.swing.JSplitPane splitPane;
     private javax.swing.JMenuItem startBrowserItem;
+    private javax.swing.JToolBar toolbar;
     private javax.swing.JMenuItem uploadMenuItem;
     // End of variables declaration//GEN-END:variables
 
+    public void loadCode(File file) {
+        String code;
+        try {
+            byte[] bytes = Tools.readBytes(file);
+            code = new String(bytes);
+            setCode(code);
+        } catch (IOException ex) {
+        }
+    }
+    
+    public void saveCode(File file) {
+        String code = this.sourceArea.getText();
+        try {
+            file.createNewFile();
+            PrintStream ps = new PrintStream(file);
+            ps.print(code);
+        } catch (Exception ex) {
+        }
+    }
+
+    
     @Override
     public void logged(String msg) {
         this.consoleArea.append(msg + "\n");
@@ -287,14 +446,17 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
       AbbozzaServer abbozza = AbbozzaServer.getInstance();
       
       DefaultCompletionProvider provider = new DefaultCompletionProvider();
+      // provider.addCompletion(new BasicCompletion(provider, "abbozza.rgb.setColour"));
+      // provider.addCompletion(new BasicCompletion(provider, "abbozza.soundmotor.soundOn"));
+
+      /*
       try {
         InputStream autoCompleteXML = abbozza.getJarHandler().getInputStream("lib/" + abbozza.getSystem() + "_ac.xml");
         provider.loadFromXML(autoCompleteXML);  
       } catch (IOException ex) {
           AbbozzaLogger.err("Could not load autocomplete file: lib/" + abbozza.getSystem() + "_ac.xml");
       }
-              
+      */      
       return provider;
-
    }
 }
