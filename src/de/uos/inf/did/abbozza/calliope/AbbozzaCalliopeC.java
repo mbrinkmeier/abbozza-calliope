@@ -66,9 +66,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
     }
 
     /**
-     * Initialize Server
+     * Initialize the abbozza! server.
      *
-     * @param system
+     * @param system A string identifying the system.
      */
     public void init(String system) {
         super.init(system);
@@ -90,10 +90,11 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
     }
 
     /**
-     * Copy code to <buildPath>/source/abbozza.cpp and compile it.
+     * Copy code to &lt;buildPath&gt;/source/abbozza.cpp and compile it.
      *
-     * @param code
-     * @return
+     * @param code The source code to be compiled
+     * 
+     * @return The error message received during compilation.
      */
     @Override
     public String compileCode(String code) {

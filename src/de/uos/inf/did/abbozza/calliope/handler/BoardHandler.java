@@ -45,7 +45,7 @@ public class BoardHandler extends AbstractHandler {
     /**
      * Initialize the board request handler
      *
-     * @param abbozza
+     * @param abbozza The instance of AbbozzaServer this handler is assigned to.
      * @param query This flag indicates wether the user should be asked for the
      * path to the board if it is not found.
      */
@@ -55,11 +55,13 @@ public class BoardHandler extends AbstractHandler {
     }
 
     /**
-     * Handle a request
+     * This method is called to handle an incoming request.
      *
-     * @param exchg The HttoExchange object representing the request and the
+     * @param exchg The HttpExchange object representing the request and the
      * response
-     * @throws IOException
+     * 
+     * @throws IOException Throws an exception if an error occurs during request
+     * handling.
      */
     @Override
     public void handle(HttpExchange exchg) throws IOException {
