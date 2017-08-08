@@ -113,6 +113,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        compileButton2 = new javax.swing.JButton();
         splitPane = new javax.swing.JSplitPane();
         logPanel = new javax.swing.JScrollPane();
         consoleArea = new javax.swing.JTextArea();
@@ -122,7 +123,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         jButton1 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         compileButton1 = new javax.swing.JButton();
-        compileButton2 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         startBrowserItem = new javax.swing.JMenuItem();
@@ -135,6 +135,18 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sketchMenu = new javax.swing.JMenu();
         compileMenuItem = new javax.swing.JMenuItem();
         uploadMenuItem = new javax.swing.JMenuItem();
+
+        compileButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        compileButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/save.png"))); // NOI18N
+        compileButton2.setToolTipText(AbbozzaLocale.entry("gui.save"));
+        compileButton2.setFocusable(false);
+        compileButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        compileButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        compileButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("abbozza! Calliope");
@@ -183,8 +195,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
         });
         toolbar.add(jButton1);
-
-        jSeparator5.setOrientation(javax.swing.SwingConstants.HORIZONTAL);
         toolbar.add(jSeparator5);
 
         compileButton1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -199,19 +209,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
         });
         toolbar.add(compileButton1);
-
-        compileButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        compileButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/save.png"))); // NOI18N
-        compileButton2.setToolTipText(AbbozzaLocale.entry("gui.save"));
-        compileButton2.setFocusable(false);
-        compileButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        compileButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        compileButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveActionPerformed(evt);
-            }
-        });
-        toolbar.add(compileButton2);
 
         editorPane.add(toolbar, java.awt.BorderLayout.NORTH);
 

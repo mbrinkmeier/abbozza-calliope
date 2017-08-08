@@ -101,6 +101,9 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
     public void setAdditionalPaths() {
         installPath = config.getProperty("installPath");
         sketchbookPath = config.getProperty("sketchbookPath");
+        if ( sketchbookPath.contains("%HOME%")) {
+            sketchbookPath = sketchbookPath.replace("%HOME%", System.getProperty("user.home"));
+        }
         
         runtimePath = new File(jarPath).getParent();
                 
