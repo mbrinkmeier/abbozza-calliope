@@ -29,6 +29,7 @@ import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaLoggerListener;
 import de.uos.inf.did.abbozza.AbbozzaServer;
 import de.uos.inf.did.abbozza.Tools;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -36,10 +37,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 /**
  *
  * @author mbrinkmeier
@@ -49,6 +57,8 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private PrintStream _console;
     private RTextScrollPane sourcePanel;
     private RSyntaxTextArea sourceArea;
+    private Highlighter sourceHighlighter;
+    private AbbozzaCalliopeTooltipSupplier supplier;
 
     private File lastSourceFile = null;
     /**
@@ -72,6 +82,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sourceArea = new RSyntaxTextArea(50, 120);
         sourceArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
         sourceArea.setCodeFoldingEnabled(true);        
+        sourceArea.setTabSize(3);
+        supplier = new AbbozzaCalliopeTooltipSupplier();
+        sourceArea.setToolTipSupplier(supplier);
+        
+        sourceHighlighter = sourceArea.getHighlighter();
+
         sourcePanel = new RTextScrollPane(sourceArea);
         // this.splitPane.setLeftComponent(sourcePanel);
         editorPane.add(sourcePanel, java.awt.BorderLayout.CENTER);
@@ -80,7 +96,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         AutoCompletion ac = new AutoCompletion(provider);
         ac.install(sourceArea);
         ac.setAutoActivationDelay(500);
-        ac.setAutoActivationEnabled(true);
+        ac.setAutoActivationEnabled(true);        
         
 
         pack();
@@ -290,7 +306,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     }//GEN-LAST:event_quitItemActionPerformed
 
     private void clearItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearItemActionPerformed
-        this.consoleArea.setText("");
+        setConsoleText("");
     }//GEN-LAST:event_clearItemActionPerformed
 
     private void startBrowserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBrowserItemActionPerformed
@@ -302,7 +318,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
         String response = abbozza.uploadCode(this.sourceArea.getText());
         if ( response != null ) {
-            this.consoleArea.setText(response);
+            setConsoleText(response);
         }
     }//GEN-LAST:event_uploadActionPerformed
 
@@ -318,7 +334,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             if ( response.equals("")) {
                 response = AbbozzaLocale.entry("gui.compilation_success");
             }
-            this.consoleArea.setText(response);
+            setConsoleText(response);
         }
     }//GEN-LAST:event_compileActionPerformed
 
@@ -422,7 +438,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     
     @Override
     public void logged(String msg) {
-        this.consoleArea.append(msg + "\n");
+        appendConsoleText(msg + "\n");
     }
     
     public void setCode(String code) {
@@ -458,5 +474,39 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
       }
       */      
       return provider;
+   }
+   
+   private void setConsoleText(String message) {
+       sourceArea.removeAllLineHighlights();
+       supplier.clear();
+       this.consoleArea.setText(parseConsoleText(message));
+   }
+   
+   private void appendConsoleText(String message) {
+       this.consoleArea.append(parseConsoleText(message));
+   }
+   
+   
+   private String parseConsoleText(String message) {
+       String msg = "";
+       Pattern errorPattern = Pattern.compile(".*/abbozza\\.cpp:([\\d]*):([\\d]*): error: (.*)");
+       Matcher matcher = errorPattern.matcher(message);
+       while ( matcher.find() ) {
+           try {
+               if ( msg.equals("") ) {
+                   msg = "\n\nFehlermeldungen: \n";
+               }
+               msg = msg + "Fehler in Zeile " + matcher.group(1) + " bei Zeichen " + matcher.group(2) + "\n";
+               msg = msg + "Meldung: " + matcher.group(3) + "\n\n";
+               int line = Integer.parseInt(matcher.group(1))-1;
+               int start = sourceArea.getLineStartOffset(line);
+               int end  = sourceArea.getLineEndOffset(line);
+               sourceArea.addLineHighlight(line,new Color(255,200,200));
+               supplier.addTooltip(line, matcher.group(3));
+           } catch (BadLocationException ex) {
+           }
+       }
+
+       return message + msg;
    }
 }
