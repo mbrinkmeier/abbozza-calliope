@@ -1,36 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <features>
 
+    <!-- The basic features, w/o variables, operations, arrays ... -->    
     <feature id="feat.BASE">
-        <category name="Entscheidungen" id="cat.COND">
+        
+        <!-- Basic control structures -->
+        <category id="cat.CTRL">
             <block type="cond_if"></block>
-            <block type="cond_if_else"></block>
-        </category>
-
-        <category name="Schleifen" id="cat.LOOPS">
+            <block type="cond_if_else"></block>            
             <block type="loop_endless"></block>
+            <block type="loop_fixed">
+                <value name="COUNT">
+                    <block type="math_number">
+                        <field name="VALUE">42</field>
+                    </block>
+                </value>                   
+            </block>
             <block type="loop_while"></block>
-            <block type="loop_fixed"></block>
-            <block type="loop_count"></block>
-            <block type="loop_count_dir"></block>
-            <block type="loop_count_dir_step"></block>
+            <block type="loop_do_while"></block>
             <block type="loop_break"></block>
             <block type="loop_delay_seconds">
                 <value name="TIME">
-                    <block type="math_decimal"></block>
+                    <block type="math_number"><field name="VALUE">10</field></block>
                 </value>
-            </block>  
+            </block>            
             <block type="loop_delay">
                 <value name="TIME">
-                    <block type="math_number"></block>
+                    <block type="math_number">100</block>
                 </value>
             </block>  
             <block type="loop_delay_micros">
                 <value name="TIME">
-                    <block type="math_number"></block>
+                    <block type="math_number"><field name="VALUE">1000</field></block>
                 </value>
-            </block>  
+            </block>            
         </category>
 
+        <!-- Variables -->
         <category name="Variablen" id="cat.VAR">
             <block type="var_block"></block>
             <block type="var_assign">
@@ -40,36 +46,60 @@
             </block>
         </category>
 
-        <category name="Logik" id="cat.LOGIC">
+        <!-- Operations -->
+        <category id="cat.FUNC">
+        </category>
+
+        
+        <!-- The basic boolean logic -->
+        <category id="cat.LOGIC">
             <block type="logic_const"></block>
             <block type="logic_op"></block>
             <block type="logic_not"></block>
             <block type="logic_compare"></block>
         </category>
-	    
-        <category name="Mathe" id="cat.MATH">
+        
+        
+        <!-- Integer math -->
+        <category id="cat.MATH">
             <block type="math_number"></block>
-            <block type="math_decimal"></block>
             <block type="math_calc"></block>
-            <block type="math_round"></block>
-            <block type="math_unary_x"></block>
-            <!-- block type="math_binary"></block-->
-            <block type="math_random"></block>
-            <!-- block type="math_random2"></block-->
-            <block type="math_randomseed"></block>
+            <block type="math_random">
+                <value name="MAX">
+                    <block type="math_number">
+                        <field name="VALUE">100</field>
+                    </block>
+                </value>
+            </block>
+            <block type="math_random2">
+                <value name="MIN">
+                    <block type="math_number">
+                        <field name="VALUE">1</field>
+                    </block>
+                </value>                
+                <value name="MAX">
+                    <block type="math_number">
+                        <field name="VALUE">50</field>
+                    </block>
+                </value>                
+            </block>
+            <block type="math_randomseed">
+                <value name="SEED">
+                    <block type="math_millis"></block>
+                </value>                                
+            </block>
             <block type="math_millis"></block>
         </category>
-	    
-        <category name="Text" id="cat.TEXT">
-            <block type="text_const"></block>
-            <block type="text_charat"></block>
-            <block type="text_concat"></block>
-            <block type="text_from_number"></block>
-            <block type="text_from_ascii"></block>
-            <block type="ascii_from_text"></block>
-        </category>
 
-        <category name="Display" id="cat.DISPLAY">
+        <!-- Simple string operations -->
+        <category id="cat.TEXT">
+            <block type="text_const"></block>
+            <block type="text_length"></block>
+            <block type="text_concat"></block>
+        </category>
+                  
+        <!-- Display blocks -->
+        <category id="cat.DISPLAY">
             <block type="display_print"></block>
             <block type="display_scroll">
                 <value name="TEXT">
@@ -112,7 +142,25 @@
             <block type="dev_rgb_led_set_color2"></block>
         </category>
 
-        <category name="Töne" id="cat.SOUND" color="150">
+
+        <category id="cat.INOUT">
+        </category>
+
+        <category  id="cat.DEVIN">
+            <block type="dev_button_pressed"></block>
+            <block type="dev_accel_get"></block>
+            <block type="dev_accel_gesture"></block>
+            <block type="dev_accel_was_gesture"></block>
+            <block type="dev_compass_calibrate"></block>
+            <block type="dev_compass_is_calibrated"></block>
+            <block type="dev_compass_heading"></block>
+            <block type="dev_compass_get_fs"></block>
+            <block type="dev_thermometer_get"></block>
+            <block type="display_light_level"></block>
+        </category>        	                                   
+
+        <!-- Sound -->
+        <category name="Töne" id="cat.SOUND">
             <block type="dev_speaker_play"></block>
             <block type="dev_speaker_play_dur"></block>
             <!-- block type="dev_speaker_note"></block>
@@ -121,11 +169,125 @@
             <block type="dev_speaker_mute"></block>
         </category>
 
+        <category id="cat.MOTOR">
+        </category>
+
+        <category id="cat.SERIAL">
+        </category>
+                
+        <category id="cat.RADIO">
+        </category>
+    </feature>
+
+
+
+    <!-- Advanced blocks -->
+    <feature id="feat.ADVANCED" option="advanced">
+        
+        <!-- Advanced loops -->
+        <category id="cat.CTRL">
+            <block type="loop_count_dir">
+                <value name="FROM">
+                    <block type="math_number"><field name="VALUE">0</field></block>
+                </value>   
+                <value name="TO">
+                    <block type="math_number"><field name="VALUE">42</field></block>
+                </value>   
+            </block>
+            <block type="loop_count_dir_step">
+                <value name="FROM">
+                    <block type="math_number"><field name="VALUE">0</field></block>
+                </value>   
+                <value name="TO">
+                    <block type="math_number"><field name="VALUE">42</field></block>
+                </value>   
+                <value name="STEP">
+                    <block type="math_number"><field name="VALUE">1</field></block>
+                </value>   
+            </block>
+        </category>
+
+        <!-- Advanced mathematical blocks -->
+        <category id="cat.MATH">
+            <block type="math_decimal"></block>
+            <block type="math_unary_x"></block>
+            <block type="math_round"></block>
+        </category>
+
+        <!-- Advanced string operations -->	    
+        <category id="cat.TEXT">
+            <block type="text_charat"></block>
+            <block type="text_substring"></block>
+            <block type="text_from_number"></block>
+            <block type="text_from_ascii"></block>
+            <block type="ascii_from_text"></block>
+        </category>
+    </feature>
+
+
+    <!-- Operations -->
+    <feature id="feat.FUNC" option="operations">
+        <category id="cat.FUNC">
+            <block type="func_decl"></block>
+            <block type="func_call"></block>
+            <block type="func_return"></block>
+        </category>
+    </feature>
+
+
+    <!-- Serial communication via USB -->
+    <feature id="feat.USB" option="usb">
+        <category id="cat.USB">
+            <block type="serial_println"></block>
+            <block type="serial_readln"></block>
+            <block type="serial_table"></block>
+        </category>
+    </feature>
+
+
+    <!-- Messages via USB -->
+    <feature id="feat.MESSAGE" option="messages">
+        <category id ="cat.USB">
+            <block type="message_parse"></block>
+            <block type="message_cmd_decl"></block>
+            <block type="message_number"></block>
+            <block type="message_decimal"></block>
+            <block type="message_word"></block>
+            <block type="message_string"></block>
+            <block type="message_response"></block>
+        </category>
+    </feature>        
+    
+                                    	
+    <!-- Communication via radio -->
+    <feature id="feat.RADIO" option="radio">
+        <category id="cat.RADIO">
+            <block type="radio_receive"></block>
+            <block type="radio_send"></block>
+            <block type="radio_power"></block>
+            <block type="radio_channel"></block>
+        </category>
+    </feature>
+
+    <!-- Events -->
+    <feature id="feat.EVENTS" option="events">
+        <category id="cat.EVENTS">
+            <block type="int_isr"></block>
+            <block type="event_button_listen"></block>
+        </category>
+    </feature>
+
+    <!-- Motors -->
+    <feature id="feat.MOTORS" option="motors">
         <category name="Motor" id="cat.MOTOR" color="150">
             <block type="dev_motor_on"></block>
             <block type="dev_motor_off"></block>
         </category>
+    </feature>
+        	
 
+    <!-- GPIO Pins -->
+    <feature id="feat.INOUT" option="gpio">
         <category name="Ein- und Ausgabe" id="cat.INOUT">
             <block type="inout_pin"></block>
             <block type="inout_level"></block>
@@ -156,61 +318,12 @@
                 </value>
             </block>
         </category>
-
-        <category id="cat.SERIAL">
-            <block type="serial_println"></block>
-            <block type="serial_readln"></block>
-            <block type="serial_table"></block>
-        </category>
-                
-        <category  id="cat.DEVIN">
-            <block type="dev_button_pressed"></block>
-            <block type="dev_accel_get"></block>
-            <block type="dev_accel_gesture"></block>
-            <block type="dev_accel_was_gesture"></block>
-            <block type="dev_compass_calibrate"></block>
-            <block type="dev_compass_is_calibrated"></block>
-            <block type="dev_compass_heading"></block>
-            <block type="dev_compass_get_fs"></block>
-            <block type="dev_thermometer_get"></block>
-            <block type="display_light_level"></block>
-        </category>        	                                   
     </feature>
-
-    <feature id="feat.MESSAGE" option="messages">
-        <category id ="cat.USB">
-            <block type="message_parse"></block>
-            <block type="message_cmd_decl"></block>
-            <block type="message_number"></block>
-            <block type="message_decimal"></block>
-            <block type="message_word"></block>
-            <block type="message_string"></block>
-            <block type="message_response"></block>
-        </category>
-    </feature>        
-                		
-    <feature id="feat.FUNC">
-        <category id="cat.FUNC">
-            <block type="func_decl"></block>
-            <block type="func_call"></block>
-            <block type="func_return"></block>
+    
+    <!-- I2CS -->
+    <feature id="feat.I2CS" option="i2cs">
+        <category id="cat.I2CS">
         </category>
     </feature>
-
-    <feature id="feat.RADIO">
-        <category id="cat.RADIO">
-            <block type="radio_receive"></block>
-            <block type="radio_send"></block>
-            <block type="radio_power"></block>
-            <block type="radio_channel"></block>
-        </category>
-    </feature>
-
-    <feature id="feat.EVENTS">
-        <category id="cat.EVENTS">
-            <block type="int_isr"></block>
-            <block type="event_button_listen"></block>
-        </category>
-    </feature>
-        	
+    
 </features>

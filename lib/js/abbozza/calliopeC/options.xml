@@ -2,15 +2,20 @@
 
 <options>
     <group name="gui.blocks">
-        <item name="gui.operations" option="operations" default="true">
-            <item name="gui.local_variables" option="localVars" default="true"/>
+        <item name="gui.advanced" option="advanced" default="false"/>
+        <item name="gui.operations" option="operations" default="false">
+            <item name="gui.local_variables" option="localVars" default="false"/>
         </item>
-        <item name="gui.radio" option="radio" default="true"/>
-        <item name="gui.serial_communication" option="serial" default="true"/>
-        <item name="gui.usb" option="usb" default="true">
-            <item name="gui.messages" option="messages" default="true"/>
+        <item name="gui.gpio" option="gpio" default="false"/>
+        <item name="gui.motors" option="radio" default="false"/>
+        <item name="gui.radio" option="radio" default="false"/>
+        <item name="gui.usb" option="usb" default="false">
+            <item name="gui.messages" option="messages" default="false"/>
         </item>
-        <item name="gui.radio" option="events" default="true"/>
+        <item name="gui.devices" option="devices" default="false">
+            <item name="gui.i2cs" option="i2cs" default="false"/>        
+        </item>
+        <item name="gui.events" option="events" default="true"/>
         <group name="gui.arrays">
             <choice name="gui.no_arrays" option="noArrays" default="false"/> 
             <choice name="gui.lin_arrays" option="linArrays" default="false"/> 
