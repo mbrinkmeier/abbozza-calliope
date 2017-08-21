@@ -24,6 +24,7 @@ package de.uos.inf.did.abbozza.calliope;
 import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.install.InstallTool;
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -39,10 +40,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Enumeration;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.text.BadLocationException;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -73,20 +79,38 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
     public void init(String system) {
         super.init(system);
         
+        // Check if build system has to be initialized
+        boolean initBuild = false;
         // Check if <userPath>/build/ exists
         File buildDir = new File(userPath + "/build/");
         if ( !buildDir.exists() ) {
             AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
-            // TODO Copy build directory from runtimeDir
-            File original = new File(runtimePath + "/build/");
-            buildDir.mkdirs();           
-            try {
-                InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
-            } catch (IOException ex) {
-                Logger.getLogger(AbbozzaCalliopeC.class.getName()).log(Level.SEVERE, null, ex);
+            initBuild = true;
+        } else {
+            AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
+            File initFile = new File(userPath + "/build/abz_init");
+            if ( initFile.exists() ) {
+                buildDir.delete();
+                initBuild = true;
             }
         }
         
+        if ( initBuild ) {
+            AbbozzaLogger.out("Initialization of build directory " + buildDir.getAbsolutePath() + " ...");
+            // TODO Copy build directory from runtimeDir
+            File original = new File(runtimePath + "/build/");
+            // buildDir.mkdirs();
+            try {
+                // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
+                // @TODO copy <jarPath>/build to <userPath>
+                AbbozzaLogger.out("Copying " + original.getAbsolutePath() + " to " + userPath);
+                // FileUtils.copyDirectoryToDirectory(original,new File(userPath));
+                InstallTool.getInstallTool().copyDirectory(original, buildDir);
+            } catch (IOException ex) {
+                AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
+                System.exit(1);
+            }            
+        }
     }
 
     /**
@@ -113,6 +137,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
         AbbozzaLogger.out("Build path set to " + _buildPath, AbbozzaLogger.INFO);
         
         AbbozzaLogger.out("Code generated", AbbozzaLogger.INFO);
+       
         // Set code in frame
         this.frame.setCode(code);
 
@@ -121,14 +146,6 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
         
         _exitValue = 1;
         
-        // InputStream err;
-        // InputStream stdout;
-
-        // Redirect error stream
-        // PrintStream origErr = System.err;
-        // ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        // PrintStream newErr = new PrintStream(buffer);
-        // System.setErr(newErr);
         // Copy code to <buildPath>/source/abbozza.cpp
         AbbozzaLogger.out("Writing code to " + _buildPath + "source/abbozza.cpp");
         if (code != "") {

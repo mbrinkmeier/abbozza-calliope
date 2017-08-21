@@ -46,7 +46,9 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Highlighter;
 /**
  *
@@ -59,7 +61,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private RSyntaxTextArea sourceArea;
     private Highlighter sourceHighlighter;
     private AbbozzaCalliopeTooltipSupplier supplier;
-
+    private DefaultStyledDocument consoleDoc;
     private File lastSourceFile = null;
     /**
      * Creates new form AbbozzaCalliopeFrame
@@ -91,6 +93,15 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sourcePanel = new RTextScrollPane(sourceArea);
         // this.splitPane.setLeftComponent(sourcePanel);
         editorPane.add(sourcePanel, java.awt.BorderLayout.CENTER);
+
+        // consoleDoc =  new DefaultStyledDocument();
+        // consoleArea.setDocument(consoleDoc);
+        DefaultCaret caret = (DefaultCaret) consoleArea.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);        
+
+        // javax.swing.text.html.HTMLEditorKit eKit;
+        // eKit = new javax.swing.text.html.HTMLEditorKit();
+        // consoleArea.setEditorKit(eKit);
         
         CompletionProvider provider = createCompletionProvider();
         AutoCompletion ac = new AutoCompletion(provider);
@@ -115,14 +126,14 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         compileButton2 = new javax.swing.JButton();
         splitPane = new javax.swing.JSplitPane();
-        logPanel = new javax.swing.JScrollPane();
-        consoleArea = new javax.swing.JTextArea();
         editorPane = new javax.swing.JPanel();
         toolbar = new javax.swing.JToolBar();
         compileButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         compileButton1 = new javax.swing.JButton();
+        logPane = new javax.swing.JScrollPane();
+        consoleArea = new javax.swing.JEditorPane();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         startBrowserItem = new javax.swing.JMenuItem();
@@ -153,16 +164,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         splitPane.setDividerLocation(500);
         splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-
-        consoleArea.setEditable(false);
-        consoleArea.setColumns(20);
-        consoleArea.setLineWrap(true);
-        consoleArea.setRows(1);
-        consoleArea.setWrapStyleWord(true);
-        consoleArea.setMaximumSize(null);
-        logPanel.setViewportView(consoleArea);
-
-        splitPane.setBottomComponent(logPanel);
 
         editorPane.setLayout(new java.awt.BorderLayout());
 
@@ -213,6 +214,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         editorPane.add(toolbar, java.awt.BorderLayout.NORTH);
 
         splitPane.setLeftComponent(editorPane);
+
+        consoleArea.setEditable(false);
+        consoleArea.setPreferredSize(new java.awt.Dimension(106, 10));
+        logPane.setViewportView(consoleArea);
+
+        splitPane.setRightComponent(logPane);
 
         jMenu1.setText("abbozza!");
 
@@ -315,6 +322,9 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
         String response = abbozza.uploadCode(this.sourceArea.getText());
         if ( response != null ) {
+            if ( response.equals("")) {
+                response = AbbozzaLocale.entry("gui.compilation_success");
+            }
             setConsoleText(response);
         }
     }//GEN-LAST:event_uploadActionPerformed
@@ -393,7 +403,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JButton compileButton1;
     private javax.swing.JButton compileButton2;
     private javax.swing.JMenuItem compileMenuItem;
-    private javax.swing.JTextArea consoleArea;
+    private javax.swing.JEditorPane consoleArea;
     private javax.swing.JPanel editorPane;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
@@ -401,7 +411,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator5;
-    private javax.swing.JScrollPane logPanel;
+    private javax.swing.JScrollPane logPane;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem quitItem;
     private javax.swing.JMenuItem settingsItem;
@@ -462,25 +472,32 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
       // provider.addCompletion(new BasicCompletion(provider, "abbozza.rgb.setColour"));
       // provider.addCompletion(new BasicCompletion(provider, "abbozza.soundmotor.soundOn"));
 
-      /*
+      
       try {
-        InputStream autoCompleteXML = abbozza.getJarHandler().getInputStream("lib/" + abbozza.getSystem() + "_ac.xml");
+        InputStream autoCompleteXML = abbozza.getJarHandler().getInputStream("lib/ac_" + abbozza.getSystem() + ".xml");
         provider.loadFromXML(autoCompleteXML);  
       } catch (IOException ex) {
           AbbozzaLogger.err("Could not load autocomplete file: lib/" + abbozza.getSystem() + "_ac.xml");
       }
-      */      
       return provider;
    }
    
    private void setConsoleText(String message) {
        sourceArea.removeAllLineHighlights();
        supplier.clear();
-       this.consoleArea.setText(parseConsoleText(message));
+       // this.consoleArea.setText(parseConsoleText(message));      
+
+       String msg = parseConsoleText(message);
+       this.consoleArea.setText(msg);
    }
    
    private void appendConsoleText(String message) {
-       this.consoleArea.append(parseConsoleText(message));
+       String text = this.consoleArea.getText();
+       if ( text == null ) {
+           text = "";
+       }
+       String msg = parseConsoleText(message);
+       this.consoleArea.setText(text + msg);
    }
    
    
