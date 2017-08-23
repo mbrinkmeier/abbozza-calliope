@@ -31,6 +31,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -59,40 +61,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
      * @param system A string identifying the system.
      */
     public void init(String system) {
-        super.init(system);
-        
-        // Check if build system has to be initialized
-        boolean initBuild = false;
-        // Check if <userPath>/build/ exists
-        File buildDir = new File(userPath + "/build/");
-        if ( !buildDir.exists() ) {
-            AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
-            initBuild = true;
-        } else {
-            File initFile = new File(userPath + "/build/abz_init");
-            if ( initFile.exists() ) {
-                AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
-                buildDir.delete();
-                initBuild = true;
-            }
-        }
-        
-        if ( initBuild ) {
-            AbbozzaLogger.out("Initialization of build directory " + buildDir.getAbsolutePath() + " ...");
-            // TODO Copy build directory from runtimeDir
-            File original = new File(runtimePath + "/build/");
-            // buildDir.mkdirs();
-            try {
-                // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
-                // @TODO copy <jarPath>/build to <userPath>
-                AbbozzaLogger.out("Copying " + original.getAbsolutePath() + " to " + userPath);
-                // FileUtils.copyDirectoryToDirectory(original,new File(userPath));
-                InstallTool.getInstallTool().copyDirectory(original, buildDir);
-            } catch (IOException ex) {
-                AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
-                System.exit(1);
-            }            
-        }
+        super.init(system);        
     }
 
     /**
@@ -270,4 +239,45 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
         return errMsg;
     }
 
+    public void additionalInitialization() {
+        
+        // Check if build system has to be initialized
+        boolean initBuild = false;
+        // Check if <userPath>/build/ exists
+        File buildDir = new File(userPath + "/build/");
+        if ( !buildDir.exists() ) {
+            AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
+            initBuild = true;
+        } else {
+            File initFile = new File(userPath + "/build/abz_init");
+            if ( initFile.exists() ) {
+                AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
+                buildDir.delete();
+                initBuild = true;
+            }
+        }
+        
+        if ( initBuild ) {
+            AbbozzaLogger.out("Initialization of build directory " + buildDir.getAbsolutePath() + " ...");
+
+            AbbozzaMsgDialog initMsg = new AbbozzaMsgDialog(null,null,"Please wait\n\n Initialization of build directory\n" + buildDir.getAbsolutePath() + "\nin progress ... \n\n" +
+                    "This may take a few minutes ...");
+            initMsg.setVisible(true);
+            
+            File original = new File(runtimePath + "/build/");
+            try {
+                // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
+                AbbozzaLogger.out("Copying " + original.getAbsolutePath() + " to " + userPath);
+                InstallTool.getInstallTool().copyDirectory(original, buildDir);
+            } catch (IOException ex) {
+                AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
+                System.exit(1);
+            }            
+            
+            initMsg.setVisible(false);
+            initMsg.dispose();
+        }
+        
+    }
+    
 }

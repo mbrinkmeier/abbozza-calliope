@@ -55,22 +55,12 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
     
     public void init(String system) {
         super.init(system);
-    
-        setAdditionalPaths();
-        
+            
         setPathToBoard(this.config.getOptionStr("pathToBoard"));        
-        
+                
         // Open Frame
         frame = new AbbozzaCalliopeFrame();
         frame.open();
-        /*
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
-        int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
-        frame.setLocation(x, y);
-        frame.setVisible(true);
-        frame.setState(JFrame.ICONIFIED);
-        */
         
         startServer();
         startBrowser(system+".html");
@@ -259,5 +249,5 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
         runtime = runtime.replace("######", hexcode);
         return runtime;
     }
-    
+
 }

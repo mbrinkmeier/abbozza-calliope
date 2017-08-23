@@ -31,4 +31,5 @@ public interface AbbozzaCalliopeGUI {
     public void open();
     public void logged(String msg);    
     public void setCode(String code);
+    
 }
