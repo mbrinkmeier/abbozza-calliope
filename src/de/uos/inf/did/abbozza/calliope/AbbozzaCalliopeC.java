@@ -21,34 +21,16 @@
  */
 package de.uos.inf.did.abbozza.calliope;
 
-import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.install.InstallTool;
-import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Enumeration;
-import java.util.jar.JarFile;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
-import javax.swing.text.BadLocationException;
-import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -87,9 +69,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
             AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
             initBuild = true;
         } else {
-            AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
             File initFile = new File(userPath + "/build/abz_init");
             if ( initFile.exists() ) {
+                AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
                 buildDir.delete();
                 initBuild = true;
             }
@@ -224,6 +206,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
             
         } catch (IOException ex) {
             AbbozzaLogger.err("Compilation failed");
+            AbbozzaLogger.err(ex.getLocalizedMessage());
         }
         
         return 1;
@@ -247,10 +230,13 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
         String yottaPath = System.getenv("YOTTA_PATH");
         String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
 
-        ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");
+        // ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");
+        // ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");
+        ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","build");
         procBuilder.directory(new File(buildPath));
-        procBuilder.environment().put("PATH", runtimePath + "\\lib\\srecord\\" + ";" + yottaPath + ";" + System.getenv("PATH"));
-
+        procBuilder.environment().put("PATH",  yottaPath + ";" + runtimePath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
+        AbbozzaLogger.out(procBuilder.environment().get("PATH"));
+        
         return procBuilder;
     }
     
