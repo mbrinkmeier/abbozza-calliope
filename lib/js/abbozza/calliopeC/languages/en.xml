@@ -24,6 +24,8 @@
         <msg id="dev.BUTTON_B">Button B</msg>        
         <msg id="dev.WAS_PRESSED">was pressed</msg>        
         <msg id="dev.GET_PRESSES">Number of presses of</msg>        
+        <msg id="dev.TOUCHED">touched</msg>        
+        <msg id="dev.PIN">Pin</msg>        
 
         <msg id="dev.ACCEL_GET">Acceleration</msg>
         <msg id="dev.ACCEL_X">left-right</msg>

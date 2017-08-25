@@ -148,6 +148,7 @@
 
         <category  id="cat.DEVIN">
             <block type="dev_button_pressed"></block>
+            <block type="dev_pin_touched"></block>
             <block type="dev_accel_get"></block>
             <block type="dev_accel_gesture"></block>
             <block type="dev_accel_was_gesture"></block>

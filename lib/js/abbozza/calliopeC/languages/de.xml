@@ -10,8 +10,8 @@
         <msg id="block.setPixel">Setze Pixel in Spalte # und Zeile # auf</msg>
         <msg id="block.getPixel">Farbe in Spalte # und Zeile</msg>
         <msg id="block.displayClear">Lösche Anzeige</msg>
-        <msg id="block.displayOn">Schalte Anzeige aus</msg>
-        <msg id="block.displayOff">Schalte Anzeige an</msg>
+        <msg id="block.displayOn">Schalte Anzeige an</msg>
+        <msg id="block.displayOff">Schalte Anzeige aus</msg>
         <msg id="block.displayIsOn">Ist Anzeige an?</msg>
         <msg id="block.asString"></msg>
         <msg id="block.getLightLevel">Umgebungshelligkeit</msg>
@@ -24,6 +24,8 @@
         <msg id="dev.BUTTON_B">Knopf B</msg>
         <msg id="dev.WAS_PRESSED">wurde gedrückt</msg>        
         <msg id="dev.GET_PRESSES">Anzahl der Drücker von</msg>        
+        <msg id="dev.TOUCHED">berührt</msg>        
+        <msg id="dev.PIN">Pin</msg>        
         
         <msg id="dev.ACCEL_GET">Beschleunigung</msg>
         <msg id="dev.ACCEL_X">links-rechts</msg>

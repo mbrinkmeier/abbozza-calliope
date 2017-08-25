@@ -10,6 +10,33 @@
 MicroBit abbozza;
         
 /**
+ * Define pin macros
+ */
+
+#define TOUCH0  12
+#define TOUCH1  0
+#define TOUCH2  1
+#define TOUCH3  16
+
+#define C0      12
+#define C1      0
+#define C2      1
+#define C3      16
+#define C4      3
+#define C5      4
+#define C6      10
+#define C7      13
+#define C8      14
+#define C9      15
+#define C10     9
+#define C11     7
+#define C12     6
+#define C16     2
+#define C17     8
+#define C21     21
+
+
+/**
  * Images
  */
 
