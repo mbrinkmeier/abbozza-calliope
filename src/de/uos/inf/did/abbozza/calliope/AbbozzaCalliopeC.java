@@ -191,7 +191,10 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
     
     
     public ProcessBuilder buildProcMac(String buildPath) {
-        return null;
+        ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
+        procBuilder.directory(new File(buildPath));
+        
+        return procBuilder;
     }
 
     
@@ -252,6 +255,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
             File initFile = new File(userPath + "/build/abz_init");
             if ( initFile.exists() ) {
                 AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
+                initFile.delete();
                 buildDir.delete();
                 initBuild = true;
             }
