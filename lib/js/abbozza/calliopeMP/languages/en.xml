@@ -53,10 +53,10 @@
         
         <msg id="io.TOUCHEDPIN">is touched</msg>        
     </blocks>
-    <cat>
+    <categories>
         <msg id="cat.DISPLAY">Display</msg>
         <msg id="cat.BUTTONS">Buttons</msg>
-    </cat>
+    </categories>
     <gui>
         <msg id="gui.quit">Quit</msg>
         <msg id="gui.clear">Clear messages</msg>

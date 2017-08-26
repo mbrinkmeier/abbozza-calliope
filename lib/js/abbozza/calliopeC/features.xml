@@ -147,7 +147,6 @@
         </category>
 
         <category  id="cat.DEVIN">
-            <block type="dev_button_pressed"></block>
             <block type="dev_pin_touched"></block>
             <block type="dev_accel_get"></block>
             <block type="dev_accel_gesture"></block>
@@ -280,9 +279,19 @@
 
     <!-- Motors -->
     <feature id="feat.MOTORS" option="motors">
-        <category name="Motor" id="cat.MOTOR" color="150">
-            <block type="dev_motor_on"></block>
+        <category id="cat.MOTOR">
+            <block type="dev_motor_on">
+                <value name="VALUE">
+                    <block type="math_number"><field name="VALUE">0</field></block>
+                </value> 
+            </block>
             <block type="dev_motor_off"></block>
+            <block type="dev_servo"></block>
+            <block type="dev_servo_set">
+                <value name="VALUE">
+                    <block type="math_number"><field name="VALUE">0</field></block>
+                </value>
+            </block>
         </category>
     </feature>
         	
@@ -320,6 +329,7 @@
             </block>
         </category>
     </feature>
+        
     
     <!-- I2CS -->
     <feature id="feat.I2CS" option="i2cs">

@@ -75,13 +75,13 @@
         <msg id="event.BUTTON_HOLD">is being heldh</msg>
         <msg id="event.BUTTON_DOUBLE_CLICK">is double clicked</msg>
     </blocks>
-    <cat>
+    <categories>
         <msg id="cat.DISPLAY">Display</msg>
         <msg id="cat.BUTTONS">Buttons</msg>
         <msg id="cat.RADIO">Radio</msg>
         <msg id="cat.MOTOR">Motors</msg>
         <msg id="cat.EVENTS">Events</msg>
-    </cat>
+    </categories>
     <gui>
         <msg id="gui.quit">Quit</msg>
         <msg id="gui.clear">Clear messages</msg>

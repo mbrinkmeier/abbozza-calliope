@@ -7,12 +7,12 @@
             <item name="gui.local_variables" option="localVars" default="false"/>
         </item>
         <item name="gui.gpio" option="gpio" default="false"/>
-        <item name="gui.motors" option="radio" default="false"/>
         <item name="gui.radio" option="radio" default="false"/>
         <item name="gui.usb" option="usb" default="false">
             <item name="gui.messages" option="messages" default="false"/>
         </item>
         <item name="gui.devices" option="devices" default="false">
+            <item name="gui.motors" option="motors" default="false"/>
             <item name="gui.i2cs" option="i2cs" default="false"/>        
         </item>
         <item name="gui.events" option="events" default="true"/>

@@ -53,10 +53,10 @@
         
         <msg id="io.TOUCHEDPIN">wird berührt</msg>
     </blocks>
-    <cat>
+    <categories>
         <msg id="cat.DISPLAY">Anzeige</msg>
         <msg id="cat.BUTTONS">Knöpfe</msg>
-    </cat>
+    </categories>
     <gui>
         <msg id="gui.quit">Beenden</msg>
         <msg id="gui.clear">Lösche Meldungen</msg>        
