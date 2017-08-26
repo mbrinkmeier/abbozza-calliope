@@ -19,21 +19,21 @@
             <block type="loop_while"></block>
             <block type="loop_do_while"></block>
             <block type="loop_break"></block>
-            <block type="loop_delay_seconds">
+            <!--block type="loop_delay_seconds">
                 <value name="TIME">
                     <block type="math_number"><field name="VALUE">10</field></block>
                 </value>
-            </block>            
+            </block-->            
             <block type="loop_delay">
                 <value name="TIME">
                     <block type="math_number">100</block>
                 </value>
             </block>  
-            <block type="loop_delay_micros">
+            <!-- block type="loop_delay_micros">
                 <value name="TIME">
                     <block type="math_number"><field name="VALUE">1000</field></block>
                 </value>
-            </block>            
+            </block-->            
         </category>
 
         <!-- Variables -->
@@ -96,6 +96,7 @@
             <block type="text_const"></block>
             <block type="text_length"></block>
             <block type="text_concat"></block>
+            <block type="text_from_number"></block>
         </category>
                   
         <!-- Display blocks -->
@@ -147,6 +148,7 @@
         </category>
 
         <category  id="cat.DEVIN">
+            <block type="dev_button_pressed"></block>
             <block type="dev_pin_touched"></block>
             <block type="dev_accel_get"></block>
             <block type="dev_accel_gesture"></block>
