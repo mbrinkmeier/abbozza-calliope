@@ -25,6 +25,7 @@ package de.uos.inf.did.abbozza.calliope;
 import com.sun.net.httpserver.HttpHandler;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaServer;
+import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
 import java.io.File;
@@ -54,6 +55,8 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
 
     
     public void init(String system) {
+        AbbozzaSplashScreen.showSplashScreen();
+        
         super.init(system);
             
         setPathToBoard(this.config.getOptionStr("pathToBoard"));        
@@ -64,6 +67,9 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
         
         startServer();
         startBrowser(system+".html");
+        
+        AbbozzaSplashScreen.hideSplashScreen();
+        
     }
         
     

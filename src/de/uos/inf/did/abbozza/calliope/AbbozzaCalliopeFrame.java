@@ -107,7 +107,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         ac.install(sourceArea);
         ac.setAutoActivationDelay(500);
         ac.setAutoActivationEnabled(true);        
-        
 
         pack();
         
@@ -453,10 +452,13 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
     @Override
     public void open() {
+        Tools.centerWindow(this);
+        /* 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
         this.setLocation(x, y);
+        */
         this.setVisible(true);
         this.setState(JFrame.ICONIFIED);
     }
@@ -473,10 +475,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
       
       try {
-        InputStream autoCompleteXML = abbozza.getJarHandler().getInputStream("lib/ac_" + abbozza.getSystem() + ".xml");
+        InputStream autoCompleteXML = abbozza.getJarHandler().getInputStream("/lib/ac_" + abbozza.getSystem() + ".xml");
         provider.loadFromXML(autoCompleteXML);  
+          AbbozzaLogger.out("Loaded autocomplete file: /lib/" + abbozza.getSystem() + "_ac.xml");
       } catch (IOException ex) {
-          AbbozzaLogger.err("Could not load autocomplete file: lib/" + abbozza.getSystem() + "_ac.xml");
+          AbbozzaLogger.err("Could not load autocomplete file: /lib/" + abbozza.getSystem() + "_ac.xml");
       }
       return provider;
    }

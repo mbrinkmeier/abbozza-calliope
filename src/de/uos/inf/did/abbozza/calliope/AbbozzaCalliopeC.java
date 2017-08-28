@@ -22,6 +22,8 @@
 package de.uos.inf.did.abbozza.calliope;
 
 import de.uos.inf.did.abbozza.AbbozzaLogger;
+import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
+import de.uos.inf.did.abbozza.Tools;
 import de.uos.inf.did.abbozza.install.InstallTool;
 import java.io.BufferedReader;
 import java.io.File;
@@ -244,6 +246,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
 
     public void additionalInitialization() {
         
+        AbbozzaSplashScreen.setText("Updating build directory ...");
+        
         // Check if build system has to be initialized
         boolean initBuild = false;
         // Check if <userPath>/build/ exists
@@ -261,27 +265,24 @@ public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
             }
         }
         
-        if ( initBuild ) {
-            AbbozzaLogger.out("Initialization of build directory " + buildDir.getAbsolutePath() + " ...");
-
-            AbbozzaMsgDialog initMsg = new AbbozzaMsgDialog(null,null,"Please wait\n\n Initialization of build directory\n" + buildDir.getAbsolutePath() + "\nin progress ... \n\n" +
-                    "This may take a few minutes ...");
-            initMsg.setVisible(true);
+           
+        AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
             
-            File original = new File(runtimePath + "/build/");
-            try {
-                // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
-                AbbozzaLogger.out("Copying " + original.getAbsolutePath() + " to " + userPath);
-                InstallTool.getInstallTool().copyDirectory(original, buildDir);
-            } catch (IOException ex) {
-                AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
-                System.exit(1);
-            }            
+        File original = new File(runtimePath + "/build/");
+        try {
+            // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
+            if ( initBuild ) {
+                AbbozzaLogger.out("Initializing buildsystem from " + original.getAbsolutePath());
+            } else {
+                AbbozzaLogger.out("Updating buildsystem from " + original.getAbsolutePath());
+            }
+            Tools.copyDirectory(original, buildDir,!initBuild);
+        } catch (IOException ex) {
+            AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
+            System.exit(1);
+        }            
             
-            initMsg.setVisible(false);
-            initMsg.dispose();
-        }
-        
+        AbbozzaSplashScreen.setText("");
     }
     
 }
