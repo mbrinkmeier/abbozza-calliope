@@ -55,7 +55,7 @@ public class AbbozzaCalliopeMP extends AbbozzaServer implements HttpHandler {
 
     
     public void init(String system) {
-        AbbozzaSplashScreen.showSplashScreen();
+        AbbozzaSplashScreen.showSplashScreen("/img/abbozza-calliope-splash.png");
         
         super.init(system);
             
