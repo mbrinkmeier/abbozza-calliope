@@ -48,10 +48,8 @@ extern const uint8_t __no[];
 extern uint8_t __abz_image_data[31];
 
 /*
- * Helper functions
+ * Helper class
  */
-int abbozzaGetGesture(MicroBit abbozza);
-
 
 class Abbozza : public MicroBit {    
     public:

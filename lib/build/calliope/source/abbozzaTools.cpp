@@ -41,13 +41,6 @@ MicroBitImage Image_NO((ImageData*) __no);
 uint8_t __abz_image_data[31] = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
 
 
-
-int getGesture(MicroBit abbozza) {
-    int __gesture__ = abbozza.accelerometer.getGesture();
-    abbozza.accelerometer.updateSample();
-    return __gesture__;
-}
-
 int Abbozza::getGesture() {
     int __gesture__ = accelerometer.getGesture();
     accelerometer.updateSample();

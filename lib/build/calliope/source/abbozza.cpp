@@ -3,14 +3,16 @@
  */
 
 #include "MicroBit.h"
-#include "abbozza.h"
+#include "abbozzaTools.h"
 #include <string.h>
 
-MicroBit calliope;
+Abbozza abbozza;
 
 /*
  * Das Hauptprogramm
  */
 int main() {
-   calliope.init();
+   abbozza.init();
+
+   abbozza.display.scroll(ManagedString("abbozza! Calliope"));
 }
