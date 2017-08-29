@@ -98,13 +98,15 @@
         <msg id="Image.HEART">Heart</msg>
         <msg id="Image.HEART_SMALL">small heart</msg>
         <msg id="Image.HAPPY">Happy</msg>
-        <msg id="Image.SMILE">Smile</msg>
+        <msg id="Image.SMILEY">Smile</msg>
         <msg id="Image.SAD">Sad</msg>
         <msg id="Image.CONFUSED">Confused</msg>
         <msg id="Image.ANGRY">Angry</msg>
         <msg id="Image.ASLEEP">Asleep</msg>
         <msg id="Image.SURPRISED">Surprised</msg>
         <msg id="Image.SILLY">Silly</msg>
+        <msg id="Image.BEARD">Beard</msg>
+        <msg id="Image.MOUSTACHE">Moustache</msg>
         <msg id="Image.FABULOUS">Faboulous</msg>
         <msg id="Image.MEH">Meh</msg>
         <msg id="Image.YES">Yes</msg>

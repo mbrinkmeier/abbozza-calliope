@@ -99,11 +99,14 @@
         <msg id="Image.HEART">Herz</msg>
         <msg id="Image.HEART_SMALL">kleines Herz</msg>
         <msg id="Image.HAPPY">Glücklich</msg>
-        <msg id="Image.SMILE">Lachen</msg>
+        <msg id="Image.SMILEY">Lachen</msg>
         <msg id="Image.SAD">Traurig</msg>
         <msg id="Image.CONFUSED">Verwirrt</msg>
         <msg id="Image.ANGRY">Wütend</msg>
         <msg id="Image.ASLEEP">Schlafend</msg>
+        <msg id="Image.SURPRISED">Überrascht</msg>
+        <msg id="Image.BEARD">Bart</msg>
+        <msg id="Image.MOUSTACHE">Schnurrbart</msg>
         <msg id="Image.SURPRISED">Überrascht</msg>
         <msg id="Image.SILLY">Verrückt</msg>
         <msg id="Image.FABULOUS">Fabelhaft</msg>
