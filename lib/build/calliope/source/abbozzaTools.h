@@ -36,15 +36,25 @@
  * Images
  */
 extern const uint8_t __heart[];
+extern MicroBitImage Image_HEART;
 extern const uint8_t __small_heart[];
+extern MicroBitImage Image_HEART_SMALL;
 extern const uint8_t __happy[];
+extern MicroBitImage Image_HAPPY;
 extern const uint8_t __smiley[];
+extern MicroBitImage Image_SMILEY;
 extern const uint8_t __sad[];
+extern MicroBitImage Image_SAD;
 extern const uint8_t __surprised[];
+extern MicroBitImage Image_SURPRISED;
 extern const uint8_t __beard[];
+extern MicroBitImage Image_BEARD;
 extern const uint8_t __moustache[];
+extern MicroBitImage Image_MOUSTACHE;
 extern const uint8_t __yes[];
+extern MicroBitImage Image_YES;
 extern const uint8_t __no[];
+extern MicroBitImage Image_NO;
 extern uint8_t __abz_image_data[31];
 
 /*
