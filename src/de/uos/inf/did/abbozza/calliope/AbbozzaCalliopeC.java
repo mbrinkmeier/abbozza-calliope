@@ -81,14 +81,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         
         _buildPath = userPath + "/build/" + this._boardName + "/";
                 
-        // _hexPath = _buildPath + "build/calliope-mini-classic-gcc/source/abbozza-combined.hex";
         if ( this._boardName.equals("microbit") ) {
             _hexPath = _buildPath + "build/bbc-microbit-classic-gcc/source/abbozza-combined.hex";
         } else {
             _hexPath = _buildPath + "build/calliope-mini-classic-gcc/source/abbozza-combined.hex";            
         }
-        AbbozzaLogger.out("Build path set to " + _buildPath, AbbozzaLogger.INFO);
-        
+        AbbozzaLogger.out("Build path set to " + _buildPath, AbbozzaLogger.INFO);        
         AbbozzaLogger.out("Code generated", AbbozzaLogger.INFO);
        
         // Set code in frame
@@ -126,6 +124,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             }
         }
 
+        ((AbbozzaCalliopeFrame) this.mainFrame).setConsoleText(outMsg + errMsg);
         return outMsg + errMsg;
     }
 

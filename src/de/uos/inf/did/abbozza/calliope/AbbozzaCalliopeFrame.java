@@ -67,15 +67,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
      * Creates new form AbbozzaCalliopeFrame
      */
     public AbbozzaCalliopeFrame() {
-        
-        /* try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MetalLookAndFeel");
-        } catch (ClassNotFoundException ex) {
-        } catch (InstantiationException ex) {
-        } catch (IllegalAccessException ex) {
-        } catch (UnsupportedLookAndFeelException ex) {
-        } */
-        
+                
         Font f = new Font("sans-serif", Font.PLAIN, 12);
         UIManager.put("Menu.font", f);
         
@@ -91,17 +83,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sourceHighlighter = sourceArea.getHighlighter();
 
         sourcePanel = new RTextScrollPane(sourceArea);
-        // this.splitPane.setLeftComponent(sourcePanel);
         editorPane.add(sourcePanel, java.awt.BorderLayout.CENTER);
 
-        // consoleDoc =  new DefaultStyledDocument();
-        // consoleArea.setDocument(consoleDoc);
         DefaultCaret caret = (DefaultCaret) consoleArea.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);        
 
-        // javax.swing.text.html.HTMLEditorKit eKit;
-        // eKit = new javax.swing.text.html.HTMLEditorKit();
-        // consoleArea.setEditorKit(eKit);
         
         CompletionProvider provider = createCompletionProvider();
         AutoCompletion ac = new AutoCompletion(provider);
@@ -485,7 +471,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
       return provider;
    }
    
-   private void setConsoleText(String message) {
+   public void setConsoleText(String message) {
        sourceArea.removeAllLineHighlights();
        supplier.clear();
        // this.consoleArea.setText(parseConsoleText(message));      
@@ -494,7 +480,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
        this.consoleArea.setText(msg);
    }
    
-   private void appendConsoleText(String message) {
+   public void appendConsoleText(String message) {
        String text = this.consoleArea.getText();
        if ( text == null ) {
            text = "";

@@ -36,6 +36,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     protected String runtimePath; // The parent directory of jarPath, containig lib, plugins, bin ...
 
     public void init(String system) {
+        
         AbbozzaSplashScreen.showSplashScreen("/img/abbozza-calliope-splash.png");
         super.init(system);
         setPathToBoard(this.config.getOptionStr("pathToBoard"));
