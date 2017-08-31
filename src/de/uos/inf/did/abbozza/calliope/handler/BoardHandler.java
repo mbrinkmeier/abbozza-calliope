@@ -26,6 +26,7 @@ package de.uos.inf.did.abbozza.calliope.handler;
 import com.sun.net.httpserver.HttpExchange;
 import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
+import de.uos.inf.did.abbozza.calliope.AbbozzaCalliope;
 import de.uos.inf.did.abbozza.calliope.AbbozzaCalliopeMP;
 import de.uos.inf.did.abbozza.handler.AbstractHandler;
 import java.io.BufferedReader;
@@ -49,7 +50,7 @@ public class BoardHandler extends AbstractHandler {
      * @param query This flag indicates wether the user should be asked for the
      * path to the board if it is not found.
      */
-    public BoardHandler(AbbozzaCalliopeMP abbozza, boolean query) {
+    public BoardHandler(AbbozzaCalliope abbozza, boolean query) {
         super(abbozza);
         this._query = query;
     }

@@ -40,7 +40,7 @@ import javax.swing.JOptionPane;
  *
  * @author mbrinkmeier1G
  */
-public class AbbozzaCalliopeC extends AbbozzaCalliopeMP {
+public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
     protected String _buildPath;
     protected String _hexPath;

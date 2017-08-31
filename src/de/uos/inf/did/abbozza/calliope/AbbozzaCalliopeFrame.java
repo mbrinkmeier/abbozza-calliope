@@ -30,6 +30,7 @@ import de.uos.inf.did.abbozza.AbbozzaLoggerListener;
 import de.uos.inf.did.abbozza.AbbozzaServer;
 import de.uos.inf.did.abbozza.Tools;
 import de.uos.inf.did.abbozza.install.InstallTool;
+import de.uos.inf.did.abbozza.tools.GUITool;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -452,7 +453,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
     @Override
     public void open() {
-        Tools.centerWindow(this);
+        GUITool.centerWindow(this);
         /* 
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
