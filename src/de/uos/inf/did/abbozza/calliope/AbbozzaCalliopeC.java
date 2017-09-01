@@ -148,6 +148,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         if ( procBuilder == null) return 2;
         
         try {
+            AbbozzaLogger.out("PATH set to: " + procBuilder.environment().get("PATH"));
+
             procBuilder.redirectOutput(ProcessBuilder.Redirect.PIPE);
             procBuilder.redirectError(ProcessBuilder.Redirect.PIPE);
             Process proc = procBuilder.start();
@@ -184,16 +186,28 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     
     public ProcessBuilder buildProcLinux(String buildPath) {
+        String toolsPath = this.config.getProperty("toolsPath");
+        
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
         procBuilder.directory(new File(buildPath));
+
+        if (toolsPath != "") {
+            procBuilder.environment().put("PATH",  toolsPath + ":" + System.getenv("PATH"));
+        }
         
         return procBuilder;
     }
     
     
     public ProcessBuilder buildProcMac(String buildPath) {
+        String toolsPath = this.config.getProperty("toolsPath");
+
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
         procBuilder.directory(new File(buildPath));
+
+        if ( toolsPath != "" ) {
+            procBuilder.environment().put("PATH",  toolsPath + ":" + System.getenv("PATH"));
+        }
         
         return procBuilder;
     }
@@ -202,13 +216,17 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     public ProcessBuilder buildProcWindows(String buildPath) {
         String yottaPath = System.getenv("YOTTA_PATH");
         String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
+        String toolsPath = this.config.getProperty("toolsPath");
 
         // ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");
         // ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");
         ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","build");
         procBuilder.directory(new File(buildPath));
+        
         procBuilder.environment().put("PATH",  yottaPath + ";" + runtimePath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
-        AbbozzaLogger.out(procBuilder.environment().get("PATH"));
+        if (toolsPath != "" ) {
+            procBuilder.environment().put("PATH",  toolsPath + ";" + System.getenv("PATH"));
+        }
         
         return procBuilder;
     }
