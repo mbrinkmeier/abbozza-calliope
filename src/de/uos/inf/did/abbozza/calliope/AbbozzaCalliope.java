@@ -13,8 +13,12 @@ import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.PrintWriter;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,16 +33,42 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaCalliopeMP abbozza = new AbbozzaCalliopeMP();
         abbozza.init("calliopeMP");
     }
+
+    // Additional paths
+    // protected String installPath;   // The path into which abbozza was installed
+    protected String toolsPath;     // The path to tools needed for compilation
+
     protected int _SCRIPT_ADDR = 0x3e000;
     protected String _pathToBoard = "";
     protected AbbozzaCalliopeFrame frame;
-    protected String installPath; // The path into which abbozza was installed
-    protected String runtimePath; // The parent directory of jarPath, containig lib, plugins, bin ...
 
     public void init(String system) {
         
         AbbozzaSplashScreen.showSplashScreen("/img/abbozza-calliope-splash.png");
         super.init(system);
+        
+        /**
+         * This does not seem to work
+         * 
+        // Add ClassLoaders for jars in <runtimePath>/lib
+        File libDir = new File(runtimePath + "/lib");
+        File[] jars = libDir.listFiles( new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".jar");
+            }
+        });
+        URL[] urls = new URL[jars.length];
+        for ( int i = 0; i < jars.length; i++ ) {
+            try {
+                urls[i] = jars[i].toURI().toURL();
+                AbbozzaLogger.info("Added " + urls[i].toExternalForm() + " to classpath");
+            } catch (MalformedURLException ex) {
+                AbbozzaLogger.err(ex.getLocalizedMessage());
+            }
+        }
+        ClassLoader loader = new URLClassLoader(urls,AbbozzaCalliope.class.getClassLoader());   
+        */
+        
         setPathToBoard(this.config.getOptionStr("pathToBoard"));
         // Open Frame
         frame = new AbbozzaCalliopeFrame();
@@ -56,26 +86,31 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         localJarPath = jarPath;
         globalJarPath = jarPath;
         sketchbookPath = "";
-        localPluginPath = jarPath + "/plugins";
-        globalPluginPath = installPath + "/tools/Abbozza/plugins";
+        localPluginPath = userPath + "/plugins";
+        globalPluginPath = runtimePath + "/plugins"; // installPath + "/tools/Abbozza/plugins";
     }
 
     public void setAdditionalPaths() {
-        installPath = config.getProperty("installPath");
+        // installPath = config.getProperty("installPath");
         sketchbookPath = config.getProperty("sketchbookPath");
-        if (sketchbookPath.contains("%HOME%")) {
+        if ((sketchbookPath != null) && (sketchbookPath.contains("%HOME%"))) {
             sketchbookPath = sketchbookPath.replace("%HOME%", System.getProperty("user.home"));
         }
-        runtimePath = new File(jarPath).getParent();
-        AbbozzaLogger.out("jarPath = " + jarPath);
-        AbbozzaLogger.out("runtimePath = " + runtimePath);
-        AbbozzaLogger.out("installPath = " + installPath);
-        AbbozzaLogger.out("userPath = " + userPath);
-        AbbozzaLogger.out("sketchbookPath = " + sketchbookPath);
-        AbbozzaLogger.out("localJarPath = " + localJarPath);
-        AbbozzaLogger.out("localPluginPath = " + localPluginPath);
-        AbbozzaLogger.out("globalPluginPath = " + globalPluginPath);
-        AbbozzaLogger.out("browserPath = " + config.getBrowserPath());
+        toolsPath = config.getProperty("toolsPath");
+        if ((toolsPath != null) && (toolsPath.contains("%RUNTIME%"))) {
+            toolsPath = toolsPath.replace("%RUNTIME%", runtimePath);
+        }
+        
+        AbbozzaLogger.info("jarPath = " + jarPath);
+        AbbozzaLogger.info("runtimePath = " + runtimePath);
+        AbbozzaLogger.info("toolsPath = " + toolsPath);
+        // AbbozzaLogger.info("installPath = " + installPath);
+        AbbozzaLogger.info("userPath = " + userPath);
+        AbbozzaLogger.info("sketchbookPath = " + sketchbookPath);
+        AbbozzaLogger.info("localJarPath = " + localJarPath);
+        AbbozzaLogger.info("localPluginPath = " + localPluginPath);
+        AbbozzaLogger.info("globalPluginPath = " + globalPluginPath);
+        AbbozzaLogger.info("browserPath = " + config.getBrowserPath());
     }
 
     public void findJarsAndDirs(JarDirHandler jarHandler) {
