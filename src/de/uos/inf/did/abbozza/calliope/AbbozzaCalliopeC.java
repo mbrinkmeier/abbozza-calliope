@@ -194,7 +194,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         if (toolsPath != null) {
             String path = procBuilder.environment().get("PATH");
             procBuilder.environment().put("PATH", toolsPath + ":" + path);
-      }
+        }
         
         return procBuilder;
     }
@@ -226,6 +226,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         procBuilder.directory(new File(buildPath));
         
         procBuilder.environment().put("PATH",  yottaPath + ";" + runtimePath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
+
         if (toolsPath != null) {
             String path = procBuilder.environment().get("PATH");
             procBuilder.environment().put("PATH", toolsPath + ";" + path);
