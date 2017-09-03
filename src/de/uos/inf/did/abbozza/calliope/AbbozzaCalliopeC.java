@@ -147,6 +147,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         
         if ( procBuilder == null) return 2;
         
+        AbbozzaLogger.out("Compiling with path " + procBuilder.environment().get("PATH"));
+        
         try {
             AbbozzaLogger.out("PATH set to: " + procBuilder.environment().get("PATH"));
 
@@ -185,15 +187,14 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
     
     
-    public ProcessBuilder buildProcLinux(String buildPath) {
-        String toolsPath = this.config.getProperty("toolsPath");
-        
+    public ProcessBuilder buildProcLinux(String buildPath) {        
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
         procBuilder.directory(new File(buildPath));
 
-        if (toolsPath != "") {
-            procBuilder.environment().put("PATH",  toolsPath + ":" + System.getenv("PATH"));
-        }
+        if (toolsPath != null) {
+            String path = procBuilder.environment().get("PATH");
+            procBuilder.environment().put("PATH", toolsPath + ":" + path);
+      }
         
         return procBuilder;
     }
@@ -205,8 +206,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
         procBuilder.directory(new File(buildPath));
 
-        if ( toolsPath != "" ) {
-            procBuilder.environment().put("PATH",  toolsPath + ":" + System.getenv("PATH"));
+        if (toolsPath != null) {
+            String path = procBuilder.environment().get("PATH");
+            procBuilder.environment().put("PATH", toolsPath + ":" + path);
         }
         
         return procBuilder;
@@ -224,9 +226,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         procBuilder.directory(new File(buildPath));
         
         procBuilder.environment().put("PATH",  yottaPath + ";" + runtimePath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
-        if (toolsPath != "" ) {
-            procBuilder.environment().put("PATH",  toolsPath + ";" + System.getenv("PATH"));
+        if (toolsPath != null) {
+            String path = procBuilder.environment().get("PATH");
+            procBuilder.environment().put("PATH", toolsPath + ";" + path);
         }
+        
+        AbbozzaLogger.out(procBuilder.environment().get("PATH"));
         
         return procBuilder;
     }
