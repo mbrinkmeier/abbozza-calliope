@@ -29,12 +29,9 @@ import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaLoggerListener;
 import de.uos.inf.did.abbozza.AbbozzaServer;
 import de.uos.inf.did.abbozza.Tools;
-import de.uos.inf.did.abbozza.install.InstallTool;
 import de.uos.inf.did.abbozza.tools.GUITool;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,7 +40,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JDialog;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
@@ -117,7 +113,10 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         jButton1 = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         compileButton1 = new javax.swing.JButton();
-        logPane = new javax.swing.JScrollPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        messagePane = new javax.swing.JScrollPane();
+        messageArea = new javax.swing.JEditorPane();
+        consolePane = new javax.swing.JScrollPane();
         consoleArea = new javax.swing.JEditorPane();
         menuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -149,6 +148,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         splitPane.setDividerLocation(500);
         splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        splitPane.setToolTipText("");
 
         editorPane.setLayout(new java.awt.BorderLayout());
 
@@ -200,11 +200,17 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         splitPane.setLeftComponent(editorPane);
 
+        messagePane.setViewportView(messageArea);
+
+        jTabbedPane1.addTab(AbbozzaLocale.entry("gui.messages"), messagePane);
+
         consoleArea.setEditable(false);
         consoleArea.setPreferredSize(new java.awt.Dimension(106, 10));
-        logPane.setViewportView(consoleArea);
+        consolePane.setViewportView(consoleArea);
 
-        splitPane.setRightComponent(logPane);
+        jTabbedPane1.addTab(AbbozzaLocale.entry("gui.log"), consolePane);
+
+        splitPane.setBottomComponent(jTabbedPane1);
 
         jMenu1.setText("abbozza!");
 
@@ -389,6 +395,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JButton compileButton2;
     private javax.swing.JMenuItem compileMenuItem;
     private javax.swing.JEditorPane consoleArea;
+    private javax.swing.JScrollPane consolePane;
     private javax.swing.JPanel editorPane;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
@@ -396,8 +403,10 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator5;
-    private javax.swing.JScrollPane logPane;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JEditorPane messageArea;
+    private javax.swing.JScrollPane messagePane;
     private javax.swing.JMenuItem quitItem;
     private javax.swing.JMenuItem settingsItem;
     private javax.swing.JMenu sketchMenu;
@@ -477,30 +486,34 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
        // this.consoleArea.setText(parseConsoleText(message));      
 
        String msg = parseConsoleText(message);
-       this.consoleArea.setText(msg);
+       this.consoleArea.setText(message);
+       this.messageArea.setText(msg);
    }
    
    public void appendConsoleText(String message) {
        String text = this.consoleArea.getText();
+       String text2 = this.messageArea.getText();
        if ( text == null ) {
            text = "";
        }
        String msg = parseConsoleText(message);
-       this.consoleArea.setText(text + msg);
+       this.consoleArea.setText(text + message);
+       this.messageArea.setText(text2 + msg);
    }
    
    
    private String parseConsoleText(String message) {
        String msg = "";
        Pattern errorPattern = Pattern.compile(".*/abbozza\\.cpp:([\\d]*):([\\d]*): error: (.*)");
+       Pattern successPattern = Pattern.compile("Compilation successful");
        Matcher matcher = errorPattern.matcher(message);
        while ( matcher.find() ) {
+           if ( msg == "" ) {
+               msg = AbbozzaLocale.entry("msg.error_compiling");
+           }
            try {
-               if ( msg.equals("") ) {
-                   msg = "\n\nFehlermeldungen: \n";
-               }
-               msg = msg + "Fehler in Zeile " + matcher.group(1) + " bei Zeichen " + matcher.group(2) + "\n";
-               msg = msg + "Meldung: " + matcher.group(3) + "\n\n";
+               msg = msg + AbbozzaLocale.entry("gui.error_in_line",matcher.group(1)) + matcher.group(2) + "\n";
+               msg = msg + AbbozzaLocale.entry("gui.error_msg") + " : " + matcher.group(3) + "\n\n";
                int line = Integer.parseInt(matcher.group(1))-1;
                int start = sourceArea.getLineStartOffset(line);
                int end  = sourceArea.getLineEndOffset(line);
@@ -509,8 +522,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
            } catch (BadLocationException ex) {
            }
        }
+       matcher = successPattern.matcher(message);
+       while (matcher.find() ) {
+           msg = msg + AbbozzaLocale.entry("msg.done_compiling");
+       }
 
-       return message + msg;
+       return msg;
    }
 
 }

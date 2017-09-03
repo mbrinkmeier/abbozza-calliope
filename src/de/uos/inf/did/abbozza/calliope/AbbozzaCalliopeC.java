@@ -24,7 +24,6 @@ package de.uos.inf.did.abbozza.calliope;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.Tools;
-import de.uos.inf.did.abbozza.install.InstallTool;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,8 +32,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -108,24 +105,21 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
                 _exitValue = compile(_buildPath);
                                 
-                AbbozzaLogger.out("Exit value: " + _exitValue, AbbozzaLogger.INFO);
+                AbbozzaLogger.info("Exit value: " + _exitValue);
                 
             } catch (FileNotFoundException ex) {
-                AbbozzaLogger.out(ex.getLocalizedMessage(), AbbozzaLogger.ERROR);
+                AbbozzaLogger.err(ex.getLocalizedMessage());
             }
 
-            if (_exitValue > 0) {
-                AbbozzaLogger.out(outMsg, AbbozzaLogger.ERROR);
-                AbbozzaLogger.out(errMsg, AbbozzaLogger.ERROR);
-            } else {
+            AbbozzaLogger.info(outMsg);
+
+            if (_exitValue == 0) {
                 errMsg = "";
-                outMsg = "";
-                AbbozzaLogger.out("Compilation successful", AbbozzaLogger.INFO);
+                AbbozzaLogger.info("Compilation successful");
             }
         }
-
-        ((AbbozzaCalliopeFrame) this.mainFrame).setConsoleText(outMsg + errMsg);
-        return outMsg + errMsg;
+        
+        return errMsg;
     }
 
 
