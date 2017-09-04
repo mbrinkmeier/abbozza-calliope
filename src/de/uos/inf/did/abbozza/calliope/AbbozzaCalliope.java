@@ -29,11 +29,6 @@ import java.util.logging.Logger;
  */
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     
-    public static void main(String[] args) {
-        AbbozzaCalliopeMP abbozza = new AbbozzaCalliopeMP();
-        abbozza.init("calliopeMP");
-    }
-
     // Additional paths
     // protected String installPath;   // The path into which abbozza was installed
     protected String toolsPath;     // The path to tools needed for compilation
@@ -87,7 +82,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         globalJarPath = jarPath;
         sketchbookPath = "";
         localPluginPath = userPath + "/plugins";
-        globalPluginPath = runtimePath + "/plugins"; // installPath + "/tools/Abbozza/plugins";
+        globalPluginPath = abbozzaPath + "/plugins"; // installPath + "/tools/Abbozza/plugins";
     }
 
     public void setAdditionalPaths() {
@@ -97,12 +92,12 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
             sketchbookPath = sketchbookPath.replace("%HOME%", System.getProperty("user.home"));
         }
         toolsPath = config.getProperty("toolsPath");
-        if ((toolsPath != null) && (toolsPath.contains("%RUNTIME%"))) {
-            toolsPath = toolsPath.replace("%RUNTIME%", runtimePath);
+        if ((toolsPath != null) && (toolsPath.contains("%ABBOZZA%"))) {
+            toolsPath = toolsPath.replace("%ABBOZZA%", abbozzaPath);
         }
         
         AbbozzaLogger.info("jarPath = " + jarPath);
-        AbbozzaLogger.info("runtimePath = " + runtimePath);
+        AbbozzaLogger.info("runtimePath = " + abbozzaPath);
         AbbozzaLogger.info("toolsPath = " + toolsPath);
         // AbbozzaLogger.info("installPath = " + installPath);
         AbbozzaLogger.info("userPath = " + userPath);
@@ -113,6 +108,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaLogger.info("browserPath = " + config.getBrowserPath());
     }
 
+    
     public void findJarsAndDirs(JarDirHandler jarHandler) {
         jarHandler.clear();
         jarHandler.addJar(jarPath + "/abbozza-calliope.jar", "Jar");
@@ -126,12 +122,14 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaLogger.out("Path to board set to " + path, 4);
     }
 
+    
     public String getPathToBoard() {
         return _pathToBoard;
     }
 
     @Override
     public void registerSystemHandlers() {
+        AbbozzaLogger.info("Registering handlers for board and queryboard");
         httpServer.createContext("/abbozza/board", new BoardHandler(this, false));
         httpServer.createContext("/abbozza/queryboard", new BoardHandler(this, true));
     }
@@ -170,7 +168,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 out.flush();
                 out.close();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(AbbozzaCalliopeMP.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AbbozzaCalliope.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
         }

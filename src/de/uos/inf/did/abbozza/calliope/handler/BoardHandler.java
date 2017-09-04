@@ -27,7 +27,6 @@ import com.sun.net.httpserver.HttpExchange;
 import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.calliope.AbbozzaCalliope;
-import de.uos.inf.did.abbozza.calliope.AbbozzaCalliopeMP;
 import de.uos.inf.did.abbozza.handler.AbstractHandler;
 import java.io.BufferedReader;
 import java.io.File;
@@ -66,12 +65,12 @@ public class BoardHandler extends AbstractHandler {
      */
     @Override
     public void handle(HttpExchange exchg) throws IOException {
-        AbbozzaCalliopeMP server = (AbbozzaCalliopeMP) _abbozzaServer;
+        AbbozzaCalliope server = (AbbozzaCalliope) _abbozzaServer;
 
         // Get the set path
         String path = server.getPathToBoard();
-        AbbozzaLogger.out("[BoardHandler] Path to board is " + path, AbbozzaLogger.DEBUG);
-
+        AbbozzaLogger.debug("[BoardHandler] Path to board is " + path);
+        
         // Get the board if possible
         String board = this.findBoard();
 
@@ -85,12 +84,12 @@ public class BoardHandler extends AbstractHandler {
 
         // If no board was found, ask the user, is required
         if (board == "" && this._query) {
-            AbbozzaLogger.out("[BoardHandler] User is queried for path to store hex", AbbozzaLogger.DEBUG);
+            AbbozzaLogger.debug("[BoardHandler] User is queried for path to store hex");
             // Give the old path as default
             dir = queryPathToBoard(path);
             if (dir != null) {
                 server.setPathToBoard(dir.getCanonicalPath());
-                AbbozzaLogger.out("BoardHandler] Path set to " + dir.getCanonicalPath(), AbbozzaLogger.DEBUG);
+                AbbozzaLogger.debug("BoardHandler] Path set to " + dir.getCanonicalPath());
             } else {
                 sendResponse(exchg, 201, "text/plain", "Query aborted");
             }
@@ -99,16 +98,16 @@ public class BoardHandler extends AbstractHandler {
         if (!dir.exists() || !dir.isDirectory() || !dir.canWrite()) {
             // If no board was found, send the path known to the server
             if (path == null) {
-                AbbozzaLogger.out("BoardHandler] Board not found. No alternative path given.", AbbozzaLogger.DEBUG);
+                AbbozzaLogger.debug("BoardHandler] Board not found. No alternative path given.");
                 sendResponse(exchg, 201, "text/plain", "");
             } else {
-                AbbozzaLogger.out("BoardHandler] Board not found. Using given path " + path, AbbozzaLogger.DEBUG);
+                AbbozzaLogger.debug("BoardHandler] Board not found. Using given path " + path);
                 sendResponse(exchg, 200, "text/plain", path);
             }
         } else {
             // If board was found, use it
             server.setPathToBoard(dir.getCanonicalPath());
-            AbbozzaLogger.out("BoardHandler]  Board found at : " + dir.getCanonicalPath(), AbbozzaLogger.DEBUG);
+            AbbozzaLogger.debug("BoardHandler]  Board found at : " + dir.getCanonicalPath());
             sendResponse(exchg, 200, "text/plain", dir.getCanonicalPath());
         }
     }
@@ -127,7 +126,7 @@ public class BoardHandler extends AbstractHandler {
                 try {
                     String volume = FileSystemView.getFileSystemView().getSystemDisplayName(roots[i]);
                     if (volume.contains("MINI") || volume.contains("MICROBIT")) {
-                        AbbozzaLogger.out("Board found at " + roots[i].getCanonicalPath(), AbbozzaLogger.INFO);
+                        AbbozzaLogger.info("Board found at " + roots[i].getCanonicalPath());
                         return roots[i].getCanonicalPath();
                     }
                 } catch (IOException ex) {
@@ -148,7 +147,7 @@ public class BoardHandler extends AbstractHandler {
                     volume = volumes.readLine();
                     if (volume.contains("MINI") || volume.contains("MICROBIT")) {
                         volume = volume.split(" ")[2];
-                        AbbozzaLogger.out("[BoardHandler.findBoard] Board found at " + volume, AbbozzaLogger.INFO);
+                        AbbozzaLogger.info("[BoardHandler.findBoard] Board found at " + volume);
                         if (volume.contains("MINI")) {
                             this._abbozzaServer.setBoardName("calliope");
                         } else {
@@ -158,7 +157,7 @@ public class BoardHandler extends AbstractHandler {
                     }
                 }
                 volumes.close();
-                AbbozzaLogger.out("No board found", 4);
+                AbbozzaLogger.debug("No board found");
             } catch (Exception ex) {
                 AbbozzaLogger.err(ex.getMessage());
                 return "";
@@ -184,14 +183,12 @@ public class BoardHandler extends AbstractHandler {
         }
         chooser.setDialogTitle(AbbozzaLocale.entry("gui.CalliopePath"));
         BoardChooserPanel boardPanel = new BoardChooserPanel();
-        AbbozzaLogger.out("Hier2",AbbozzaLogger.INFO);
         chooser.setAccessory(boardPanel);
         if ((this._abbozzaServer.getBoardName()!=null) && (this._abbozzaServer.getBoardName().equals("microbit"))) {
             boardPanel.setMicrobit();
         } else {
             boardPanel.setCalliope();
         }
-        AbbozzaLogger.out("Hier",AbbozzaLogger.INFO);
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         chooser.setFileFilter(new FileFilter() {
             @Override
@@ -204,6 +201,10 @@ public class BoardHandler extends AbstractHandler {
                 return "Select readable directory";
             }
         });
+        
+        _abbozzaServer.bringFrameToFront();
+        _abbozzaServer.setDialogOpen(true);
+
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             selectedDir = chooser.getSelectedFile();
             if (boardPanel.isCalliope()) {
@@ -213,6 +214,11 @@ public class BoardHandler extends AbstractHandler {
             }
         } else {
         }
+
+        _abbozzaServer.setDialogOpen(false);
+        _abbozzaServer.resetFrame();
+        _abbozzaServer.toolIconify();
+        
         return selectedDir;
     }
 

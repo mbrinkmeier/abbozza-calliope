@@ -219,7 +219,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","build");
         procBuilder.directory(new File(buildPath));
         
-        procBuilder.environment().put("PATH",  yottaPath + ";" + runtimePath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
+        procBuilder.environment().put("PATH",  yottaPath + ";" + abbozzaPath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
 
         if (toolsPath != null) {
             String path = procBuilder.environment().get("PATH");
@@ -285,7 +285,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
            
         AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
             
-        File original = new File(runtimePath + "/build/");
+        File original = new File(abbozzaPath + "/build/");
         try {
             // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
             if ( initBuild ) {
