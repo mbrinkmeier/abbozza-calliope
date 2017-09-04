@@ -32,6 +32,9 @@
 #define C17     8
 #define C21     21
 
+#define MICROPHONE_PIN  21
+
+
 /*
  * Images
  */
@@ -64,6 +67,7 @@ extern uint8_t __abz_image_data[31];
 class Abbozza : public MicroBit {    
     public:
         int getGesture();
+        int getMicrophoneLevel();
 };
 
 #endif

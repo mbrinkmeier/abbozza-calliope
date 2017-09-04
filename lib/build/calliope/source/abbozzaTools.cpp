@@ -40,10 +40,24 @@ MicroBitImage Image_NO((ImageData*) __no);
 
 uint8_t __abz_image_data[31] = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
 
-
+/**
+ * Read the last gesture and update the stored sample.
+ * 
+ * @return The id of the last gesture
+ */
 int Abbozza::getGesture() {
     int __gesture__ = accelerometer.getGesture();
     accelerometer.updateSample();
     return __gesture__;    
 }
+
+/**
+ * Get the current microphone level.
+ * @return The microphone level.
+ */
+int Abbozza::getMicrophoneLvel() {
+    return io.pin[MICROPHONE_PIN].getAnalogValue();
+}
+
+
 

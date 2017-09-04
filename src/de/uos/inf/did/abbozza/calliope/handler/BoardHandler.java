@@ -118,6 +118,8 @@ public class BoardHandler extends AbstractHandler {
      * @return The path to the board as string or an empty string
      */
     private String findBoard() {
+        return this._abbozzaServer.findBoard();
+        /*
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("win")) {
             // In windows system the drives are scanned for their volume name
@@ -167,6 +169,7 @@ public class BoardHandler extends AbstractHandler {
             AbbozzaLogger.err("Operating system " + os + " not supported");
         }
         return "";
+        */
     }
 
     /**
@@ -176,6 +179,8 @@ public class BoardHandler extends AbstractHandler {
      * @return The new path
      */
     public File queryPathToBoard(String path) {
+        return this._abbozzaServer.queryPathToBoard(path);
+        /*
         File selectedDir = null;
         JFileChooser chooser = new JFileChooser();
         if (path != null) {
@@ -220,6 +225,7 @@ public class BoardHandler extends AbstractHandler {
         _abbozzaServer.toolIconify();
         
         return selectedDir;
+        */
     }
 
 }

@@ -6,6 +6,11 @@
         
         <!-- Basic control structures -->
         <category id="cat.CTRL">
+            <block type="loop_delay">
+                <value name="TIME">
+                    <block type="math_number">100</block>
+                </value>
+            </block>  
             <block type="cond_if"></block>
             <block type="cond_if_else"></block>            
             <block type="loop_endless"></block>
@@ -24,11 +29,6 @@
                     <block type="math_number"><field name="VALUE">10</field></block>
                 </value>
             </block-->            
-            <block type="loop_delay">
-                <value name="TIME">
-                    <block type="math_number">100</block>
-                </value>
-            </block>  
             <!-- block type="loop_delay_micros">
                 <value name="TIME">
                     <block type="math_number"><field name="VALUE">1000</field></block>
@@ -158,6 +158,7 @@
             <block type="dev_compass_heading"></block>
             <block type="dev_compass_get_fs"></block>
             <block type="dev_thermometer_get"></block>
+            <block type="dev_microphone_get"></block>
             <block type="display_light_level"></block>
         </category>        	                                   
 

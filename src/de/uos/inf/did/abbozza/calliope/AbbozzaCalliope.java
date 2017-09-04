@@ -6,14 +6,19 @@
 package de.uos.inf.did.abbozza.calliope;
 
 import com.sun.net.httpserver.HttpHandler;
+import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaServer;
 import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
+import de.uos.inf.did.abbozza.calliope.handler.BoardChooserPanel;
 import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
@@ -22,6 +27,9 @@ import java.net.URLClassLoader;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileSystemView;
 
 /**
  *
@@ -255,4 +263,110 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         return runtime;
     }
     
+    
+    /**
+     * This method tries to detect a connected CalliopeMINI or the micro:bit
+     *
+     * @return The path to the board as string or an empty string
+     */
+    public String findBoard() {
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            // In windows system the drives are scanned for their volume name
+            File[] roots = File.listRoots();
+            for (int i = 0; i < roots.length; i++) {
+                try {
+                    String volume = FileSystemView.getFileSystemView().getSystemDisplayName(roots[i]);
+                    if (volume.contains("MINI") || volume.contains("MICROBIT")) {
+                        AbbozzaLogger.info("Board found at " + roots[i].getCanonicalPath());
+                        return roots[i].getCanonicalPath();
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(BoardHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return "";
+        } else if (os.contains("linux") || os.contains("mac")) {
+            try {
+                // In posix systems (linux and Mac OsX) the system command 'mount' 
+                // is used to detect the volume
+                Process process = Runtime.getRuntime().exec("mount");
+                process.waitFor();
+                InputStreamReader reader = new InputStreamReader(process.getInputStream());
+                BufferedReader volumes = new BufferedReader(reader);
+                String volume;
+                while (volumes.ready()) {
+                    volume = volumes.readLine();
+                    if (volume.contains("MINI") || volume.contains("MICROBIT")) {
+                        volume = volume.split(" ")[2];
+                        AbbozzaLogger.info("[BoardHandler.findBoard] Board found at " + volume);
+                        if (volume.contains("MINI")) {
+                            setBoardName("calliope");
+                        } else {
+                            setBoardName("microbit");
+                        }
+                        return volume;
+                    }
+                }
+                volumes.close();
+                AbbozzaLogger.debug("No board found");
+            } catch (Exception ex) {
+                AbbozzaLogger.err(ex.getMessage());
+                return "";
+            }
+        } else {
+            // Currently no other system is supported
+            AbbozzaLogger.err("Operating system " + os + " not supported");
+        }
+        return "";
+    }
+
+
+    public File queryPathToBoard(String path) {
+        File selectedDir = null;
+        JFileChooser chooser = new JFileChooser();
+        if (path != null) {
+            chooser.setCurrentDirectory(new File(path));
+        }
+        chooser.setDialogTitle(AbbozzaLocale.entry("gui.CalliopePath"));
+        BoardChooserPanel boardPanel = new BoardChooserPanel();
+        chooser.setAccessory(boardPanel);
+        if ((getBoardName()!=null) && (getBoardName().equals("microbit"))) {
+            boardPanel.setMicrobit();
+        } else {
+            boardPanel.setCalliope();
+        }
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                return f.isDirectory();
+            }
+
+            @Override
+            public String getDescription() {
+                return "Select readable directory";
+            }
+        });
+        
+        bringFrameToFront();
+        setDialogOpen(true);
+
+        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            selectedDir = chooser.getSelectedFile();
+            if (boardPanel.isCalliope()) {
+                setBoardName("calliope");
+            } else {
+                setBoardName("microbit");
+            }
+        } else {
+        }
+
+        setDialogOpen(false);
+        resetFrame();
+        toolIconify();
+        
+        return selectedDir;
+    }
+
 }
