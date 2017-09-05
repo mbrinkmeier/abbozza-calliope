@@ -165,21 +165,20 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         serialButton = new javax.swing.JButton();
         connectButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
-        abbozzaMenu = new javax.swing.JMenu();
-        startBrowserItem = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        clearItem = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        settingsItem = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        quitItem = new javax.swing.JMenuItem();
         sketchMenu = new javax.swing.JMenu();
-        compileMenuItem = new javax.swing.JMenuItem();
-        uploadMenuItem = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
         newMenuItem = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
         loadSketchMenuItem = new javax.swing.JMenuItem();
         saveSketchMenuItem = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        compileMenuItem = new javax.swing.JMenuItem();
+        uploadMenuItem = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        quitItem = new javax.swing.JMenuItem();
+        abbozzaMenu = new javax.swing.JMenu();
+        startBrowserItem = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        settingsItem = new javax.swing.JMenuItem();
 
         compileButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         compileButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/save.png"))); // NOI18N
@@ -330,8 +329,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
         });
         toolbar.add(saveButton);
-
-        jSeparator7.setOrientation(javax.swing.SwingConstants.HORIZONTAL);
         toolbar.add(jSeparator7);
 
         serialButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/serial.png"))); // NOI18N
@@ -362,73 +359,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         splitPane.setLeftComponent(editorPane);
 
-        abbozzaMenu.setText("abbozza!");
-
-        startBrowserItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
-        startBrowserItem.setText(AbbozzaLocale.entry("gui.startBrowser"));
-        startBrowserItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startBrowserItemActionPerformed(evt);
-            }
-        });
-        abbozzaMenu.add(startBrowserItem);
-        abbozzaMenu.add(jSeparator2);
-
-        clearItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        clearItem.setText(AbbozzaLocale.entry("gui.clear"));
-        clearItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clearItemActionPerformed(evt);
-            }
-        });
-        abbozzaMenu.add(clearItem);
-        abbozzaMenu.add(jSeparator1);
-
-        settingsItem.setText(AbbozzaLocale.entry("gui.settings"));
-        settingsItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                settingsItemActionPerformed(evt);
-            }
-        });
-        abbozzaMenu.add(settingsItem);
-        abbozzaMenu.add(jSeparator3);
-
-        quitItem.setText(AbbozzaLocale.entry("gui.quit")
-        );
-        quitItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitItemActionPerformed(evt);
-            }
-        });
-        abbozzaMenu.add(quitItem);
-
-        menuBar.add(abbozzaMenu);
-
         sketchMenu.setText(AbbozzaLocale.entry("gui.sketch_menu"));
         sketchMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 compileActionPerformed(evt);
             }
         });
-
-        compileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        compileMenuItem.setText(AbbozzaLocale.entry("gui.compile"));
-        compileMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                compileActionPerformed(evt);
-            }
-        });
-        sketchMenu.add(compileMenuItem);
-
-        uploadMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
-        uploadMenuItem.setText(AbbozzaLocale.entry("gui.upload"));
-        uploadMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadActionPerformed(evt);
-            }
-        });
-        sketchMenu.add(uploadMenuItem);
-        sketchMenu.add(jSeparator6);
 
         newMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         newMenuItem.setText(AbbozzaLocale.entry("gui.new_button"));
@@ -438,6 +374,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
         });
         sketchMenu.add(newMenuItem);
+        sketchMenu.add(jSeparator8);
 
         loadSketchMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         loadSketchMenuItem.setText(AbbozzaLocale.entry("gui.load_button"));
@@ -457,8 +394,59 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
         });
         sketchMenu.add(saveSketchMenuItem);
+        sketchMenu.add(jSeparator2);
+
+        compileMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        compileMenuItem.setText(AbbozzaLocale.entry("gui.compile"));
+        compileMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                compileActionPerformed(evt);
+            }
+        });
+        sketchMenu.add(compileMenuItem);
+
+        uploadMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        uploadMenuItem.setText(AbbozzaLocale.entry("gui.upload"));
+        uploadMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadActionPerformed(evt);
+            }
+        });
+        sketchMenu.add(uploadMenuItem);
+        sketchMenu.add(jSeparator3);
+
+        quitItem.setText(AbbozzaLocale.entry("gui.quit")
+        );
+        quitItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitItemActionPerformed(evt);
+            }
+        });
+        sketchMenu.add(quitItem);
 
         menuBar.add(sketchMenu);
+
+        abbozzaMenu.setText("abbozza!");
+
+        startBrowserItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
+        startBrowserItem.setText(AbbozzaLocale.entry("gui.startBrowser"));
+        startBrowserItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startBrowserItemActionPerformed(evt);
+            }
+        });
+        abbozzaMenu.add(startBrowserItem);
+        abbozzaMenu.add(jSeparator6);
+
+        settingsItem.setText(AbbozzaLocale.entry("gui.settings"));
+        settingsItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settingsItemActionPerformed(evt);
+            }
+        });
+        abbozzaMenu.add(settingsItem);
+
+        menuBar.add(abbozzaMenu);
 
         setJMenuBar(menuBar);
 
@@ -482,10 +470,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_quitItemActionPerformed
-
-    private void clearItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearItemActionPerformed
-        setConsoleText("");
-    }//GEN-LAST:event_clearItemActionPerformed
 
     private void startBrowserItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBrowserItemActionPerformed
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
@@ -639,7 +623,6 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu abbozzaMenu;
-    private javax.swing.JMenuItem clearItem;
     private javax.swing.JMenuItem clearMenuItem;
     private javax.swing.JButton compileButton;
     private javax.swing.JButton compileButton2;
@@ -652,13 +635,13 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JRadioButtonMenuItem errMenuItem;
     private javax.swing.JRadioButtonMenuItem infoMenuItem;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton loadButton;
     private javax.swing.JMenuItem loadSketchMenuItem;
