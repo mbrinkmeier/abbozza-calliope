@@ -103,19 +103,16 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 out.flush();
                 out.close();
 
-                _exitValue = compile(_buildPath);
-                                
+                _exitValue = compile(_buildPath);                                
                 AbbozzaLogger.info("Exit value: " + _exitValue);
                 
             } catch (FileNotFoundException ex) {
                 AbbozzaLogger.err(ex.getLocalizedMessage());
             }
 
-            AbbozzaLogger.info(outMsg);
-
             if (_exitValue == 0) {
                 errMsg = "";
-                AbbozzaLogger.info("Compilation successful");
+                AbbozzaLogger.info("Compilation successful\n");
             }
         }
         
@@ -165,7 +162,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 }
                 if ( out.ready() ) {
                     line = out.readLine();
-                    AbbozzaLogger.out(line);
+                    AbbozzaLogger.info(line);
                     outMsg = outMsg + "\n" + line;
                 }
             }
@@ -195,8 +192,6 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     
     public ProcessBuilder buildProcMac(String buildPath) {
-        String toolsPath = this.config.getProperty("toolsPath");
-
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
         procBuilder.directory(new File(buildPath));
 
@@ -212,7 +207,6 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     public ProcessBuilder buildProcWindows(String buildPath) {
         String yottaPath = System.getenv("YOTTA_PATH");
         String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
-        String toolsPath = this.config.getProperty("toolsPath");
 
         // ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");
         // ProcessBuilder procBuilder  = new ProcessBuilder(yottaInstall+"\\workspace\\Scripts\\yt","-n","build");

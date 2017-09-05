@@ -477,13 +477,14 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     }//GEN-LAST:event_startBrowserItemActionPerformed
 
     private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
+        messageArea.setText("");
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
         String response = abbozza.uploadCode(this.sourceArea.getText());
         if ( response != null ) {
             if ( response.equals("")) {
                 response = AbbozzaLocale.entry("gui.compilation_success");
             }
-            setConsoleText(response);
+            appendConsoleText(response);
         }
     }//GEN-LAST:event_uploadActionPerformed
 
@@ -493,13 +494,14 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     }//GEN-LAST:event_settingsItemActionPerformed
 
     private void compileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileActionPerformed
+        messageArea.setText("");
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
         String response = abbozza.compileCode(this.sourceArea.getText());
         if ( response != null ) {
             if ( response.equals("")) {
                 response = AbbozzaLocale.entry("gui.compilation_success");
             }
-            setConsoleText(response);
+            appendConsoleText(response);
         }
     }//GEN-LAST:event_compileActionPerformed
 
@@ -594,12 +596,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         AbbozzaCalliope abbozza = (AbbozzaCalliope) AbbozzaServer.getInstance();
         String boardPath = abbozza.findBoard();
         if ( boardPath.equals("") ) {
-            File board = abbozza.queryPathToBoard(boardPath);
-            if ( board != null ) {
-                abbozza.queryPathToBoard(board.getAbsolutePath());
-            }
+            File board = abbozza.queryPathToBoard(abbozza._pathToBoard);
+            this.connectButton.setBackground(Color.red);
         } else {
             abbozza.setPathToBoard(boardPath);
+            this.connectButton.setBackground(Color.green);
         }
     }//GEN-LAST:event_connectActionPerformed
 
@@ -773,7 +774,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
            }
        }
        matcher = successPattern.matcher(message);
-       while (matcher.find() ) {
+       while ( matcher.find() ) {
            msg = msg + AbbozzaLocale.entry("msg.done_compiling");
        }
 

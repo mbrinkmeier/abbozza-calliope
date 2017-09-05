@@ -30,9 +30,11 @@
 #define C12     6
 #define C16     2
 #define C17     8
-#define C21     21
+#define C18     17
+#define C19     18
+#define C21     19
 
-#define MICROPHONE_PIN  21
+#define MICROPHONE_PIN  19
 
 
 /*

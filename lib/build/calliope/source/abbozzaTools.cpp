@@ -55,8 +55,9 @@ int Abbozza::getGesture() {
  * Get the current microphone level.
  * @return The microphone level.
  */
-int Abbozza::getMicrophoneLvel() {
-    return io.pin[MICROPHONE_PIN].getAnalogValue();
+int Abbozza::getMicrophoneLevel() {
+    int value = io.pin[MICROPHONE_PIN].getAnalogValue();
+    return value;
 }
 
 
