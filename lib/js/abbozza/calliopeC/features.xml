@@ -93,7 +93,9 @@
 
         <!-- Simple string operations -->
         <category id="cat.TEXT">
-            <block type="text_const"></block>
+            <block type="text_const">
+                <value name="CONTENT">Hallo!</value>
+            </block>
             <block type="text_length"></block>
             <block type="text_concat"></block>
             <block type="text_from_number"></block>
@@ -104,7 +106,11 @@
             <block type="display_print"></block>
             <block type="display_scroll">
                 <value name="TEXT">
-                    <block type="text_const"></block>
+                    <block type="text_const">
+                        <value name="CONTENT">
+                            Hallo!
+                        </value>
+                    </block>
                 </value>
             </block>
             <block type="display_show_internal_image"></block>

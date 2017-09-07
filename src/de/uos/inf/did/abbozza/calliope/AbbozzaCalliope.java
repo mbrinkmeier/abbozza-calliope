@@ -95,14 +95,8 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     public void setAdditionalPaths() {
         // installPath = config.getProperty("installPath");
-        sketchbookPath = config.getProperty("sketchbookPath");
-        if ((sketchbookPath != null) && (sketchbookPath.contains("%HOME%"))) {
-            sketchbookPath = sketchbookPath.replace("%HOME%", System.getProperty("user.home"));
-        }
-        toolsPath = config.getProperty("toolsPath");
-        if ((toolsPath != null) && (toolsPath.contains("%ABBOZZA%"))) {
-            toolsPath = toolsPath.replace("%ABBOZZA%", abbozzaPath);
-        }
+        sketchbookPath = expandPath(config.getProperty("sketchbookPath"));
+        toolsPath = expandPath(config.getProperty("toolsPath"));
         
         AbbozzaLogger.info("jarPath = " + jarPath);
         AbbozzaLogger.info("runtimePath = " + abbozzaPath);
