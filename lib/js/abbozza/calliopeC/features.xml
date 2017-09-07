@@ -94,8 +94,7 @@
         <!-- Simple string operations -->
         <category id="cat.TEXT">
             <block type="text_const">
-                <value name="CONTENT">Hallo!</value>
-            </block>
+                <field name="CONTENT">Hallo!</field></block>
             <block type="text_length"></block>
             <block type="text_concat"></block>
             <block type="text_from_number"></block>
@@ -107,9 +106,7 @@
             <block type="display_scroll">
                 <value name="TEXT">
                     <block type="text_const">
-                        <value name="CONTENT">
-                            Hallo!
-                        </value>
+                        <field name="CONTENT">Hallo!</field>
                     </block>
                 </value>
             </block>
