@@ -15,24 +15,24 @@
 #define TOUCH2  1
 #define TOUCH3  16
 
-#define C0      12
-#define C1      0
-#define C2      1
-#define C3      16
-#define C4      3
-#define C5      4
-#define C6      10
-#define C7      13
-#define C8      14
-#define C9      15
-#define C10     9
-#define C11     7
-#define C12     6
-#define C16     2
-#define C17     8
-#define C18     17
-#define C19     18
-#define C21     19
+#define P0      12
+#define P1      0
+#define P2      1
+#define P3      16
+#define P4      3
+#define P5      4
+#define P6      10
+#define P7      13
+#define P8      14
+#define P9      15
+#define P10     9
+#define P11     7
+#define P12     6
+#define P16     2
+#define P17     8
+#define P18     17
+#define P19     18
+#define P21     19
 
 #define MICROPHONE_PIN  19
 

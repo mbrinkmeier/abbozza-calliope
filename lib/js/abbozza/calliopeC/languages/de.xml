@@ -74,6 +74,13 @@
         <msg id="event.BUTTON_LONG_CLICK">lang geklickt wird</msg>
         <msg id="event.BUTTON_HOLD">gehalten wird</msg>
         <msg id="event.BUTTON_DOUBLE_CLICK">doppelt geklickt wird</msg>
+        <msg id="event.BUTTON_ANY">verändert wird</msg>
+        <msg id="event.IO_LISTEN">Falls # # führe # aus</msg>
+        <msg id="event.IO_ON_RISE">steigt</msg>
+        <msg id="event.IO_ON_FALL">fällt</msg>
+        <msg id="event.IO_ON_HI">hoch ist</msg>
+        <msg id="event.IO_ON_LO">tief ist</msg>
+        <msg id="event.IO_IGNORE">Ignoriere Ereignisse an</msg>
     </blocks>
     <categories>
         <msg id="cat.DISPLAY">Anzeige</msg>

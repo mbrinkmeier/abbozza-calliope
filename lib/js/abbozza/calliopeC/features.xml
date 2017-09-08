@@ -280,6 +280,8 @@
         <category id="cat.EVENTS">
             <block type="int_isr"></block>
             <block type="event_button_listen"></block>
+            <!--block type="event_io_listen"></block>
+            <block type="event_io_ignore"></block-->
         </category>
     </feature>
 
