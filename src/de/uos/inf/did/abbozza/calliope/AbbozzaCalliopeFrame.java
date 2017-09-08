@@ -38,6 +38,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -73,6 +74,9 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         UIManager.put("Menu.font", f);
         
         initComponents();
+
+        ImageIcon icon = new ImageIcon(AbbozzaCalliopeFrame.class.getResource("/img/abbozza_icon_white.png"));
+        this.setIconImage(icon.getImage());
         
         switch (AbbozzaLogger.getLevel()) {
             case AbbozzaLogger.NONE : 
