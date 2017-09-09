@@ -61,4 +61,17 @@ int Abbozza::getMicrophoneLevel() {
 }
 
 
+int Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEvent)) {
+    // Check existing handler
+    int i = 0;
+    MicroBitListener *listener;
+    
+    while ( (listener = messageBus.elementAt(i)) != NULL ) {
+        if ((listener-> id == id) && (listener->value==value)) {
+            messageBus.remove(listener);
+        }
+        i++;
+    }
+    messageBus.listen(id,value,handler);
+}
 

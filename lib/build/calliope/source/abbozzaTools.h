@@ -70,6 +70,7 @@ class Abbozza : public MicroBit {
     public:
         int getGesture();
         int getMicrophoneLevel();
+        int registerEventHandler(int id, int value, void (*handler)(MicroBitEvent));
 };
 
 #endif
