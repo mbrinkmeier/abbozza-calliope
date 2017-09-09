@@ -32,6 +32,10 @@ import de.uos.inf.did.abbozza.Tools;
 import de.uos.inf.did.abbozza.tools.GUITool;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowStateListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -130,6 +134,47 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         newActionPerformed(null);
         
         sourceArea.getDocument().addDocumentListener(this);
+
+        this.addWindowStateListener(new WindowStateListener() {
+            @Override
+            public void windowStateChanged(WindowEvent e) {
+                AbbozzaLogger.debug(e.paramString());
+                AbbozzaLogger.debug(e.toString());
+            }
+        });
+        
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                JFrame win = (JFrame) e.getWindow();
+                int state = win.getExtendedState();
+                win.setExtendedState(state | JFrame.ICONIFIED);
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
     }
 
     /**
@@ -253,7 +298,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         jMenuItem1.setText("jMenuItem1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("abbozza! Calliope");
 
         splitPane.setDividerLocation(500);
