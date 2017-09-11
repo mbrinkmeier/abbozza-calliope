@@ -197,10 +197,13 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         debugMenuItem = new javax.swing.JRadioButtonMenuItem();
         logLevelGroup = new javax.swing.ButtonGroup();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         splitPane = new javax.swing.JSplitPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         messagePane = new javax.swing.JScrollPane();
         messageArea = new javax.swing.JEditorPane();
+        progressBar = new javax.swing.JProgressBar();
         consolePane = new javax.swing.JScrollPane();
         consoleArea = new javax.swing.JEditorPane();
         editorPane = new javax.swing.JPanel();
@@ -212,6 +215,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         saveButton = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JToolBar.Separator();
         serialButton = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JToolBar.Separator();
         connectButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         sketchMenu = new javax.swing.JMenu();
@@ -226,7 +230,9 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         quitItem = new javax.swing.JMenuItem();
         abbozzaMenu = new javax.swing.JMenu();
         startBrowserItem = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        jSeparator10 = new javax.swing.JPopupMenu.Separator();
+        cleanItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         settingsItem = new javax.swing.JMenuItem();
 
         compileButton2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
@@ -298,6 +304,8 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         jMenuItem1.setText("jMenuItem1");
 
+        jMenuItem2.setText("jMenuItem2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("abbozza! Calliope");
 
@@ -307,7 +315,28 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         messagePane.setViewportView(messageArea);
 
-        jTabbedPane1.addTab(AbbozzaLocale.entry("gui.messages"), messagePane);
+        progressBar.setMaximum(0);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(progressBar, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(messagePane, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 76, Short.MAX_VALUE)
+                .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(messagePane, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPane1.addTab(AbbozzaLocale.entry("gui.messages"), jPanel1);
 
         consolePane.setComponentPopupMenu(popupMenu);
 
@@ -319,6 +348,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         jTabbedPane1.addTab(AbbozzaLocale.entry("gui.log"), consolePane);
 
         splitPane.setBottomComponent(jTabbedPane1);
+        jTabbedPane1.getAccessibleContext().setAccessibleName(AbbozzaLocale.entry("gui.messages"));
 
         editorPane.setLayout(new java.awt.BorderLayout());
 
@@ -391,6 +421,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
         });
         toolbar.add(serialButton);
+        toolbar.add(jSeparator9);
 
         connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/connect.png"))); // NOI18N
         connectButton.setToolTipText(AbbozzaLocale.entry("gui.connect_button"));
@@ -464,6 +495,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sketchMenu.add(uploadMenuItem);
         sketchMenu.add(jSeparator3);
 
+        quitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         quitItem.setText(AbbozzaLocale.entry("gui.quit")
         );
         quitItem.addActionListener(new java.awt.event.ActionListener() {
@@ -485,7 +517,16 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             }
         });
         abbozzaMenu.add(startBrowserItem);
-        abbozzaMenu.add(jSeparator6);
+        abbozzaMenu.add(jSeparator10);
+
+        cleanItem.setText(AbbozzaLocale.entry("gui.clean_buildsystem"));
+        cleanItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cleanItemActionPerformed(evt);
+            }
+        });
+        abbozzaMenu.add(cleanItem);
+        abbozzaMenu.add(jSeparator1);
 
         settingsItem.setText(AbbozzaLocale.entry("gui.settings"));
         settingsItem.addActionListener(new java.awt.event.ActionListener() {
@@ -505,7 +546,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE))
+                .addComponent(splitPane))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -526,15 +567,18 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     }//GEN-LAST:event_startBrowserItemActionPerformed
 
     private void uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadActionPerformed
-        messageArea.setText("");
+        sourceArea.removeAllLineHighlights();
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
-        String response = abbozza.uploadCode(this.sourceArea.getText());
-        if ( response != null ) {
-            if ( response.equals("")) {
-                response = AbbozzaLocale.entry("gui.compilation_success");
-            }
-            appendConsoleText(response);
-        }
+        Thread thread = new Thread(
+                new Runnable() {
+                    public void run() {
+                        String response = abbozza.uploadCode(sourceArea.getText());
+                        progressBar.setString("");
+                        progressBar.setMaximum(0);
+                    }
+                }
+        );
+        thread.start();
     }//GEN-LAST:event_uploadActionPerformed
 
     private void settingsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsItemActionPerformed
@@ -543,15 +587,18 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     }//GEN-LAST:event_settingsItemActionPerformed
 
     private void compileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_compileActionPerformed
-        messageArea.setText("");
+        sourceArea.removeAllLineHighlights();
         AbbozzaServer abbozza = AbbozzaServer.getInstance();
-        String response = abbozza.compileCode(this.sourceArea.getText());
-        if ( response != null ) {
-            if ( response.equals("")) {
-                response = AbbozzaLocale.entry("gui.compilation_success");
-            }
-            appendConsoleText(response);
-        }
+        Thread thread = new Thread(
+                new Runnable() {
+                    public void run() {
+                        String response = abbozza.compileCode(sourceArea.getText());
+                        progressBar.setString("");
+                        progressBar.setMaximum(0);
+                    }
+                }
+        );
+        thread.start();
     }//GEN-LAST:event_compileActionPerformed
 
     private void loadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadActionPerformed
@@ -657,7 +704,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         if ( !checkSave() ) return;
         this.sourceArea.setText("/**\n *  Generated by abbozza!\n */\n\n" +
             "#include \"MicroBit.h\"\n" +
-            "#include \"abbozzaTools.h\"\n" +
+            "#include \"lib/abbozzaDevice.h\"\n" +
             "#include <string.h>\n\n\n" +
             "Abbozza abbozza;\n\n\n" +
             "/*\n"+
@@ -670,9 +717,18 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         );
     }//GEN-LAST:event_newActionPerformed
 
+    private void cleanItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanItemActionPerformed
+        try {
+            AbbozzaCalliopeC abbozza = (AbbozzaCalliopeC) AbbozzaServer.getInstance();
+            abbozza.cleanBuildSystem();
+        } catch ( ClassCastException ex ) {}
+
+    }//GEN-LAST:event_cleanItemActionPerformed
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu abbozzaMenu;
+    private javax.swing.JMenuItem cleanItem;
     private javax.swing.JMenuItem clearMenuItem;
     private javax.swing.JButton compileButton;
     private javax.swing.JButton compileButton2;
@@ -685,13 +741,17 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JRadioButtonMenuItem errMenuItem;
     private javax.swing.JRadioButtonMenuItem infoMenuItem;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
+    private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton loadButton;
     private javax.swing.JMenuItem loadSketchMenuItem;
@@ -702,6 +762,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
     private javax.swing.JMenuItem newMenuItem;
     private javax.swing.JRadioButtonMenuItem noneMenuItem;
     private javax.swing.JPopupMenu popupMenu;
+    private javax.swing.JProgressBar progressBar;
     private javax.swing.JMenuItem quitItem;
     private javax.swing.JButton saveButton;
     private javax.swing.JMenuItem saveSketchMenuItem;
@@ -791,12 +852,13 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
    }
    
    public void appendConsoleText(String message) {
+       String msg = parseConsoleText(message);
+
        String text = this.consoleArea.getText();
        String text2 = this.messageArea.getText();
        if ( text == null ) {
            text = "";
        }
-       String msg = parseConsoleText(message);
        this.consoleArea.setText(text + message);
        this.messageArea.setText(text2 + msg);
    }
@@ -804,12 +866,14 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
    
    private String parseConsoleText(String message) {
        String msg = "";
-       Pattern errorPattern = Pattern.compile(".*/abbozza\\.cpp:([\\d]*):([\\d]*): error: (.*)");
-       Pattern successPattern = Pattern.compile("Compilation successful");
+       Pattern progressPattern = Pattern.compile("\\[([\\d]*)/([\\d]*)\\]");
+       Pattern errorPattern = Pattern.compile(".*\\.cpp:([\\d]*):([\\d]*): error: (.*)");
+       Pattern messagePattern = Pattern.compile("\\[compile\\] : (.*)");
+       
        Matcher matcher = errorPattern.matcher(message);
        while ( matcher.find() ) {
            if ( msg == "" ) {
-               msg = AbbozzaLocale.entry("msg.error_compiling");
+               msg = AbbozzaLocale.entry("msg.error_compiling")+"!\n\n";
            }
            try {
                msg = msg + AbbozzaLocale.entry("gui.error_in_line",matcher.group(1)) + matcher.group(2) + "\n";
@@ -822,11 +886,26 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
            } catch (BadLocationException ex) {
            }
        }
-       matcher = successPattern.matcher(message);
+       
+       matcher = messagePattern.matcher(message);
        while ( matcher.find() ) {
-           msg = msg + AbbozzaLocale.entry("msg.done_compiling");
+           if ( (matcher.group(1) == null) || (matcher.group(1).equals("___")) ) {
+                messageArea.setText("");
+                sourceArea.removeAllLineHighlights();
+           } else {
+               msg = msg + matcher.group(1) + "\n";
+               progressBar.setString(matcher.group(1));
+           }
        }
-
+       
+       matcher = progressPattern.matcher(message);
+       while ( matcher.find() ) {
+           int step = Integer.parseInt(matcher.group(1));  
+           int total = Integer.parseInt(matcher.group(2));
+           progressBar.setMaximum(total);
+           progressBar.setValue(step);
+       }
+       
        return msg;
    }
 

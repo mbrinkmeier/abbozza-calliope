@@ -3,7 +3,7 @@
  */
  
 #include "MicroBit.h"
-#include "abbozzaTools.h"
+#include "abbozzaDevice.h"
 
 /**
  * Images

@@ -3,7 +3,7 @@
  */
 
 #include "MicroBit.h"
-#include "abbozzaTools.h"
+#include "lib/abbozzaDevice.h"
 #include <string.h>
 
 Abbozza abbozza;
