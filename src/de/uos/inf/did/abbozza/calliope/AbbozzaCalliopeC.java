@@ -25,9 +25,6 @@ import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.Tools;
-import java.awt.AWTException;
-import java.awt.SystemTray;
-import java.awt.TrayIcon;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +33,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -54,18 +50,6 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     public static void main(String args[]) {
         AbbozzaCalliopeC abbozza = new AbbozzaCalliopeC();
         abbozza.init("calliopeC");
-
-        /*
-        try {
-            if (SystemTray.isSupported()) {
-                AbbozzaLogger.info("Setting system tray icon");
-                ImageIcon icon = new ImageIcon(AbbozzaCalliopeC.class.getResource("/img/abbozza_icon_white.png"));
-                SystemTray.getSystemTray().add(new TrayIcon(icon.getImage()));
-            }
-        } catch (AWTException e) {
-            AbbozzaLogger.err(e.getLocalizedMessage());
-        }
-        */
         
         abbozza.startServer();
         // abbozza.startBrowser("calliope.html");        

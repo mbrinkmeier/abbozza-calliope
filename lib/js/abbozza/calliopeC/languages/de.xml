@@ -96,11 +96,13 @@
         <msg id="gui.console">Meldungen</msg>
         <msg id="gui.sourceCode">Quelltext</msg>
         <msg id="gui.startBrowser">Starte Browser</msg>
+        <msg id="gui.showFrame">Öffne Fenster</msg>
         <msg id="gui.radio">Funk</msg>
         <msg id="gui.sketch_menu">Sketch</msg>
         <msg id="gui.compile">Kompilieren</msg>
         <msg id="gui.upload">Kompilieren und Hochladen</msg>
         <msg id="gui.compilation_success">Der Sketch wurde erfolgreich kompiliert!</msg>
+        <msg id="gui.close_and_quit">abbozza! wird durch das Schließen des Fensters nicht beendet!</msg>
     </gui>
     <image>
         <msg id="Image.HEART">Herz</msg>

@@ -96,10 +96,12 @@
         <msg id="gui.settings">Settings</msg>
         <msg id="gui.sourceCode">Source code</msg>
         <msg id="gui.startBrowser">Start Browser</msg>
+        <msg id="gui.showFrame">Öpen window</msg>
         <msg id="gui.sketch_menu">Sketch</msg>
         <msg id="gui.compile">Compile</msg>
         <msg id="gui.upload">Compile and upload</msg>
         <msg id="gui.compilation_success">The sketch was compiled successfully!</msg>
+        <msg id="gui.close_and_quit">abbozza! doesn't quit by closing the window!</msg>
     </gui>
     <image>
         <msg id="Image.HEART">Heart</msg>

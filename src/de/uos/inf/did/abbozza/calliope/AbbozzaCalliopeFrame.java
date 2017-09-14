@@ -32,6 +32,7 @@ import de.uos.inf.did.abbozza.Tools;
 import de.uos.inf.did.abbozza.tools.GUITool;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.TrayIcon;
 import java.awt.Window;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -153,6 +154,10 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
                 JFrame win = (JFrame) e.getWindow();
                 int state = win.getExtendedState();
                 win.setExtendedState(state | JFrame.ICONIFIED);
+                TrayIcon icon = ((AbbozzaCalliope) AbbozzaServer.getInstance()).getTrayIcon();
+                if ( icon != null ) {
+                    icon.displayMessage("", AbbozzaLocale.entry("gui.close_and_quit"), TrayIcon.MessageType.INFO);
+                }
             }
 
             @Override

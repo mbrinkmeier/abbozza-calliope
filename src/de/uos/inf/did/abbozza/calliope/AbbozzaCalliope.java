@@ -13,21 +13,28 @@ import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.calliope.handler.BoardChooserPanel;
 import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
+import java.awt.AWTException;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -44,12 +51,14 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     protected int _SCRIPT_ADDR = 0x3e000;
     protected String _pathToBoard = "";
     protected AbbozzaCalliopeFrame frame;
-
+    protected TrayIcon trayIcon;
+    
     public void init(String system) {
         
         AbbozzaSplashScreen.showSplashScreen("/img/abbozza-calliope-splash.png");
         super.init(system);
-        
+
+ 
         /**
          * This does not seem to work
          * 
@@ -79,6 +88,35 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         mainFrame = frame;
         
         startServer();
+
+        try {
+            if (SystemTray.isSupported()) {
+                AbbozzaLogger.info("Setting system tray icon");
+                ImageIcon icon = new ImageIcon(AbbozzaCalliopeC.class.getResource("/img/abbozza_icon_white.png"));
+                PopupMenu trayMenu = new PopupMenu();
+                MenuItem item = new MenuItem(AbbozzaLocale.entry("gui.startBrowser"));
+                item.addActionListener((ActionEvent e) -> {
+                    startBrowser(system + ".html");
+                });
+                trayMenu.add(item);
+                item = new MenuItem(AbbozzaLocale.entry("gui.showFrame"));
+                item.addActionListener((ActionEvent e) -> {
+                    bringFrameToFront();
+                });
+                trayMenu.add(item);
+                item = new MenuItem(AbbozzaLocale.entry("gui.quit"));
+                item.addActionListener((ActionEvent e) -> {
+                    quit();
+                });
+                trayMenu.add(item);
+                trayIcon = new TrayIcon(icon.getImage(),"abbozza!",trayMenu);
+                trayIcon.setImageAutoSize(true);
+                SystemTray.getSystemTray().add(trayIcon);
+            }
+        } catch (AWTException e) {
+            AbbozzaLogger.err(e.getLocalizedMessage());
+        }
+
         startBrowser(system + ".html");
         
         AbbozzaSplashScreen.hideSplashScreen();
@@ -363,4 +401,11 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         return selectedDir;
     }
 
+    public TrayIcon getTrayIcon() {
+        return trayIcon;
+    }
+    
+    protected void quit() {
+        System.exit(0);
+    }
 }
