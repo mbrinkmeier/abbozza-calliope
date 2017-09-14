@@ -61,7 +61,7 @@ int Abbozza::getMicrophoneLevel() {
 }
 
 
-int Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEvent)) {
+void Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEvent)) {
     // Check existing handler
     int i = 0;
     MicroBitListener *listener;
@@ -75,3 +75,13 @@ int Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEve
     messageBus.listen(id,value,handler);
 }
 
+int Abbozza::readLightLevel() {
+    int value, mode;
+    
+    mode = display.getDisplayMode();
+    display.setDisplayMode(DISPLAY_MODE_BLACK_AND_WHITE_LIGHT_SENSE);
+    value = display.readLightLevel();
+    display.setDisplayMode((DisplayMode) mode);
+    
+    return value;
+}
