@@ -1,18 +1,13 @@
 /*
- * This header file contains definitions and declarations used by abbozza!
+ * This header file contains some utility function used by abbozza!
  */
  
-#ifndef _ABBOZZA_H
-#define _ABBOZZA_H
-
 #include "MicroBit.h"
+#include "abbozzaDevice.h"
 
-MicroBit abbozza;
-        
 /**
  * Images
  */
-
 const uint8_t __heart[] __attribute__ ((aligned (4))) = { 0xff,0xff,5,0,5,0, 0,255,0,255,0, 255,0,255,0,255, 255,0,0,0,255, 0,255,0,255,0, 0,0,255,0,0 };
 MicroBitImage Image_HEART((ImageData*) __heart);
 
@@ -45,4 +40,48 @@ MicroBitImage Image_NO((ImageData*) __no);
 
 uint8_t __abz_image_data[31] = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
 
-#endif
+/**
+ * Read the last gesture and update the stored sample.
+ * 
+ * @return The id of the last gesture
+ */
+int Abbozza::getGesture() {
+    int __gesture__ = accelerometer.getGesture();
+    accelerometer.updateSample();
+    return __gesture__;    
+}
+
+/**
+ * Get the current microphone level.
+ * @return The microphone level.
+ */
+int Abbozza::getMicrophoneLevel() {
+    // int value = io.pin[MICROPHONE_PIN].getAnalogValue();
+    return 0;
+}
+
+
+void Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEvent)) {
+    // Check existing handler
+    int i = 0;
+    MicroBitListener *listener;
+    
+    while ( (listener = messageBus.elementAt(i)) != NULL ) {
+        if ((listener-> id == id) && (listener->value==value)) {
+            messageBus.remove(listener);
+        }
+        i++;
+    }
+    messageBus.listen(id,value,handler);
+}
+
+int Abbozza::readLightLevel() {
+    int value, mode;
+    
+    mode = display.getDisplayMode();
+    display.setDisplayMode(DISPLAY_MODE_BLACK_AND_WHITE_LIGHT_SENSE);
+    value = display.readLightLevel();
+    display.setDisplayMode((DisplayMode) mode);
+    
+    return value;
+}
