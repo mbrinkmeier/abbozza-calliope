@@ -25,6 +25,7 @@ import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.Tools;
+import de.uos.inf.did.abbozza.tools.FileTool;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -427,7 +428,11 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             } else {
                 AbbozzaLogger.out("Updating buildsystem from " + original.getAbsolutePath());
             }
-            Tools.copyDirectory(original, buildDir,!initBuild);
+            // Delete source diretories
+            FileTool.removeDirectory(new File(buildDir,"calliope/source"));
+            FileTool.removeDirectory(new File(buildDir,"microbit/source"));
+  
+            FileTool.copyDirectory(original, buildDir,!initBuild);
         } catch (IOException ex) {
             AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
             System.exit(1);

@@ -44,6 +44,7 @@
         <msg id="dev.FACE_UP">Face up</msg>
         <msg id="dev.FACE_DOWN">Face down</msg>
         <msg id="dev.FREEFALL">Free fall</msg>
+        <msg id="dev.2G">2G</msg>
         <msg id="dev.3G">3G</msg>
         <msg id="dev.6G">6G</msg>
         <msg id="dev.8G">8G</msg>
