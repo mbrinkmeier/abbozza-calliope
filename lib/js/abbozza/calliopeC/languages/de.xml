@@ -67,6 +67,16 @@
         <msg id="dev.MOTOR_ON">Setze Motor # auf [Prozent] </msg>
         <msg id="dev.MOTOR_OFF">Stoppe Motor</msg>
 
+        <msg id="dev.SERIAL_WRITELN">Sende Zeile über</msg>
+        <msg id="dev.SERIAL_READLN">Lese Zeile von</msg>
+        <msg id="dev.SERIAL_READ_ALL">Lese alle Zeichen von</msg>
+        <msg id="dev.SERIAL_WRITE_BYTE">Sende Byte über</msg>
+        <msg id="dev.SERIAL_READ_BYTE">Lese Byte von</msg>
+        <msg id="dev.SERIAL_AVAILABLE">Zeichen an # verfügbar</msg>
+        <msg id="dev.SERIAL_TABLE">Sende Werte über</msg>
+
+        <msg id="dev.CHECK_MSG">Prüfe Nachricht von</msg>
+        
         <msg id="event.HANDLER">Ereignishandler</msg>
         <msg id="event.BUTTON_LISTEN">Falls Knopf # # führe # aus</msg>
         <msg id="event.BUTTON_UP">losgelassen wird</msg>
@@ -89,6 +99,7 @@
         <msg id="cat.RADIO">Funk</msg>
         <msg id="cat.MOTOR">Motoren</msg>
         <msg id="cat.EVENTS">Ereignisse</msg>
+        <msg id="cat.EVENTS">Ereignisse</msg>
     </categories>
     <gui>
         <msg id="gui.quit">Beenden</msg>
@@ -99,6 +110,7 @@
         <msg id="gui.startBrowser">Starte Browser</msg>
         <msg id="gui.showFrame">Öffne Fenster</msg>
         <msg id="gui.radio">Funk</msg>
+        <msg id="gui.serial">Serielle Verbindungen</msg>
         <msg id="gui.sketch_menu">Sketch</msg>
         <msg id="gui.compile">Kompilieren</msg>
         <msg id="gui.upload">Kompilieren und Hochladen</msg>

@@ -244,8 +244,12 @@
     <!-- Serial communication via USB -->
     <feature id="feat.USB" option="usb">
         <category id="cat.USB">
+            <block type="serial_available"></block>
             <block type="serial_println"></block>
             <block type="serial_readln"></block>
+            <block type="serial_read_all"></block>
+            <block type="serial_write_byte"></block>
+            <block type="serial_read_byte"></block>
             <block type="serial_table"></block>
         </category>
     </feature>
@@ -282,6 +286,12 @@
             <block type="event_button_listen"></block>
             <!--block type="event_io_listen"></block>
             <block type="event_io_ignore"></block-->
+        </category>
+    </feature>
+
+    <feature id="feat.SERIAL" option="serial">
+        <category id="cat.USB">
+            <block type="dev_serial"></block>
         </category>
     </feature>
 

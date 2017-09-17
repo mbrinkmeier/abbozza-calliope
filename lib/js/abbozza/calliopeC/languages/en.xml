@@ -67,6 +67,16 @@
         <msg id="dev.MOTOR_ON">Set motor # to [percent]</msg>
         <msg id="dev.MOTOR_OFF">Stop motor</msg>
         
+        <msg id="dev.SERIAL_WRITELN">Send line to</msg>
+        <msg id="dev.SERIAL_READLN">Read line from</msg>
+        <msg id="dev.SERIAL_READ_ALL">Read all characters from</msg>
+        <msg id="dev.SERIAL_WRITE_BYTE">Send byte to</msg>
+        <msg id="dev.SERIAL_READ_BYTE">Read byte from</msg>
+        <msg id="dev.SERIAL_AVAILABLE">Char available at #</msg>
+        <msg id="dev.SERIAL_TABLE">Send values to</msg>
+
+        <msg id="dev.CHECK_MSG">Check message from</msg>
+
         <msg id="event.HANDLER">Event Handler</msg>
         <msg id="event.BUTTON_LISTEN">If button # # call #</msg>
         <msg id="event.BUTTON_UP">is released</msg>
@@ -97,7 +107,9 @@
         <msg id="gui.settings">Settings</msg>
         <msg id="gui.sourceCode">Source code</msg>
         <msg id="gui.startBrowser">Start Browser</msg>
-        <msg id="gui.showFrame">Öpen window</msg>
+        <msg id="gui.showFrame">Open window</msg>
+        <msg id="gui.radio">Radio</msg>
+        <msg id="gui.serial">Serial connections</msg>
         <msg id="gui.sketch_menu">Sketch</msg>
         <msg id="gui.compile">Compile</msg>
         <msg id="gui.upload">Compile and upload</msg>

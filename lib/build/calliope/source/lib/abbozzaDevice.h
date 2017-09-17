@@ -1,5 +1,27 @@
-/*
- * This header file contains some utility function used by abbozza!
+/**
+ * @license
+ * abbozza!
+ *
+ * Copyright 2015 Michael Brinkmeier ( michael.brinkmeier@uni-osnabrueck.de )
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * The class Abbozza is a wrapper for the MicroBit class.
+ * 
+ * It provides a series of operations and constants used by abbozza!.
+ * Its main purpose is keeping some things simple in the generated code.
  */
  
 #ifndef _ABBOZZA_TOOLS_H
@@ -67,11 +89,25 @@ extern uint8_t __abz_image_data[31];
  */
 
 class Abbozza : public MicroBit {    
+    private:
+        int currentRX = USBRX;
+        int currentTX = USBTX;
+        
     public:
+        int getPin(int pin);
         int getGesture();
         int getMicrophoneLevel();
         void registerEventHandler(int id, int value, void (*handler)(MicroBitEvent));
         int readLightLevel();
+
+        void serialWriteLine(int tx, int rx, ManagedString line);
+        ManagedString serialReadLine(int tx, int rx);
+        ManagedString serialReadAll(int tx, int rx);
+        void serialWriteByte(int tx, int rx, int byte);
+        int serialReadByte(int tx, int rx);
+        bool serialIsAvailable(int tx, int rx);
+        void serialRedirect(int tx, int rx);
+        
 };
 
 #endif

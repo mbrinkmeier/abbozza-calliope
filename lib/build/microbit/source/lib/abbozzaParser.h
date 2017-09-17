@@ -27,8 +27,8 @@
 class AbbozzaParser {
     
 public:
-    AbbozzaParser(MicroBit* bit);
-    void check();
+    AbbozzaParser(Abbozza* bit);
+    void check(int tx, int rx);
     ManagedString parse_word();
     int parse_int();
     long parse_long();
@@ -49,7 +49,7 @@ public:
     int find(ManagedString haystack,const char * needle);
     
 private:
-    MicroBit* abbozza;
+    Abbozza* abbozza;
     void setCommand(ManagedString cmd);
     ManagedString buffer;
     ManagedString currentCommand;
@@ -57,6 +57,8 @@ private:
     ManagedString cmdId;
     ManagedString cmd;
     bool debug;
+    int _tx;
+    int _rx;
 };
 
 #endif

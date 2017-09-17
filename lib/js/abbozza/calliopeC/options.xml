@@ -12,6 +12,7 @@
             <item name="gui.messages" option="messages" default="false"/>
         </item>
         <item name="gui.devices" option="devices" default="false">
+            <item name="gui.serial" option="serial" default="false"/>
             <item name="gui.motors" option="motors" default="false"/>
             <item name="gui.i2cs" option="i2cs" default="false"/>        
         </item>
