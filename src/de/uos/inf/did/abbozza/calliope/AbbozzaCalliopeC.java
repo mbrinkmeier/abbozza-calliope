@@ -179,8 +179,6 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         AbbozzaLogger.out("Compiling with path " + procBuilder.environment().get("PATH"));
         
         try {
-            AbbozzaLogger.out("PATH set to: " + procBuilder.environment().get("PATH"));
-
             procBuilder.redirectOutput(ProcessBuilder.Redirect.PIPE);
             procBuilder.redirectError(ProcessBuilder.Redirect.PIPE);
             Process proc = procBuilder.start();
@@ -219,7 +217,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             
             return proc.exitValue();
             
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             AbbozzaLogger.force("[compile] : " + AbbozzaLocale.entry("msg.error_compiling"));
             AbbozzaLogger.err(ex.getLocalizedMessage());
         }
@@ -267,9 +265,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             String path = procBuilder.environment().get("PATH");
             procBuilder.environment().put("PATH", toolsPath + ";" + path);
         }
-        
-        AbbozzaLogger.out(procBuilder.environment().get("PATH"));
-        
+                
         return procBuilder;
     }
     
