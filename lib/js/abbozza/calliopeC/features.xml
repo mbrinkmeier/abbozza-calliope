@@ -340,8 +340,8 @@
         
     
     <!-- I2CS -->
-    <feature id="feat.I2CS" option="i2cs">
-        <category id="cat.I2CS">
+    <feature id="feat.I2C" option="i2c">
+        <category id="cat.I2C">
         </category>
     </feature>
     

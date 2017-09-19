@@ -13,7 +13,7 @@
         </item>
         <item name="gui.devices" option="devices" default="false">
             <item name="gui.motors" option="motors" default="false"/>
-            <item name="gui.i2cs" option="i2cs" default="false"/>        
+            <item name="gui.i2c" option="i2c" default="false"/>        
         </item>
         <item name="gui.events" option="events" default="true"/>
         <group name="gui.arrays">
