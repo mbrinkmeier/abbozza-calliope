@@ -25,20 +25,22 @@
 #include <ctype.h>
 #include <string.h>
 #include "MicroBit.h"
+#include "abbozzaDevice.h"
 #include "abbozzaParser.h"
 
 ManagedString hi;
 
-AbbozzaParser::AbbozzaParser(MicroBit* bit) {
+AbbozzaParser::AbbozzaParser(Abbozza* bit) {
     buffer = "";
     currentCommand = "";
     remainder = "";
     debug = false;
     abbozza = bit;
+    abbozza->serial = abbozza->serial;
 }
 
 
-void AbbozzaParser::check() {
+void AbbozzaParser::check(int tx, int rx) {
     int start, end;
 
     ManagedString newBuf;
@@ -49,7 +51,11 @@ void AbbozzaParser::check() {
     cmd = "";
     cmdId = "";
 
-        
+    _tx = tx;
+    _rx = rx;
+    
+    abbozza->serialRedirect(_tx,_rx);
+    
     newBuf = abbozza->serial.read(1024,ASYNC);
     if ( !(newBuf == "")) {
         buffer = buffer + newBuf;
@@ -81,7 +87,10 @@ void AbbozzaParser::check() {
 
 
 void AbbozzaParser::setCommand(ManagedString line) {
-    if (debug) abbozza->serial.send("-> executing " + line + "\n");
+    if (debug) {
+        abbozza->serialRedirect(_tx,_rx);
+        abbozza->serial.send("-> executing " + line + "\n");
+    }
     currentCommand = line;
     cmdId = "";
     cmd = "";
@@ -99,8 +108,9 @@ void AbbozzaParser::sendResponse(ManagedString resp) {
     } else {
         resp = "[["+resp+"]]";
     }
-   abbozza->serial.send(resp + "\n");
-   cmdId = "";
+    abbozza->serialRedirect(_tx,_rx);
+    abbozza->serial.send(resp + "\n");
+    cmdId = "";
 }
 
 
@@ -163,11 +173,19 @@ void AbbozzaParser::execute() {
 
   if ( cmd == "SCROLL" ) {
     arg = parse_string();
+    abbozza->serialRedirect(_tx,_rx);
     abbozza->serial.send(arg);
     abbozza->display.scroll(arg); 
+  } else if ( cmd == "RGB") {
+      int red = parse_int();
+      int green = parse_int();
+      int blue = parse_int();
+      
+      abbozza->rgb.setColour(red,green,blue,0);
   } else if ( cmd == "DSET" ) {
     pin = parse_int();
-        
+    pin = abbozza->getPin(pin);
+    
     value = parse_int();
   
     if ( value > 0 ) {
@@ -177,16 +195,19 @@ void AbbozzaParser::execute() {
     }
   } else if ( cmd == "ASET" ) {
       pin = parse_int();
+      pin = abbozza->getPin(pin);
 
       value = parse_int();
 
       (abbozza->io.pin[pin]).setAnalogValue(value);
   } else if ( cmd == "DGET" ) {
       pin = parse_int();
+      pin = abbozza->getPin(pin);
       value = (abbozza->io.pin[pin]).getDigitalValue() > 0 ? 1 : 0;
       sendResponse("DVAL " + ManagedString(pin) + " " + ManagedString(value));
   }  else if ( cmd == "AGET" ) {
     pin = parse_int();
+    pin = abbozza->getPin(pin);
 
     value = (abbozza->io.pin[pin]).getAnalogValue();
     sendResponse("AVAL " + ManagedString(pin) + " " + ManagedString(value));
@@ -265,4 +286,3 @@ int AbbozzaParser::find(ManagedString haystack, const char* needle) {
    if ( pos == NULL ) return -1;
    return pos-hay;
 }
-

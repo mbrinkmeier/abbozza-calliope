@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.zip.ZipFile;
 
 /**
  *
@@ -402,6 +403,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         File buildDir = new File(userPath + "/build/");
         if ( !buildDir.exists() ) {
             AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
+            buildDir.mkdirs();
             initBuild = true;
         } else {
             File initFile = new File(userPath + "/build/abz_init");
@@ -413,7 +415,6 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             }
         }
         
-           
         AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
             
         File original = new File(abbozzaPath + "/build/");
@@ -424,11 +425,19 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             } else {
                 AbbozzaLogger.out("Updating buildsystem from " + original.getAbsolutePath());
             }
+            // Extract buildbase.jar
+            File buildbasefile = new File(abbozzaPath + "/lib/buildbase.jar");
+            ZipFile buildbase = new ZipFile(buildbasefile);
+            if ( (buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild) ) {
+                // Extract buildbase.jar if newer or initialization required
+                FileTool.extractJar(buildbase,buildDir);
+            }
+            
             // Delete source diretories
             FileTool.removeDirectory(new File(buildDir,"calliope/source"));
-            FileTool.removeDirectory(new File(buildDir,"microbit/source"));
-  
+            FileTool.removeDirectory(new File(buildDir,"microbit/source"));  
             FileTool.copyDirectory(original, buildDir,!initBuild);
+            
         } catch (IOException ex) {
             AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
             System.exit(1);

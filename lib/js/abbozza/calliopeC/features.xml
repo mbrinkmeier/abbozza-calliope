@@ -240,20 +240,30 @@
         </category>
     </feature>
 
+    <!-- serial devices -->
+    <feature id="feat.SERIAL" option="serial">
+        <category id="cat.SERIAL">
+            <block type="dev_serial"></block>
+        </category>
+    </feature>
 
-    <!-- Serial communication via USB -->
-    <feature id="feat.USB" option="usb">
-        <category id="cat.USB">
+    <!-- serial communication -->
+    <feature id="feat.USB" option="usb,serial">
+        <category id="cat.SERIAL">
+            <block type="serial_available"></block>
             <block type="serial_println"></block>
             <block type="serial_readln"></block>
+            <block type="serial_read_all"></block>
+            <block type="serial_write_byte"></block>
+            <block type="serial_read_byte"></block>
             <block type="serial_table"></block>
         </category>
     </feature>
 
 
-    <!-- Messages via USB -->
+    <!-- Messages via serial connections -->
     <feature id="feat.MESSAGE" option="messages">
-        <category id ="cat.USB">
+        <category id ="cat.SERIAL">
             <block type="message_parse"></block>
             <block type="message_cmd_decl"></block>
             <block type="message_number"></block>
