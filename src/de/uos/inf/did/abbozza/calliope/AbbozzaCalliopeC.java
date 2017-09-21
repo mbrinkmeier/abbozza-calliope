@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.jar.JarFile;
 import java.util.zip.ZipFile;
 
 /**
@@ -444,6 +445,54 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }            
             
         AbbozzaSplashScreen.setText("");
+    }
+
+    
+    
+    public void installPluginLib(String pluginId, File srcDir) {        
+        try {
+            File libDir = new File(userPath + "/build/calliope/source/lib/" + pluginId + "/");
+            if ( (!libDir.exists()) || (libDir.lastModified() < srcDir.lastModified() )) {
+                AbbozzaLogger.info("Plugin " + pluginId + " : copying library from directory" + srcDir.getAbsolutePath());
+                libDir.mkdirs();
+                FileTool.copyDirectory(srcDir, libDir, true);
+            }
+            libDir = new File(userPath + "/build/microbit/source/lib/" + pluginId + "/");
+            AbbozzaLogger.info("Plugin " + pluginId + " : checking " + libDir.getAbsolutePath());
+            if ( (!libDir.exists()) || (libDir.lastModified() < srcDir.lastModified() )) {
+                AbbozzaLogger.info("Plugin " + pluginId + " : copying library from directory" + srcDir.getAbsolutePath());
+                libDir.mkdirs();
+                FileTool.copyDirectory(srcDir, libDir, true);
+            }
+        } catch (IOException ex) {
+            AbbozzaLogger.err("Plugin " + pluginId + " : error during library installation");
+            AbbozzaLogger.err("Plugin " + pluginId + " : " + ex.getLocalizedMessage());
+        }
+    }
+    
+    
+    
+    public void installPluginLibFromJar(String pluginId, File jarFile) {        
+        try {
+            JarFile jar = new JarFile(jarFile);
+            File libDir = new File(userPath + "/build/calliope/source/lib/" + pluginId +"/");
+            AbbozzaLogger.info("Plugin " + pluginId + " : checking " + libDir.getAbsolutePath());
+            if ( (!libDir.exists()) || (libDir.lastModified() < jarFile.lastModified() )) {
+                AbbozzaLogger.info("Plugin " + pluginId + " : copying to " + libDir.getAbsolutePath());
+                libDir.mkdirs();
+                FileTool.copyDirFromJar(jar, "lib", libDir.getAbsolutePath());
+            }
+            libDir = new File(userPath + "/build/microbit/source/lib/" + pluginId +"/");
+            AbbozzaLogger.info("Plugin " + pluginId + " : checking " + libDir.getAbsolutePath());
+            if ( (!libDir.exists()) || (libDir.lastModified() < jarFile.lastModified() )) {
+                AbbozzaLogger.info("Plugin " + pluginId + " : copying to " + libDir.getAbsolutePath());
+                libDir.mkdirs();
+                FileTool.copyDirFromJar(jar, "lib", libDir.getAbsolutePath());
+            }
+        } catch (IOException ex) {
+            AbbozzaLogger.err("Plugin " + pluginId + " : error during library installation");
+            AbbozzaLogger.err("Plugin " + pluginId + " : " + ex.getLocalizedMessage());
+        }
     }
     
 }
