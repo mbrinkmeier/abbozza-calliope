@@ -75,6 +75,9 @@
         <script src="js/abbozza/calliopeC/blocks/Motor.js" type="text/javascript"></script>
         <script src="js/abbozza/calliopeC/blocks/Events.js" type="text/javascript"></script>
         <script src="js/abbozza/calliopeC/blocks/devices/Servo.js" type="text/javascript"></script>
+        
+        <script src="/abbozza/plugins/plugins.js" type="text/javascript"></script>
+        
     </head>
 
     <body onload="Abbozza.init('calliope',true,'http://inf-didaktik.rz.uos.de/abbozza/calliope/help');">
@@ -95,7 +98,12 @@
         <div class="topButton" id="connect" title="Verbinde" onclick="Abbozza.selectBoard()"><img width=50 height=50  src="img/connect.png"></div>
         <div class="topButton" id="config" title="Einstellungen" onclick="Abbozza.showConfiguration()"><img width=50 height=50  src="img/settings.png"></div>	
         <div class="topButton" id="info" title="Informationen" onclick="Abbozza.openTaskWindow()"><img width=50 height=50  src="img/info.png"></div>
+        <!-- div class="topButton" id="info" title="Informationen" onclick="Abbozza.openTaskWindow()">
+            <div class="toolButton" id="serial" onclick="Abbozza.serialMonitor()"><img src="img/serial.png"></div>
+            <div class="toolButton" id="serial" onclick="Abbozza.serialMonitor()"><img src="img/serial.png"></div>        
+        </div-->
 
+        <div class="toolButton" id="serial" onclick="Abbozza.serialMonitor()"><img src="img/serial.png"></div>
         <!-- div class="menu">Test</div -->
 
         <!-- div id="status" class="status_div"></div -->
