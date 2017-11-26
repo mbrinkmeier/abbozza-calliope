@@ -8,7 +8,7 @@
         <category id="cat.CTRL">
             <block type="loop_delay">
                 <value name="TIME">
-                    <block type="math_number">100</block>
+                    <block type="math_number"><mutation confirmed="false"/>100</block>
                 </value>
             </block>  
             <block type="cond_if"></block>
@@ -16,7 +16,7 @@
             <block type="loop_endless"></block>
             <block type="loop_fixed">
                 <value name="COUNT">
-                    <block type="math_number">
+                    <block type="math_number"><mutation confirmed="false"/>
                         <field name="VALUE">42</field>
                     </block>
                 </value>                   
@@ -63,11 +63,23 @@
         <!-- Integer math -->
         <category id="cat.MATH">
             <block type="math_number"></block>
-            <block type="math_calc"></block>
+            <block type="math_calc">
+                <value name="LEFT">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>
+                <value name="RIGHT">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>                    
+                </value>
+            </block>
             <block type="math_random">
                 <value name="MAX">
                     <block type="math_number">
                         <field name="VALUE">100</field>
+                        <mutation confirmed="false"/>
                     </block>
                 </value>
             </block>
@@ -75,11 +87,13 @@
                 <value name="MIN">
                     <block type="math_number">
                         <field name="VALUE">1</field>
+                        <mutation confirmed="false"/>
                     </block>
                 </value>                
                 <value name="MAX">
                     <block type="math_number">
                         <field name="VALUE">50</field>
+                        <mutation confirmed="false"/>
                     </block>
                 </value>                
             </block>
@@ -94,18 +108,54 @@
         <!-- Simple string operations -->
         <category id="cat.TEXT">
             <block type="text_const">
-                <field name="CONTENT">Hallo!</field></block>
-            <block type="text_length"></block>
-            <block type="text_concat"></block>
-            <block type="text_from_number"></block>
+                <field name="CONTENT">Hallo!</field>
+            </block>
+            <block type="text_length">
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_concat">
+                <value name="TEXT1">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>
+                <value name="TEXT2">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>                
+            </block>
+            <block type="text_from_number">
+                <value name="TEXT">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                        <field name="VALUE">42</field>
+                    </block>
+                </value>                
+            </block>
         </category>
                   
         <!-- Display blocks -->
         <category id="cat.DISPLAY">
-            <block type="display_print"></block>
+            <block type="display_print">
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>                
+            </block>
             <block type="display_scroll">
                 <value name="TEXT">
                     <block type="text_const">
+                        <mutation confirmed="false"/>
                         <field name="CONTENT">Hallo!</field>
                     </block>
                 </value>
@@ -115,32 +165,39 @@
             <!-- block type="display_show_image"></block-->
             <block type="display_set_pixel">
                 <value name="COL">
-                    <block type="display_coord"></block>
+                    <block type="display_coord"><mutation confirmed="false"/></block>
                 </value>
                 <value name="ROW">
-                    <block type="display_coord"></block>
+                    <block type="display_coord"><mutation confirmed="false"/></block>
                 </value>
                 <value name="COLOR">
                     <block type="display_color"></block>
                 </value>
             </block>
-            <block type="display_get_pixel"></block>
+            <block type="display_get_pixel">
+                <value name="COL">
+                    <block type="display_coord"><mutation confirmed="false"/></block>
+                </value>
+                <value name="ROW">
+                    <block type="display_coord"><mutation confirmed="false"/></block>
+                </value>                
+            </block>
             <block type="display_clear"></block>
             <block type="display_on"></block>
             <block type="display_off"></block>
             <block type="display_is_on"></block>
             <block type="dev_rgb_led_set_color">
                 <value name ="RED">
-                    <block type="math_number"></block>
+                    <block type="math_number"><mutation confirmed="false"/></block>
                 </value>
                 <value name ="GREEN">
-                    <block type="math_number"></block>
+                    <block type="math_number"><mutation confirmed="false"/></block>
                 </value>
                 <value name ="BLUE">
-                    <block type="math_number"></block>
+                    <block type="math_number"><mutation confirmed="false"/></block>
                 </value>
                 <value name ="WHITE">
-                    <block type="math_number"></block>
+                    <block type="math_number"><mutation confirmed="false"/></block>
                 </value>
             </block>
             <block type="dev_rgb_led_set_color2"></block>
@@ -167,8 +224,19 @@
 
         <!-- Sound -->
         <category name="Töne" id="cat.SOUND">
-            <block type="dev_speaker_play"></block>
-            <block type="dev_speaker_play_dur"></block>
+            <block type="dev_speaker_play">
+                <value name ="FREQUENCY">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>
+            </block>
+            <block type="dev_speaker_play_dur">
+                <value name ="FREQUENCY">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>
+                <value name ="DURATION">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>                
+            </block>
             <!-- block type="dev_speaker_note"></block>
             <block type="dev_speaker_note_dur"></block -->
             <block type="dev_speaker_note_int"></block>
@@ -194,21 +262,21 @@
         <category id="cat.CTRL">
             <block type="loop_count_dir">
                 <value name="FROM">
-                    <block type="math_number"><field name="VALUE">0</field></block>
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>   
                 <value name="TO">
-                    <block type="math_number"><field name="VALUE">42</field></block>
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">42</field></block>
                 </value>   
             </block>
             <block type="loop_count_dir_step">
                 <value name="FROM">
-                    <block type="math_number"><field name="VALUE">0</field></block>
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>   
                 <value name="TO">
-                    <block type="math_number"><field name="VALUE">42</field></block>
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">42</field></block>
                 </value>   
                 <value name="STEP">
-                    <block type="math_number"><field name="VALUE">1</field></block>
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">1</field></block>
                 </value>   
             </block>
         </category>
@@ -216,18 +284,108 @@
         <!-- Advanced mathematical blocks -->
         <category id="cat.MATH">
             <block type="math_decimal"></block>
-            <block type="math_unary_x"></block>
-            <block type="math_round"></block>
+            <block type="math_unary_x">
+                <value name ="ARG">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>                
+            </block>
+            <block type="math_round">
+                <value name ="ARG">
+                    <block type="math_decimal"><mutation confirmed="false"/></block>
+                </value>     
+            </block>
         </category>
 
         <!-- Advanced string operations -->	    
         <category id="cat.TEXT">
-            <block type="text_charat"></block>
-            <block type="text_substring"></block>
-            <block type="text_from_number"></block>
-            <block type="text_from_ascii"></block>
-            <block type="ascii_from_text"></block>
+            <block type="text_charat">
+                <value name="POS">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>                
+            </block>
+            <block type="text_substring">
+                <value name="FROM">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+                <value name="TO">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>                                
+            </block>
+            <block type="text_from_number">
+                <value name="VALUE">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                                
+            </block>
+            <block type="text_from_ascii">
+                <value name="VALUE">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                                                
+            </block>
+            <block type="ascii_from_text">
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>                                                
+            </block>
         </category>
+        
+        <category id="cat.INOUT">
+            <block type="inout_pin"></block>
+            <block type="inout_level"></block>
+            <block type="inout_digital_read">
+                <value name="PIN">
+                    <block type="inout_pin"></block>
+                </value>
+            </block>
+            <block type="inout_digital_write">
+                <value name="PIN">
+                    <block type="inout_pin"></block>
+                </value>
+                <value name="LEVEL">
+                    <block type="inout_level"></block>
+                </value>                
+            </block>
+            <block type="inout_analog_read">
+                <value name="PIN">
+                    <block type="inout_pin"></block>
+                </value>                
+            </block>
+            <block type="inout_analog_write">
+                <value name="PIN">
+                    <block type="inout_pin"></block>
+                </value>
+                <value name="VALUE">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                                                                
+            </block>
+        </category>
+        
     </feature>
 
 
@@ -251,12 +409,46 @@
     <feature id="feat.USB" option="usb,serial">
         <category id="cat.SERIAL">
             <block type="serial_available"></block>
-            <block type="serial_println"></block>
+            <block type="serial_println">
+                <value name ="VALUE">
+                    <block type="text_const"><mutation confirmed="false"/></block>
+                </value>
+            </block>
             <block type="serial_readln"></block>
             <block type="serial_read_all"></block>
-            <block type="serial_write_byte"></block>
+            <block type="serial_write_byte">
+                <value name ="VALUE">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>                
+            </block>
             <block type="serial_read_byte"></block>
-            <block type="serial_table"></block>
+            <block type="serial_table">
+                <value name="CHANNEL0">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+                <value name="CHANNEL1">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+                <value name="CHANNEL2">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+                <value name="CHANNEL3">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+                <value name="CHANNEL4">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                
+            </block>
         </category>
     </feature>
 
@@ -270,7 +462,11 @@
             <block type="message_decimal"></block>
             <block type="message_word"></block>
             <block type="message_string"></block>
-            <block type="message_response"></block>
+            <block type="message_response">
+                <value name ="MSG">
+                    <block type="text_const"><mutation confirmed="false"/></block>
+                </value>                
+            </block>
         </category>
     </feature>        
     
@@ -279,9 +475,24 @@
     <feature id="feat.RADIO" option="radio">
         <category id="cat.RADIO">
             <block type="radio_receive"></block>
-            <block type="radio_send"></block>
-            <block type="radio_power"></block>
-            <block type="radio_channel"></block>
+            <block type="radio_send">
+                <value name="MSG">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>                                                                
+            </block>
+            <block type="radio_power">
+                <value name="STR">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value>                                 
+            </block>
+            <block type="radio_channel">
+                <value name="VAL">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value>                 
+            </block>
         </category>
     </feature>
 
@@ -299,60 +510,25 @@
     <feature id="feat.MOTORS" option="motors">
         <category id="cat.MOTOR">
             <block type="dev_motor_on">
-                <value name="VALUE">
-                    <block type="math_number"><field name="VALUE">0</field></block>
+                <value name="PERCENT">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value> 
             </block>
             <block type="dev_motor_off"></block>
             <block type="dev_servo"></block>
             <block type="dev_servo_set">
                 <value name="VALUE">
-                    <block type="math_number"><field name="VALUE">0</field></block>
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>
             </block>
         </category>
-    </feature>
-        	
-
-    <!-- GPIO Pins -->
-    <feature id="feat.INOUT" option="gpio">
-        <category name="Ein- und Ausgabe" id="cat.INOUT">
-            <block type="inout_pin"></block>
-            <block type="inout_level"></block>
-            <block type="inout_digital_read">
-                <value name="PIN">
-                    <block type="inout_pin"></block>
-                </value>
-            </block>
-            <block type="inout_digital_write">
-                <value name="PIN">
-                    <block type="inout_pin"></block>
-                </value>
-                <value name="LEVEL">
-                    <block type="inout_level"></block>
-                </value>
-            </block>
-            <block type="inout_analog_read">
-                <value name="PIN">
-                    <block type="inout_pin"></block>
-                </value>
-            </block>
-            <block type="inout_analog_write">
-                <value name="PIN">
-                    <block type="inout_pin"></block>
-                </value>
-                <value name="VALUE">
-                    <block type="math_number"></block>
-                </value>
-            </block>
-        </category>
-    </feature>
-        
-    
+    </feature>-
+            
     <!-- I2CS -->
     <feature id="feat.I2C" option="i2c">
         <category id="cat.I2C">
         </category>
     </feature>
+    
     
 </features>
