@@ -4,10 +4,10 @@
 
 ###libraries###
 
-###inithook###
-
 ###globalvars###
 
-###main###
+###setuphook###
 
-##blocks##
+###blocks###
+
+###main###
