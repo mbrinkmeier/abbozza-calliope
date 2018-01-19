@@ -67,11 +67,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
 
     @Override
-    public String uploadCode(String code) {
+    public int uploadCode(String code) {
 
-        _exitValue = 0;
-        
-        String errMsg = compileCode(code);
+        int _exitValue = compileCode(code);
 
         if (_exitValue == 0) {
             FileInputStream in = null;
@@ -92,7 +90,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             }
         }
 
-        return errMsg;
+        return _exitValue;
     }
 
     
@@ -104,7 +102,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * @return The error message received during compilation.
      */
     @Override
-    public String compileCode(String code) {
+    public int compileCode(String code) {
         if (this._boardName == null ) {
             this.setBoardName("calliope");
         }
@@ -144,15 +142,15 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             }
 
             if (_exitValue == 0) {
-                stdMsg = "";
+                compileErrorMsg = "";
                 AbbozzaLogger.force("[compile] : " + AbbozzaLocale.entry("msg.done_compiling"));
         } else {
                 AbbozzaLogger.force("[compile] : " + AbbozzaLocale.entry("msg.error_compiling"));
-                stdMsg = AbbozzaLocale.entry("msg.error_compiling");
+                compileErrorMsg = AbbozzaLocale.entry("msg.error_compiling");
             }
         }
         
-        return stdMsg;
+        return _exitValue;
     }
 
 

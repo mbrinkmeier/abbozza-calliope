@@ -107,12 +107,14 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         } else {
             connectButton.setBackground(Color.green);            
         }
+
         sourceArea = new RSyntaxTextArea(50, 120);
         sourceArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
         sourceArea.setCodeFoldingEnabled(true);        
         sourceArea.setTabSize(3);
         supplier = new AbbozzaCalliopeTooltipSupplier();
         sourceArea.setToolTipSupplier(supplier);
+        sourceArea.setFont(new Font("Courier New", Font.PLAIN, 14));
         
         sourceHighlighter = sourceArea.getHighlighter();
 
@@ -577,7 +579,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         Thread thread = new Thread(
                 new Runnable() {
                     public void run() {
-                        String response = abbozza.uploadCode(sourceArea.getText());
+                        int result = abbozza.uploadCode(sourceArea.getText());
                         progressBar.setString("");
                         progressBar.setMaximum(0);
                     }
@@ -597,7 +599,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         Thread thread = new Thread(
                 new Runnable() {
                     public void run() {
-                        String response = abbozza.compileCode(sourceArea.getText());
+                        int result = abbozza.compileCode(sourceArea.getText());
                         progressBar.setString("");
                         progressBar.setMaximum(0);
                     }

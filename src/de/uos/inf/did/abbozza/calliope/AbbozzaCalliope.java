@@ -201,14 +201,14 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     }
 
     @Override
-    public String compileCode(String code) {
+    public int compileCode(String code) {
         AbbozzaLogger.out("Code generated", 4);
         this.frame.setCode(code);
-        return "";
+        return 0;
     }
 
     @Override
-    public String uploadCode(String code) {
+    public int uploadCode(String code) {
         this.frame.setCode(code);
         String hex = embed(hexlify(code));
         AbbozzaLogger.out("Writing hex code to " + _pathToBoard + "/abbozza.hex", 4);
@@ -223,7 +223,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
             }
         } else {
         }
-        return "";
+        return 0;
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
