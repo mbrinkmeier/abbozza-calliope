@@ -34,11 +34,21 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
+
+
 /**
  *
  * @author mbrinkmeier
  */
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
+    
+    public static final int SYS_MAJOR = 0;
+    public static final int SYS_MINOR = 11;
+    public static final int SYS_REV = 0;
+    public static final int SYS_HOTFIX = 0;
+    public static final String SYS_REMARK = "(calliope)";
+    public static final String SYS_VERSION = SYS_MAJOR + "." + SYS_MINOR + "." + SYS_REV + "." + SYS_HOTFIX + " " + SYS_REMARK;
+    
     
     // Additional paths
     // protected String installPath;   // The path into which abbozza was installed
@@ -48,7 +58,11 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     protected String _pathToBoard = "";
     protected AbbozzaCalliopeFrame frame;
     protected TrayIcon trayIcon;
-    
+
+    public static int VER_REV = 1;      
+    public static int VER_HOTFIX = 0;   
+    public static String VER_REM = "(calliope)";  
+
     public void init(String system) {
         
         AbbozzaSplashScreen.showSplashScreen("/img/abbozza-calliope-splash.png");
@@ -405,4 +419,9 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     protected void quit() {
         System.exit(0);
     }
+    
+    public String getSystemVersion() {
+        return SYS_VERSION;
+    };
+
 }
