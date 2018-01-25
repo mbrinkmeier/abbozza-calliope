@@ -13,6 +13,7 @@ import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.calliope.handler.BoardChooserPanel;
 import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
+import de.uos.inf.did.abbozza.handler.SerialHandler;
 import java.awt.AWTException;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
@@ -183,6 +184,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaLogger.info("Registering handlers for board and queryboard");
         httpServer.createContext("/abbozza/board", new BoardHandler(this, false));
         httpServer.createContext("/abbozza/queryboard", new BoardHandler(this, true));
+        httpServer.createContext("/abbozza/serial", new SerialHandler(this));
     }
 
     @Override

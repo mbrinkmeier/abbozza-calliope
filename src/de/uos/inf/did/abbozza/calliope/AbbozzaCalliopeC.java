@@ -49,6 +49,10 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     protected String errMsg;
     protected String outMsg;
     
+    protected boolean bluetooth = false;
+    protected String configFile;
+    
+    
     public static void main(String args[]) {
         AbbozzaCalliopeC abbozza = new AbbozzaCalliopeC();
         abbozza.init("calliopeC");
@@ -107,6 +111,21 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             this.setBoardName("calliope");
         }
         
+        configFile = "config_radio.json";
+        
+        // Check for #define entries
+        if ( code.contains("#define ABZ_BLUETOOTH") ) {
+            bluetooth = true;
+            configFile = "config_bluetooth.json";
+            AbbozzaLogger.info("Using Bluetooth");
+        }
+        if ( code.contains("#define ABZ_RADIO") ) {
+            bluetooth = false;
+            configFile = "config_radio.json";            
+            AbbozzaLogger.info("Using Radio");
+        }
+        
+
         _buildPath = userPath + "/build/" + this._boardName + "/";
                 
         if ( this._boardName.equals("microbit") ) {
@@ -226,7 +245,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     
     public ProcessBuilder buildProcLinux(String buildPath) {        
-        ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
+
+        ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","--config",configFile,"build");
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
@@ -239,7 +259,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     
     public ProcessBuilder buildProcMac(String buildPath) {
-        ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","build");
+        ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","--config",configFile,"build");
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
@@ -255,7 +275,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         String yottaPath = System.getenv("YOTTA_PATH");
         String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
 
-        ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","build");
+        ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","--config",configFile,"build");
         procBuilder.directory(new File(buildPath));
         
         procBuilder.environment().put("PATH",  yottaPath + ";" + abbozzaPath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));

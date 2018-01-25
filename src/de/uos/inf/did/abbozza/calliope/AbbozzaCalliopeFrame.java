@@ -114,7 +114,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sourceArea.setTabSize(3);
         supplier = new AbbozzaCalliopeTooltipSupplier();
         sourceArea.setToolTipSupplier(supplier);
-        sourceArea.setFont(new Font("Courier New", Font.PLAIN, 14));
+        sourceArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
         
         sourceHighlighter = sourceArea.getHighlighter();
 
