@@ -182,7 +182,7 @@ int Abbozza::serialReadByte(int tx, int rx) {
 
 bool Abbozza::serialIsAvailable(int tx, int rx) {
     serialRedirect(tx,rx);
-    return serial.isReadable();
+    return ( serial.isReadable() != 0);
 }
 
 
