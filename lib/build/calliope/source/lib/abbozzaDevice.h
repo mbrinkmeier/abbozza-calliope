@@ -94,6 +94,7 @@ class Abbozza : public MicroBit {
         int currentTX = USBTX;
         
     public:
+        void init();
         int getPin(int pin);
         int getGesture();
         int getMicrophoneLevel();

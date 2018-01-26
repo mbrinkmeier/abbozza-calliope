@@ -24,19 +24,11 @@
 package de.uos.inf.did.abbozza.calliope.handler;
 
 import com.sun.net.httpserver.HttpExchange;
-import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.calliope.AbbozzaCalliope;
 import de.uos.inf.did.abbozza.handler.AbstractHandler;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileSystemView;
 
 public class BoardHandler extends AbstractHandler {
 

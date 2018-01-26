@@ -63,6 +63,10 @@ MicroBitImage Image_NO((ImageData*) __no);
 
 uint8_t __abz_image_data[31] = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
 
+void Abbozza::init() {
+    MicroBit::init();
+    serial.setRxBufferSize(20);
+}
 
 int Abbozza::getPin(int pin) {
     switch(pin) {
@@ -155,7 +159,7 @@ void Abbozza::serialWriteLine(int tx, int rx, ManagedString line) {
 
 ManagedString Abbozza::serialReadLine(int tx, int rx) {
     serialRedirect(tx,rx);
-    return serial.readUntil("\r\n");
+    return serial.readUntil(ManagedString("\n"),ASYNC);
 }
 
 
@@ -176,7 +180,7 @@ void Abbozza::serialWriteByte(int tx, int rx, int byte){
 
 int Abbozza::serialReadByte(int tx, int rx) {
     serialRedirect(tx,rx);
-    return serial.read();
+    return serial.read(ASYNC);
 }
 
 
