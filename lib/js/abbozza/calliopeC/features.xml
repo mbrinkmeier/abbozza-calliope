@@ -493,6 +493,11 @@
                     <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>                 
             </block>
+            <block type="radio_parse"></block>
+            <block type="radio_number"></block>
+            <block type="radio_decimal"></block>
+            <block type="radio_word"></block>
+            <block type="radio_string"></block>
         </category>
     </feature>
 

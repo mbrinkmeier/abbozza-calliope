@@ -28,8 +28,6 @@
 #include "abbozzaDevice.h"
 #include "abbozzaParser.h"
 
-ManagedString hi;
-
 AbbozzaParser::AbbozzaParser(Abbozza* bit) {
     buffer = "";
     currentCommand = "";
@@ -59,13 +57,7 @@ void AbbozzaParser::check(int tx, int rx) {
     newBuf = abbozza->serial.read(1024,ASYNC);
     if ( !(newBuf == "")) {
         buffer = buffer + newBuf;
-        // if (debug) {
-             // ManagedString buf = ManagedString(buffer);
-             // buf.replace("[[","[_[");
-             // buf.replace("]]","]_]");
-             // abbozza->serial.send("Buffer : '" + buf + "'" + "\n");
-        // }
-        // find next command
+    }
         currentLine = "";
         start = find(buffer,"[[");
         if ( start >= 0 ) {
@@ -82,7 +74,6 @@ void AbbozzaParser::check(int tx, int rx) {
                 setCommand(currentLine);
             }
         }
-    }
 }
 
 

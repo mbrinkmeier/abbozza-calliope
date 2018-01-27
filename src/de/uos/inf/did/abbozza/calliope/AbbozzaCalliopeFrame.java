@@ -32,6 +32,7 @@ import de.uos.inf.did.abbozza.Tools;
 import de.uos.inf.did.abbozza.tools.GUITool;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.TrayIcon;
 import java.awt.Window;
 import java.awt.event.WindowEvent;
@@ -114,7 +115,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sourceArea.setTabSize(3);
         supplier = new AbbozzaCalliopeTooltipSupplier();
         sourceArea.setToolTipSupplier(supplier);
-        sourceArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+        Font font = new Font("Courier New",Font.PLAIN,14);
+        if ( !font.getFontName().equals("Courier New") ) {
+           font = new Font("DejaVu Sans Mono",Font.PLAIN,14); 
+        }
+        sourceArea.setFont(font);
         
         sourceHighlighter = sourceArea.getHighlighter();
 

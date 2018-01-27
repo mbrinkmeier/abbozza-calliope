@@ -28,8 +28,6 @@
 #include "abbozzaDevice.h"
 #include "abbozzaParser.h"
 
-ManagedString hi;
-
 AbbozzaParser::AbbozzaParser(Abbozza* bit) {
     buffer = "";
     currentCommand = "";
