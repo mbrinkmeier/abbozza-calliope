@@ -31,6 +31,7 @@ public:
     void setLine(ManagedString cmd);
 
     ManagedString parse_word();
+    bool endOfLine();
     int parse_int();
     long parse_long();
     float parse_float();

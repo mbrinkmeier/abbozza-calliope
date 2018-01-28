@@ -38,6 +38,9 @@ void AbbozzaStringParser::setLine(ManagedString line) {
     buffer = new ManagedString(line);
 }
 
+bool AbbozzaStringParser::endOfLine() {
+    return ( buffer.length() == 0 );
+}
 
 ManagedString AbbozzaStringParser::parse_word() {
     int pos = indexOf(buffer,' ');
