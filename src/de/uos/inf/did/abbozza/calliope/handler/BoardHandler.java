@@ -56,7 +56,7 @@ public class BoardHandler extends AbstractHandler {
      * handling.
      */
     @Override
-    public void handle(HttpExchange exchg) throws IOException {
+    protected void myHandle(HttpExchange exchg) throws IOException {
         AbbozzaCalliope server = (AbbozzaCalliope) _abbozzaServer;
 
         // Get the set path

@@ -34,7 +34,7 @@ AbbozzaStringParser::AbbozzaStringParser(Abbozza* bit) {
 }
 
 
-void AbbozzaStringParser::setMessage(ManagedString line) {
+void AbbozzaStringParser::setLine(ManagedString line) {
     buffer = new ManagedString(line);
 }
 

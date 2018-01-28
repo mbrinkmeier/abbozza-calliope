@@ -28,7 +28,7 @@ class AbbozzaStringParser {
     
 public:
     AbbozzaStringParser(Abbozza* bit);
-    void setMessage(ManagedString cmd);
+    void setLine(ManagedString cmd);
 
     ManagedString parse_word();
     int parse_int();

@@ -19,6 +19,11 @@
         <msg id="block.radioSend">Sende Nachricht</msg>
         <msg id="block.radioPower">Setze Sendestärke auf</msg>
         <msg id="block.radioChannel">Setze Kanal auf</msg>
+        <msg id="radio.PARSE_MSG">Lade nächste Funknachricht</msg>
+        <msg id="radio.NUMBER">Lese Zahl aus Funknachricht</msg>
+        <msg id="radio.DECIMAL">Lese Dezimalzahl aus Funknachricht</msg>
+        <msg id="radio.STRING">Lese Text aus Funknachricht</msg>
+        <msg id="radio.WORD">Lese Wort aus Funknachricht</msg>
         
         <msg id="dev.BUTTON_A">Knopf A</msg>
         <msg id="dev.BUTTON_B">Knopf B</msg>
@@ -92,6 +97,7 @@
         <msg id="event.IO_ON_HI">hoch ist</msg>
         <msg id="event.IO_ON_LO">tief ist</msg>
         <msg id="event.IO_IGNORE">Ignoriere Ereignisse an</msg>
+        
     </blocks>
     <categories>
         <msg id="cat.DISPLAY">Anzeige</msg>
