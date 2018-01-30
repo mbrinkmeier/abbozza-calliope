@@ -486,6 +486,11 @@
     <feature id="feat.RADIO" option="radio">
         <category id="cat.RADIO">
             <block type="radio_receive"></block>
+            <block type="radio_receive_byte">
+                <value name ="BYTE">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>                                
+            </block>
             <block type="radio_send">
                 <value name="MSG">
                     <block type="text_const">
@@ -517,8 +522,26 @@
         <category id="cat.EVENTS">
             <block type="int_isr"></block>
             <block type="event_button_listen"></block>
-            <!--block type="event_io_listen"></block>
-            <block type="event_io_ignore"></block-->
+            <block type="event_io_listen"></block>
+            <block type="event_thermo_listen"></block>
+            <block type="event_compass_listen"></block>
+            <block type="event_accel_listen"></block>
+            <!--block type="event_anim_end_listen"></block-->
+            <!--block type="event_io_ignore"></block-->
+        </category>
+    </feature>
+
+    <feature id="feat.RADIO_EVENTS" option="events+radio">
+        <category id="cat.EVENTS">
+            <block type="event_radio_listen"></block>
+            <!--block type="event_io_ignore"></block-->
+        </category>
+    </feature>
+
+    <feature id="feat.SERIAL_EVENTS" option="events+usb,events+serial">
+        <category id="cat.EVENTS">
+            <block type="event_serial_line_listen"></block>
+            <!--block type="event_io_ignore"></block-->
         </category>
     </feature>
 

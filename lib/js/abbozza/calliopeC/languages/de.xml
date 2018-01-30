@@ -16,6 +16,7 @@
         <msg id="block.asString"></msg>
         <msg id="block.getLightLevel">Umgebungshelligkeit</msg>
         <msg id="block.radioReceive">Empfangene Nachricht</msg>
+        <msg id="block.radioReceiveByte">Byte # der empfangenen Nachricht</msg>
         <msg id="block.radioSend">Sende Nachricht</msg>
         <msg id="block.radioPower">Setze Sendestärke auf</msg>
         <msg id="block.radioChannel">Setze Kanal auf</msg>
@@ -98,6 +99,23 @@
         <msg id="event.IO_ON_LO">tief ist</msg>
         <msg id="event.IO_IGNORE">Ignoriere Ereignisse an</msg>
         
+        <msg id="event.ACCEL_LISTEN">Führe # aus, wenn der Calliope Mini # wurde.</msg>
+        <msg id="event.ACCEL_TILT_UP">nach oben geneigt</msg>
+        <msg id="event.ACCEL_TILT_DOWN">nach unten geneigt</msg>
+        <msg id="event.ACCEL_TILT_LEFT">nach links geneigt</msg>
+        <msg id="event.ACCEL_TILT_RIGHT">nach rechts geneigt</msg>
+        <msg id="event.ACCEL_FACE_UP">auf die Rückseite gelegt</msg>
+        <msg id="event.ACCEL_FACE_DOWN">auf die Vorderseite gelegt</msg>
+        <msg id="event.ACCEL_FREEFALL">fallen gelassen</msg>
+        <msg id="event.ACCEL_3G">mit 3G beschleunigt</msg>
+        <msg id="event.ACCEL_6G">mit 6G beschleunigt</msg>
+        <msg id="event.ACCEL_8G">mit 8G beschleunigt</msg>
+        <msg id="event.ACCEL_SHAKE">geschüttelt</msg>
+        
+        <msg id="event.RADIO_LISTEN">Führe # aus, wenn eine Nachricht über Funk empfangen wurde</msg>
+        <msg id="event.SERIAL_LINE_LISTEN">Führe # aus, wenn eine Nachricht über die serielle Schnittstelle empfangen wurde</msg>
+        <msg id="event.THERMO_LISTEN">Führe # aus, wenn sich die Temperatur ändert</msg>
+        <msg id="event.COMPASS_LISTEN">Führe # aus, wenn der Kompass-Wert sich ändert</msg>
     </blocks>
     <categories>
         <msg id="cat.DISPLAY">Anzeige</msg>
