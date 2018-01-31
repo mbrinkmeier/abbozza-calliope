@@ -34,18 +34,32 @@ the specific platforms. The latter additionally requires the installer provided 
 
 ### Manual build
 
+#### Preparations
+Prepare a directory which may hold all required projects. In addition `ant`, and Java Developement Kit ( at least JDK 8)
+nedd to be installed.
+
 #### 1st Step
-Clone the repository [abbozza-common](https://github.com/mbrinkmeier/abbozza-common) and build it with ant.
+Clone the repository [abbozza-common](https://github.com/mbrinkmeier/abbozza-common):
+`git clone https://github.com/mbrinkmeier/abbozza-common.git`.
+Change into `abbozza-common` and execute `ant`.
 
 #### 2nd Step
 Clone the repository [abbozza-calliope](https://github.com/mbrinkmeier/abbozza-calliope) to the same directory
 you cloned [abbozza-common](https://github.com/mbrinkmeier/abbozza-common) to (i.e. the project direcorties
-abboza-common and abbozza-calliope are at the same level). Build it with ant.
+abboza-common and abbozza-calliope are at the same level):
+`git clone https://github.com/mbrinkmeier/abbozza-calliope.git`.
+Change into `abbozza-calliope` and execute `ant`.
 
 #### 3rd Step
 Clone the repository [abbozza-calliope-install](https://github.com/mbrinkmeier/abbozza-calliope-install)
-to the same directory you cloned [abbozza-common](https://github.com/mbrinkmeier/abbozza-common). Build it with ant.
-The installer jar can be found in abbozza-calliope-install/dist. Run it.
+to the same directory you cloned [abbozza-common](https://github.com/mbrinkmeier/abbozza-common) to:
+`git clone https://github.com/mbrinkmeier/abbozza-calliope-install.git`.
+Change int `abbozza-calliope-install` and execute `ant`.
+
+#### 4th Step
+
+The installer jar can be found in `abbozza-calliope-install/dist`. Run it:
+`java -jar abbozza-calliope-install.jar`
 
 #### Additional steps
 In addition you have to install [yotta](http://yottabuilder.org) and the build system. You can follow the
