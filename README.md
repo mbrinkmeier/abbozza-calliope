@@ -2,7 +2,7 @@
 
 The project provides the implementation and interface to use abbozza! for the [Calliope Mini](https://calliope.cc). It requires [abbozza-common](https://github.com/mbrinkmeier/abbozza-common). For installation [abbozza-calliope-install](https://github.com/mbrinkmeier/abbozza-common-install) is required additionally.
 
-A precompiled version, including an installation guide, can be found at [here](http://inf-didaktik.rz.uos.de/abbozza/calliope).
+A precompiled version, including an installation guide, can be found at [the projects homepage](http://inf-didaktik.rz.uos.de/abbozza/calliope).
 
 ## About abbozza!
 
