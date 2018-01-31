@@ -2,7 +2,7 @@
 
 The project provides the implementation and interface to use abbozza! for the [Calliope Mini](https://calliope.cc). It requires [abbozza-common](https://github.com/mbrinkmeier/abbozza-common). For installation [abbozza-calliope-install](https://github.com/mbrinkmeier/abbozza-common-install) is required additionally.
 
-A precompiled version, including an installation guide, can be found at [here](http://inf-didaktik.rz.uo.de/abbozza/calliope).
+A precompiled version, including an installation guide, can be found at [here](http://inf-didaktik.rz.uos.de/abbozza/calliope).
 
 ## About abbozza!
 
@@ -49,5 +49,5 @@ The installer jar can be found in abbozza-calliope-install/dist. Run it.
 
 #### Additional steps
 In addition you have to install [yotta](http://yottabuilder.org) and the build system. You can follow the
-instructions at [the abbozza! projects homepage](http://inf-didaktik.rz.uo.de/abbozza/calliope).
+instructions at [the abbozza! projects homepage](http://inf-didaktik.rz.uos.de/abbozza/calliope).
 
