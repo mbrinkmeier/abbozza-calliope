@@ -34,18 +34,20 @@ the specific platforms. The latter additionally requires the installer provided 
 
 ### Manual build
 
-####1st Step####
+#### 1st Step
 Clone the repository [abbozza-common](https://github.com/mbrinkmeier/abbozza-common) and build it with ant.
 
-####2nd Step####
+#### 2nd Step
 Clone the repository [abbozza-calliope](https://github.com/mbrinkmeier/abbozza-calliope) to the same directory
 you cloned [abbozza-common](https://github.com/mbrinkmeier/abbozza-common) to (i.e. the project direcorties
 abboza-common and abbozza-calliope are at the same level). Build it with ant.
 
-####3rd Step####
+#### 3rd Step
 Clone the repository [abbozza-calliope-install](https://github.com/mbrinkmeier/abbozza-calliope-install)
 to the same directory you cloned [abbozza-common](https://github.com/mbrinkmeier/abbozza-common). Build it with ant.
 The installer jar can be found in abbozza-calliope-install/dist. Run it.
 
+#### Additional steps
 In addition you have to install [yotta](http://yottabuilder.org) and the build system. You can follow the
 instructions at [the abbozza! projects homepage](http://inf-didaktik.rz.uo.de/abbozza/calliope).
+
