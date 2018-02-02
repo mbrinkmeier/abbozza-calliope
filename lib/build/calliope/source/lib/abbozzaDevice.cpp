@@ -29,7 +29,7 @@
 #include "abbozzaDevice.h"
 
 /**
- * Images
+ * Built in Images
  */
 const uint8_t __heart[] __attribute__ ((aligned (4))) = { 0xff,0xff,5,0,5,0, 0,255,0,255,0, 255,0,255,0,255, 255,0,0,0,255, 0,255,0,255,0, 0,0,255,0,0 };
 MicroBitImage Image_HEART((ImageData*) __heart);
@@ -63,11 +63,17 @@ MicroBitImage Image_NO((ImageData*) __no);
 
 uint8_t __abz_image_data[31] = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
 
+/**
+ * Initialize the abbozza device.
+ */
 void Abbozza::init() {
     MicroBit::init();
     serial.setRxBufferSize(20);
 }
 
+/*
+ * Get the pin number.
+ */
 int Abbozza::getPin(int pin) {
     switch(pin) {
         case 0: return P0;
@@ -91,6 +97,8 @@ int Abbozza::getPin(int pin) {
         default: return P0;
     }
 }
+
+
 /**
  * Read the last gesture and update the stored sample.
  * 
@@ -125,7 +133,7 @@ void Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEv
     MicroBitListener *listener;
     
     while ( (listener = messageBus.elementAt(i)) != NULL ) {
-        if ((listener-> id == id) && (listener->value==value)) {
+        if ((listener-> id == id) && (listener->value == value)) {
             messageBus.remove(listener);
         }
         i++;
@@ -150,19 +158,38 @@ int Abbozza::readLightLevel() {
     return value;
 }
 
-
+/**
+ * Write a string to the serial line, followed by a newline.
+ * 
+ * @param tx
+ * @param rx
+ * @param line
+ */
 void Abbozza::serialWriteLine(int tx, int rx, ManagedString line) {
     serialRedirect(tx,rx);
     serial.send(line);
     serial.send("\n");
 }
 
+/**
+ * Read a string from the rx buffer until the next newline
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
 ManagedString Abbozza::serialReadLine(int tx, int rx) {
     serialRedirect(tx,rx);
     return serial.readUntil(ManagedString("\n"),ASYNC);
 }
 
-
+/**
+ * Read the whole rx buffer
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
 ManagedString Abbozza::serialReadAll(int tx, int rx) {
     serialRedirect(tx,rx);
     ManagedString text("");
@@ -172,18 +199,37 @@ ManagedString Abbozza::serialReadAll(int tx, int rx) {
     return text;
 }
 
-
+/**
+ * Write a byte to the serial line
+ * 
+ * @param tx
+ * @param rx
+ * @param byte
+ */
 void Abbozza::serialWriteByte(int tx, int rx, int byte){
     serialRedirect(tx,rx);
     serial.sendChar((char) (byte % 256));
 }
 
+/**
+ * Read a byte from the serial line
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
 int Abbozza::serialReadByte(int tx, int rx) {
     serialRedirect(tx,rx);
     return serial.read(ASYNC);
 }
 
-
+/**
+ * Check if the rx buffer contains bytes
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
 bool Abbozza::serialIsAvailable(int tx, int rx) {
     serialRedirect(tx,rx);
     return ( serial.isReadable() != 0);

@@ -16,6 +16,7 @@
         <msg id="block.asString"></msg>
         <msg id="block.getLightLevel">Ambient light</msg>
         <msg id="block.radioReceive">Received message</msg>
+        <msg id="block.radioReceiveByte">Byte # of received message</msg>
         <msg id="block.radioSend">Sent message</msg>
         <msg id="block.radioPower">Set transmission power to</msg>
         <msg id="block.radioChannel">Set channel to</msg>
@@ -93,6 +94,24 @@
         <msg id="event.IO_ON_HI">is high</msg>
         <msg id="event.IO_ON_LO">is low</msg>
         <msg id="event.IO_IGNORE">Ignore events on</msg>
+
+        <msg id="event.ACCEL_LISTEN">Call #, if the Calliope Mini is #/msg>
+        <msg id="event.ACCEL_TILT_UP">tilted up</msg>
+        <msg id="event.ACCEL_TILT_DOWN">tilted down</msg>
+        <msg id="event.ACCEL_TILT_LEFT">tilted left</msg>
+        <msg id="event.ACCEL_TILT_RIGHT">tilted right</msg>
+        <msg id="event.ACCEL_FACE_UP">flipped faceup</msg>
+        <msg id="event.ACCEL_FACE_DOWN">flipped facedown</msg>
+        <msg id="event.ACCEL_FREEFALL">falling</msg>
+        <msg id="event.ACCEL_3G">accelerated with 3G</msg>
+        <msg id="event.ACCEL_6G">accelerated with 6G</msg>
+        <msg id="event.ACCEL_8G">accelerated with 8G</msg>
+        <msg id="event.ACCEL_SHAKE">being shook</msg>
+        
+        <msg id="event.RADIO_LISTEN">Call #, if a message is received via radio</msg>
+        <msg id="event.SERIAL_LINE_LISTEN">Call #, if a message is received via serial connection</msg>
+        <msg id="event.THERMO_LISTEN">Call #, if the temperature changes</msg>
+        <msg id="event.COMPASS_LISTEN">Call #, if the compass changes</msg>
     </blocks>
     <categories>
         <msg id="cat.DISPLAY">Display</msg>
