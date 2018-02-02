@@ -24,6 +24,8 @@
         <msg id="radio.DECIMAL">Lese Dezimalzahl aus Funknachricht</msg>
         <msg id="radio.STRING">Lese Text aus Funknachricht</msg>
         <msg id="radio.WORD">Lese Wort aus Funknachricht</msg>
+        <msg id="radio.WORD">Lese Wort aus Funknachricht</msg>
+        <msg id="radio.available">Nachricht über Funk empfangen</msg>
         
         <msg id="dev.BUTTON_A">Knopf A</msg>
         <msg id="dev.BUTTON_B">Knopf B</msg>
