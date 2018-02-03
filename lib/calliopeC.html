@@ -76,6 +76,8 @@
         <script src="js/abbozza/calliopeC/blocks/Motor.js" type="text/javascript"></script>
         <script src="js/abbozza/calliopeC/blocks/Events.js" type="text/javascript"></script>
         <script src="js/abbozza/calliopeC/blocks/devices/Servo.js" type="text/javascript"></script>
+
+        <script src="/abbozza/plugins/plugins.js" type="text/javascript"></script>
     </head>
 
     <body onload="Abbozza.init('calliopeC',true,'http://inf-didaktik.rz.uos.de/abbozza/calliope/help');">
@@ -107,7 +109,7 @@
 
     <xml id="startBlocks" style="display: none">
         <block type="main" id="main" inline="false" x="100" y="20"></block>
-        <!-- block type="devices" id="block_global_vars" inline="false" x="500" y="20"></block-->
+        <block type="devices" id="block_global_vars" inline="false" x="500" y="20"></block>
     </xml>
     <xml id="startBlocksWoDevices" style="display: none">
         <block type="main" id="main" inline="false" x="100" y="20"></block>

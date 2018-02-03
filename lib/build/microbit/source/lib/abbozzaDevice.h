@@ -94,6 +94,7 @@ class Abbozza : public MicroBit {
         int currentTX = USBTX;
         
     public:
+        void init();
         int getPin(int pin);
         int getGesture();
         int getMicrophoneLevel();
@@ -101,13 +102,21 @@ class Abbozza : public MicroBit {
         int readLightLevel();
 
         void serialWriteLine(int tx, int rx, ManagedString line);
+        void serialWriteLine(PinName tx, PinName rx, ManagedString line);
         ManagedString serialReadLine(int tx, int rx);
+        ManagedString serialReadLine(PinName tx, PinName rx);
         ManagedString serialReadAll(int tx, int rx);
+        ManagedString serialReadAll(PinName tx, PinName rx);
         void serialWriteByte(int tx, int rx, int byte);
+        void serialWriteByte(PinName tx, PinName rx, int byte);
         int serialReadByte(int tx, int rx);
+        int serialReadByte(PinName tx, PinName rx);
         bool serialIsAvailable(int tx, int rx);
+        bool serialIsAvailable(PinName tx, PinName rx);
         void serialRedirect(int tx, int rx);
+        void serialRedirect(PinName tx, PinName rx);
         void serialSetBaud(int tx, int rx, int baud);
+        void serialSetBaud(PinName tx, PinName rx, int baud);
         
 };
 

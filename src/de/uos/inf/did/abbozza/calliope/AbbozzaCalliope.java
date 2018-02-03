@@ -179,6 +179,11 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         return _pathToBoard;
     }
 
+    public String getPluginInstallPath() {
+        return userPath + "/build/" + this._boardName + "/source/lib/";        
+    }
+    
+    
     @Override
     public void registerSystemHandlers() {
         AbbozzaLogger.info("Registering handlers for board and queryboard");
