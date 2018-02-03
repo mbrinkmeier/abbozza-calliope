@@ -971,9 +971,12 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             chooser.setSelectedFile(lastSourceFile);
         }
         
-        int choice = chooser.showOpenDialog(null);
+        int choice = chooser.showSaveDialog(null);
         if (choice == JFileChooser.APPROVE_OPTION) {
             File file = chooser.getSelectedFile();                        
+            if (!file.getName().endsWith(".cpp") && !file.getName().endsWith(".CPP")) {
+                file = new File(file.getPath() + ".cpp");
+            }
             lastSourceFile = file;
             saveCode(file);
             return true;

@@ -34,6 +34,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.zip.ZipFile;
 
 /**
@@ -464,4 +466,26 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         AbbozzaSplashScreen.setText("");
     }
     
+    
+    @Override
+    public boolean installPluginFile(InputStream stream, String name) {
+        File target = new File(abbozzaPath + "/build/calliope/source/lib/" + name);
+        try {
+            AbbozzaLogger.info("Copying " + name + " to " + target.toString());
+            Files.copy(stream, target.toPath(), StandardCopyOption.REPLACE_EXISTING );
+        } catch (IOException ex) {
+            AbbozzaLogger.err("Could not copy " + name + " to " + target.toString());
+            return false;
+        }
+        target = new File(abbozzaPath + "/build/microbit/source/lib/" + name);
+        try {
+            AbbozzaLogger.info("Copying " + name + " to " + target.toString());
+            Files.copy(stream, target.toPath() , StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            AbbozzaLogger.err("Could not copy " + name + " to " + target.toString());
+            return false;
+        }
+        return true;
+    }
+
 }

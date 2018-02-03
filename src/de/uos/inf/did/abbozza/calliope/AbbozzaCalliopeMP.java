@@ -22,23 +22,16 @@
  */
 package de.uos.inf.did.abbozza.calliope;
 
-import com.sun.net.httpserver.HttpHandler;
-import de.uos.inf.did.abbozza.AbbozzaLogger;
-import de.uos.inf.did.abbozza.AbbozzaServer;
-import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
-import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
-import de.uos.inf.did.abbozza.handler.JarDirHandler;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.InputStream;
 
 /**
  *
  * @author michael
  */
 public class AbbozzaCalliopeMP extends AbbozzaCalliope {
+
+    @Override
+    public boolean installPluginFile(InputStream stream, String name) {
+        return true;
+    }
 }

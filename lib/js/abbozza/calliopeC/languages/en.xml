@@ -76,6 +76,7 @@
         <msg id="dev.SERIAL_READ_BYTE">Read byte from</msg>
         <msg id="dev.SERIAL_AVAILABLE">Char available at #</msg>
         <msg id="dev.SERIAL_TABLE">Send values to</msg>
+        <msg id="dev.SERIAL_BAUD">Set # to # baud</msg>
 
         <msg id="dev.CHECK_MSG">Check message from</msg>
 

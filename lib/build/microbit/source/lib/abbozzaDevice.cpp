@@ -29,7 +29,7 @@
 #include "abbozzaDevice.h"
 
 /**
- * Images
+ * Built in Images
  */
 const uint8_t __heart[] __attribute__ ((aligned (4))) = { 0xff,0xff,5,0,5,0, 0,255,0,255,0, 255,0,255,0,255, 255,0,0,0,255, 0,255,0,255,0, 0,0,255,0,0 };
 MicroBitImage Image_HEART((ImageData*) __heart);
@@ -63,7 +63,17 @@ MicroBitImage Image_NO((ImageData*) __no);
 
 uint8_t __abz_image_data[31] = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
 
+/**
+ * Initialize the abbozza device.
+ */
+void Abbozza::init() {
+    MicroBit::init();
+    serial.setRxBufferSize(20);
+}
 
+/*
+ * Get the pin number.
+ */
 int Abbozza::getPin(int pin) {
     switch(pin) {
         case 0: return P0;
@@ -87,6 +97,8 @@ int Abbozza::getPin(int pin) {
         default: return P0;
     }
 }
+
+
 /**
  * Read the last gesture and update the stored sample.
  * 
@@ -121,7 +133,7 @@ void Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEv
     MicroBitListener *listener;
     
     while ( (listener = messageBus.elementAt(i)) != NULL ) {
-        if ((listener-> id == id) && (listener->value==value)) {
+        if ((listener-> id == id) && (listener->value == value)) {
             messageBus.remove(listener);
         }
         i++;
@@ -146,19 +158,51 @@ int Abbozza::readLightLevel() {
     return value;
 }
 
-
+/**
+ * Write a string to the serial line, followed by a newline.
+ * 
+ * @param tx
+ * @param rx
+ * @param line
+ */
 void Abbozza::serialWriteLine(int tx, int rx, ManagedString line) {
     serialRedirect(tx,rx);
     serial.send(line);
     serial.send("\n");
 }
 
+void Abbozza::serialWriteLine(PinName tx, PinName rx, ManagedString line) {
+    serialRedirect(tx,rx);
+    serial.send(line);
+    serial.send("\n");
+}
+
+/**
+ * Read a string from the rx buffer until the next newline
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
 ManagedString Abbozza::serialReadLine(int tx, int rx) {
     serialRedirect(tx,rx);
-    return serial.readUntil("\r\n");
+    return serial.readUntil(ManagedString("\n"),ASYNC);
 }
 
 
+ManagedString Abbozza::serialReadLine(PinName tx, PinName rx) {
+    serialRedirect(tx,rx);
+    return serial.readUntil(ManagedString("\n"),ASYNC);
+}
+
+
+/**
+ * Read the whole rx buffer
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
 ManagedString Abbozza::serialReadAll(int tx, int rx) {
     serialRedirect(tx,rx);
     ManagedString text("");
@@ -169,20 +213,72 @@ ManagedString Abbozza::serialReadAll(int tx, int rx) {
 }
 
 
+ManagedString Abbozza::serialReadAll(PinName tx, PinName rx) {
+    serialRedirect(tx,rx);
+    ManagedString text("");
+    while ( serial.isReadable() ) {
+        text = text + ManagedString(((char) serial.read()));
+    }
+    return text;
+}
+
+
+/**
+ * Write a byte to the serial line
+ * 
+ * @param tx
+ * @param rx
+ * @param byte
+ */
 void Abbozza::serialWriteByte(int tx, int rx, int byte){
     serialRedirect(tx,rx);
-    serial.sendChar((char) (byte % 256));
+    serial.sendChar((char) (byte % 256),ASYNC);
 }
 
+void Abbozza::serialWriteByte(PinName tx, PinName rx, int byte){
+    serialRedirect(tx,rx);
+    serial.sendChar((char) (byte % 256),ASYNC);
+}
+
+/**
+ * Read a byte from the serial line
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
 int Abbozza::serialReadByte(int tx, int rx) {
     serialRedirect(tx,rx);
-    return serial.read();
+    return serial.read(ASYNC);
+}
+
+int Abbozza::serialReadByte(PinName tx, PinName rx) {
+    serialRedirect(tx,rx);
+    return serial.read(ASYNC);
+}
+/**
+ * Check if the rx buffer contains bytes
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
+bool Abbozza::serialIsAvailable(int tx, int rx) {
+    serialRedirect(tx,rx);
+    return ( serial.isReadable() != 0);
 }
 
 
-bool Abbozza::serialIsAvailable(int tx, int rx) {
+/**
+ * Check if the rx buffer contains bytes
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
+bool Abbozza::serialIsAvailable(PinName tx, PinName rx) {
     serialRedirect(tx,rx);
-    return serial.isReadable();
+    return ( serial.isReadable() != 0);
 }
 
 
@@ -191,8 +287,38 @@ bool Abbozza::serialIsAvailable(int tx, int rx) {
  */
 void Abbozza::serialRedirect(int tx, int rx) {
     if ( (currentRX != rx) || (currentTX != tx) ) {
-        serial.redirect((PinName) tx, (PinName) rx);
+        serial.redirect( io.pin[tx].name, io.pin[rx].name);
         currentTX = tx;
         currentRX = rx;
     }
+}
+
+
+/**
+ * Redirects the serial communication to the given pins
+ */
+void Abbozza::serialRedirect(PinName tx, PinName rx) {
+    if ( (currentRX != rx) || (currentTX != tx) ) {
+        serial.redirect(tx,rx);
+        currentTX = tx;
+        currentRX = rx;
+    }
+}
+
+
+/**
+ * Sets the baud rate
+ */
+void Abbozza::serialSetBaud(int tx, int rx, int baud) {
+    serialRedirect(tx,rx);
+    serial.baud(baud);
+}
+
+
+/**
+ * Sets the baud rate
+ */
+void Abbozza::serialSetBaud(PinName tx, PinName rx, int baud) {
+    serialRedirect(tx,rx);
+    serial.baud(baud);
 }
