@@ -208,7 +208,7 @@ ManagedString Abbozza::serialReadAll(int tx, int rx) {
  */
 void Abbozza::serialWriteByte(int tx, int rx, int byte){
     serialRedirect(tx,rx);
-    serial.sendChar((char) (byte % 256));
+    serial.sendChar((char) (byte % 256),ASYNC);
 }
 
 /**
@@ -241,8 +241,16 @@ bool Abbozza::serialIsAvailable(int tx, int rx) {
  */
 void Abbozza::serialRedirect(int tx, int rx) {
     if ( (currentRX != rx) || (currentTX != tx) ) {
-        serial.redirect((PinName) tx, (PinName) rx);
+        serial.redirect( io.pin[tx].name, io.pin[rx].name);
         currentTX = tx;
         currentRX = rx;
     }
+}
+
+/**
+ * Sets the baud rate
+ */
+void Abbozza::serialSetBaud(int tx, int rx, int baud) {
+    serialRedirect(tx,rx);
+    serial.baud(baud);
 }

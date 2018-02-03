@@ -419,6 +419,7 @@
     <!-- serial communication -->
     <feature id="feat.USB" option="usb,serial">
         <category id="cat.SERIAL">
+            <block type="serial_baud"></block>
             <block type="serial_available"></block>
             <block type="serial_println">
                 <value name ="VALUE">

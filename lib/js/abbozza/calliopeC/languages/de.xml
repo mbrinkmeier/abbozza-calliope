@@ -80,6 +80,7 @@
         <msg id="dev.SERIAL_READ_BYTE">Lese Byte von</msg>
         <msg id="dev.SERIAL_AVAILABLE">Zeichen an # verfügbar</msg>
         <msg id="dev.SERIAL_TABLE">Sende Werte über</msg>
+        <msg id="dev.SERIAL_BAUD">Setze # auf # Baud</msg>
 
         <msg id="dev.CHECK_MSG">Prüfe Nachricht von</msg>
         

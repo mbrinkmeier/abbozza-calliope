@@ -107,6 +107,7 @@ class Abbozza : public MicroBit {
         int serialReadByte(int tx, int rx);
         bool serialIsAvailable(int tx, int rx);
         void serialRedirect(int tx, int rx);
+        void serialSetBaud(int tx, int rx, int baud);
         
 };
 
