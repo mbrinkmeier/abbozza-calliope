@@ -466,7 +466,6 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         AbbozzaSplashScreen.setText("");
     }
     
-    
     @Override
     public boolean installPluginFile(InputStream stream, String name) {
         File target = new File(abbozzaPath + "/build/calliope/source/lib/" + name);
