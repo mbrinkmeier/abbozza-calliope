@@ -92,6 +92,9 @@ class Abbozza : public MicroBit {
     private:
         int currentRX = USBRX;
         int currentTX = USBTX;
+        char i2cData[100];
+        int i2cLen = 0;
+        uint8_t i2cAddr = 0;
         
     public:
         void init();
@@ -117,6 +120,14 @@ class Abbozza : public MicroBit {
         void serialRedirect(PinName tx, PinName rx);
         void serialSetBaud(int tx, int rx, int baud);
         void serialSetBaud(PinName tx, PinName rx, int baud);
+        
+        void i2cBeginTransmission(uint8_t addr);
+        void i2cWriteByte(uint8_t value);
+        void i2cWriteShort(int value);
+        void i2cWriteInt(int value);
+        void i2cWriteText(ManagedString text);
+        void i2cEndTransmission();
+        ManagedString i2cRequest(uint8_t addr, int len);
         
 };
 
