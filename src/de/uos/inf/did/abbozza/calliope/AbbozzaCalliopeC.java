@@ -21,10 +21,12 @@
  */
 package de.uos.inf.did.abbozza.calliope;
 
+import de.uos.inf.did.abbozza.AbbozzaConfigDialog;
 import de.uos.inf.did.abbozza.AbbozzaLocale;
 import de.uos.inf.did.abbozza.AbbozzaLogger;
 import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.Tools;
+import de.uos.inf.did.abbozza.plugin.PluginConfigPanel;
 import de.uos.inf.did.abbozza.tools.FileTool;
 import java.io.BufferedReader;
 import java.io.File;
@@ -486,5 +488,10 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }
         return true;
     }
+    
+    public void adaptConfigDialog(AbbozzaConfigDialog dialog) {
+        dialog.addPanel(new PluginConfigPanel());
+    }
+
 
 }
