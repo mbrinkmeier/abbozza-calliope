@@ -16,6 +16,7 @@
         <msg id="block.asString"></msg>
         <msg id="block.getLightLevel">Umgebungshelligkeit</msg>
         <msg id="block.radioReceive">Empfangene Nachricht</msg>
+        <msg id="block.radioReceiveStore">Speichere letzte Nachricht in</msg>
         <msg id="block.radioReceiveByte">Byte # der empfangenen Nachricht</msg>
         <msg id="block.radioSend">Sende Nachricht</msg>
         <msg id="block.radioPower">Setze Sendestärke auf</msg>

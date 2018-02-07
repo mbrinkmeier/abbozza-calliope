@@ -16,6 +16,7 @@
         <msg id="block.asString"></msg>
         <msg id="block.getLightLevel">Ambient light</msg>
         <msg id="block.radioReceive">Received message</msg>
+        <msg id="block.radioReceiveStore">Store last message in</msg>
         <msg id="block.radioReceiveByte">Byte # of received message</msg>
         <msg id="block.radioSend">Sent message</msg>
         <msg id="block.radioPower">Set transmission power to</msg>
