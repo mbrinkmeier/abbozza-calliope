@@ -329,13 +329,6 @@
                     </block>
                 </value>                                
             </block>
-            <block type="text_from_number">
-                <value name="VALUE">
-                    <block type="math_number">
-                        <mutation confirmed="false"/>
-                    </block>
-                </value>                                
-            </block>
             <block type="text_from_ascii">
                 <value name="VALUE">
                     <block type="math_number">
@@ -343,7 +336,12 @@
                     </block>
                 </value>                                                
             </block>
-            <block type="ascii_from_text">
+            <block type="ascii_from_text_pos">
+                <value name="POS">
+                    <block type="math_number">
+                        <mutation confirmed="false"/>
+                    </block>
+                </value>                                                
                 <value name="TEXT">
                     <block type="text_const">
                         <mutation confirmed="false"/>

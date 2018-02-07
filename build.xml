@@ -71,7 +71,11 @@
 
     -->    
     
-    <target name="-pre-jar">
+    <target name="-pre-compile">
+        <copy todir="build/classes/">
+            <fileset dir="../abbozza-common/build/classes"/>
+        </copy>
+    </target>    <target name="-pre-jar">
         <copy todir="build/classes/">
             <fileset dir="../abbozza-common/build/classes"/>
         </copy>
