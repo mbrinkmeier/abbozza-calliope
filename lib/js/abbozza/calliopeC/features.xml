@@ -487,12 +487,13 @@
     <feature id="feat.RADIO" option="radio">
         <category id="cat.RADIO">
             <block type="radio_available"></block>
+            <block type="radio_receive_store"></block>
             <block type="radio_receive"></block>
-            <block type="radio_receive_byte">
+            <!-- block type="radio_receive_byte">
                 <value name ="BYTE">
                     <block type="math_number"><mutation confirmed="false"/></block>
                 </value>                                
-            </block>
+            </block-->
             <block type="radio_send">
                 <value name="MSG">
                     <block type="text_const">

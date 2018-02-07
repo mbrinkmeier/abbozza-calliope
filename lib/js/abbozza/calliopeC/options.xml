@@ -8,7 +8,6 @@
         <item name="gui.operations" option="operations" default="false">
             <item name="gui.local_variables" option="localVars" default="false"/>
         </item>
-        <item name="gui.gpio" option="gpio" default="false"/>
         <item name="gui.radio" option="radio" default="false"/>
         <item name="gui.usb" option="usb" default="false">
             <item name="gui.messages" option="messages" default="false"/>
