@@ -6,10 +6,10 @@
 package de.uos.inf.did.abbozza.calliope;
 
 import com.sun.net.httpserver.HttpHandler;
-import de.uos.inf.did.abbozza.AbbozzaLocale;
-import de.uos.inf.did.abbozza.AbbozzaLogger;
-import de.uos.inf.did.abbozza.AbbozzaServer;
-import de.uos.inf.did.abbozza.AbbozzaSplashScreen;
+import de.uos.inf.did.abbozza.core.AbbozzaLocale;
+import de.uos.inf.did.abbozza.core.AbbozzaLogger;
+import de.uos.inf.did.abbozza.core.AbbozzaServer;
+import de.uos.inf.did.abbozza.core.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.calliope.handler.BoardChooserPanel;
 import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;

@@ -24,7 +24,7 @@
 package de.uos.inf.did.abbozza.calliope.handler;
 
 import com.sun.net.httpserver.HttpExchange;
-import de.uos.inf.did.abbozza.AbbozzaLogger;
+import de.uos.inf.did.abbozza.core.AbbozzaLogger;
 import de.uos.inf.did.abbozza.calliope.AbbozzaCalliope;
 import de.uos.inf.did.abbozza.handler.AbstractHandler;
 import java.io.File;
