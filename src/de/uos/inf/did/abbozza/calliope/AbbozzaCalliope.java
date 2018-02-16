@@ -23,11 +23,17 @@ import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.math.BigInteger;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -44,7 +50,7 @@ import javax.swing.filechooser.FileSystemView;
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     
     public static final int SYS_MAJOR = 0;
-    public static final int SYS_MINOR = 11;
+    public static final int SYS_MINOR = 12;
     public static final int SYS_REV = 0;
     public static final int SYS_HOTFIX = 0;
     public static final String SYS_REMARK = "(calliope)";
@@ -430,5 +436,43 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     public String getSystemVersion() {
         return SYS_VERSION;
     };
+
+    
+        public void installUpdate(String version, String updateUrl) {
+        try {
+            // 1st step: Rename current jar
+            // Find current jar
+            URL curUrl = AbbozzaServer.class.getProtectionDomain().getCodeSource().getLocation();
+            File cur = new File(curUrl.toURI());
+            AbbozzaLogger.out("Current jar found at " + cur.getAbsolutePath(), AbbozzaLogger.INFO);
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+            String today = format.format(new Date());
+            File dir = new File(cur.getParentFile().getAbsolutePath());
+            if (!dir.exists()) {
+                AbbozzaLogger.out("Creating directory " + dir.getPath(), AbbozzaLogger.INFO);
+                dir.mkdir();
+            }
+            AbbozzaLogger.out("Moving old version to " + dir.getPath() + "/abbozza." + today + ".jar", AbbozzaLogger.INFO);
+            cur.renameTo(new File(dir.getPath() + "/abbozza." + today + ".jar"));
+            
+            // 2nd step: Download new version
+            AbbozzaLogger.out("Downloading version " + version, AbbozzaLogger.INFO);
+            URL url = new URL(updateUrl + "abbozza-calliope.jar");
+            URLConnection conn = url.openConnection();
+            byte buffer[] = new byte[4096];
+            int n = -1;
+            InputStream ir = conn.getInputStream();
+            FileOutputStream ow = new FileOutputStream(new File(curUrl.toURI()));
+            while ((n = ir.read(buffer)) != -1) {
+                ow.write(buffer, 0, n);
+            }
+            ow.close();
+            ir.close();
+            AbbozzaLogger.out("Stopping abbozza!", AbbozzaLogger.INFO);
+            System.exit(0);
+        } catch (Exception ex) {
+            Logger.getLogger(AbbozzaServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

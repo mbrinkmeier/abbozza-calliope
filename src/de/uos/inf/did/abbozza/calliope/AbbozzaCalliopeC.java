@@ -25,7 +25,6 @@ import de.uos.inf.did.abbozza.core.AbbozzaConfigDialog;
 import de.uos.inf.did.abbozza.core.AbbozzaLocale;
 import de.uos.inf.did.abbozza.core.AbbozzaLogger;
 import de.uos.inf.did.abbozza.core.AbbozzaSplashScreen;
-import de.uos.inf.did.abbozza.core.Tools;
 import de.uos.inf.did.abbozza.plugin.PluginConfigPanel;
 import de.uos.inf.did.abbozza.tools.FileTool;
 import java.io.BufferedReader;
@@ -492,6 +491,5 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     public void adaptConfigDialog(AbbozzaConfigDialog dialog) {
         dialog.addPanel(new PluginConfigPanel());
     }
-
 
 }
