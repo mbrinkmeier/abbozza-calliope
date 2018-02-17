@@ -72,7 +72,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     public void init(String system) {
         
-        AbbozzaSplashScreen.showSplashScreen("/img/abbozza-calliope-splash.png");
+        AbbozzaSplashScreen.showSplashScreen("/calliope/img/abbozza-calliope-splash.png");
         super.init(system);
 
  
