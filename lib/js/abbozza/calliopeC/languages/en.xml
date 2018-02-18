@@ -137,6 +137,12 @@
         <msg id="gui.upload">Compile and upload</msg>
         <msg id="gui.compilation_success">The sketch was compiled successfully!</msg>
         <msg id="gui.close_and_quit">abbozza! doesn't quit by closing the window!</msg>
+        
+        
+        <msg id="gui.view">View</msg>
+        <msg id="gui.inc_font_size">Increase font size</msg>
+        <msg id="gui.dec_font_size">Decrease font size</msg>
+        
     </gui>
     <image>
         <msg id="Image.HEART">Heart</msg>
