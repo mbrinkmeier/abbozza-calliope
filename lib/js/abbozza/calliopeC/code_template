@@ -13,11 +13,22 @@
 Abbozza abbozza;
 ###globalvars###
 
+// Deklarierte Operationen
+###signatures###
+
 // Vorbereitung
-###setuphook###
+###inithook###
 
 // Die Operationen
 ###blocks###
 
 // Das Hauptprogramm
+int main() {
+    abbozza.init();
+    
+###setuphook###
+
 ###main###
+    
+    release_fiber();
+}

@@ -16,7 +16,9 @@
  * the License.
  */
 /**
- * @fileoverview ... @author michael.brinkmeier@uni-osnabrueck.de (Michael
+ * @fileoverview The Abbozza Server for calliope C
+ * 
+ * @author michael.brinkmeier@uni-osnabrueck.de (Michael
  * Brinkmeier)
  */
 package de.uos.inf.did.abbozza.calliope;
@@ -48,10 +50,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     protected String _buildPath;
     protected String _hexPath;
     protected int _exitValue;
-    
-    protected String errMsg;
-    protected String outMsg;
-    
+        
     protected boolean bluetooth = false;
     protected String configFile;
     
@@ -69,10 +68,16 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      *
      * @param system A string identifying the system.
      */
+    @Override
     public void init(String system) {
         super.init(system);        
     }
 
+    /**
+     * Upload the code to the calliope/micro:bit
+     * @param code
+     * @return 
+     */
     @Override
     public int uploadCode(String code) {
 
@@ -177,8 +182,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
 
     public int compile(String buildPath) {
-        errMsg = "";
-        outMsg = "";
+        String errMsg = "";
+        String outMsg = "";
         
         String osName = System.getProperty("os.name");
         
@@ -301,8 +306,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         String buildPath = userPath + "/build/" + this._boardName + "/";
 
         
-        errMsg = "";
-        outMsg = "";
+        String errMsg = "";
+        String outMsg = "";
         
         String osName = System.getProperty("os.name");
         

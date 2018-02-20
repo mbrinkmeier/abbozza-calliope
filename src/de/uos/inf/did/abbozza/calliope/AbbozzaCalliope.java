@@ -139,15 +139,21 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaSplashScreen.hideSplashScreen();
     }
 
+    /**
+     * Set the standard paths.
+     */
     public void setPaths() {
         super.setPaths();
         localJarPath = jarPath;
         globalJarPath = jarPath;
-        sketchbookPath = "";
+        sketchbookPath = "/sketches";
         localPluginPath = userPath + "/plugins";
         globalPluginPath = abbozzaPath + "/plugins"; // installPath + "/tools/Abbozza/plugins";
     }
 
+    /**
+     * Set additional paths.
+     */
     public void setAdditionalPaths() {
         // installPath = config.getProperty("installPath");
         sketchbookPath = expandPath(config.getProperty("sketchbookPath"));
@@ -156,7 +162,6 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaLogger.info("jarPath = " + jarPath);
         AbbozzaLogger.info("runtimePath = " + abbozzaPath);
         AbbozzaLogger.info("toolsPath = " + toolsPath);
-        // AbbozzaLogger.info("installPath = " + installPath);
         AbbozzaLogger.info("userPath = " + userPath);
         AbbozzaLogger.info("sketchbookPath = " + sketchbookPath);
         AbbozzaLogger.info("localJarPath = " + localJarPath);
@@ -165,13 +170,22 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaLogger.info("browserPath = " + config.getBrowserPath());
     }
 
-    
+    /**
+     * Find the jars and dirs.
+     * 
+     * @param jarHandler The jarHandler to be used.
+     */
     public void findJarsAndDirs(JarDirHandler jarHandler) {
         jarHandler.clear();
         jarHandler.addDir(jarPath + "/", "Dir");
         jarHandler.addJar(jarPath + "/abbozza-calliope.jar", "Jar");
     }
 
+    /**
+     * Set the path at which the board should be found.
+     * 
+     * @param path The path
+     */
     public void setPathToBoard(String path) {
         _pathToBoard = path;
         if (_pathToBoard != null) {
@@ -180,16 +194,18 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaLogger.out("Path to board set to " + path, 4);
     }
 
-    
+    /**
+     * Returns teh current path to the board.
+     * 
+     * @return The path to the board
+     */
     public String getPathToBoard() {
         return _pathToBoard;
     }
-
-    public String getPluginInstallPath() {
-        return userPath + "/build/" + this._boardName + "/source/lib/";        
-    }
     
-    
+    /**
+     * Register system specific handlers.
+     */
     @Override
     public void registerSystemHandlers() {
         AbbozzaLogger.info("Registering handlers for board and queryboard");
@@ -198,21 +214,36 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         httpServer.createContext("/abbozza/serial", new SerialHandler(this));
     }
 
+    /**
+     * @deprecated ???
+     */
     @Override
     public void toolToBack() {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * @deprecated ???
+     * 
+     * @param code The code to set in the tool
+     */
     @Override
     public void toolSetCode(String code) {
-        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * @deprecated ???
+     */
     @Override
     public void toolIconify() {
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Copile the code.
+     * 
+     * @param code The code to be compiled.
+     * @return 
+     */
     @Override
     public int compileCode(String code) {
         AbbozzaLogger.out("Code generated", 4);
@@ -220,6 +251,12 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         return 0;
     }
 
+    /**
+     * Upload the code
+     * 
+     * @param code The code to be uploaded
+     * @return 
+     */
     @Override
     public int uploadCode(String code) {
         this.frame.setCode(code);
@@ -473,6 +510,15 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         } catch (Exception ex) {
             Logger.getLogger(AbbozzaServer.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+        
+    /**
+     * @deprecated ???
+     * @return 
+     */
+    public String getPluginInstallPath() {
+        return userPath + "/build/" + this._boardName + "/source/lib/";        
     }
 
 }
