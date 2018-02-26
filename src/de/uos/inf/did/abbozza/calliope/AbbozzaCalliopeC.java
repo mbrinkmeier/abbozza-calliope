@@ -457,7 +457,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             File buildbasefile = new File(abbozzaPath + "/lib/buildbase.jar");
             ZipFile buildbase = new ZipFile(buildbasefile);
             if ( (buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild) ) {
-                AbbozzaSplashScreen.setText("Initializing build system ... Please be patient, this may take a while!");
+                AbbozzaSplashScreen.setText("Initializing build system. This may take a while!");
                 // Extract buildbase.jar if newer or initialization required
                 FileTool.extractJar(buildbase,buildDir);
             }
