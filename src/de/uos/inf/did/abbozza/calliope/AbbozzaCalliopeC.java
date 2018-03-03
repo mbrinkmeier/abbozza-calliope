@@ -272,8 +272,14 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
         if (toolsPath != null) {
             String path = procBuilder.environment().get("PATH");
-            procBuilder.environment().put("PATH", toolsPath + ":" + path);
+            procBuilder.environment().put("PATH", toolsPath + ":/usr/local/bin:" + path);
+        } else {
+            String path = procBuilder.environment().get("PATH");
+            procBuilder.environment().put("PATH", "/usr/local/bin:" + path);            
         }
+        
+        AbbozzaLogger.info("SYSTEM PATH: " + System.clearProperty("PATH"));
+        AbbozzaLogger.info("BUILDER PATH: " + procBuilder.environment().get("PATH"));
         
         return procBuilder;
     }
