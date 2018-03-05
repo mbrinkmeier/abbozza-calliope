@@ -428,7 +428,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
     public void additionalInitialization() {
                 
-        AbbozzaSplashScreen.setText("Updating build directory ...");
+        AbbozzaSplashScreen.setText("Updating build directory.  This may take a while!");
         
         // Check if build system has to be initialized
         boolean initBuild = false;
@@ -462,11 +462,13 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             
             // Extract buildbase.jar
             File buildbasefile = new File(abbozzaPath + "/lib/buildbase.jar");
-            ZipFile buildbase = new ZipFile(buildbasefile);
             if ( (buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild) ) {
                 AbbozzaSplashScreen.setText("Initializing build system. This may take a while!");
                 // Extract buildbase.jar if newer or initialization required
+                ZipFile buildbase = new ZipFile(buildbasefile);
                 FileTool.extractJar(buildbase,buildDir);
+            } else {
+                AbbozzaSplashScreen.setText("Build system up to date!");                
             }
             
             // Delete source diretories
