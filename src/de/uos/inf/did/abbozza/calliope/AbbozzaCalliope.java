@@ -49,8 +49,8 @@ import javax.swing.filechooser.FileSystemView;
  */
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
     
-    public static final int SYS_MAJOR = 0;
-    public static final int SYS_MINOR = 12;
+    public static final int SYS_MAJOR = 1;
+    public static final int SYS_MINOR = 0;
     public static final int SYS_REV = 0;
     public static final int SYS_HOTFIX = 0;
     public static final String SYS_REMARK = "(calliope)";

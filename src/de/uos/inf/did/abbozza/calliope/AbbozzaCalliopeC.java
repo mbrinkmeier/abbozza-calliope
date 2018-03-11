@@ -272,8 +272,14 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
         if (toolsPath != null) {
             String path = procBuilder.environment().get("PATH");
-            procBuilder.environment().put("PATH", toolsPath + ":" + path);
+            procBuilder.environment().put("PATH", toolsPath + ":/usr/local/bin:" + path);
+        } else {
+            String path = procBuilder.environment().get("PATH");
+            procBuilder.environment().put("PATH", "/usr/local/bin:" + path);            
         }
+        
+        AbbozzaLogger.info("SYSTEM PATH: " + System.clearProperty("PATH"));
+        AbbozzaLogger.info("BUILDER PATH: " + procBuilder.environment().get("PATH"));
         
         return procBuilder;
     }
@@ -420,7 +426,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
 
     public void additionalInitialization() {
-        
+                
         AbbozzaSplashScreen.setText("Updating build directory ...");
         
         // Check if build system has to be initialized
@@ -444,6 +450,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
             
         File original = new File(abbozzaPath + "/build/");
+        
         try {
             // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
             if ( initBuild ) {
@@ -451,15 +458,18 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             } else {
                 AbbozzaLogger.out("Updating buildsystem from " + original.getAbsolutePath());
             }
+            
             // Extract buildbase.jar
             File buildbasefile = new File(abbozzaPath + "/lib/buildbase.jar");
             ZipFile buildbase = new ZipFile(buildbasefile);
             if ( (buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild) ) {
+                AbbozzaSplashScreen.setText("Initializing build system. This may take a while!");
                 // Extract buildbase.jar if newer or initialization required
                 FileTool.extractJar(buildbase,buildDir);
             }
             
             // Delete source diretories
+            AbbozzaSplashScreen.setText("Cleaning up generated sources ...");
             FileTool.removeDirectory(new File(buildDir,"calliope/source"));
             FileTool.removeDirectory(new File(buildDir,"microbit/source"));  
             FileTool.copyDirectory(original, buildDir,!initBuild);
