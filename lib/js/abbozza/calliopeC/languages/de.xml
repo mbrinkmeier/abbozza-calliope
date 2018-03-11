@@ -21,6 +21,7 @@
         <msg id="block.radioSend">Sende Nachricht</msg>
         <msg id="block.radioPower">Setze Sendestärke auf</msg>
         <msg id="block.radioChannel">Setze Kanal auf</msg>
+        <msg id="block.radioGroup">Setze Gruppe auf</msg>
         <msg id="radio.PARSE_MSG">Lade nächste Funknachricht</msg>
         <msg id="radio.NUMBER">Lese Zahl aus Funknachricht</msg>
         <msg id="radio.DECIMAL">Lese Dezimalzahl aus Funknachricht</msg>

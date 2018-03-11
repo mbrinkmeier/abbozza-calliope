@@ -21,6 +21,7 @@
         <msg id="block.radioSend">Sent message</msg>
         <msg id="block.radioPower">Set transmission power to</msg>
         <msg id="block.radioChannel">Set channel to</msg>
+        <msg id="block.radioGroup">Set group to</msg>
         <msg id="radio.available">Message received via radio</msg>
 
         <msg id="dev.BUTTON_A">Button A</msg>

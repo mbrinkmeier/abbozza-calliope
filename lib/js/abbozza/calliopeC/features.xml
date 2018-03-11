@@ -505,7 +505,12 @@
                     <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>                                 
             </block>
-            <block type="radio_channel">
+            <!-- block type="radio_channel">
+                <value name="VAL">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value>                 
+            </block -->
+            <block type="radio_group">
                 <value name="VAL">
                     <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>                 
