@@ -28,6 +28,7 @@
 #include "MicroBit.h"
 #include "abbozzaDevice.h"
 
+
 /**
  * Built in Images
  */
@@ -382,4 +383,16 @@ ManagedString Abbozza::i2cRequest(uint8_t addr, int len) {
     ManagedString result(i2cData,len);
     return result;
 }
-  
+
+// Missing operators for Managed Strings
+// bool operator!=(ManagedString& a, const ManagedString& b) {
+//   return !( a == b );
+// }
+
+// bool operator<=(ManagedString& a, const ManagedString& b) {
+//   return !( a > b );
+// }
+
+// bool operator>=(ManagedString& a, const ManagedString& b) {
+//   return !( a < b );
+// }

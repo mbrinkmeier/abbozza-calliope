@@ -218,4 +218,7 @@
         <msg id="Image.UMBRELLA">Schirm</msg>
         <msg id="Image.SNAKE">Schlange</msg>
     </image>
+    <error>
+        <msg id="err.COMPARISON_NOT_ALLOWED">Vergleich nicht erlaubt</msg>
+    </error>
 </language>    

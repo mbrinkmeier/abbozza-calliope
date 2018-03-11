@@ -127,9 +127,14 @@ class Abbozza : public MicroBit {
         void i2cWriteInt(int value);
         void i2cWriteText(ManagedString text);
         void i2cEndTransmission();
-        ManagedString i2cRequest(uint8_t addr, int len);
-        
+        ManagedString i2cRequest(uint8_t addr, int len);                
 };
+
+
+// Missing Operators for ManagedStrings
+// bool operator!=(ManagedString& a, const ManagedString& b);
+// bool operator<=(ManagedString& a, const ManagedString& b);
+// bool operator>=(ManagedString& a, const ManagedString& b);
 
 #endif
 

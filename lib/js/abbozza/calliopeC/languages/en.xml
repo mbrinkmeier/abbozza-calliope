@@ -212,4 +212,7 @@
         <msg id="Image.UMBRELLA">Umbrella</msg>
         <msg id="Image.SNAKE">Snake</msg>
     </image>    
+    <error>
+        <msg id="err.COMPARISON_NOT_ALLOWED">Comparison not allowed</msg>
+    </error>
 </language> 
