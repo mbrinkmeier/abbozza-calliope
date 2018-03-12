@@ -370,6 +370,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 outMsg = outMsg + "\n" + line;
             }
             
+            AbbozzaLogger.force("[compile] : Cleaning of buildsystem finished");
+            
             return proc.exitValue();
             
         } catch (IOException ex) {
@@ -467,6 +469,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 // Extract buildbase.jar if newer or initialization required
                 ZipFile buildbase = new ZipFile(buildbasefile);
                 FileTool.extractJar(buildbase,buildDir);
+                this.cleanBuildSystem();
             } else {
                 AbbozzaSplashScreen.setText("Build system up to date!");                
             }
