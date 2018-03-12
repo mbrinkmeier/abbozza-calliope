@@ -24,7 +24,7 @@ Abbozza abbozza;
 
 // Das Hauptprogramm
 int main() {
-    abbozza.init();
+   abbozza.init();
     
 ###setuphook###
 

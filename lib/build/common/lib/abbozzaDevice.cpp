@@ -385,7 +385,7 @@ ManagedString Abbozza::i2cRequest(uint8_t addr, int len) {
 }
 
 
-boolean Abbozza::radioAvailable() {
+bool Abbozza::radioAvailable() {
     PacketBuffer buf = radio.datagram.recv();
     __radioChecked = true;
     if ( buf == PacketBuffer::EmptyPacket ) {
@@ -393,7 +393,6 @@ boolean Abbozza::radioAvailable() {
        return false;
     } else {
        __radioBuffer = ManagedString(buf);
-       delete buf;
        return true;
     }
     
