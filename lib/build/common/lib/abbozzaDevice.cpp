@@ -28,6 +28,7 @@
 #include "MicroBit.h"
 #include "abbozzaDevice.h"
 
+
 /**
  * Built in Images
  */
@@ -287,6 +288,7 @@ bool Abbozza::serialIsAvailable(PinName tx, PinName rx) {
  */
 void Abbozza::serialRedirect(int tx, int rx) {
     if ( (currentRX != rx) || (currentTX != tx) ) {
+        serial.clearTxBuffer();
         serial.redirect( io.pin[tx].name, io.pin[rx].name);
         currentTX = tx;
         currentRX = rx;
@@ -299,6 +301,7 @@ void Abbozza::serialRedirect(int tx, int rx) {
  */
 void Abbozza::serialRedirect(PinName tx, PinName rx) {
     if ( (currentRX != rx) || (currentTX != tx) ) {
+        serial.clearTxBuffer();
         serial.redirect(tx,rx);
         currentTX = tx;
         currentRX = rx;
@@ -322,3 +325,99 @@ void Abbozza::serialSetBaud(PinName tx, PinName rx, int baud) {
     serialRedirect(tx,rx);
     serial.baud(baud);
 }
+
+
+void Abbozza::i2cBeginTransmission(uint8_t addr) {
+    i2cAddr = addr;
+    i2cLen = 0;
+}
+
+void Abbozza::i2cWriteByte(uint8_t value) {
+    i2cData[i2cLen] = value;
+    i2cLen++;
+}
+
+void Abbozza::i2cWriteShort(int value) {
+    if (i2cLen < 99 ) {
+      uint8_t lo = value % 256;
+      uint8_t hi = (value / 256) % 256;
+      i2cData[i2cLen] = hi;
+      i2cData[i2cLen+1] = lo;
+      i2cLen += 2;    
+    }
+}
+
+
+void Abbozza::i2cWriteInt(int value) {
+    if (i2cLen < 97 ) {
+      i2cData[i2cLen+3] = value % 256;
+      value = value / 256;
+      i2cData[i2cLen+2] = value % 256;
+      value = value / 256;
+      i2cData[i2cLen+1] = value % 256;
+      value = value / 256;
+      i2cData[i2cLen] = value % 256;
+      i2cLen += 4;    
+    }    
+}
+
+
+void Abbozza::i2cWriteText(ManagedString text) {
+    if ( i2cLen < 100 - text.length() ) {
+        for (int i = 0; i < text.length(); i++ ) {
+            i2cData[i2cLen] = text.charAt(i);
+            i2cLen++;
+        }
+    }
+}
+
+void Abbozza::i2cEndTransmission() {
+    if ( i2cLen > 0 ) {
+        i2c.write(i2cAddr,i2cData,i2cLen);
+    }
+}
+
+
+ManagedString Abbozza::i2cRequest(uint8_t addr, int len) {
+    i2c.read(addr,i2cData,len);
+    ManagedString result(i2cData,len);
+    return result;
+}
+
+
+boolean Abbozza::radioAvailable() {
+    PacketBuffer buf = radio.datagram.recv();
+    __radioChecked = true;
+    if ( buf == PacketBuffer::EmptyPacket ) {
+       __radioBuffer = ManagedString("");
+       return false;
+    } else {
+       __radioBuffer = ManagedString(buf);
+       delete buf;
+       return true;
+    }
+    
+}
+
+
+ManagedString Abbozza::radioRecv() {
+    if ( __radioChecked ) {
+        return __radioBuffer;
+    } else {
+        return ManagedString(radio.datagram.recv());
+    }
+}
+
+
+// Missing operators for Managed Strings
+// bool operator!=(ManagedString& a, const ManagedString& b) {
+//   return !( a == b );
+// }
+
+// bool operator<=(ManagedString& a, const ManagedString& b) {
+//   return !( a > b );
+// }
+
+// bool operator>=(ManagedString& a, const ManagedString& b) {
+//   return !( a < b );
+// }

@@ -28,35 +28,7 @@
 #define _ABBOZZA_TOOLS_H
 
 #include "MicroBit.h"
-
-/*
- * Makros for the correctly numbered pins
- */
-#define TOUCH0  12
-#define TOUCH1  0
-#define TOUCH2  1
-#define TOUCH3  16
-
-#define P0      12
-#define P1      0
-#define P2      1
-#define P3      16
-#define P4      3
-#define P5      4
-#define P6      10
-#define P7      13
-#define P8      14
-#define P9      15
-#define P10     9
-#define P11     7
-#define P12     6
-#define P16     2
-#define P17     8
-#define P18     17
-#define P19     18
-#define P21     19
-
-#define MICROPHONE_PIN  19
+#include "abbozzaPins.h"
 
 
 /*
@@ -92,6 +64,11 @@ class Abbozza : public MicroBit {
     private:
         int currentRX = USBRX;
         int currentTX = USBTX;
+        char i2cData[100];
+        int i2cLen = 0;
+        uint8_t i2cAddr = 0;
+        bool __radioChecked = false;
+        ManagedString __radioBuffer;
         
     public:
         void init();
@@ -118,7 +95,23 @@ class Abbozza : public MicroBit {
         void serialSetBaud(int tx, int rx, int baud);
         void serialSetBaud(PinName tx, PinName rx, int baud);
         
+        void i2cBeginTransmission(uint8_t addr);
+        void i2cWriteByte(uint8_t value);
+        void i2cWriteShort(int value);
+        void i2cWriteInt(int value);
+        void i2cWriteText(ManagedString text);
+        void i2cEndTransmission();
+        ManagedString i2cRequest(uint8_t addr, int len);                
+        
+        boolradioAvailable();
+        ManagedString radioRecv();
 };
+
+
+// Missing Operators for ManagedStrings
+// bool operator!=(ManagedString& a, const ManagedString& b);
+// bool operator<=(ManagedString& a, const ManagedString& b);
+// bool operator>=(ManagedString& a, const ManagedString& b);
 
 #endif
 

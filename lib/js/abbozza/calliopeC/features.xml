@@ -484,7 +484,7 @@
     <!-- Communication via radio -->
     <feature id="feat.RADIO" option="radio">
         <category id="cat.RADIO">
-            <!-- block type="radio_available"></block-->
+            <block type="radio_available"></block>
             <block type="radio_receive_store"></block>
             <!-- block type="radio_receive"></block-->
             <!-- block type="radio_receive_byte">
