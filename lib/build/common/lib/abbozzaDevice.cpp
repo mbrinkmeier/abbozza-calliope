@@ -187,17 +187,13 @@ void Abbozza::serialWriteLine(PinName tx, PinName rx, ManagedString line) {
  */
 ManagedString Abbozza::serialReadLine(int tx, int rx) {
 serialRedirect(tx,rx);
-    ManagedString res = "";
-    res = serial.readUntil(ManagedString("\n"));
-    return res;
+    return serial.readUntil(ManagedString("\n"));
 }
 
 
 ManagedString Abbozza::serialReadLine(PinName tx, PinName rx) {
 serialRedirect(tx,rx);
-    ManagedString res = "";
-    res = serial.readUntil(ManagedString("\n"));
-    return res;
+    return serial.readUntil(ManagedString("\n"));
 }
 
 
