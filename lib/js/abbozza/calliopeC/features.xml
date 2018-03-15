@@ -118,6 +118,14 @@
                     </block>
                 </value>
             </block>
+            <block type="text_is_empty">
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="VALUE">Hallo!</field>
+                    </block>
+                </value>                
+            </block>
             <block type="text_concat">
                 <value name="TEXT1">
                     <block type="text_const">
