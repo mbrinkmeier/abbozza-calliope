@@ -359,6 +359,18 @@
             </block>
         </category>
         
+                    <!-- Display blocks -->
+        <category id="cat.DISPLAY">
+            <block type="display_scroll_async">
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">Hallo!</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+                
         <category id="cat.INOUT">
             <block type="inout_pin"></block>
             <block type="inout_level"></block>

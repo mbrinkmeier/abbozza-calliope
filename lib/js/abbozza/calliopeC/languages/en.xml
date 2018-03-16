@@ -5,6 +5,7 @@
         <msg id="block.print">Print</msg>
         <msg id="block.led">Led Zeile: # Spalte: #</msg>
         <msg id="block.scroll">Scroll</msg>
+        <msg id="block.scrollAsync">Scroll # without waiting</msg>
         <msg id="block.displayImage">Display image</msg>
         <msg id="block.displayMatrix">Display image</msg>
         <msg id="block.setPixel">Set pixel in column # and row # to</msg>
