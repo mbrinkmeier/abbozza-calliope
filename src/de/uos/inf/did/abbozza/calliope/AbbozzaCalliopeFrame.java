@@ -115,7 +115,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         sourceArea.setTabSize(3);
         supplier = new AbbozzaCalliopeTooltipSupplier();
         sourceArea.setToolTipSupplier(supplier);
-        Font font = new Font("Cour<ier New",Font.PLAIN,14);
+        Font font = new Font("Courier New",Font.PLAIN,14);
         if ( !font.getFontName().equals("Courier New") ) {
            font = new Font("DejaVu Sans Mono",Font.PLAIN,14); 
         }
@@ -146,8 +146,8 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         this.addWindowStateListener(new WindowStateListener() {
             @Override
             public void windowStateChanged(WindowEvent e) {
-                AbbozzaLogger.debug(e.paramString());
-                AbbozzaLogger.debug(e.toString());
+                // AbbozzaLogger.debug(e.paramString());
+                // AbbozzaLogger.debug(e.toString());
             }
         });
         

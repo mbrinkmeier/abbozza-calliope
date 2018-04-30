@@ -29,11 +29,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.math.BigInteger;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -44,7 +47,12 @@ import javax.swing.filechooser.FileSystemView;
 
 
 /**
- *
+ * The base class for abbozza! calliope servers
+ * 
+ * Additional arguments
+ * -A <url> additional uri
+ * -T <path> tools path
+ * 
  * @author mbrinkmeier
  */
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
@@ -56,10 +64,11 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     public static final String SYS_REMARK = "(calliope)";
     public static final String SYS_VERSION = SYS_MAJOR + "." + SYS_MINOR + "." + SYS_REV + "." + SYS_HOTFIX + " " + SYS_REMARK;
     
-    
     // Additional paths
     // protected String installPath;   // The path into which abbozza was installed
     protected String toolsPath;     // The path to tools needed for compilation
+    protected String arguments[];
+    protected String additionalTools = null;
 
     protected int _SCRIPT_ADDR = 0x3e000;
     protected String _pathToBoard = "";
@@ -70,33 +79,16 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     public static int VER_HOTFIX = 0;   
     public static String VER_REM = "(calliope)";  
 
-    public void init(String system) {
+    /**
+     * The general initialization of an calliope abbozza! server.
+     * 
+     * @param system 
+     */
+    public void init(String system, String args[]) {
         
         AbbozzaSplashScreen.showSplashScreen("de/uos/inf/did/abbozza/calliope/icons/abbozza-calliope-splash.png");
-        super.init(system);
-
- 
-        /**
-         * This does not seem to work
-         * 
-        // Add ClassLoaders for jars in <runtimePath>/lib
-        File libDir = new File(runtimePath + "/lib");
-        File[] jars = libDir.listFiles( new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".jar");
-            }
-        });
-        URL[] urls = new URL[jars.length];
-        for ( int i = 0; i < jars.length; i++ ) {
-            try {
-                urls[i] = jars[i].toURI().toURL();
-                AbbozzaLogger.info("Added " + urls[i].toExternalForm() + " to classpath");
-            } catch (MalformedURLException ex) {
-                AbbozzaLogger.err(ex.getLocalizedMessage());
-            }
-        }
-        ClassLoader loader = new URLClassLoader(urls,AbbozzaCalliope.class.getClassLoader());   
-        */
+                
+        super.init(system,args);
         
         setPathToBoard(this.config.getOptionStr("pathToBoard"));
         // Open Frame
@@ -140,6 +132,32 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     }
 
     /**
+     * Initialize the server and use the command line arguments
+     * 
+     * @param system
+     * @param args 
+     */
+    public void init(String system) {
+        // initialize the server
+        init(system,null);
+    }
+    
+    /**
+     * Apply a command line option
+     * 
+     * @param args 
+     */
+    protected void applyCommandlineOption(String option, String par) {
+        if ( option.equals("-T")) {
+          additionalTools = par;
+          AbbozzaLogger.info("Additional path for tools : " + additionalTools);
+        } else {
+          super.applyCommandlineOption(option, par);
+        }
+    }
+    
+    
+    /**
      * Set the standard paths.
      */
     public void setPaths() {
@@ -179,6 +197,11 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         jarHandler.clear();
         jarHandler.addDir(jarPath + "/", "Dir");
         jarHandler.addJar(jarPath + "/abbozza-calliope.jar", "Jar");
+        
+        // Adding additional uris
+        for ( URI uri : additionalURIs ) {
+            jarHandler.addURI(uri);
+        }
     }
 
     /**
