@@ -73,7 +73,7 @@
         <msg id="dev.SOUND_MUTE">Ton aus</msg>
         <msg id="dev.SOUND_PLAY">Spiele Frequenz [Hz]</msg>
         <msg id="dev.SOUND_PLAY_DUR">Spiele Frequenz [Hz] # Dauer [ms]</msg>
-        <msg id="dev.SOUND_NOTE_INT">Ton # aus</msg>
+        <msg id="dev.SOUND_NOTE_INT">Ton # aus der</msg>
 
         <msg id="dev.MOTOR_ON">Setze Motor # auf [Prozent] </msg>
         <msg id="dev.MOTOR_OFF">Stoppe Motor</msg>
