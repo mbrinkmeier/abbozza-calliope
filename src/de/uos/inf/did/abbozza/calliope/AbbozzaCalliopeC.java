@@ -532,7 +532,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaLogger.info("Copying " + name + " to " + target.toString());
             Files.copy(stream, target.toPath(), StandardCopyOption.REPLACE_EXISTING );
         } catch (IOException ex) {
+            ex.printStackTrace(System.out);
             AbbozzaLogger.err("Could not copy " + name + " to " + target.toString());
+            AbbozzaLogger.err(ex.getLocalizedMessage());
             return false;
         }
         target = new File(abbozzaPath + "/build/microbit/source/lib/" + name);
@@ -540,7 +542,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaLogger.info("Copying " + name + " to " + target.toString());
             Files.copy(stream, target.toPath() , StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
+            ex.printStackTrace(System.out);
             AbbozzaLogger.err("Could not copy " + name + " to " + target.toString());
+            AbbozzaLogger.err(ex.getLocalizedMessage());
             return false;
         }
         return true;
