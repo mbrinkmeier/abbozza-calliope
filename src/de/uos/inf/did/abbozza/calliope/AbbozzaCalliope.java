@@ -50,8 +50,8 @@ import javax.swing.filechooser.FileSystemView;
  * The base class for abbozza! calliope servers
  * 
  * Additional arguments
- * -A <url> additional uri
- * -T <path> tools path
+ * -A url additional uri
+ * -T path tools path
  * 
  * @author mbrinkmeier
  */
@@ -82,7 +82,8 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     /**
      * The general initialization of an calliope abbozza! server.
      * 
-     * @param system 
+     * @param system The system id
+     * @param args The command line parameters
      */
     public void init(String system, String args[]) {
         
@@ -135,7 +136,6 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
      * Initialize the server and use the command line arguments
      * 
      * @param system
-     * @param args 
      */
     public void init(String system) {
         // initialize the server
@@ -145,7 +145,8 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     /**
      * Apply a command line option
      * 
-     * @param args 
+     * @param option
+     * @param par
      */
     protected void applyCommandlineOption(String option, String par) {
         if ( option.equals("-T")) {

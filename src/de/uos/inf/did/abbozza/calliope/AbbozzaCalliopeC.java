@@ -557,10 +557,11 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     /**
      * Apply a command line option
-     * This adds -B <buildbase> to the list of possible options.
+     * This adds -B buildbase to the list of possible options.
      * It explicitly sets the buildbase to the given path.
      * 
-     * @param args 
+     * @param option
+     * @param par
      */
     protected void applyCommandlineOption(String option, String par) {
         if ( option.equals("-B")) {
