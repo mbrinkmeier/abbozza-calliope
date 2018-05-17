@@ -39,7 +39,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.zip.ZipFile;
 
 /**
@@ -51,29 +50,46 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     protected String _buildPath;
     protected String _hexPath;
     protected int _exitValue;
+    protected String _cmdOptBuildBase = null; // the build base given by the command options
+    protected boolean _cmdOptInitBuildBase = false; // the build base given by the command options
         
     protected boolean bluetooth = false;
     protected String configFile;
     
     
+    /**
+     * The main programm initilizes the server.
+     * 
+     * @param args The command line args
+     */
     public static void main(String args[]) {
         AbbozzaCalliopeC abbozza = new AbbozzaCalliopeC();
-        abbozza.init("calliopeC");
+        abbozza.init("calliopeC",args);
         
-        abbozza.startServer();
-        // abbozza.startBrowser("calliope.html");        
+        // abbozza.startServer();
     }
 
     /**
      * Initialize the abbozza! server.
      *
-     * @param system A string identifying the system.
+     * @param system The system identifier
      */
     @Override
     public void init(String system) {
-        super.init(system);        
+        init(system,null);        
     }
 
+    /**
+     * Initialize the server using the command line arguments.
+     * 
+     * @param system The system identifier
+     * @param args The command line arguments
+     */
+    public void init(String system, String args[]) {
+        super.init(system,args);
+    }
+    
+    
     /**
      * Upload the code to the calliope/micro:bit
      * @param code
@@ -289,6 +305,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     public ProcessBuilder buildProcWindows(String buildPath) {
         String yottaPath = System.getenv("YOTTA_PATH");
         String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
+        if ( yottaPath == null ) yottaPath = "";
+        if ( yottaInstall == null ) yottaInstall = "";
 
         ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","--config",configFile,"build");
         procBuilder.directory(new File(buildPath));
@@ -428,19 +446,24 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
     
 
+    @Override
     public void additionalInitialization() {
                 
         AbbozzaSplashScreen.setText("Updating build directory.  This may take a while!");
         
         // Check if build system has to be initialized
-        boolean initBuild = false;
+        boolean initBuild = this._cmdOptInitBuildBase;
+        
         // Check if <userPath>/build/ exists
         File buildDir = new File(userPath + "/build/");
+        
         if ( !buildDir.exists() ) {
+            // Create the directory
             AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
             buildDir.mkdirs();
             initBuild = true;
         } else {
+            // Check for init file in build directory
             File initFile = new File(userPath + "/build/abz_init");
             if ( initFile.exists() ) {
                 AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
@@ -451,19 +474,33 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }
         
         AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
-            
+        
         File original = new File(abbozzaPath + "/build/");
         
+        
         try {
-            // InstallTool.getInstallTool().copyDirFromJar(new JarFile(jarPath + "/abbozza-calliope.jar"), "build/", buildDir.getAbsolutePath()+"/");
             if ( initBuild ) {
                 AbbozzaLogger.out("Initializing buildsystem from " + original.getAbsolutePath());
             } else {
                 AbbozzaLogger.out("Updating buildsystem from " + original.getAbsolutePath());
             }
             
-            // Extract buildbase.jar
-            File buildbasefile = new File(abbozzaPath + "/lib/buildbase.jar");
+            // Extract <bbozzapath>/lib/buildbase.jar
+            File buildbasefile = null;
+            if ( this._cmdOptBuildBase != null ) {
+               // If the command line option -B was given
+               buildbasefile = new File(this._cmdOptBuildBase);
+               if ( !buildbasefile.exists() ) {
+                 AbbozzaLogger.err("Could not find buildbase " + this._cmdOptBuildBase);
+                 buildbasefile = null;
+               }
+            }
+
+            // Set default value if no other option was given
+            if ( buildbasefile == null ) {
+                buildbasefile = new File(abbozzaPath + "/lib/buildbase.jar");
+            }
+            
             if ( (buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild) ) {
                 AbbozzaSplashScreen.setText("Initializing build system. This may take a while!");
                 // Extract buildbase.jar if newer or initialization required
@@ -474,7 +511,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 AbbozzaSplashScreen.setText("Build system up to date!");                
             }
             
-            // Delete source diretories
+            // Delete source directories
             AbbozzaSplashScreen.setText("Cleaning up generated sources ...");
             FileTool.removeDirectory(new File(buildDir,"calliope/source"));
             FileTool.removeDirectory(new File(buildDir,"microbit/source"));  
@@ -495,7 +532,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaLogger.info("Copying " + name + " to " + target.toString());
             Files.copy(stream, target.toPath(), StandardCopyOption.REPLACE_EXISTING );
         } catch (IOException ex) {
+            ex.printStackTrace(System.out);
             AbbozzaLogger.err("Could not copy " + name + " to " + target.toString());
+            AbbozzaLogger.err(ex.getLocalizedMessage());
             return false;
         }
         target = new File(abbozzaPath + "/build/microbit/source/lib/" + name);
@@ -503,7 +542,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaLogger.info("Copying " + name + " to " + target.toString());
             Files.copy(stream, target.toPath() , StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
+            ex.printStackTrace(System.out);
             AbbozzaLogger.err("Could not copy " + name + " to " + target.toString());
+            AbbozzaLogger.err(ex.getLocalizedMessage());
             return false;
         }
         return true;
@@ -513,4 +554,23 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         dialog.addPanel(new PluginConfigPanel());
     }
 
+    
+    /**
+     * Apply a command line option
+     * This adds -B <buildbase> to the list of possible options.
+     * It explicitly sets the buildbase to the given path.
+     * 
+     * @param args 
+     */
+    protected void applyCommandlineOption(String option, String par) {
+        if ( option.equals("-B")) {
+          this._cmdOptBuildBase = par;
+          AbbozzaLogger.info("Using buildbase " + this._cmdOptBuildBase );
+        } else if ( option.equals("-I")) {
+            this._cmdOptInitBuildBase = true;
+        } else {
+          super.applyCommandlineOption(option, par);
+        }
+    }
+  
 }
