@@ -143,7 +143,7 @@ void Abbozza::registerEventHandler(int id, int value, void (*handler)(MicroBitEv
 }
 
 /**
- * Read teh light level measured by the led-array. The mode is changed
+ * Read the light level measured by the led-array. The mode is changed
  * before and set to the original value afterwards.
  * 
  * @return The light level read by the led array
@@ -153,6 +153,7 @@ int Abbozza::readLightLevel() {
     
     mode = display.getDisplayMode();
     display.setDisplayMode(DISPLAY_MODE_BLACK_AND_WHITE_LIGHT_SENSE);
+    sleep(50);
     value = display.readLightLevel();
     display.setDisplayMode((DisplayMode) mode);
     
