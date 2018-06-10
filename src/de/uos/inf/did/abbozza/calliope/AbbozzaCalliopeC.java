@@ -311,8 +311,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","--config",configFile,"build");
         procBuilder.directory(new File(buildPath));
         
-        procBuilder.environment().put("PATH",  yottaPath + ";" + abbozzaPath + "\\lib\\srecord\\" + ";" + yottaInstall + "\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
-
+        // procBuilder.environment().put("PATH",  yottaPath + ";" + abbozzaPath + "\\lib\\srecord\\" + ";" + yottaInstall + "\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
+        procBuilder.environment().put("PATH",  System.getenv("PATH"));
+        
         if (toolsPath != null) {
             String path = procBuilder.environment().get("PATH");
             procBuilder.environment().put("PATH", toolsPath + ";" + path);
@@ -433,7 +434,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C","yt","-n","clean");
         procBuilder.directory(new File(buildPath));
         
-        procBuilder.environment().put("PATH",  yottaPath + ";" + abbozzaPath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
+        // procBuilder.environment().put("PATH",  yottaPath + ";" + abbozzaPath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
+        procBuilder.environment().put("PATH",  System.getenv("PATH"));
 
         if (toolsPath != null) {
             String path = procBuilder.environment().get("PATH");
