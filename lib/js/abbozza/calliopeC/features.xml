@@ -148,6 +148,14 @@
                     </block>
                 </value>                
             </block>
+            <block type="text_to_number">
+                <value name="TEXT">
+                    <block type="text_const">
+                        <mutation confirmed="false"/>
+                        <field name="CONTENT">42</field>
+                    </block>
+                </value>                
+            </block>
         </category>
                   
         <!-- Display blocks -->
