@@ -99,7 +99,7 @@
         <msg id="event.IO_ON_LO">is low</msg>
         <msg id="event.IO_IGNORE">Ignore events on</msg>
 
-        <msg id="event.ACCEL_LISTEN">Call #, if the Calliope Mini is #/msg>
+        <msg id="event.ACCEL_LISTEN">Call #, if the Calliope Mini is #</msg>
         <msg id="event.ACCEL_TILT_UP">tilted up</msg>
         <msg id="event.ACCEL_TILT_DOWN">tilted down</msg>
         <msg id="event.ACCEL_TILT_LEFT">tilted left</msg>
