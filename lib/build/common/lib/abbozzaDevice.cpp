@@ -374,13 +374,13 @@ void Abbozza::i2cWriteText(ManagedString text) {
 
 void Abbozza::i2cEndTransmission() {
     if ( i2cLen > 0 ) {
-        i2c.write(i2cAddr,i2cData,i2cLen);
+        i2c.write((i2cAddr*2) ,i2cData,i2cLen);
     }
 }
 
 
 ManagedString Abbozza::i2cRequest(uint8_t addr, int len) {
-    i2c.read(addr,i2cData,len);
+    i2c.read((addr*2)+1,i2cData,len);
     ManagedString result(i2cData,len);
     return result;
 }
@@ -408,6 +408,19 @@ ManagedString Abbozza::radioRecv() {
     }
 }
 
+
+int Abbozza::getTemperature() {
+    int res;
+    char cmd = BMX055_ACC_D_TEMP;
+    char val = 255;
+    res = i2c.write(BMX055_ACC_ADDRESS*2, &cmd, 1);
+    if ( res != 0 ) return 255;
+    
+    res = i2c.read(BMX055_ACC_ADDRESS*2+1, &val, 1);
+    if ( res != 0 ) return 255;
+    
+    return val;
+}
 
 // Missing operators for Managed Strings
 // bool operator!=(ManagedString& a, const ManagedString& b) {

@@ -172,7 +172,10 @@ void AbbozzaParser::execute() {
       int green = parse_int();
       int blue = parse_int();
       
+      #ifdef TARGET_NRF51_CALLIOPE  
       abbozza->rgb.setColour(red,green,blue,0);
+      #endif
+
   } else if ( cmd == "DSET" ) {
     pin = parse_int();
     pin = abbozza->getPin(pin);

@@ -64,7 +64,7 @@ class Abbozza : public MicroBit {
     private:
         int currentRX = USBRX;
         int currentTX = USBTX;
-        char i2cData[100];
+        char i2cData[10];
         int i2cLen = 0;
         uint8_t i2cAddr = 0;
         bool __radioChecked = false;
@@ -105,6 +105,11 @@ class Abbozza : public MicroBit {
         
         bool radioAvailable();
         ManagedString radioRecv();
+        
+        #ifdef TARGET_NRF51_CALLIOPE    
+        int getTemperature();
+        #endif
+        
 };
 
 
