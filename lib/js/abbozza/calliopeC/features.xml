@@ -637,6 +637,17 @@
                     <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>       
             </block>
+            <block type="i2c_request">
+                <value name="ADDR">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value>       
+                <value name="REGISTER">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value>       
+                <value name="LENGTH">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value>       
+            </block>
         </category>
     </feature>
     
