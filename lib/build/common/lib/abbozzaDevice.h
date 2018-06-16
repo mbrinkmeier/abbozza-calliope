@@ -102,6 +102,7 @@ class Abbozza : public MicroBit {
         void i2cWriteText(ManagedString text);
         void i2cEndTransmission();
         ManagedString i2cRequest(uint8_t addr, int len);                
+        ManagedString i2cRequest(uint8_t addr, unit8_t reg, int len);                
         
         bool radioAvailable();
         ManagedString radioRecv();

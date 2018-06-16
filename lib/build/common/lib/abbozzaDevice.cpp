@@ -385,6 +385,13 @@ ManagedString Abbozza::i2cRequest(uint8_t addr, int len) {
     return result;
 }
 
+ManagedString Abbozza::i2cRequest(uint8_t addr, uti8_t reg, int len) {
+    i2c.write((i2cAddr*2), reg);
+    i2c.read((addr*2)+1,i2cData,len);
+    ManagedString result(i2cData,len);
+    return result;
+}
+
 
 bool Abbozza::radioAvailable() {
     PacketBuffer buf = radio.datagram.recv();
