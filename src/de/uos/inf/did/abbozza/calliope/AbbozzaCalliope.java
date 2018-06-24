@@ -12,6 +12,7 @@ import de.uos.inf.did.abbozza.core.AbbozzaServer;
 import de.uos.inf.did.abbozza.core.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.calliope.handler.BoardChooserPanel;
 import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
+import de.uos.inf.did.abbozza.core.AbbozzaServerException;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
 import de.uos.inf.did.abbozza.handler.SerialHandler;
 import java.awt.AWTException;
@@ -20,6 +21,7 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,17 +32,18 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.math.BigInteger;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.ArrayList;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import java.util.Timer;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -79,6 +82,8 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     public static int VER_HOTFIX = 0;   
     public static String VER_REM = "(calliope)";  
 
+    
+    
     /**
      * The general initialization of an calliope abbozza! server.
      * 
@@ -91,14 +96,44 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 
         super.init(system,args);
         
+        // Try to start server on given port
+        int serverPort = config.getServerPort();
+        try {
+          this.startServer(serverPort);
+        } catch (AbbozzaServerException ex) {
+          AbbozzaLogger.err(ex.getMessage());
+          
+          AbbozzaSplashScreen.hideSplashScreen();
+
+          
+          TimerTask worker = new TimerTask() {
+              @Override
+              public void run() {
+                  System.exit(1);
+              }
+          };
+            
+          Timer timer = new Timer();
+          timer.schedule(worker,5000);
+
+          String msg;
+          if ( ex.getType() == AbbozzaServerException.SERVER_RUNNING) {
+            msg = AbbozzaLocale.entry("msg.already_running");
+          } else {
+            msg = AbbozzaLocale.entry("msg.port_denied", "" + serverPort);              
+          }
+          
+          JOptionPane.showMessageDialog(null,msg,"abbozza!",JOptionPane.ERROR_MESSAGE );
+          System.exit(1);
+        }
+
         setPathToBoard(this.config.getOptionStr("pathToBoard"));
+        
         // Open Frame
         frame = new AbbozzaCalliopeFrame();
         frame.open();
         mainFrame = frame;
         
-        startServer();
-
         try {
             if (SystemTray.isSupported()) {
                 AbbozzaLogger.info("Setting system tray icon");
@@ -120,6 +155,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 });
                 trayMenu.add(item);
                 trayIcon = new TrayIcon(icon.getImage(),"abbozza!",trayMenu);
+                trayIcon.setToolTip("abbozza!");
                 trayIcon.setImageAutoSize(true);
                 SystemTray.getSystemTray().add(trayIcon);
             }
@@ -180,7 +216,19 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
             sketchbookPath = "/sketches";
         }
         toolsPath = expandPath(config.getProperty("toolsPath"));
-        
+        if ( (toolsPath == null) && (additionalTools != null) ) {
+            toolsPath = additionalTools;
+        } else {
+          if ( this.additionalTools != null ) {
+            String osName = System.getProperty("os.name");
+            if  ( osName.contains("Windows")) {
+              toolsPath = additionalTools + ";" + toolsPath;
+            } else {
+              toolsPath = additionalTools + ":" + toolsPath;
+            }
+          }
+        }
+            
         AbbozzaLogger.info("jarPath = " + jarPath);
         AbbozzaLogger.info("runtimePath = " + abbozzaPath);
         AbbozzaLogger.info("toolsPath = " + toolsPath);

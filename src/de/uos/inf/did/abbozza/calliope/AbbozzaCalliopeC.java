@@ -42,8 +42,9 @@ import java.nio.file.StandardCopyOption;
 import java.util.zip.ZipFile;
 
 /**
- *
- * @author mbrinkmeier1G
+ * This class implements all system specific operations for tha Calliope Mini.
+ * 
+ * @author mbrinkmeier
  */
 public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
@@ -79,6 +80,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         init(system,null);        
     }
 
+    
     /**
      * Initialize the server using the command line arguments.
      * 
@@ -198,6 +200,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
 
 
+    /**
+     * Do the actual compilation.
+     * 
+     * @param buildPath
+     * @return 0 if no error occured
+     */
     public int compile(String buildPath) {
         String errMsg = "";
         String outMsg = "";
@@ -268,7 +276,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         return 1;
     }
     
-    
+    /**
+     * Compilation on linux systems
+     * 
+     * @param buildPath
+     * @return 
+     */
     public ProcessBuilder buildProcLinux(String buildPath) {        
 
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","--config",configFile,"build");
@@ -283,6 +296,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
     
     
+    /**
+     * Compilation for macos systems.
+     * 
+     * @param buildPath
+     * @return 
+     */
     public ProcessBuilder buildProcMac(String buildPath) {
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","--config",configFile,"build");
         procBuilder.directory(new File(buildPath));
@@ -302,6 +321,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
 
     
+    /**
+     * Compilation on Windows systems
+     * 
+     * @param buildPath
+     * @return 
+     */
     public ProcessBuilder buildProcWindows(String buildPath) {
         String yottaPath = System.getenv("YOTTA_PATH");
         String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
@@ -323,6 +348,11 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
     
     
+    /**
+     * Clean the build system.
+     * 
+     * @return 
+     */
     public int cleanBuildSystem() {
 
         if (this._boardName == null ) {
@@ -401,6 +431,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     
             
+    /**
+     * Execute yt clean on Linux based systems.
+     * 
+     * @param buildPath
+     * @return 
+     */
     public ProcessBuilder cleanProcLinux(String buildPath) {        
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","clean");
         procBuilder.directory(new File(buildPath));
@@ -414,6 +450,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
     
     
+    /**
+     * Execute yt clean on Mac OS.
+     * 
+     * @param buildPath
+     * @return 
+     */
     public ProcessBuilder cleanProcMac(String buildPath) {
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","clean");
         procBuilder.directory(new File(buildPath));
@@ -427,6 +469,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     }
 
     
+    /**
+     * Execute yt clean on Windows.
+     * 
+     * @param buildPath
+     * @return 
+     */
     public ProcessBuilder cleanProcWindows(String buildPath) {
         String yottaPath = System.getenv("YOTTA_PATH");
         String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
@@ -447,17 +495,34 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         return procBuilder;
     }
     
-
+    /**
+     * Do some additonal initialization:
+     * 1) Update/initialize from <buildinit>/lib/buildbase.jar
+     * 2) Copy sources from <buildinit>/build
+     * 
+     * <buildinit> is <abbozzapath>. It may be overriden by the command line 
+     * option -B
+     */
     @Override
     public void additionalInitialization() {
                 
-        AbbozzaSplashScreen.setText("Updating build directory.  This may take a while!");
+        AbbozzaSplashScreen.setText("Updating build directory.  This may take a while!");        
         
         // Check if build system has to be initialized
         boolean initBuild = this._cmdOptInitBuildBase;
         
+        String buildInitPath = null;
+        // Determine the <buildinit> path
+        if ( this._cmdOptBuildBase != null ) {
+            buildInitPath = this._cmdOptBuildBase;
+        } else {
+            buildInitPath = abbozzaPath;
+        }
+        AbbozzaLogger.info("Using " + buildInitPath + " for initialization of build system");
+        
         // Check if <userPath>/build/ exists
         File buildDir = new File(userPath + "/build/");
+        AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
         
         if ( !buildDir.exists() ) {
             // Create the directory
@@ -475,11 +540,10 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             }
         }
         
-        AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
+        // The source files
+        File original = new File(buildInitPath + "/build/");
         
-        File original = new File(abbozzaPath + "/build/");
-        
-        
+                
         try {
             if ( initBuild ) {
                 AbbozzaLogger.out("Initializing buildsystem from " + original.getAbsolutePath());
@@ -487,15 +551,13 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 AbbozzaLogger.out("Updating buildsystem from " + original.getAbsolutePath());
             }
             
-            // Extract <bbozzapath>/lib/buildbase.jar
-            File buildbasefile = null;
-            if ( this._cmdOptBuildBase != null ) {
-               // If the command line option -B was given
-               buildbasefile = new File(this._cmdOptBuildBase);
-               if ( !buildbasefile.exists() ) {
-                 AbbozzaLogger.err("Could not find buildbase " + this._cmdOptBuildBase);
-                 buildbasefile = null;
-               }
+
+            // Check the 
+            // Extract <abbozzapath>/lib/buildbase.jar
+            File buildbasefile = new File(buildInitPath + "/lib/buildbase.jar");
+            if ( !buildbasefile.exists() ) {
+              AbbozzaLogger.err("Could not find buildbase " + this._cmdOptBuildBase);
+              buildbasefile = null;
             }
 
             // Set default value if no other option was given
@@ -505,6 +567,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             
             if ( (buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild) ) {
                 AbbozzaSplashScreen.setText("Initializing build system. This may take a while!");
+                AbbozzaLogger.out("Initializing buildsystem from " + buildbasefile.getAbsolutePath());
                 // Extract buildbase.jar if newer or initialization required
                 ZipFile buildbase = new ZipFile(buildbasefile);
                 FileTool.extractJar(buildbase,buildDir);
@@ -517,6 +580,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaSplashScreen.setText("Cleaning up generated sources ...");
             FileTool.removeDirectory(new File(buildDir,"calliope/source"));
             FileTool.removeDirectory(new File(buildDir,"microbit/source"));  
+            AbbozzaLogger.info("Copying from " + original.getAbsolutePath() + " to " + buildDir.getAbsolutePath() );
             FileTool.copyDirectory(original, buildDir,!initBuild);
             
         } catch (IOException ex) {
@@ -527,6 +591,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         AbbozzaSplashScreen.setText("");
     }
     
+    /**
+     *
+     * @param stream
+     * @param name
+     * @return
+     */
     @Override
     public boolean installPluginFile(InputStream stream, String name) {
         File target = new File(abbozzaPath + "/build/calliope/source/lib/" + name);
@@ -568,9 +638,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     protected void applyCommandlineOption(String option, String par) {
         if ( option.equals("-B")) {
           this._cmdOptBuildBase = par;
-          AbbozzaLogger.info("Using buildbase " + this._cmdOptBuildBase );
-        } else if ( option.equals("-I")) {
-            this._cmdOptInitBuildBase = true;
+          AbbozzaLogger.info("Using path " + this._cmdOptBuildBase + " as base for build initialization");
         } else {
           super.applyCommandlineOption(option, par);
         }

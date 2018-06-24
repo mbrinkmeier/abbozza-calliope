@@ -425,6 +425,12 @@ int Abbozza::getTemperature() {
     if ( res != 0 ) return 255;
     
     res = i2c.read(BMX055_ACC_ADDRESS*2+1, &val, 1);
+    // The actual tempreture is 23 + val, with val in two's complement
+    if ( val < 128 ) {
+      val = 23 + val;
+    } else {
+      val = 23 - (256 - val);  // ????  
+    }
     if ( res != 0 ) return 255;
     
     return val;
