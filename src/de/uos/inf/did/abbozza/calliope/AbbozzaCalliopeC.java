@@ -94,8 +94,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     /**
      * Upload the code to the calliope/micro:bit
-     * @param code
-     * @return 
+     * @param code The code to be compiled and uploaded
+     * @return A return code ( 0 for success )
      */
     @Override
     public int uploadCode(String code) {
@@ -203,7 +203,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Do the actual compilation.
      * 
-     * @param buildPath
+     * @param buildPath The path in which the binary should be build
      * @return 0 if no error occured
      */
     public int compile(String buildPath) {
@@ -279,8 +279,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Compilation on linux systems
      * 
-     * @param buildPath
-     * @return 
+     * @param buildPath The path in which the binary should be build
+     * @return 0 if no error occured
      */
     public ProcessBuilder buildProcLinux(String buildPath) {        
 
@@ -299,8 +299,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Compilation for macos systems.
      * 
-     * @param buildPath
-     * @return 
+     * @param buildPath The path in which the code should be compiled
+     * @return 0 if no error occured
      */
     public ProcessBuilder buildProcMac(String buildPath) {
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","--config",configFile,"build");
@@ -324,8 +324,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Compilation on Windows systems
      * 
-     * @param buildPath
-     * @return 
+     * @param buildPath The path in which the code should be compiled
+     * @return 0 if no error occured
      */
     public ProcessBuilder buildProcWindows(String buildPath) {
         String yottaPath = System.getenv("YOTTA_PATH");
@@ -351,7 +351,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Clean the build system.
      * 
-     * @return 
+     * @return The exit state of the cleaning process (0 for success)
      */
     public int cleanBuildSystem() {
 
@@ -434,8 +434,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Execute yt clean on Linux based systems.
      * 
-     * @param buildPath
-     * @return 
+     * @param buildPath The path in which the code should be compiled
+     * @return 0 if no error occured
      */
     public ProcessBuilder cleanProcLinux(String buildPath) {        
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","clean");
@@ -453,8 +453,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Execute yt clean on Mac OS.
      * 
-     * @param buildPath
-     * @return 
+     * @param buildPath The path in which the code should be compiled
+     * @return 0 if no error occured
      */
     public ProcessBuilder cleanProcMac(String buildPath) {
         ProcessBuilder procBuilder = new ProcessBuilder("yt","-n","clean");
@@ -472,8 +472,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     /**
      * Execute yt clean on Windows.
      * 
-     * @param buildPath
-     * @return 
+     * @param buildPath The path in which the code should be compiled
+     * @return 0 if no error occured
      */
     public ProcessBuilder cleanProcWindows(String buildPath) {
         String yottaPath = System.getenv("YOTTA_PATH");
@@ -497,10 +497,10 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     /**
      * Do some additonal initialization:
-     * 1) Update/initialize from <buildinit>/lib/buildbase.jar
-     * 2) Copy sources from <buildinit>/build
+     * 1) Update/initialize from &lt;buildinit&gt;/lib/buildbase.jar
+     * 2) Copy sources from &lt;buildinit&gt;/build
      * 
-     * <buildinit> is <abbozzapath>. It may be overriden by the command line 
+     * &lt;buildinit&gt; is &lt;abbozzapath&gt;. It may be overriden by the command line 
      * option -B
      */
     @Override
@@ -593,9 +593,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     
     /**
      *
-     * @param stream
-     * @param name
-     * @return
+     * @param stream The stream from which the plugin is read
+     * @param name The name of the plugin
+     * @return a flag inidicating if installation was successfull
      */
     @Override
     public boolean installPluginFile(InputStream stream, String name) {
@@ -632,8 +632,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * This adds -B buildbase to the list of possible options.
      * It explicitly sets the buildbase to the given path.
      * 
-     * @param option
-     * @param par
+     * @param option The option to be applied
+     * @param par A parameter for the option
      */
     protected void applyCommandlineOption(String option, String par) {
         if ( option.equals("-B")) {

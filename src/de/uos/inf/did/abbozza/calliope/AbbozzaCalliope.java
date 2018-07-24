@@ -171,7 +171,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     /**
      * Initialize the server and use the command line arguments
      * 
-     * @param system
+     * @param system The system id
      */
     public void init(String system) {
         // initialize the server
@@ -181,8 +181,8 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     /**
      * Apply a command line option
      * 
-     * @param option
-     * @param par
+     * @param option The option to be applied
+     * @param par The parameter for the option
      */
     protected void applyCommandlineOption(String option, String par) {
         if ( option.equals("-T")) {
@@ -317,7 +317,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
      * Copile the code.
      * 
      * @param code The code to be compiled.
-     * @return 
+     * @return 0 if the compilation was successful
      */
     @Override
     public int compileCode(String code) {
@@ -330,7 +330,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
      * Upload the code
      * 
      * @param code The code to be uploaded
-     * @return 
+     * @return 0 if the upload was successfull
      */
     @Override
     public int uploadCode(String code) {
@@ -590,10 +590,10 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         
     /**
      * @deprecated ???
-     * @return 
+     * @return the installation path
      */
-    public String getPluginInstallPath() {
-        return userPath + "/build/" + this._boardName + "/source/lib/";        
-    }
+    // public String getPluginInstallPath() {
+    //     return userPath + "/build/" + this._boardName + "/source/lib/";        
+    // }
 
 }
