@@ -75,9 +75,29 @@
         <copy todir="build/classes/">
             <fileset dir="../abbozza-common/build/classes"/>
         </copy>
-    </target>    <target name="-pre-jar">
+    </target>
+        
+    <target name="-pre-jar">
+        <!-- fetch common stuff -->
         <copy todir="build/classes/">
             <fileset dir="../abbozza-common/build/classes"/>
         </copy>
+        
+        <!-- Build buildbase.jar -->
+        <copy todir="buildsystem/calliope">
+            <fileset dir="pkg/build/calliope"/>
+        </copy>    
+        <copy todir="buildsystem/microbit">
+            <fileset dir="pkg/build/microbit"/>
+        </copy>    
+        <copy todir="buildsystem/calliope/source">
+            <fileset dir="pkg/build/common"/>
+        </copy>    
+        <copy todir="buildsystem/microbit/source">
+            <fileset dir="pkg/build/common"/>
+        </copy>    
+        <jar destfile="build/classes/lib/buildbase.jar">
+            <fileset dir="buildsystem/"/>
+        </jar>
     </target>
 </project>

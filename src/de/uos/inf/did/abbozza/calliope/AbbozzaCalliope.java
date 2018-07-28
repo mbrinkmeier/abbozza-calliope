@@ -21,11 +21,11 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -70,6 +70,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     // Additional paths
     // protected String installPath;   // The path into which abbozza was installed
     protected String toolsPath;     // The path to tools needed for compilation
+    protected String toolsDir;
     protected String arguments[];
     protected String additionalTools = null;
 
@@ -215,7 +216,46 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         if ( sketchbookPath == null ) {
             sketchbookPath = "/sketches";
         }
-        toolsPath = expandPath(config.getProperty("toolsPath"));
+        
+        toolsDir = expandPath( config.getProperty("toolsDir") );
+        
+        if ( additionalTools != null ) {
+            toolsDir = additionalTools;
+        } 
+        
+        if ( toolsDir == null ) {
+            toolsPath = abbozzaPath + "/tools";
+        } else {
+            toolsPath = toolsDir;
+        }
+        
+        // Check if PATH file exists in toolsPath and replaces the toolsPath
+        if ( toolsPath != null ) {
+            String path;
+            File pathFile = new File(toolsPath+"/PATH");
+            if ( pathFile.exists() ) {
+                
+                BufferedReader reader = null;
+                try {
+                    reader = new BufferedReader(new FileReader(pathFile));
+                    path = reader.readLine();
+                    path = path.replace("%DIR%", toolsPath);
+                    toolsPath = path;
+                } catch (FileNotFoundException ex) {
+                    path = null;
+                } catch (IOException ex) {
+                    path = null;
+                } finally {
+                    try {
+                        reader.close();
+                    } catch (IOException ex) {
+                        AbbozzaLogger.err(ex.getMessage());
+                    }
+                }
+            }
+        }
+                
+        /*
         if ( (toolsPath == null) && (additionalTools != null) ) {
             toolsPath = additionalTools;
         } else {
@@ -228,6 +268,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
             }
           }
         }
+        */
             
         AbbozzaLogger.info("jarPath = " + jarPath);
         AbbozzaLogger.info("runtimePath = " + abbozzaPath);

@@ -1,0 +1,11 @@
+{
+  "name": "abbozza",
+  "version": "1.0.0",
+  "description": "Abbozza! Calliope build system",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "microbit": "calliope-mini/microbit#2.0.0-calliope-1.0.5"
+  },
+  "targetDependencies": {},
+  "bin": "./source"
+}

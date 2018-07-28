@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<options>
+    <group name="gui.blocks">
+        <item name="gui.advanced" option="advanced" default="false">
+            <item name="gui.parser" option="parser" default="false"/>
+        </item>
+        <item name="gui.operations" option="operations" default="false">
+            <item name="gui.local_variables" option="localVars" default="false"/>
+        </item>
+        <item name="gui.radio" option="radio" default="false"/>
+        <item name="gui.usb" option="usb" default="false">
+            <item name="gui.messages" option="messages" default="false"/>
+        </item>
+        <item name="gui.devices" option="devices" default="false">
+            <item name="gui.serial" option="serial" default="false"/>
+            <item name="gui.motors" option="motors" default="false"/>
+            <item name="gui.i2c" option="i2c" default="false"/>        
+        </item>
+        <item name="gui.events" option="events" default="true"/>
+        <group name="gui.arrays">
+            <choice name="gui.no_arrays" option="noArrays" default="false"/> 
+            <choice name="gui.lin_arrays" option="linArrays" default="false"/> 
+            <choice name="gui.mult_arrays" option="multArrays" default="true"/> 
+        </group> 
+        <!-- item name="gui.teacher" option="teacher"/-->
+    </group>
+    <group name="gui.misc">
+        <group name="gui.colorize">
+            <choice name="gui.color_default" option ="colorDefault" default="true"/>
+            <choice name="gui.color_category" option ="colorCategory" default="false"/>
+            <choice name="gui.color_type" option ="colorType" default="false"/>
+        </group>
+    </group>
+</options>

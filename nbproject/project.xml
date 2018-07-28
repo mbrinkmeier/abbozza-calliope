@@ -6,7 +6,7 @@
             <name>abbozza-calliope</name>
             <source-roots>
                 <root id="src.dir"/>
-                <root id="src.lib.dir"/>
+                <root id="src.pkg.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>

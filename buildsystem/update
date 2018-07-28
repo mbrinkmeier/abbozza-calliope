@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# prepare calliope
+cd calliope
+yt clean
+yt update
+yt target calliope-mini-classic-gcc
+rm -r source/*
+cp -r ../../../abbozza-calliope/lib/build/calliope/* .
+cp -r ../../../abbozza-calliope/lib/build/common/* source
+# yt build
+
+cd ../microbit
+yt clean
+yt update
+yt target bbc-microbit-classic-gcc
+rm -r source/*
+cp -r ../../../abbozza-calliope/lib/build/microbit/* .
+cp -r ../../../abbozza-calliope/lib/build/common/* source
+# yt build
+
+cd ..
+

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="de">
+    <blocks>
+        <msg id="block.MAIN">Hauptprogramm</msg> 
+        <msg id="block.print">Zeige</msg>
+        <msg id="block.led">Led Zeile: # Spalte: #</msg>
+        <msg id="block.scroll">Laufschrift</msg>
+        <msg id="block.scrollAsync">Laufschrift # ohne zu warten</msg>
+        <msg id="block.displayImage">Stelle Bild dar</msg>
+        <msg id="block.displayMatrix">Stelle Bild dar</msg>
+        <msg id="block.setPixel">Setze Pixel in Spalte # und Zeile # auf</msg>
+        <msg id="block.getPixel">Farbe in Spalte # und Zeile</msg>
+        <msg id="block.displayClear">Lösche Anzeige</msg>
+        <msg id="block.displayOn">Schalte Anzeige an</msg>
+        <msg id="block.displayOff">Schalte Anzeige aus</msg>
+        <msg id="block.displayIsOn">Ist Anzeige an?</msg>
+        <msg id="block.asString"></msg>
+        <msg id="block.getLightLevel">Umgebungshelligkeit</msg>
+        <msg id="block.radioReceive">Empfangene Nachricht</msg>
+        <msg id="block.radioReceiveStore">Speichere letzte Nachricht in</msg>
+        <msg id="block.radioReceiveByte">Byte # der empfangenen Nachricht</msg>
+        <msg id="block.radioSend">Sende Nachricht</msg>
+        <msg id="block.radioPower">Setze Sendestärke auf</msg>
+        <msg id="block.radioChannel">Setze Kanal auf</msg>
+        <msg id="block.radioGroup">Setze Gruppe auf</msg>
+        <msg id="radio.PARSE_MSG">Lade nächste Funknachricht</msg>
+        <msg id="radio.NUMBER">Lese Zahl aus Funknachricht</msg>
+        <msg id="radio.DECIMAL">Lese Dezimalzahl aus Funknachricht</msg>
+        <msg id="radio.STRING">Lese Text aus Funknachricht</msg>
+        <msg id="radio.WORD">Lese Wort aus Funknachricht</msg>
+        <msg id="radio.WORD">Lese Wort aus Funknachricht</msg>
+        <msg id="radio.available">Nachricht über Funk empfangen</msg>
+        
+        <msg id="dev.BUTTON_A">Knopf A</msg>
+        <msg id="dev.BUTTON_B">Knopf B</msg>
+        <msg id="dev.WAS_PRESSED">wurde gedrückt</msg>        
+        <msg id="dev.GET_PRESSES">Anzahl der Drücker von</msg>        
+        <msg id="dev.TOUCHED">berührt</msg>        
+        <msg id="dev.PIN">Pin</msg>        
+        
+        <msg id="dev.ACCEL_GET">Beschleunigung</msg>
+        <msg id="dev.ACCEL_X">links-rechts</msg>
+        <msg id="dev.ACCEL_Y">vor-zurück</msg>
+        <msg id="dev.ACCEL_Z">hoch-runter</msg>
+        <msg id="dev.ACCEL_PITCH">Steigung</msg>
+        <msg id="dev.ACCEL_ROLL">Neigung</msg>
+        <msg id="dev.GESTURE">Geste</msg>
+        <msg id="dev.ACCEL_GESTURE">Letzte Geste</msg>
+        <msg id="dev.ACCEL_IS_GESTURE">Aktuelle Geste ist</msg>
+        <msg id="dev.ACCEL_WAS_GESTURE">Letzte Geste war</msg>
+        <msg id="dev.UP">hoch</msg>
+        <msg id="dev.DOWN">runter</msg>
+        <msg id="dev.LEFT">links</msg>
+        <msg id="dev.RIGHT">rechts</msg>
+        <msg id="dev.FACE_UP">nach oben gedreht</msg>
+        <msg id="dev.FACE_DOWN">nach unten gedreht</msg>
+        <msg id="dev.FREEFALL">Freier Fall</msg>
+        <msg id="dev.2G">2G</msg>
+        <msg id="dev.3G">3G</msg>
+        <msg id="dev.6G">6G</msg>
+        <msg id="dev.8G">8G</msg>
+        <msg id="dev.SHAKE">Geschüttelt</msg>
+        <msg id="dev.COMPASS_HEADING">Kompassrichtung (° zu Nord)</msg>
+        <msg id="dev.COMPASS_GET_FS">Kompass Feldstärke </msg>
+        <msg id="dev.COMPASS_X">in x-Richtung</msg>
+        <msg id="dev.COMPASS_Y">in y-Richtung</msg>
+        <msg id="dev.COMPASS_Z">in z-Richtung</msg>
+        <msg id="dev.COMPASS_OVERALL">gesamt</msg>
+        <msg id="dev.COMPASS_CALIBRATE">Kompass kalibrieren</msg>
+        <msg id="dev.COMPASS_IS_CALIBRATED">Ist Kompass kalibriert?</msg>
+        <msg id="dev.THERMOMETER_GET">Temperatur</msg>
+        
+        <msg id="dev.SOUND_MUTE">Ton aus</msg>
+        <msg id="dev.SOUND_PLAY">Spiele Frequenz [Hz]</msg>
+        <msg id="dev.SOUND_PLAY_DUR">Spiele Frequenz [Hz] # Dauer [ms]</msg>
+        <msg id="dev.SOUND_NOTE_INT">Ton # aus der</msg>
+
+        <msg id="dev.MOTOR_ON">Setze Motor # auf [Prozent] </msg>
+        <msg id="dev.MOTOR_OFF">Stoppe Motor</msg>
+
+        <msg id="dev.SERIAL_WRITELN">Sende Zeile über</msg>
+        <msg id="dev.SERIAL_READLN">Lese Zeile von</msg>
+        <msg id="dev.SERIAL_READ_ALL">Lese alle Zeichen von</msg>
+        <msg id="dev.SERIAL_WRITE_BYTE">Sende Byte über</msg>
+        <msg id="dev.SERIAL_READ_BYTE">Lese Byte von</msg>
+        <msg id="dev.SERIAL_AVAILABLE">Zeichen an # verfügbar</msg>
+        <msg id="dev.SERIAL_TABLE">Sende Werte über</msg>
+        <msg id="dev.SERIAL_BAUD">Setze # auf # Baud</msg>
+
+        <msg id="dev.CHECK_MSG">Prüfe Nachricht von</msg>
+        
+        <msg id="event.HANDLER">Ereignishandler</msg>
+        <msg id="event.BUTTON_LISTEN">Falls Knopf # # führe # aus</msg>
+        <msg id="event.BUTTON_UP">losgelassen wird</msg>
+        <msg id="event.BUTTON_DOWN">gedrückt wird</msg>
+        <msg id="event.BUTTON_CLICK">geklickt wird</msg>
+        <msg id="event.BUTTON_LONG_CLICK">lang geklickt wird</msg>
+        <msg id="event.BUTTON_HOLD">gehalten wird</msg>
+        <msg id="event.BUTTON_DOUBLE_CLICK">doppelt geklickt wird</msg>
+        <msg id="event.BUTTON_ANY">verändert wird</msg>
+        <msg id="event.IO_LISTEN">Falls # # führe # aus</msg>
+        <msg id="event.IO_ON_RISE">steigt</msg>
+        <msg id="event.IO_ON_FALL">fällt</msg>
+        <msg id="event.IO_ON_HI">hoch ist</msg>
+        <msg id="event.IO_ON_LO">tief ist</msg>
+        <msg id="event.IO_IGNORE">Ignoriere Ereignisse an</msg>
+        
+        <msg id="event.ACCEL_LISTEN">Führe # aus, wenn der Calliope Mini # wurde.</msg>
+        <msg id="event.ACCEL_TILT_UP">nach oben geneigt</msg>
+        <msg id="event.ACCEL_TILT_DOWN">nach unten geneigt</msg>
+        <msg id="event.ACCEL_TILT_LEFT">nach links geneigt</msg>
+        <msg id="event.ACCEL_TILT_RIGHT">nach rechts geneigt</msg>
+        <msg id="event.ACCEL_FACE_UP">auf die Rückseite gelegt</msg>
+        <msg id="event.ACCEL_FACE_DOWN">auf die Vorderseite gelegt</msg>
+        <msg id="event.ACCEL_FREEFALL">fallen gelassen</msg>
+        <msg id="event.ACCEL_3G">mit 3G beschleunigt</msg>
+        <msg id="event.ACCEL_6G">mit 6G beschleunigt</msg>
+        <msg id="event.ACCEL_8G">mit 8G beschleunigt</msg>
+        <msg id="event.ACCEL_SHAKE">geschüttelt</msg>
+        
+        <msg id="event.RADIO_LISTEN">Führe # aus, wenn eine Nachricht über Funk empfangen wurde</msg>
+        <msg id="event.SERIAL_LINE_LISTEN">Führe # aus, wenn eine Nachricht über die serielle Schnittstelle empfangen wurde</msg>
+        <msg id="event.THERMO_LISTEN">Führe # aus, wenn sich die Temperatur ändert</msg>
+        <msg id="event.COMPASS_LISTEN">Führe # aus, wenn der Kompass-Wert sich ändert</msg>
+    </blocks>
+    <categories>
+        <msg id="cat.DISPLAY">Anzeige</msg>
+        <msg id="cat.BUTTONS">Knöpfe</msg>
+        <msg id="cat.RADIO">Funk</msg>
+        <msg id="cat.MOTOR">Motoren</msg>
+        <msg id="cat.EVENTS">Ereignisse</msg>
+        <msg id="cat.EVENTS">Ereignisse</msg>
+    </categories>
+    <gui>
+        <msg id="gui.quit">Beenden</msg>
+        <msg id="gui.clear">Lösche Meldungen</msg>        
+        <msg id="gui.settings">Einstellungen</msg>
+        <msg id="gui.console">Meldungen</msg>
+        <msg id="gui.sourceCode">Quelltext</msg>
+        <msg id="gui.startBrowser">Starte Browser</msg>
+        <msg id="gui.showFrame">Öffne Fenster</msg>
+        <msg id="gui.radio">Funk</msg>
+        <msg id="gui.serial">Serielle Verbindungen</msg>
+        <msg id="gui.sketch_menu">Sketch</msg>
+        <msg id="gui.compile">Kompilieren</msg>
+        <msg id="gui.upload">Kompilieren und Hochladen</msg>
+        <msg id="gui.compilation_success">Der Sketch wurde erfolgreich kompiliert!</msg>
+        <msg id="gui.close_and_quit">abbozza! wird durch das Schließen des Fensters nicht beendet!</msg>
+        
+        <msg id="gui.view">Ansicht</msg>
+        <msg id="gui.inc_font_size">Schrift vergrößern</msg>
+        <msg id="gui.dec_font_size">Schrift verkleinern</msg>
+    </gui>
+    <image>
+        <msg id="Image.HEART">Herz</msg>
+        <msg id="Image.HEART_SMALL">kleines Herz</msg>
+        <msg id="Image.HAPPY">Glücklich</msg>
+        <msg id="Image.SMILEY">Lachen</msg>
+        <msg id="Image.SAD">Traurig</msg>
+        <msg id="Image.CONFUSED">Verwirrt</msg>
+        <msg id="Image.ANGRY">Wütend</msg>
+        <msg id="Image.ASLEEP">Schlafend</msg>
+        <msg id="Image.SURPRISED">Überrascht</msg>
+        <msg id="Image.BEARD">Bart</msg>
+        <msg id="Image.MOUSTACHE">Schnurrbart</msg>
+        <msg id="Image.SURPRISED">Überrascht</msg>
+        <msg id="Image.SILLY">Verrückt</msg>
+        <msg id="Image.FABULOUS">Fabelhaft</msg>
+        <msg id="Image.MEH">Naja!</msg>
+        <msg id="Image.YES">Ja</msg>
+        <msg id="Image.NO">Nein</msg>
+        <msg id="Image.CLOCK12">12 Uhr</msg>
+        <msg id="Image.CLOCK11">11 Uhr</msg>
+        <msg id="Image.CLOCK10">10 Uhr</msg>
+        <msg id="Image.CLOCK9">9 Uhr</msg>
+        <msg id="Image.CLOCK8">8 Uhr</msg>
+        <msg id="Image.CLOCK7">7 Uhr</msg>
+        <msg id="Image.CLOCK6">6 Uhr</msg>
+        <msg id="Image.CLOCK5">5 Uhr</msg>
+        <msg id="Image.CLOCK4">4 Uhr</msg>
+        <msg id="Image.CLOCK3">3 Uhr</msg>
+        <msg id="Image.CLOCK2">2 Uhr</msg>
+        <msg id="Image.CLOCK1">1 Uhr</msg>
+        <msg id="Image.ARROW_N">Norden</msg>
+        <msg id="Image.ARROW_NE">Nord-Osten</msg>
+        <msg id="Image.ARROW_E">Osten</msg>
+        <msg id="Image.ARROW_SE">Süd-Osten</msg>
+        <msg id="Image.ARROW_S">Süden</msg>
+        <msg id="Image.ARROW_SW">Süd-Westen</msg>
+        <msg id="Image.ARROW_W">Westen</msg>
+        <msg id="Image.ARROW_NW">Nord-Westen</msg>
+        <msg id="Image.TRIANGLE">Dreieck</msg>
+        <msg id="Image.TRIANGLE_LEFT">Dreieck (links)</msg>
+        <msg id="Image.CHESSBOARD">Schachbrett</msg>
+        <msg id="Image.DIAMOND">Diamant</msg>
+        <msg id="Image.DIAMOND_SMALL">kleiner Diamant</msg>
+        <msg id="Image.SQUARE">Quadrat</msg>
+        <msg id="Image.SQUARE_SMALL">kleines Quadrat</msg>
+        <msg id="Image.RABBIT">Hase</msg>
+        <msg id="Image.COW">Kuh</msg>
+        <msg id="Image.MUSIC_CROTCHET">Viertel-Note</msg>
+        <msg id="Image.MUSIC_QUAVER">Achtel-Note</msg>
+        <msg id="Image.MUSIC_QUAVERS">zwei Achtel-Noten</msg>
+        <msg id="Image.PITCHFORK">Heugabel</msg>
+        <msg id="Image.XMAS">Weihnachten</msg>
+        <msg id="Image.PACMAN">Pacman</msg>
+        <msg id="Image.TARGET">Ziel</msg>
+        <msg id="Image.TSHIRT">T-Shirt</msg>
+        <msg id="Image.ROLLERSKATE">Rollschuh</msg>
+        <msg id="Image.DUCK">Ente</msg>
+        <msg id="Image.HOUSE">Haus</msg>
+        <msg id="Image.TORTOISE">Schildkröte</msg>
+        <msg id="Image.BUTTERFLY">Schmetterling</msg>
+        <msg id="Image.STICKFIGURE">Strichmännchen</msg>
+        <msg id="Image.GHOST">Geist</msg>
+        <msg id="Image.SWORD">Schwert</msg>
+        <msg id="Image.GIRAFFE">Giraffe</msg>
+        <msg id="Image.SKULL">Schädel</msg>
+        <msg id="Image.UMBRELLA">Schirm</msg>
+        <msg id="Image.SNAKE">Schlange</msg>
+    </image>
+    <error>
+        <msg id="err.COMPARISON_NOT_ALLOWED">Vergleich nicht erlaubt</msg>
+    </error>
+</language>    
