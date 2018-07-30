@@ -241,7 +241,6 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 try {
                     reader = new BufferedReader(new FileReader(pathFile));
                     path = reader.readLine();
-                    System.out.println(path);
                     path = path.replace("%DIR%", toolsDir);
                     toolsPath = path;
                 } catch (FileNotFoundException ex) {
