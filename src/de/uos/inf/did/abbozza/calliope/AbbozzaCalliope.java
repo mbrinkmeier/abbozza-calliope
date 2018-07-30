@@ -224,10 +224,12 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         } 
         
         if ( toolsDir == null ) {
+            toolsDir = abbozzaPath + "/tools";
             toolsPath = abbozzaPath + "/tools";
         } else {
             toolsPath = toolsDir;
         }
+        
         
         // Check if PATH file exists in toolsPath and replaces the toolsPath
         if ( toolsPath != null ) {
@@ -239,6 +241,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 try {
                     reader = new BufferedReader(new FileReader(pathFile));
                     path = reader.readLine();
+                    System.out.println(path);
                     path = path.replace("%DIR%", toolsPath);
                     toolsPath = path;
                 } catch (FileNotFoundException ex) {
@@ -272,6 +275,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
             
         AbbozzaLogger.info("jarPath = " + jarPath);
         AbbozzaLogger.info("runtimePath = " + abbozzaPath);
+        AbbozzaLogger.info("toolsDir = " + toolsDir);
         AbbozzaLogger.info("toolsPath = " + toolsPath);
         AbbozzaLogger.info("userPath = " + userPath);
         AbbozzaLogger.info("sketchbookPath = " + sketchbookPath);

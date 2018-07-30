@@ -286,7 +286,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      */
     public ProcessBuilder buildProcLinux(String buildPath) {
 
-        ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
+        // ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
+        ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/build.sh", configFile);
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
@@ -304,7 +305,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * @return 0 if no error occured
      */
     public ProcessBuilder buildProcMac(String buildPath) {
-        ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
+        // ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
+        ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/build.sh", configFile);
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
@@ -441,7 +443,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * @return 0 if no error occured
      */
     public ProcessBuilder cleanProcLinux(String buildPath) {
-        ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "clean");
+        ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/clean.sh");
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
@@ -459,7 +461,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * @return 0 if no error occured
      */
     public ProcessBuilder cleanProcMac(String buildPath) {
-        ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "clean");
+        ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/clean.sh");
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
