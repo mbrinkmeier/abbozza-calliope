@@ -82,9 +82,27 @@
         <script src="js/abbozza/calliopeC/blocks/devices/Servo.js" type="text/javascript"></script>
 
         <script src="/abbozza/plugins/plugins.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            function init() {
+                Abbozza.init('calliopeC',true,'http://inf-didaktik.rz.uos.de/abbozza/calliope/help');
+                Abbozza.addInfoMenuEntry("www","gui.tutorial","img/graduate-cap.png",
+                    function () {
+                       Abbozza.setSketchFromPath("!sketches/tutorial/" + Configuration.locale + "/tutorial.abz");
+
+                    }
+                );
+                Abbozza.addInfoMenuEntry("www","gui.homepage","img/world-wide-web.png",
+                    function () {
+                       var win = window.open("https://inf-didaktik.rz.uos.de/abbozza/calliope","_blank");
+                       win.focus();
+                    }
+                );
+            }
+        </script>
     </head>
 
-    <body onload="Abbozza.init('calliopeC',true,'http://inf-didaktik.rz.uos.de/abbozza/calliope/help');">
+    <body onload="init()">
 
         <div id="overlay" onclick="Abbozza.overlayClicked(this, event)">
             <div id="overlay_content">
@@ -101,7 +119,7 @@
         <div class="topButton" id="tools" title="Werkzeuge"><div class="toolButton" id="serial" onclick="Abbozza.serialMonitor()"><img src="img/serial.png"></div></div>
         <div class="topButton" id="connect" title="Verbinde" onclick="Abbozza.selectBoard()"><img width=50 height=50  src="img/connect.png"></div>
         <div class="topButton" id="config" title="Einstellungen" onclick="Abbozza.showConfiguration()"><img width=50 height=50  src="img/settings.png"></div>	
-        <div class="topButton" id="info" title="Informationen" onclick="Abbozza.openTaskWindow()"><img width=50 height=50  src="img/info.png"></div>
+        <div class="topButton" id="info" title="Informationen"><div class="toolButton" id="serial" onclick="Abbozza.openTaskWindow()"><img width=50 height=50  src="img/info.png"></div></div>
 
         <!-- div class="menu">Test</div -->
 
@@ -118,5 +136,9 @@
     <xml id="startBlocksWoDevices" style="display: none">
         <block type="main" id="main" inline="false" x="100" y="20"></block>
     </xml>
+    
+    <div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
 </body>
 </html>

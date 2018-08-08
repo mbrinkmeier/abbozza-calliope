@@ -97,6 +97,11 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 
         super.init(system,args);
         
+        if ( config.getProperty("askForTutorial") == null ) {
+            config.setProperty("askForTutorial","TRUE");
+        }
+        
+        
         // Try to start server on given port
         int serverPort = config.getServerPort();
         try {
