@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language id="en">
+    <msg id="GUI.TITLE">abbozza! Calliope Installer</msg>
+    <msg id="GUI.INSTALL_DIR">Directory in which abbozza! should be installed</msg>
+    <msg id="GUI.SKETCHBOOK_DIR">Directoy to which sketches are saved</msg>
+    <msg id="GUI.BROWSER">Browser to be used by abbozza!</msg>
+    <msg id="GUI.CANCEL">Cancel</msg>
+    <msg id="GUI.INSTALL">Install</msg>
+    <msg id="GUI.SELECT_EXECUTABLES">Select executable program</msg>
+    <msg id="GUI.MESSAGE"> Welcome!
+
+abbozza! Calliope requires:
+- Java 1.7 or higher
+- yotta
+- a JavaScript-enabled browser
+
+Thank you for using abbozza! Calliope
+        
+The abbozza! Team </msg>
+    <msg id="GUI.ASK_FOR_GLOBAL_INSTALL">You've got administrative rights.
+
+Should abbozza! be installed only for the current user?</msg>    
+    <msg id="MSG.ALREADY_INSTALLED">abbozza! Calliope is installed already!</msg>
+    <msg id="MSG.CONTINUE_INSTALLATION">Continue installation?</msg>
+    <msg id="ERR.TITLE">Error!</msg>
+    <msg id="ERR.CANNOT_WRITE">Can't write into #!</msg>
+    <msg id="ERR.CANNOT_BACKUP">Can't backup previous installation!</msg>
+    <msg id="ERR.YOTTA_MISSING">Yotta could not be found!</msg>
+    
+    <msg id="MSG.STARTING_INSTALLATION">Installation started ...</msg>
+    <msg id="MSG.CHECKING_PREREQUISITES">... checking prereqisites</msg>
+    <msg id="MSG.CREATING_DIR">... directory # created</msg>
+    <msg id="MSG.BACKUP">... moving old version to #</msg>
+    <msg id="MSG.WRITING">... writing #</msg>
+    <msg id="MSG.ADDING_MENU">... generating menu entries</msg>
+    <msg id="MSG.COMPILE_CALLIOPE">... downloading for Calliope Mini</msg>
+    <msg id="MSG.COMPILE_MICROBIT">... downloading for micro:bit</msg>
+    <msg id="MSG.COMPILE_FAILED">... download failed (check access to http://github.com)</msg>
+    <msg id="MSG.COMPILE_SUCCESS">... download finished</msg>
+    <msg id="MSG.WRITING_CONFIGURATION">... writing config file #</msg>    
+    <msg id="MSG.PRECOMPILE">
+Download latest sources for the #?
+(requires connection to the internet)                
+    </msg>
+    <msg id="MSG.SET_PERMISSIONS">... Set tool permissions</msg>
+</language>
