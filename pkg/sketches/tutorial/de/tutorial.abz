@@ -12,20 +12,11 @@
 <field name="CONTENT">Ich bin der Calliope mini!</field>
 </block>
 </value>
-<next>
-<block id="ul2~LFJddRO2%Pu6ckTc" type="display_scroll">
-<value name="TEXT">
-<block id="8t9XKLdqoMbGUz)AD^EQ" type="text_const">
-<field name="CONTENT">Ich bin der Calliope mini!</field>
-</block>
-</value>
-</block>
-</next>
 </block>
 </statement>
 </block>
 <description/>
-<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
 <task height="448" width="588">&lt;page&gt;&lt;h1&gt;Ein erstes Programm&lt;/h1&gt;
 
 &lt;p&gt;Links siehst Du ein&amp;nbsp;einfaches &lt;strong&gt;Programm&lt;/strong&gt;, dass auf dem Calliope einfach die Laufschrift &lt;em&gt;"Ich bin der Calliope Mini!"&lt;/em&gt;&amp;nbsp;anzeigen soll.&lt;/p&gt;
