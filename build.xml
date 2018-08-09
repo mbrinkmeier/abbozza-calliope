@@ -161,9 +161,9 @@
             </manifest>
         </jar>    
         
-        <delete>
+        <!-- delete>
             <fileset dir="dist/install" />
-        </delete>
+        </delete -->
         
     </target> 
 </project>
