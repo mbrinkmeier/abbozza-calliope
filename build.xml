@@ -94,14 +94,14 @@
     
     <target name="-pre-compile">
         <copy todir="build/classes/" overwrite="true">
-            <fileset dir="../abbozza-common/build/classes"/>
+            <fileset dir="../abbozza-common/build/classes" includes="**/*" />
         </copy>
     </target>
         
     <target name="-pre-jar">
         <!-- fetch common stuff -->
         <copy todir="build/classes/" overwrite="true">
-            <fileset dir="../abbozza-common/build/classes"/>
+            <fileset dir="../abbozza-common/build/classes" includes="**/*" />
         </copy>        
     </target>
     

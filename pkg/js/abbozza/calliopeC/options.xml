@@ -19,9 +19,9 @@
         </item>
         <item name="gui.events" option="events" default="true"/>
         <group name="gui.arrays">
-            <choice name="gui.no_arrays" option="noArrays" default="false"/> 
+            <choice name="gui.no_arrays" option="noArrays" default="true"/> 
             <choice name="gui.lin_arrays" option="linArrays" default="false"/> 
-            <choice name="gui.mult_arrays" option="multArrays" default="true"/> 
+            <choice name="gui.mult_arrays" option="multArrays" default="false"/> 
         </group> 
         <!-- item name="gui.teacher" option="teacher"/-->
     </group>
