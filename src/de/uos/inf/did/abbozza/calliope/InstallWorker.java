@@ -230,7 +230,7 @@ public class InstallWorker extends SwingWorker<String, String> {
         ZipFile zip = null;
 
         if (!installTool.copyFromJar(installerJar, "tools.zip", installDir + "/tools.zip")) {
-            publish("... tools.zip not found in " + installerJar);
+            publish("... tools.zip not found in " + installerJar.getName());
             publish("... Checking if tools.zip exists in " + installDir);
         }
         

@@ -71,46 +71,52 @@
 
     -->    
     
+    
+    <target name="buildbase">
+        <copy todir="buildsystem/calliope" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/calliope"/>
+        </copy>    
+        <copy todir="buildsystem/microbit" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/microbit"/>
+        </copy>    
+        <copy todir="buildsystem/calliope/source" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/common"/>
+        </copy>    
+        <copy todir="buildsystem/microbit/source" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/common"/>
+        </copy>            
+
+        <jar destfile="dist/install/lib/buildbase.jar">
+            <fileset dir="buildsystem/"/>
+        </jar>        
+    </target>
+    
+    
     <target name="-pre-compile">
-        <copy todir="build/classes/">
+        <copy todir="build/classes/" overwrite="true">
             <fileset dir="../abbozza-common/build/classes"/>
         </copy>
     </target>
         
     <target name="-pre-jar">
         <!-- fetch common stuff -->
-        <copy todir="build/classes/">
+        <copy todir="build/classes/" overwrite="true">
             <fileset dir="../abbozza-common/build/classes"/>
-        </copy>
-        
-        <!-- Build buildbase.jar -->
-        <copy todir="buildsystem/calliope">
-            <fileset dir="pkg/build/calliope"/>
-        </copy>    
-        <copy todir="buildsystem/microbit">
-            <fileset dir="pkg/build/microbit"/>
-        </copy>    
-        <copy todir="buildsystem/calliope/source">
-            <fileset dir="pkg/build/common"/>
-        </copy>    
-        <copy todir="buildsystem/microbit/source">
-            <fileset dir="pkg/build/common"/>
-        </copy>    
-        <jar destfile="build/classes/lib/buildbase.jar">
-            <fileset dir="buildsystem/"/>
-        </jar>
+        </copy>        
     </target>
     
     
-    <target name="-post-jar">
+    
+    <target name="-post-jar" depends="buildbase">
         <mkdir dir="dist/install"/>
         <mkdir dir="dist/install/plugins"/>
         
-        <copy todir="dist/install/bin">
+        <copy todir="dist/install/bin" overwrite="true">
             <fileset dir="bin">
                 <include name="**/*"/>
             </fileset>
         </copy>    
+        
         
         <copy todir="dist/install/lib" overwrite="true">
             <fileset dir="lib">
@@ -123,44 +129,29 @@
             </fileset>
         </copy>
                 
-        <copy todir="dist/install/build/calliope" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/calliope/"/>
-        </copy>
-        <copy todir="dist/install/build/microbit" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/microbit/"/>
-        </copy>
-        <copy todir="dist/install/build/microbit/source/" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/common/"/>
-        </copy>
-        <copy todir="dist/install/build/calliope/source/" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/common/"/>
-        </copy>
-        
-        <jar destfile="dist/install/lib/buildbase.jar">
-            <fileset dir="buildsystem/"/>
-        </jar>        
                 
         <copy file="dist/abbozza-calliope.jar" tofile="dist/install/lib/abbozza-calliope.jar" overwrite="true"/>
         
-        <copy todir="dist/install/de/uos/inf/did/abbozza/core/">
+        
+        <copy todir="dist/install/de/uos/inf/did/abbozza/core/" overwrite="true">
             <file file="build/classes/de/uos/inf/did/abbozza/core/AbbozzaLocale.class"/>
             <file file="build/classes/de/uos/inf/did/abbozza/core/AbbozzaLogger.class"/>
         </copy>        
-        <copy todir="dist/install/de/uos/inf/did/abbozza/install/">
+        <copy todir="dist/install/de/uos/inf/did/abbozza/install/" overwrite="true">
             <fileset file="build/classes/de/uos/inf/did/abbozza/install/InstallTool*.class"/>
             <fileset file="build/classes/de/uos/inf/did/abbozza/install/AbbozzaLoggingFrame*.class"/>
         </copy>
-        <copy todir="dist/install/de/uos/inf/did/abbozza/tools/">
+        <copy todir="dist/install/de/uos/inf/did/abbozza/tools/" overwrite="true">
             <fileset file="build/classes/de/uos/inf/did/abbozza/tools/*.class"/>
         </copy>
-        <copy todir="dist/install/de/uos/inf/did/abbozza/calliope/">
+        <copy todir="dist/install/de/uos/inf/did/abbozza/calliope/" overwrite="true">
             <fileset file="build/classes/de/uos/inf/did/abbozza/calliope/AbbozzaCalliopeInstaller*.class"/>
             <fileset file="build/classes/de/uos/inf/did/abbozza/calliope/InstallWorker.class"/>
         </copy>
-        <copy todir="dist/install/de/uos/inf/did/abbozza/img/">
+        <copy todir="dist/install/de/uos/inf/did/abbozza/img/" overwrite="true">
             <fileset file="build/classes/de/uos/inf/did/abbozza/img/*"/>
         </copy>
-                 
+                
         <jar destfile="dist/abbozza-calliope-install.jar">
             <fileset dir="dist/install">
                 <include name="**/*" />
@@ -170,8 +161,9 @@
             </manifest>
         </jar>    
         
-        <!-- delete>
+        <delete>
             <fileset dir="dist/install" />
-        </delete -->
+        </delete>
+        
     </target> 
 </project>
