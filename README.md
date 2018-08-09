@@ -23,14 +23,14 @@ It allows graphical programming with [scratch-like blocks](http://scratch.mit.ed
 **abbozza-common** provides classes and files for the platform-specific IDEs. As such it is a prerequisite for the platform specific projects [abbozza-arduino](https://github.com/mbrinkmeier/abbozza-arduino) and 
 [abbozza-calliope](https://github.com/mbrinkmeier/abbozza-calliope).
 
-**abbozza-calliope** provides the interface and IDE for the [Calliope Mini](https://calliope.cc).
+**abbozza-calliope** provides the interface and IDE for the [Calliope Mini](https://calliope.cc) and an installer.
 
 ## How to build
 
 **abbozza-common** is a Netbeans Project. It provides the common classes and files for the projects
 [abbozza-arduino](https://github.com/mbrinkmeier/abbozza-arduino) and 
 [abbozza-calliope](https://github.com/mbrinkmeier/abbozza-calliope), which implement the IDEs for
-the specific platforms. The latter additionally requires the installer provided by [abbozza-calliope-install](https://github.com/mbrinkmeier/abbozza-calliope-install).
+the specific platforms. 
 
 ### Manual build
 
@@ -51,17 +51,19 @@ abboza-common and abbozza-calliope are at the same level):
 Change into `abbozza-calliope` and execute `ant`.
 
 #### 3rd Step
-Clone the repository [abbozza-calliope-install](https://github.com/mbrinkmeier/abbozza-calliope-install)
-to the same directory you cloned [abbozza-common](https://github.com/mbrinkmeier/abbozza-common) to:
-`git clone https://github.com/mbrinkmeier/abbozza-calliope-install.git`.
-Change int `abbozza-calliope-install` and execute `ant`.
+Download the tool set for your operating system:
+- [Windows](https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-win.zip)
+- [Linux](https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-linux.zip)
+- [MacOS](https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-macos.zip)
+
+Extract the archive to an arbitrary path `<tools>`.
 
 #### 4th Step
+Set the arguments for running the abbozza-calliope project in NetBeans.
+1. Right-click the abbozza-calliope project and chose *Properties* 
+2. Under *Run* add the following *Arguments*:
 
-The installer jar can be found in `abbozza-calliope-install/dist`. Run it:
-`java -jar abbozza-calliope-install.jar`
+   `-A file://<abbozza-calliope>/build/classes/ -T <tools> -B <abbozza-calliope>/build/classes/lib/buildbase.jar`
 
-#### Additional steps
-In addition you have to install [yotta](http://yottabuilder.org) and the build system. You can follow the
-instructions at [the abbozza! projects homepage](http://inf-didaktik.rz.uos.de/abbozza/calliope).
-
+   Here `<abbozza-calliope>` is the directory of the NetBeans project and `<tools>`
+   the directory in which you installed the tools in step 3.
