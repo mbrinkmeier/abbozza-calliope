@@ -1,0 +1,89 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="115" y="50">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>haupt</data>
+<statement name="STATEMENTS">
+<block id="Nco~,HmsOvofXS4a,r_t" type="display_scroll">
+<value name="TEXT">
+<block id="#TNODn#m)j@vp2Qp8)An" type="text_const">
+<field name="CONTENT">Ich bin der Calliope mini!</field>
+</block>
+</value>
+</block>
+</statement>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=true,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/mbrinkmeier/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
+<task height="448" width="588">&lt;page&gt;&lt;h1&gt;Ein erstes Programm&lt;/h1&gt;
+
+&lt;p&gt;Links siehst Du ein&amp;nbsp;einfaches &lt;strong&gt;Programm&lt;/strong&gt;, dass auf dem Calliope einfach die Laufschrift &lt;em&gt;"Ich bin der Calliope Mini!"&lt;/em&gt;&amp;nbsp;anzeigen soll. Wir nennen die Programme häufig auch &lt;strong&gt;Sketch.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Damit Du das Programm auf den Calliope Mini &lt;strong&gt;übertragen&lt;/strong&gt; kannst, musst Du ihn mit einem USB-Kabel an Deinen Computer anschließen. Falls Du das noch nicht gemacht hast, hole das jetzt nach.&lt;/p&gt;
+
+&lt;p&gt;Oben rechts siehst Du den Stecker&amp;nbsp;&lt;img alt="" src="img/connect.png" style="width: 16px; height: 16px;"&gt;. Wenn sein Knopf noch nicht gedrückt&amp;nbsp;ist, drücke ihn einmal. Dann sollte er grün werden.&lt;/p&gt;
+
+&lt;p&gt;Wenn der Knopf nicht grün wird, prüfe, ob der Calliope Mini richtig angeschlossen ist und probiere es noch einmal. Wenn auch das nicht hilft, kannst Du &lt;a href="https://inf-didaktik.rz.uos.de/abbozza/calliope/troubleshooting.php" target="_blank"&gt;hier Hilfe finden&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Wenn alles geklappt hat gehe mit dem Pfeil nach rechts zur nächsten Seite.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Das Programm hochladen&lt;/h1&gt;
+
+&lt;p&gt;Jetzt wollen wir das Programm auf den Calliope Mini hochladen. Dazu musst Du nur den &lt;strong&gt;Play-Button&lt;/strong&gt;&amp;nbsp;&lt;img alt="" src="img/upload.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;drücken. Danach wird das Programm vorbereitet. Das nennt man &lt;strong&gt;kompilieren&lt;/strong&gt;. Anschließend&amp;nbsp;wird das Programm auf den Calliope Mini &lt;strong&gt;übertragen&lt;/strong&gt;. Wenn Du das erste Mal ein Programm überträgst, kann das etwas länger dauern.&lt;/p&gt;
+
+&lt;p&gt;Nach einiger Zeit fängt der Calliope Mini an zu blinken. Das zeigt an, dass das Programm jetzt an ihn übertragen wird. Hört das Blinken auf, wird das Programm gestartet und der Text &lt;em&gt;"Ich bin der Calliope Mini!"&lt;/em&gt; wird angezeigt.&lt;/p&gt;
+
+&lt;p&gt;Probiere andere Texte aus!&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Blöcke kopieren&lt;/h1&gt;
+
+&lt;p&gt;Du kannst mehrere Texte nacheinander anzeigen lassen. Dazu kannst Du den Laufschrift Block &lt;strong&gt;kopieren&lt;/strong&gt;. Gehe mit dem Mauszeiger auf den Block &lt;strong&gt;Laufschrift&lt;/strong&gt;&amp;nbsp;und drücke die rechte Maustaste. Wähle &lt;em&gt;Kopieren&lt;/em&gt;. Danach hast Du eine weitere Kopie der Blöcke.&lt;/p&gt;
+
+&lt;p&gt;Füge Sie hinter dem erstem Block ein. Verändere den Text im zweiten Block und übertrage das Programm auf den Calliope Mini!&lt;/p&gt;
+
+&lt;p&gt;Du kannst auch noch andere Blöcke hinzufügen. Unter &lt;strong&gt;Anzeige&lt;/strong&gt;&amp;nbsp;findest Du einen Block für Bilder, einen für Farben und noch ein paar andere. Experimentiere ein wenig mit ihnen.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;a id="menu"&gt; &lt;/a&gt;
+&lt;h1&gt;Laden und Speichern&lt;/h1&gt;
+
+&lt;p&gt;In abbozza! wird ein Programm&amp;nbsp;&lt;strong&gt;Sketch&lt;/strong&gt; genannt.&lt;/p&gt;
+
+&lt;p&gt;Deinen Sketch kannst du mit dem Knopf&amp;nbsp;&lt;img alt="" src="img/save.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;speichern. Wenn du den Knopf drückst geht ein Fenster auf, indem Du auswählen kannst, wo und unter welchem Namen Du Deinen Sketch speichern willst.&lt;/p&gt;
+
+&lt;p&gt;Manchmal kann es vorkommen, das das Fenster nicht "nach vorne" kommt. Dann ist es "hinter" dem Browser.&lt;/p&gt;
+
+&lt;p&gt;Mit dem Knopf&amp;nbsp;&lt;img alt="" src="/img/load.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;kannst Du einen Sketch&amp;nbsp;laden.&lt;/p&gt;
+
+&lt;p&gt;Der Knopf&amp;nbsp;&lt;img alt="" src="img/new.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;öffnet einen neuen Sketch.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/save.png" style="float: left; width: 24px; height: 24px;"&gt;&lt;strong&gt;Speichern&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/load.png" style="float: left; width: 24px; height: 24px;"&gt;&lt;strong&gt;Laden&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/new.png" style="float: left; width: 24px; height: 24px;"&gt;&lt;strong&gt;Neuer Sketch&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/check.png"&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Die anderen Knöpfe&lt;/h1&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/settings.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Dieser Knopf&amp;nbsp;&amp;nbsp;öffnet das Fenster mit den Einstallungen. Dort kannst Du Blöcke an- und ausschalten und einige andere Dinge einstellen.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/info.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Der Knopf&amp;nbsp;öffnet ein kleines Menü mit drei weiteren Knöpfen&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/info.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Dieser Knopf öffnet dieses &lt;strong&gt;Aufgabenfenster&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/world-wide-web.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Mit diesem Knopf kannst Du die &lt;strong&gt;abbozza! Homepage&lt;/strong&gt; öffnen.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/graduate-cap.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Mit diesem Knopf kannst Du dieses &lt;strong&gt;Tutorial&lt;/strong&gt; öffnen.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/serial.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;öffnet den &lt;strong&gt;Monitor&lt;/strong&gt;. Er ermöglicht es, dass der Calliope Mini Daten an den PC schickt, dass Du dem Calliope Nachrichten schickst und das er Nachrichten aus dem Internet erhalten kann. Dazu an anderer Stelle mehr.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Ein paar praktische Tipps&lt;/h1&gt;
+
+&lt;p&gt;Stört Dich dieses &lt;strong&gt;Aufgabenfenster,&lt;/strong&gt; dann kannst Du es mit dem Kreuz rechts oben schließen.&amp;nbsp;Mit&amp;nbsp;&lt;img alt="" src="img/info.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;kannst Du es wieder öffnen.&lt;/p&gt;
+
+&lt;p&gt;Ist dir die Schrift zu groß kannst Du sie mit &lt;strong&gt;Strg-Minus&lt;/strong&gt;&amp;nbsp;kleiner machen. Drücke einfach die Taste Strg und das Minus (-) gleichzeitig.&lt;/p&gt;
+
+&lt;p&gt;Mit &lt;strong&gt;Strg-Plus&lt;/strong&gt; kannst Du die Schrift vergrößern.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>
