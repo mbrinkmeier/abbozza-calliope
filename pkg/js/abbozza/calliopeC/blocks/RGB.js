@@ -26,7 +26,7 @@
 Abbozza.DeviceRGBLedSetColor = {
     init: function () {
         this.setHelpUrl(Abbozza.HELP_URL);
-        this.setColour(ColorMgr.getColor("cat.DEVOUT"));
+        this.setColour(ColorMgr.getColor("cat.DISPLAY"));
         this.appendDummyInput()
             .appendField(__("dev.SETRGBLED",0))
             .appendField(__("dev.SETRGBLED",1));
@@ -73,7 +73,7 @@ Abbozza.DeviceRGBLedSetColor = {
 Abbozza.DeviceRGBLedSetColor2 = {
     init: function () {
         this.setHelpUrl(Abbozza.HELP_URL);
-        this.setColour(ColorMgr.getColor("cat.DEVOUT"));
+        this.setColour(ColorMgr.getColor("cat.DISPLAY"));
         this.appendDummyInput()
             .appendField(__("dev.SETRGBLED",0))
             .appendField(__("dev.SETRGBLED",1))

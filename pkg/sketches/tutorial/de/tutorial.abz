@@ -7,7 +7,7 @@
 <data>haupt</data>
 </block>
 <description/>
-<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=true,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/mbrinkmeier/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
 <task height="448" next="?!sketches/tutorial/de/upload.abz" width="588">&lt;page&gt;&lt;h1&gt;Hallo!&lt;/h1&gt;
 
 &lt;p&gt;In diesem &lt;strong&gt;Tutorial&lt;/strong&gt;&amp;nbsp;lernst Du, wie man&amp;nbsp;abbozza! bedient.&lt;/p&gt;
@@ -20,8 +20,8 @@ Programme für Minicomputer wie den Calliope Mini werden häufig auch &lt;strong
 &lt;p&gt;Das Tutorial besteht aus den folgenden Schritten:&lt;/p&gt;
 
 &lt;ol&gt;
-	&lt;li&gt;&lt;a href="?!sketches/tutorial/de/upload.abz"&gt;Ein Programm auf den Calliope Mini hochladen&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;Ein Programm genauer erklärt&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?!sketches/tutorial/de/upload.abz"&gt;Ein Programm&amp;nbsp;auf den Calliope Mini übertragen&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?!sketches/tutorial/de/firstsketch.abz"&gt;Ein erstes Programm, genauer erklärt&lt;/a&gt;&lt;/li&gt;
 	&lt;li&gt;Speichern und Laden von Programmen&lt;/li&gt;
 	&lt;li&gt;...&lt;/li&gt;
 &lt;/ol&gt;

@@ -1,0 +1,112 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="322" y="19">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+<statement name="STATEMENTS">
+<block id="cp2N3Mb9dzXyPXi5CC.w" type="dev_rgb_led_set_color2">
+<field name="COLOR">#000000</field>
+<data>rgb_black</data>
+<next>
+<block id=",gBa}aEoj(xFu_Jm)Nio" type="loop_endless">
+<data>schleife</data>
+<statement name="STATEMENTS">
+<block id="#2S6;:?^gv~iebixWJPj" type="cond_if">
+<data>if</data>
+<value name="CONDITION">
+<block id="2i.@-G/-Cb7A^PB8.Hlp" type="dev_button_pressed">
+<field name="BUTTON">abbozza.buttonA</field>
+<data>button</data>
+</block>
+</value>
+<statement name="STATEMENTS">
+<block id="6p4*za_1D@VOsR%y-hdd" type="dev_rgb_led_set_color2">
+<field name="COLOR">#3333ff</field>
+<next>
+<block id="cz~trslVR!/H_P1L:%!|" type="loop_delay">
+<data>wait</data>
+<value name="TIME">
+<block id="Ag;f6vB+MSi[ubh;*cB`" type="math_number">
+<field name="VALUE">1000</field>
+</block>
+</value>
+<next>
+<block id="]K3(imvegH{Qd7Q]R?1+" type="dev_rgb_led_set_color2">
+<field name="COLOR">#000000</field>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
+<task height="400" main="?!sketches/tutorial/de/tutorial.abz" prev="?!sketches/tutorial/de/upload.abz" width="600">&lt;page&gt;&lt;h1&gt;Ein erstes Programm ...&lt;/h1&gt;
+
+&lt;p&gt;Links siehst Du ein Programm. Übertrage es auf den Calliope Mini und probiere es aus.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;... genauer erklärt&lt;/h1&gt;
+&lt;abbozza-hint block="main" dx="-252" dy="-5" height="42" width="171"&gt;Das Hauptprogramm&lt;/abbozza-hint&gt;
+
+&lt;h2&gt;Das Hauptprogramm&lt;/h2&gt;
+
+&lt;p&gt;Der äußerste Block ist das &lt;strong&gt;Hauptprogramm&lt;/strong&gt;. In ihm wird das Programm eingefügt, dass der Calliope Mini &lt;strong&gt;ausführen&lt;/strong&gt; soll. Die Blöcke, die er umklammert werden von oben nach unten ausgeführt.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;... genauer erklärt&lt;/h1&gt;
+&lt;abbozza-hint block="rgb_black" dx="-252" dy="-5" height="69" width="176"&gt;Lasse die RGB-LED in der eingestellten Farbe leuchten.&lt;/abbozza-hint&gt;
+
+&lt;h2&gt;Die RGB-LED&lt;/h2&gt;
+
+&lt;p&gt;DIE RGB-LED kann in den verschiedensten Fabren leuchten. Mit diesem Block kannst Du die Farbe einstellen.&lt;/p&gt;
+
+&lt;p&gt;In unserem Programm ist es Schwarz, d.h. die LED ist aus.&lt;/p&gt;
+
+&lt;p&gt;Die Blöcke für die RGB-LED findest Du unter &lt;strong&gt;Anzeige&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;"&gt;&lt;strong&gt;Übrigens!&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;RGB&lt;/strong&gt; steht für &lt;strong&gt;Rot-Grün-Blau&lt;/strong&gt;. Aus der Kombination dieser drei Farben lassen sich alle anderen Farben mischen.&lt;/div&gt;
+&lt;/page&gt;&lt;page&gt;&lt;abbozza-hint block="schleife" dx="-283" dy="-14" height="43" width="214"&gt;Dies ist eine Endlos-Schleife&lt;/abbozza-hint&gt;
+&lt;h1&gt;... genauer erklärt&lt;/h1&gt;
+
+&lt;h2&gt;Die Schleife&lt;/h2&gt;
+
+&lt;p&gt;Dieser Block ist eine &lt;strong&gt;Endlos-Schleife&lt;/strong&gt;. Alle Blöcke, die sie umschließt, werden immer wieder wiederholt.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Schleifen&lt;/strong&gt;&amp;nbsp;sind dazu da, Teile eines Programmes mehrere Male auszuführen.&amp;nbsp;Es gibt noch andere Arten von Schleifen, die für die unterschiedlichsten Dinge benutzt werden können.&lt;/p&gt;
+
+&lt;p&gt;Schleifen findest Du bei den Blöcken unter &lt;strong&gt;Kontrolle&lt;/strong&gt;.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;abbozza-hint block="if" dx="-296" dy="-23" height="54" width="181"&gt;Hier wird eine Entscheidung getroffen.&lt;/abbozza-hint&gt;&lt;abbozza-hint block="button" dx="64" dy="-81" height="52" width="191"&gt;Dies ist die Bedingung, die erfüllt sein muss&lt;/abbozza-hint&gt;
+&lt;h1&gt;... genauer erklärt&lt;/h1&gt;
+
+&lt;h2&gt;Die Entscheidung&lt;/h2&gt;
+
+&lt;p&gt;Die &lt;strong&gt;Entscheidung&lt;/strong&gt; dient dazu einen Teil eines Programmes nur dann auszuführen, wenn eine bestimmte &lt;strong&gt;Bedingung&lt;/strong&gt; erfüllt ist.&lt;/p&gt;
+
+&lt;p&gt;In unserem Fall wird geprüft, ob der &lt;strong&gt;Knopf A gedrückt&lt;/strong&gt; wird. Wenn ja, wird das Programm im Inneren der Entscheidung ausgeführt. Wenn nicht, wird der Teil des Programms&amp;nbsp;übersprungen.&lt;/p&gt;
+
+&lt;p&gt;Entscheidungen findest Du unter &lt;strong&gt;Kontrolle&lt;/strong&gt;.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;abbozza-hint block="wait" dx="-311" dy="-18" height="38" width="215"&gt;Hier wird einfach nur gewartet&lt;/abbozza-hint&gt;
+&lt;h1&gt;... genauer erklärt&lt;/h1&gt;
+
+&lt;h2&gt;Der Warteblock&lt;/h2&gt;
+
+&lt;p&gt;Der &lt;strong&gt;Warteblock&lt;/strong&gt;&amp;nbsp;lässt den Calliope Mini für eine bestimmte Zeit warten. Das ist manchmal notwendig, damit man die programmierten Effekte sieht. In diesem Fall soll die RGB-LED für eine Sekunde blau leuchten, bevor sie wieder ausgeschaltet wird.&lt;/p&gt;
+
+&lt;p&gt;Den Warteblock findest Du unter &lt;strong&gt;Kontrolle&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;"&gt;&lt;strong&gt;Übrigens!&lt;/strong&gt;&lt;br&gt;
+Die Zeit im Warteblock wird in Millisekunden angegeben. Eine Sekunde (s) hat 1000 Millisekunden (ms).&lt;/div&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>
