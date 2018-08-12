@@ -99,7 +99,7 @@ Abbozza.Images = [
  * The colors for the LEDs
  * @type Array
  */
-Abbozza.DisplayColors = ["#ff0000","#e80000","#d00000","#b80000","#a00000","#880000","#700000","#580000","#400000","#000000"]
+Abbozza.DisplayColors = ["#ff0000","#800000","#400000","#200000","#100000","#080000","#040000","#020000","#010000","#000000"]
 
 /**
  * This block scrolls a text from left to right
@@ -438,14 +438,14 @@ Abbozza.DisplayColor = {
         var color = this.getFieldValue("COLOR");
         switch (color) {
             case "#ff0000": return 9;
-            case "#e80000": return 8;
-            case "#d00000": return 7;
-            case "#b80000": return 6;
-            case "#a00000": return 5;
-            case "#880000": return 4;
-            case "#700000": return 3;
-            case "#580000": return 2;
-            case "#400000": return 1;
+            case "#800000": return 8;
+            case "#400000": return 7;
+            case "#200000": return 6;
+            case "#100000": return 5;
+            case "#080000": return 4;
+            case "#040000": return 3;
+            case "#020000": return 2;
+            case "#010000": return 1;
             case "#000000": return 0;
         }        
         return 0;
@@ -491,7 +491,7 @@ Blockly.Blocks['display_show_internal_image'] = Abbozza.DisplayShowInternalImage
 
 Abbozza.DisplayImage = {
     init : function() {
-        this.colors = ["#ff0000","#e80000","#d00000","#b80000","#a00000","#880000","#700000","#580000","#400000","#000000"];
+        this.colors = ["#FF0000","#E60000","#D20000","#B40000","#960000","#780000","#5A0000","#3C0000","#1E0000","#000000"];
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getCatColor("cat.DISPLAY"));
         this.setPreviousStatement(true,"STATEMENT");
@@ -526,14 +526,14 @@ Abbozza.DisplayImage = {
                 var value = this.getFieldValue(field);
                 switch (value) {
                     case "#000000": image = "0"; break;
-                    case "#400000": image = "30"; break;
-                    case "#580000": image = "60"; break;
-                    case "#700000": image = "90"; break;
-                    case "#880000": image = "120"; break;
-                    case "#a00000": image = "150"; break;
-                    case "#b80000": image = "180"; break;
-                    case "#d00000": image = "210"; break;
-                    case "#e80000": image = "230"; break;
+                    case "#1e0000": image = "1"; break;
+                    case "#3c0000": image = "2"; break;
+                    case "#5a0000": image = "4"; break;
+                    case "#780000": image = "8"; break;
+                    case "#960000": image = "16"; break;
+                    case "#b40000": image = "32"; break;
+                    case "#d20000": image = "64"; break;
+                    case "#e60000": image = "128"; break;
                     case "#ff0000": image = "255"; break;
                     default:
                            image = "";
@@ -566,7 +566,6 @@ Blockly.Blocks['display_image'] = Abbozza.DisplayImage;
  */
 Abbozza.DisplayShowImage = {
     init : function() {
-        this.colors = ["#ff0000","#e80000","#d00000","#b80000","#a00000","#880000","#700000","#580000","#400000","#000000"];
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getCatColor("cat.DISPLAY"));
         this.setPreviousStatement(true,"STATEMENT");

@@ -296,13 +296,15 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
      */
     public void findJarsAndDirs(JarDirHandler jarHandler) {
         jarHandler.clear();
-        jarHandler.addDir(jarPath + "/", "Dir");
-        jarHandler.addJar(jarPath + "/abbozza-calliope.jar", "Jar");
-        
+
         // Adding additional uris
         for ( URI uri : additionalURIs ) {
             jarHandler.addURI(uri);
         }
+
+        jarHandler.addDir(jarPath + "/", "Dir");
+        jarHandler.addJar(jarPath + "/abbozza-calliope.jar", "Jar");
+        
     }
 
     /**

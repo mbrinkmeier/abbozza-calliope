@@ -1,0 +1,117 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="100" y="20">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+<statement name="STATEMENTS">
+<block id="vf5td=Ui@AmwU;]y{26/" type="display_image">
+<field name="F00">#000000</field>
+<field name="F10">#000000</field>
+<field name="F20">#000000</field>
+<field name="F30">#000000</field>
+<field name="F40">#000000</field>
+<field name="F01">#000000</field>
+<field name="F11">#ff0000</field>
+<field name="F21">#000000</field>
+<field name="F31">#ff0000</field>
+<field name="F41">#000000</field>
+<field name="F02">#000000</field>
+<field name="F12">#000000</field>
+<field name="F22">#000000</field>
+<field name="F32">#000000</field>
+<field name="F42">#000000</field>
+<field name="F03">#ff0000</field>
+<field name="F13">#000000</field>
+<field name="F23">#000000</field>
+<field name="F33">#000000</field>
+<field name="F43">#ff0000</field>
+<field name="F04">#000000</field>
+<field name="F14">#ff0000</field>
+<field name="F24">#ff0000</field>
+<field name="F34">#ff0000</field>
+<field name="F44">#000000</field>
+<next>
+<block id="6pcbtyi}M*r!Q74wra1M" type="display_image">
+<field name="F00">#000000</field>
+<field name="F10">#000000</field>
+<field name="F20">#000000</field>
+<field name="F30">#000000</field>
+<field name="F40">#000000</field>
+<field name="F01">#000000</field>
+<field name="F11">#ff0000</field>
+<field name="F21">#000000</field>
+<field name="F31">#ff0000</field>
+<field name="F41">#000000</field>
+<field name="F02">#000000</field>
+<field name="F12">#000000</field>
+<field name="F22">#000000</field>
+<field name="F32">#000000</field>
+<field name="F42">#000000</field>
+<field name="F03">#000000</field>
+<field name="F13">#ff0000</field>
+<field name="F23">#ff0000</field>
+<field name="F33">#ff0000</field>
+<field name="F43">#000000</field>
+<field name="F04">#ff0000</field>
+<field name="F14">#000000</field>
+<field name="F24">#000000</field>
+<field name="F34">#000000</field>
+<field name="F44">#ff0000</field>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
+<task height="400" main="?tutorial.abz" next="?saveload.abz" prev="?display.abz" width="600">&lt;page&gt;&lt;h1&gt;Alles gleichzeitig?&lt;/h1&gt;
+
+&lt;p&gt;Wenn Du das Programm auf den Calliope überträgst, was wird dann Deiner Meinung nach geschehen?&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Es ist erst&amp;nbsp;der lachenden Smiley zu sehen und danach der traurige.&lt;/li&gt;
+	&lt;li&gt;Es ist nur der lachende Smiley zu sehen.&lt;/li&gt;
+	&lt;li&gt;Es ist nur der traurige Smiley zu sehen.&lt;/li&gt;
+	&lt;li&gt;Es geschieht etwas anderes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Probiere es aus. Übertrage das Programm auf den Calliope Mini.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Alles nacheinander!&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Antwort: Es ist nur der traurige Smiley zu sehen.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Die Blöcke im Hauptprogramm werden &lt;strong&gt;nacheinander&lt;/strong&gt; ausgeführt. Erst wird der lachende Smiley angezeigt, dann der traurige.&lt;/p&gt;
+
+&lt;p&gt;Aber warum siehst Du den lachenden Smiley dann nicht?&lt;/p&gt;
+
+&lt;p&gt;Das liegt daran, dass er nur sehr kurz angezeigt wird, bevor der traurige angezeigt wird. Und zwar so kurz, dass Du ihn gar nicht siehst.&lt;/p&gt;
+
+&lt;h1&gt;&lt;/h1&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Wir brauchen eine Pause&lt;/h1&gt;
+
+&lt;p&gt;Damit Du den lachenden Smiley sehen kannst, muss der Calliope Mini nach dem ersten Block ein wenig warten.&lt;/p&gt;
+
+&lt;p&gt;Dafür findest Du unter &lt;strong&gt;Kontrolle&lt;/strong&gt;&amp;nbsp;einen &lt;strong&gt;Warte-Block&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/wait.png" style="width: 151px; height: 41px;"&gt;&lt;/p&gt;
+
+&lt;p&gt;Die Zahl gibt die Anzahl der &lt;strong&gt;Millisekunden&lt;/strong&gt; (ms) an, die der Calliope Mini warten soll. Füge den Block zwischen den beiden Bildern ein und trage &lt;strong&gt;1000&lt;/strong&gt;&amp;nbsp;ein. Dann probiere das Programm aus.&lt;/p&gt;
+
+&lt;div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;"&gt;&lt;strong&gt;Übrigens!&lt;/strong&gt;&lt;br&gt;
+Eine Sekunde (s) hat 1000 Millisekunden (ms).&lt;/div&gt;
+
+&lt;p&gt;Ändere das Programm so, dass der lachende Smiley 5 Sekunden lang zu sehen ist. Welchen Wert musst Du im Warten-Block eintragen?&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Die Lösung&lt;img alt="" src="sketches/tutorial/de/timing.png" style="height: 265px; width: 150px; float: right;"&gt;&lt;/h1&gt;
+
+&lt;p&gt;Du musst &lt;strong&gt;5000&lt;/strong&gt;&amp;nbsp;im Warte-Block eintragen. Dein Programm sollte jetzt so aussehen, wie recht dargestellt.&lt;/p&gt;
+
+&lt;p&gt;Wenn Du noch mehr mit Bildern und Filmen experimentieren möchtest, empfehlen Wir Dir das&amp;nbsp;&lt;a href="?http://inf-didaktik.rz.uos.de/downloads/abbozza/material/calliope/sketches/DigitalesDaumenkino.abj"&gt;Digitale Daumenkino&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Sonst geht es hier zum nächsten Tutorial.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

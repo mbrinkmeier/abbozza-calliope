@@ -8,11 +8,9 @@
 </block>
 <description/>
 <options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
-<task height="448" next="?!sketches/tutorial/de/upload.abz" width="588">&lt;page&gt;&lt;h1&gt;Hallo!&lt;/h1&gt;
+<task height="448" next="?blocks.abz" width="588">&lt;page&gt;&lt;h1&gt;Hallo!&lt;/h1&gt;
 
-&lt;p&gt;In diesem &lt;strong&gt;Tutorial&lt;/strong&gt;&amp;nbsp;lernst Du, wie man&amp;nbsp;abbozza! bedient.&lt;/p&gt;
-
-&lt;p&gt;Du wirst Deine ersten &lt;strong&gt;Programme&lt;/strong&gt;&amp;nbsp;schreiben und ausprobieren und es wird Dir gezeigt wo Du mehr Informationen findest.&lt;/p&gt;
+&lt;p&gt;In diesem &lt;strong&gt;Tutorial&lt;/strong&gt;&amp;nbsp;lernst Du, wie man mit abbozza! den &lt;strong&gt;Calliope Mini&lt;/strong&gt; programmieren kann. Du wirst Deine ersten &lt;strong&gt;Programme&lt;/strong&gt;&amp;nbsp;erstellen&amp;nbsp;und ausprobieren und es wird Dir gezeigt wo Du mehr Informationen findest.&lt;/p&gt;
 
 &lt;p style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;&lt;strong&gt;Übrigens!&lt;/strong&gt;&lt;br&gt;
 Programme für Minicomputer wie den Calliope Mini werden häufig auch &lt;strong&gt;Sketch&lt;/strong&gt;&amp;nbsp;genannt. Das ist English und bedeutet &lt;strong&gt;Skizze&lt;/strong&gt; oder &lt;strong&gt;Entwurf&lt;/strong&gt;.&lt;/p&gt;
@@ -20,9 +18,11 @@ Programme für Minicomputer wie den Calliope Mini werden häufig auch &lt;strong
 &lt;p&gt;Das Tutorial besteht aus den folgenden Schritten:&lt;/p&gt;
 
 &lt;ol&gt;
+	&lt;li&gt;&lt;a href="?blocks.abz"&gt;Von Programmen und Blöcken&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?display.abz"&gt;Die Anzeige&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?saveload.abz"&gt;Speichern und Laden von Sketches&lt;/a&gt;&lt;/li&gt;
 	&lt;li&gt;&lt;a href="?!sketches/tutorial/de/upload.abz"&gt;Ein Programm&amp;nbsp;auf den Calliope Mini übertragen&lt;/a&gt;&lt;/li&gt;
 	&lt;li&gt;&lt;a href="?!sketches/tutorial/de/firstsketch.abz"&gt;Ein erstes Programm, genauer erklärt&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;Speichern und Laden von Programmen&lt;/li&gt;
 	&lt;li&gt;...&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/page&gt;</task>

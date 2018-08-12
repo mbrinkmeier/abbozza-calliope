@@ -1,0 +1,43 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="78" y="66">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
+<task height="400" main="?tutorial.abz" next="?display_timing.abz" prev="?blocks.abz" width="600">&lt;page&gt;&lt;h1&gt;Die Anzeige&lt;/h1&gt;
+
+&lt;p&gt;Der Calliope Mini kann auf seiner &lt;strong&gt;Anzeige&lt;/strong&gt;&amp;nbsp;Texte und Bilder darstellen. Die Blöcke dafür findest Du unter &lt;strong&gt;Anzeige&lt;/strong&gt;&amp;nbsp;in dem Block-Menu auf der linken Seite.&lt;/p&gt;
+
+&lt;p&gt;Finde dort den Block mit dem Du ein Bild darstellen kannst.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tipp:&lt;/strong&gt; Der Block ist ziemlich groß.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Ein Bild&lt;/h1&gt;
+
+&lt;p&gt;&lt;img alt="" src="sketches/tutorial/de/image.png" style="float: right; width: 140px; height: 176px;"&gt;Der gesuchte Block ist rechts dargestellt.&lt;/p&gt;
+
+&lt;p&gt;Jedes der Schwarzen Quadrate steht für eine der LEDs in der Anzeige. Klicke eines davon an. Du kannst auswählen in welcher Helligkeit die LED leuchten soll.&lt;/p&gt;
+
+&lt;p&gt;Zeichne ein Bild, z.B. einen Smiley, und füge den Block in das Hauptprogramm ein. Dann übertrage es auf den Calliope Mini (mit dem&amp;nbsp;&lt;img alt="" src="img/upload.png" style="width: 16px; height: 16px;"&gt; Knopf).&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Die RGB-LED&lt;/h1&gt;
+
+&lt;p&gt;Der Calliope Mini hat auch eine LED, die in verschiedenen Farben leuchten kann.&lt;img alt="" src="sketches/tutorial/de/rgb.png" style="width: 150px; height: 31px; float: right;"&gt;&lt;/p&gt;
+
+&lt;p&gt;Unter Anzeige findest Du auch einen Block, um die Farbe einzustellen. Suche ihn und füge ihn in dein Hauptprogramm ein. Du kannst ihn vor oder hinter Deinem Bild einfügen. Klicke auf das schwarze Feld und suche Dir eine Farbe aus.&lt;/p&gt;
+
+&lt;p&gt;Probiere Dein Programm aus.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Alles gleichzeitig?&lt;img alt="" src="sketches/tutorial/de/image_rgb.png" style="float: right; width: 150px; height: 160px;"&gt;&lt;/h1&gt;
+
+&lt;p&gt;Dein Programm wird&amp;nbsp;so ähnlich aussehen, wie das Bild rechts.&lt;/p&gt;
+
+&lt;p&gt;Man könnte meinen, dass die beiden Blöcke gleichzeitig ausgeführt werden. Das ist aber nicht so.&lt;/p&gt;
+
+&lt;p&gt;Um das zu sehen, gehe zum &lt;a href="?display_timing.abz"&gt;nächsten Schritt des Tutorials&lt;/a&gt;.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

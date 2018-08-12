@@ -1,0 +1,71 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="56" y="99">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+</block>
+<block id=",8!,dkCOSJ5{51?Ltqck" type="display_scroll" x="61" y="178">
+<data>laufschrift</data>
+</block>
+<block id="J3KoO5mZ6@Vk~j%6ycKY" type="text_const" x="71" y="231">
+<field name="CONTENT">Hallo!</field>
+<data>text</data>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
+<task height="400" main="?tutorial.abz" next="?display.abz" prev="?tutorial.abz" width="600">&lt;page&gt;&lt;h1&gt;Von Programmen und Blöcken&lt;/h1&gt;
+
+&lt;p&gt;Ein abbozza! Sketch besteht aus einer Reihe von &lt;strong&gt;Blöcken&lt;/strong&gt;. Sie können wie Teile eines Puzzles miteinander kombiniert werden.&lt;/p&gt;
+
+&lt;p&gt;Welcher Block an welchen passt kannst Du an den &lt;strong&gt;Anschlüssen&lt;/strong&gt; erkennen.&lt;/p&gt;
+
+&lt;p&gt;Gehe mit dem Pfeil nach rechts zur nächsten Seite.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;abbozza-hint block="main" dx="-25" dy="-67" height="36" width="210"&gt;Dies ist das Hauptprogramm&lt;/abbozza-hint&gt;
+&lt;h1&gt;Der Hauptprogramm-Block&lt;/h1&gt;
+
+&lt;p&gt;Der Block &lt;strong&gt;Hauptprogramm&lt;/strong&gt;&amp;nbsp;ist immer vorhanden. Nur die Blöcke, die in diesem Block eingefügt sind werden ausgeführt.&lt;/p&gt;
+
+&lt;p&gt;Nur einer der beiden anderen Blöcke hat den passenden Anschluss. Verschiebe ihn in das Hauptprogramm. Achte darauf, dass die beiden Blöcke sich richtig verbinden.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;abbozza-hint block="laufschrift" dx="187" dy="-59" height="70" width="130"&gt;Dieser Block braucht einen Wert&lt;/abbozza-hint&gt;
+&lt;h1 style="text-align: justify;"&gt;Werte&lt;/h1&gt;
+
+&lt;p style="text-align: justify;"&gt;Dieser&amp;nbsp;Block benötigt einen Wert. In diesem Fall einen &lt;strong&gt;Text&lt;/strong&gt; der angezeigt werden soll. An der Form des rechten Anschlusses erkennst Du, welche Blöcke Du anschließen kannst.&lt;/p&gt;
+
+&lt;p style="text-align: justify;"&gt;Schließe den den passenden&amp;nbsp;&lt;strong&gt;Text-Block&lt;/strong&gt; an den &lt;strong&gt;Laufschrift-Block&lt;/strong&gt; an.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;abbozza-hint block="text" dx="-5" dy="36" height="39" width="142"&gt;Ändere den Text!&lt;/abbozza-hint&gt;
+&lt;h1&gt;Der Text-Block&lt;/h1&gt;
+
+&lt;p&gt;Den Text des Text-Blocks kannst Du verändern. Klicke ihn an und gebe über die Tastatur einen anderen Text ein.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Probiere das Programm aus&lt;/h1&gt;
+
+&lt;p&gt;Dein Programm sollte&amp;nbsp;&lt;img alt="" src="/sketches/tutorial/de/blocks.png" style="float: right; width: 200px; height: 67px; margin-left: 10px; margin-right: 10px;"&gt;jetzt ungefähr so aussehen, wie das Bild rechts.&lt;/p&gt;
+
+&lt;p&gt;Wenn ja, bist Du soweit, dass Du es auf den Calliope Mini übertragen kannst.&lt;/p&gt;
+
+&lt;h3&gt;Schließe den Calliope Mini an&lt;/h3&gt;
+
+&lt;p&gt;Damit Du das Programm auf den Calliope Mini &lt;strong&gt;übertragen&lt;/strong&gt; kannst, musst Du ihn mit einem USB-Kabel an Deinen Computer anschließen. Falls Du das noch nicht gemacht hast, hole das jetzt nach.&lt;/p&gt;
+
+&lt;p&gt;Oben rechts siehst Du den Stecker&amp;nbsp;&lt;img alt="" src="img/connect.png" style="width: 16px; height: 16px;"&gt;. Wenn sein Knopf noch nicht gedrückt&amp;nbsp;ist, drücke ihn einmal. Dann sollte er grün werden.&lt;/p&gt;
+
+&lt;p&gt;Wenn der Knopf nicht grün wird, prüfe, ob der Calliope Mini richtig angeschlossen ist und probiere es noch einmal. Wenn auch das nicht hilft, kannst Du &lt;a href="https://inf-didaktik.rz.uos.de/abbozza/calliope/troubleshooting.php" target="_blank"&gt;hier Hilfe finden&lt;/a&gt;.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Das Programm übertragen&lt;/h1&gt;
+
+&lt;p&gt;Jetzt wollen wir das Programm auf den Calliope Mini hochladen. Dazu musst Du nur den &lt;strong&gt;Play-Button&lt;/strong&gt;&amp;nbsp;&lt;img alt="" src="img/upload.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;drücken. Danach wird das Programm vorbereitet. Das nennt man &lt;strong&gt;kompilieren&lt;/strong&gt;. Anschließend&amp;nbsp;wird das Programm auf den Calliope Mini &lt;strong&gt;übertragen&lt;/strong&gt;. Wenn Du das erste Mal ein Programm überträgst, kann das etwas länger dauern.&lt;/p&gt;
+
+&lt;p&gt;Nach einiger Zeit fängt der Calliope Mini an zu blinken. Das zeigt an, dass das Programm jetzt an ihn übertragen wird. Hört das Blinken auf, wird das Programm gestartet und der Text &lt;em&gt;"Ich bin der Calliope Mini!"&lt;/em&gt; wird angezeigt.&lt;/p&gt;
+
+&lt;p&gt;Probiere andere Texte aus!&lt;/p&gt;
+
+&lt;p&gt;Wenn Du weitermachen möchtest, Drücke auf ⏭ um mit der nächsten Aufgabe weiter zu machen oder auf ⏏ um zurück zur&amp;nbsp;ersten Seite zu gehen.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

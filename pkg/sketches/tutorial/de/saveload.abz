@@ -1,0 +1,30 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="100" y="20">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
+<task height="400" main="?tutorial.abz" prev="?display_timing.abz" width="600">&lt;page&gt;&lt;h1&gt;Speichern und Laden von Sketches&lt;/h1&gt;
+
+&lt;p&gt;Mit dem Knopf&amp;nbsp;&lt;img alt="" src="img/save.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;kannst Du Deinen Sketch speichern. Wenn du den Knopf drückst geht ein Fenster auf. Dort kannst Du auswählen wo und unter welchem Namen Du Deinen Sketch speichern willst.&lt;/p&gt;
+
+&lt;p&gt;Manchmal kann es vorkommen, das das Fenster nicht "nach vorne" kommt. Dann ist es "hinter" dem Browser. Dann musst Du das Fenster suchen.&lt;/p&gt;
+
+&lt;p&gt;Mit dem Knopf&amp;nbsp;&lt;img alt="" src="/img/load.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;kannst Du einen Sketch&amp;nbsp;laden.&lt;/p&gt;
+
+&lt;p&gt;Der Knopf&amp;nbsp;&lt;img alt="" src="img/new.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;öffnet einen neuen Sketch.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/save.png" style="float: left; width: 24px; height: 24px;"&gt;&lt;strong&gt;Speichern&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/load.png" style="float: left; width: 24px; height: 24px;"&gt;&lt;strong&gt;Laden&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="img/new.png" style="float: left; width: 24px; height: 24px;"&gt;&lt;strong&gt;Neuer Sketch&lt;/strong&gt;&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

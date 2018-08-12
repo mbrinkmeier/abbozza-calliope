@@ -61,7 +61,7 @@ public class BoardHandler extends AbstractHandler {
 
         // Get the set path
         String path = server.getPathToBoard();
-        AbbozzaLogger.debug("[BoardHandler] Path to board is " + path);
+        AbbozzaLogger.debug("BoardHandler: Path to board is " + path);
         
         // Get the board if possible
         String board = this.findBoard();
@@ -76,12 +76,12 @@ public class BoardHandler extends AbstractHandler {
 
         // If no board was found, ask the user, is required
         if (board == "" && this._query) {
-            AbbozzaLogger.debug("[BoardHandler] User is queried for path to store hex");
+            AbbozzaLogger.debug("BoardHandler: User is queried for path to store hex");
             // Give the old path as default
             dir = queryPathToBoard(path);
             if (dir != null) {
                 server.setPathToBoard(dir.getCanonicalPath());
-                AbbozzaLogger.debug("BoardHandler] Path set to " + dir.getCanonicalPath());
+                AbbozzaLogger.debug("BoardHandler: Path set to " + dir.getCanonicalPath());
             } else {
                 sendResponse(exchg, 201, "text/plain", "Query aborted");
             }
@@ -90,16 +90,16 @@ public class BoardHandler extends AbstractHandler {
         if (!dir.exists() || !dir.isDirectory() || !dir.canWrite()) {
             // If no board was found, send the path known to the server
             if (path == null) {
-                AbbozzaLogger.debug("BoardHandler] Board not found. No alternative path given.");
+                AbbozzaLogger.debug("BoardHandler: Board not found. No alternative path given.");
                 sendResponse(exchg, 201, "text/plain", "");
             } else {
-                AbbozzaLogger.debug("BoardHandler] Board not found. Using given path " + path);
+                AbbozzaLogger.debug("BoardHandler: Board not found. Using given path " + path);
                 sendResponse(exchg, 200, "text/plain", path);
             }
         } else {
             // If board was found, use it
             server.setPathToBoard(dir.getCanonicalPath());
-            AbbozzaLogger.debug("BoardHandler]  Board found at : " + dir.getCanonicalPath());
+            AbbozzaLogger.debug("BoardHandler:  Board found at : " + dir.getCanonicalPath());
             sendResponse(exchg, 200, "text/plain", dir.getCanonicalPath());
         }
     }
