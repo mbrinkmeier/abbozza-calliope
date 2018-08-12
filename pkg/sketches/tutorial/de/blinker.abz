@@ -1,0 +1,60 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="100" y="20">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+<statement name="STATEMENTS">
+<block id="Qt*7(?#i57Ed!KMRu+1)" type="dev_rgb_led_set_color2">
+<field name="COLOR">#ff0000</field>
+<next>
+<block id="DzdHM8YYUGccP~7OV7Zd" type="loop_delay">
+<value name="TIME">
+<block id="K%|yDN{m_z1Z]v2j}[wa" type="math_number">
+<field name="VALUE">1000</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
+<task height="400" main="?tutorial.abz" prev="?saveload.abz" width="600">&lt;page&gt;&lt;h1&gt;Ein Blinklicht&lt;/h1&gt;
+
+&lt;p&gt;Wir wollen gemeinsam ein einfaches Blinklicht programmieren. Die RGB-LED soll dabei abwechselnd Rot und Grün leuchten. Jede Farbe soll eine Sekunde zu sehen sein.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="" src="sketches/tutorial/de/copy.png" style="float: right; width: 300px; height: 180px;"&gt;Die Blöcke für Rot sind schon im Hauptprogramm. Um die Blöcke für Grün einfügen zu können, können wir die Bköcke für Rot einfach &lt;strong&gt;kopieren&lt;/strong&gt;. Gehe mit dem Mauszeiger auf den ersten Block. Bei einem Rechtsklick erscheint ein Menü. Wähle den Eintrag &lt;strong&gt;Kopieren&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Füge den neuen Block ein und ändere die Farbe.&lt;/p&gt;
+
+&lt;p&gt;Kopiere auch den Warten-Block und füge die Kopie ein.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;&lt;img alt="" src="sketches/tutorial/de/blink01.png" style="float: right; width: 150px; height: 120px;"&gt;Ein Problem&lt;/h1&gt;
+
+&lt;p&gt;Das Programm lässt die RGB-LED erst rot und dann grün leuchten. Aber das Ganze wiederholt sich nicht.&lt;/p&gt;
+
+&lt;p&gt;Unter Kontrolle findest Du einen Block mit dem man einen Teil eines Programmes immer wieder wiederholen kann:&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/loop.png" style="width: 149px; height: 52px;"&gt;&lt;/p&gt;
+
+&lt;p&gt;Einen solchen Block nennt man &lt;strong&gt;Endlos-Schleife&lt;/strong&gt;.&amp;nbsp;Hole ihn dir. Verschiebe die vier Blöcke vom Hauptprogramm &lt;strong&gt;in&lt;/strong&gt; die Schleife.&amp;nbsp;Verschiebe die Schleife danach in das &lt;strong&gt;Hauptprogramm&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/loop01.png" style="width: 150px; height: 122px;"&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Das Programm&lt;/h1&gt;
+
+&lt;p&gt;Das Programm sollte jetzt so aussehen:&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/blink02.png" style="width: 200px; height: 181px;"&gt;&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>
