@@ -109,6 +109,7 @@ class Abbozza : public MicroBit {
         
         #ifdef TARGET_NRF51_CALLIOPE    
         int getTemperature();
+        float getTemperatureFloat();
         #endif
         
 };

@@ -425,15 +425,35 @@ int Abbozza::getTemperature() {
     if ( res != 0 ) return 255;
     
     res = i2c.read(BMX055_ACC_ADDRESS*2+1, &val, 1);
-    // The actual tempreture is 23 + val, with val in two's complement
+    // The actual tempreture is 23 + (val/2), with val in two's complement
     if ( val < 128 ) {
-      val = 23 + val;
+      val = 23 + (val/2);
     } else {
-      val = 23 - (256 - val);  // ????  
+      val = 23 - ((256 - val)/2);  // ????  
     }
     if ( res != 0 ) return 255;
     
     return val;
+}
+
+float Abbozza::getTemperatureFloat() {
+    int res;
+    char cmd = BMX055_ACC_D_TEMP;
+    char val = 255;
+    float temp;
+    res = i2c.write(BMX055_ACC_ADDRESS*2, &cmd, 1);
+    if ( res != 0 ) return 255;
+    
+    res = i2c.read(BMX055_ACC_ADDRESS*2+1, &val, 1);
+    // The actual tempreture is 23 + (val/2), with val in two's complement
+    if ( val < 128 ) {
+      temp = (46.0 + val)/2.0;
+    } else {
+      temp = (46.0 - (256.0 - val))/2.0;  // ????  
+    }
+    if ( res != 0 ) return 255.0;
+    
+    return temp;
 }
 
 // Missing operators for Managed Strings
