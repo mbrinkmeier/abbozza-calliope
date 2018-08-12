@@ -111,19 +111,20 @@
         <mkdir dir="dist/install"/>
         <mkdir dir="dist/install/plugins"/>
         
-        <copy todir="dist/install/bin">
+        <copy todir="dist/install/bin" overwrite="true">
             <fileset dir="bin">
                 <include name="**/*"/>
             </fileset>
         </copy>    
         
         
-        <copy todir="dist/install/lib">
+        <copy todir="dist/install/lib" overwrite="true">
             <fileset dir="lib">
                 <include name="**/*"/>
             </fileset>
         </copy>    
-        <copy todir="dist/install/">
+        
+        <copy todir="dist/install/" overwrite="true">
             <fileset dir="install">
                 <include name="**/*"/>                
             </fileset>
