@@ -16,6 +16,8 @@ import de.uos.inf.did.abbozza.core.AbbozzaServerException;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
 import de.uos.inf.did.abbozza.handler.SerialHandler;
 import java.awt.AWTException;
+import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
@@ -44,29 +46,26 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.util.Timer;
+import javax.swing.JDialog;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
-
-
 /**
  * The base class for abbozza! calliope servers
- * 
- * Additional arguments
- * -A url additional uri
- * -T path tools path
- * 
+ *
+ * Additional arguments -A url additional uri -T path tools path
+ *
  * @author mbrinkmeier
  */
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
-    
+
     public static final int SYS_MAJOR = 1;
     public static final int SYS_MINOR = 1;
     public static final int SYS_REV = 0;
     public static final int SYS_HOTFIX = 0;
     public static final String SYS_REMARK = "(calliope)";
     public static final String SYS_VERSION = SYS_MAJOR + "." + SYS_MINOR + "." + SYS_REV + "." + SYS_HOTFIX + " " + SYS_REMARK;
-    
+
     // Additional paths
     // protected String installPath;   // The path into which abbozza was installed
     protected String toolsPath;     // The path to tools needed for compilation
@@ -79,67 +78,63 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     protected AbbozzaCalliopeFrame frame;
     protected TrayIcon trayIcon;
 
-    public static int VER_REV = 1;      
-    public static int VER_HOTFIX = 0;   
-    public static String VER_REM = "(calliope)";  
+    public static int VER_REV = 1;
+    public static int VER_HOTFIX = 0;
+    public static String VER_REM = "(calliope)";
 
-    
-    
     /**
      * The general initialization of an calliope abbozza! server.
-     * 
+     *
      * @param system The system id
      * @param args The command line parameters
      */
     public void init(String system, String args[]) {
-        
+
         AbbozzaSplashScreen.showSplashScreen("de/uos/inf/did/abbozza/calliope/icons/abbozza-calliope-splash.png");
-                
-        super.init(system,args);
-        
-        if ( config.getProperty("askForTutorial") == null ) {
-            config.setProperty("askForTutorial","TRUE");
+
+        super.init(system, args);
+
+        if (config.getProperty("askForTutorial") == null) {
+            config.setProperty("askForTutorial", "TRUE");
         }
-        
-        
+
         // Try to start server on given port
         int serverPort = config.getServerPort();
         try {
-          this.startServer(serverPort);
+            this.startServer(serverPort);
         } catch (AbbozzaServerException ex) {
-          AbbozzaLogger.err(ex.getMessage());
-          
-          AbbozzaSplashScreen.hideSplashScreen();
+            AbbozzaLogger.err(ex.getMessage());
 
-          
-          TimerTask worker = new TimerTask() {
-              @Override
-              public void run() {
-                  System.exit(1);
-              }
-          };
-            
-          Timer timer = new Timer();
-          timer.schedule(worker,5000);
+            AbbozzaSplashScreen.hideSplashScreen();
 
-          String msg;
-          if ( ex.getType() == AbbozzaServerException.SERVER_RUNNING) {
-            msg = AbbozzaLocale.entry("msg.already_running");
-          } else {
-            msg = AbbozzaLocale.entry("msg.port_denied", "" + serverPort);              
-          }
-          
-          JOptionPane.showMessageDialog(null,msg,"abbozza!",JOptionPane.ERROR_MESSAGE );
-          System.exit(1);
+            TimerTask worker = new TimerTask() {
+                @Override
+                public void run() {
+                    System.exit(1);
+                }
+            };
+
+            Timer timer = new Timer();
+            timer.schedule(worker, 5000);
+
+            String msg;
+            if (ex.getType() == AbbozzaServerException.SERVER_RUNNING) {
+                msg = AbbozzaLocale.entry("msg.already_running");
+            } else {
+                msg = AbbozzaLocale.entry("msg.port_denied", "" + serverPort);
+            }
+
+            JOptionPane.showMessageDialog(null, msg, "abbozza!", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
 
         setPathToBoard(this.config.getOptionStr("pathToBoard"));
-        
+
         // Open Frame
         frame = new AbbozzaCalliopeFrame();
         frame.open();
         mainFrame = frame;
-        
+
         try {
             if (SystemTray.isSupported()) {
                 AbbozzaLogger.info("Setting system tray icon");
@@ -160,7 +155,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                     quit();
                 });
                 trayMenu.add(item);
-                trayIcon = new TrayIcon(icon.getImage(),"abbozza!",trayMenu);
+                trayIcon = new TrayIcon(icon.getImage(), "abbozza!", trayMenu);
                 trayIcon.setToolTip("abbozza!");
                 trayIcon.setImageAutoSize(true);
                 SystemTray.getSystemTray().add(trayIcon);
@@ -170,36 +165,35 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         }
 
         startBrowser(system + ".html");
-        
+
         AbbozzaSplashScreen.hideSplashScreen();
     }
 
     /**
      * Initialize the server and use the command line arguments
-     * 
+     *
      * @param system The system id
      */
     public void init(String system) {
         // initialize the server
-        init(system,null);
+        init(system, null);
     }
-    
+
     /**
      * Apply a command line option
-     * 
+     *
      * @param option The option to be applied
      * @param par The parameter for the option
      */
     protected void applyCommandlineOption(String option, String par) {
-        if ( option.equals("-T")) {
-          additionalTools = par;
-          AbbozzaLogger.info("Additional path for tools : " + additionalTools);
+        if (option.equals("-T")) {
+            additionalTools = par;
+            AbbozzaLogger.info("Additional path for tools : " + additionalTools);
         } else {
-          super.applyCommandlineOption(option, par);
+            super.applyCommandlineOption(option, par);
         }
     }
-    
-    
+
     /**
      * Set the standard paths.
      */
@@ -218,30 +212,29 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     public void setAdditionalPaths() {
         // installPath = config.getProperty("installPath");
         sketchbookPath = expandPath(config.getProperty("sketchbookPath"));
-        if ( sketchbookPath == null ) {
+        if (sketchbookPath == null) {
             sketchbookPath = "/sketches";
         }
-        
-        toolsDir = expandPath( config.getProperty("toolsDir") );
-        
-        if ( additionalTools != null ) {
+
+        toolsDir = expandPath(config.getProperty("toolsDir"));
+
+        if (additionalTools != null) {
             toolsDir = additionalTools;
-        } 
-        
-        if ( toolsDir == null ) {
+        }
+
+        if (toolsDir == null) {
             toolsDir = abbozzaPath + "/tools";
             toolsPath = abbozzaPath + "/tools";
         } else {
             toolsPath = toolsDir;
         }
-        
-        
+
         // Check if PATH file exists in toolsPath and replaces the toolsPath
-        if ( toolsPath != null ) {
+        if (toolsPath != null) {
             String path;
-            File pathFile = new File(toolsPath+"/PATH");
-            if ( pathFile.exists() ) {
-                
+            File pathFile = new File(toolsPath + "/PATH");
+            if (pathFile.exists()) {
+
                 BufferedReader reader = null;
                 try {
                     reader = new BufferedReader(new FileReader(pathFile));
@@ -261,7 +254,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 }
             }
         }
-                
+
         /*
         if ( (toolsPath == null) && (additionalTools != null) ) {
             toolsPath = additionalTools;
@@ -275,8 +268,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
             }
           }
         }
-        */
-            
+         */
         AbbozzaLogger.info("jarPath = " + jarPath);
         AbbozzaLogger.info("runtimePath = " + abbozzaPath);
         AbbozzaLogger.info("toolsDir = " + toolsDir);
@@ -291,25 +283,18 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     /**
      * Find the jars and dirs.
-     * 
+     *
      * @param jarHandler The jarHandler to be used.
      */
     public void findJarsAndDirs(JarDirHandler jarHandler) {
-        jarHandler.clear();
-
-        // Adding additional uris
-        for ( URI uri : additionalURIs ) {
-            jarHandler.addURI(uri);
-        }
-
         jarHandler.addDir(jarPath + "/", "Dir");
         jarHandler.addJar(jarPath + "/abbozza-calliope.jar", "Jar");
-        
+
     }
 
     /**
      * Set the path at which the board should be found.
-     * 
+     *
      * @param path The path
      */
     public void setPathToBoard(String path) {
@@ -322,13 +307,13 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     /**
      * Returns teh current path to the board.
-     * 
+     *
      * @return The path to the board
      */
     public String getPathToBoard() {
         return _pathToBoard;
     }
-    
+
     /**
      * Register system specific handlers.
      */
@@ -349,7 +334,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     /**
      * @deprecated ???
-     * 
+     *
      * @param code The code to set in the tool
      */
     @Override
@@ -366,7 +351,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     /**
      * Copile the code.
-     * 
+     *
      * @param code The code to be compiled.
      * @return 0 if the compilation was successful
      */
@@ -379,7 +364,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     /**
      * Upload the code
-     * 
+     *
      * @param code The code to be uploaded
      * @return 0 if the upload was successfull
      */
@@ -481,8 +466,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         runtime = runtime.replace("######", hexcode);
         return runtime;
     }
-    
-    
+
     /**
      * This method tries to detect a connected CalliopeMINI or the micro:bit
      *
@@ -540,7 +524,6 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         return "";
     }
 
-
     public File queryPathToBoard(String path) {
         File selectedDir = null;
         JFileChooser chooser = new JFileChooser();
@@ -550,7 +533,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         chooser.setDialogTitle(AbbozzaLocale.entry("gui.CalliopePath"));
         BoardChooserPanel boardPanel = new BoardChooserPanel();
         chooser.setAccessory(boardPanel);
-        if ((getBoardName()!=null) && (getBoardName().equals("microbit"))) {
+        if ((getBoardName() != null) && (getBoardName().equals("microbit"))) {
             boardPanel.setMicrobit();
         } else {
             boardPanel.setCalliope();
@@ -567,7 +550,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                 return "Select readable directory";
             }
         });
-        
+
         bringFrameToFront();
         setDialogOpen(true);
 
@@ -584,48 +567,63 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         setDialogOpen(false);
         resetFrame();
         toolIconify();
-        
+
         return selectedDir;
     }
 
     public TrayIcon getTrayIcon() {
         return trayIcon;
     }
-    
+
     protected void quit() {
         System.exit(0);
     }
-    
+
     public String getSystemVersion() {
         return SYS_VERSION;
-    };
+    }
 
-    
-        public void installUpdate(String version, String updateUrl) {
-        try {
+    public void installUpdate(String version, String updateUrl) {
+        JOptionPane.showMessageDialog(null, "Currently not supported!");
+        
+        
+        // try {
             // 1st step: Rename current jar
             // Find current jar
-            URL curUrl = AbbozzaServer.class.getProtectionDomain().getCodeSource().getLocation();
-            File cur = new File(curUrl.toURI());
-            AbbozzaLogger.out("Current jar found at " + cur.getAbsolutePath(), AbbozzaLogger.INFO);
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-            String today = format.format(new Date());
-            File dir = new File(cur.getParentFile().getAbsolutePath());
-            if (!dir.exists()) {
-                AbbozzaLogger.out("Creating directory " + dir.getPath(), AbbozzaLogger.INFO);
-                dir.mkdir();
-            }
-            AbbozzaLogger.out("Moving old version to " + dir.getPath() + "/abbozza." + today + ".jar", AbbozzaLogger.INFO);
-            cur.renameTo(new File(dir.getPath() + "/abbozza." + today + ".jar"));
+            // URL curUrl = AbbozzaServer.class.getProtectionDomain().getCodeSource().getLocation();
+            // File cur = new File(curUrl.toURI());
+            // AbbozzaLogger.out("Current jar found at " + cur.getAbsolutePath(), AbbozzaLogger.INFO);
+            // SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+            // String today = format.format(new Date());
+            // File dir = new File(cur.getParentFile().getAbsolutePath());
+            // if (!dir.exists()) {
+            //     AbbozzaLogger.out("Creating directory " + dir.getPath(), AbbozzaLogger.INFO);
+            //     dir.mkdir();
+            // }
+            // AbbozzaLogger.out("Moving old version to " + dir.getPath() + "/abbozza." + today + ".jar", AbbozzaLogger.INFO);
+            // cur.renameTo(new File(dir.getPath() + "/abbozza." + today + ".jar"));
+
+            /*
+
+            File downloadFile;
+            JFileChooser chooser = new JFileChooser() {
+                protected JDialog createDialog(Component parent)
+                        throws HeadlessException {
+                    JDialog dialog = super.createDialog(parent);
+                    dialog.setLocationByPlatform(true);
+                    dialog.setAlwaysOnTop(true);
+                    return dialog;
+                }
+            };            
             
-            // 2nd step: Download new version
+            URL downloadUrl;
             AbbozzaLogger.out("Downloading version " + version, AbbozzaLogger.INFO);
             URL url = new URL(updateUrl + "abbozza-calliope.jar");
             URLConnection conn = url.openConnection();
             byte buffer[] = new byte[4096];
             int n = -1;
             InputStream ir = conn.getInputStream();
-            FileOutputStream ow = new FileOutputStream(new File(curUrl.toURI()));
+            FileOutputStream ow = new FileOutputStream(new File(downloadUrl.toURI()));
             while ((n = ir.read(buffer)) != -1) {
                 ow.write(buffer, 0, n);
             }
@@ -636,9 +634,9 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         } catch (Exception ex) {
             Logger.getLogger(AbbozzaServer.class.getName()).log(Level.SEVERE, null, ex);
         }
+            */
     }
 
-        
     /**
      * @deprecated ???
      * @return the installation path
@@ -646,5 +644,4 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     // public String getPluginInstallPath() {
     //     return userPath + "/build/" + this._boardName + "/source/lib/";        
     // }
-
 }
