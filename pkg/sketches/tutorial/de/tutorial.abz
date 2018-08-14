@@ -8,7 +8,7 @@
 <data>haupt</data>
 </block>
 <description/>
-<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=true,option.events=true,option.multArrays=false,option.devices=true,option.parser=false,option.messages=false,option.pathToBoard=/media/mbrinkmeier/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=true,option.colorCategory=false,option.noArrays=true}</options>
+<options apply="no" protected="no">{option.usb=false,option.events=false,option.serial=false,option.parser=false,option.operations=false,option.advanced=false,option.multArrays=false,option.colorDefault=true,option.noArrays=true,option.linArrays=false,option.pathToBoard=/media/michael/MINI,option.i2c=false,option.messages=false,option.colorType=false,option.radio=false,option.motors=false,option.devices=false,option.localVars=false,option.colorCategory=false}</options>
 <task height="448" next="?blocks.abz" width="588">&lt;page&gt;&lt;h1&gt;Hallo!&lt;/h1&gt;
 
 &lt;p&gt;In diesem &lt;strong&gt;Tutorial&lt;/strong&gt;&amp;nbsp;lernst Du, wie man mit abbozza! den &lt;strong&gt;Calliope Mini&lt;/strong&gt; programmieren kann. Du wirst Deine ersten &lt;strong&gt;Programme&lt;/strong&gt;&amp;nbsp;erstellen&amp;nbsp;und ausprobieren und es wird Dir gezeigt wo Du mehr Informationen findest. Allerdings ist das Tutorial kein vollständiger Programmierkurs!&lt;/p&gt;
@@ -23,7 +23,7 @@ Programme für Minicomputer wie den Calliope Mini werden häufig auch &lt;strong
 	&lt;li&gt;&lt;a href="?display.abz"&gt;Die Anzeige&lt;/a&gt;, &lt;a href="?display_timing.abz"&gt;Mehrere Blöcke&lt;/a&gt;&lt;/li&gt;
 	&lt;li&gt;&lt;a href="?saveload.abz"&gt;Speichern und Laden von Sketches&lt;/a&gt;&lt;/li&gt;
 	&lt;li&gt;&lt;a href="?blinker.abz"&gt;Ein Blinklicht&lt;/a&gt;&amp;nbsp;(Kopieren von Blöcken)&lt;/li&gt;
-	&lt;li&gt;&lt;a href="?misc.abz"&gt;Die andern Knöpfe&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?misc.abz"&gt;Die anderen Knöpfe&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/page&gt;</task>
 <system>calliopeC</system>
