@@ -1,4 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id=",z|BhksgNug`n`UAHVrC" type="devices" x="500" y="20"/>
 <block deletable="false" id="main" inline="false" type="main" x="115" y="50">
 <mutation>
 <title>&lt;title&gt;</title>
@@ -7,10 +8,10 @@
 <data>haupt</data>
 </block>
 <description/>
-<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=true,option.events=true,option.multArrays=false,option.devices=true,option.parser=false,option.messages=false,option.pathToBoard=/media/mbrinkmeier/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=true,option.colorCategory=false,option.noArrays=true}</options>
 <task height="448" next="?blocks.abz" width="588">&lt;page&gt;&lt;h1&gt;Hallo!&lt;/h1&gt;
 
-&lt;p&gt;In diesem &lt;strong&gt;Tutorial&lt;/strong&gt;&amp;nbsp;lernst Du, wie man mit abbozza! den &lt;strong&gt;Calliope Mini&lt;/strong&gt; programmieren kann. Du wirst Deine ersten &lt;strong&gt;Programme&lt;/strong&gt;&amp;nbsp;erstellen&amp;nbsp;und ausprobieren und es wird Dir gezeigt wo Du mehr Informationen findest.&lt;/p&gt;
+&lt;p&gt;In diesem &lt;strong&gt;Tutorial&lt;/strong&gt;&amp;nbsp;lernst Du, wie man mit abbozza! den &lt;strong&gt;Calliope Mini&lt;/strong&gt; programmieren kann. Du wirst Deine ersten &lt;strong&gt;Programme&lt;/strong&gt;&amp;nbsp;erstellen&amp;nbsp;und ausprobieren und es wird Dir gezeigt wo Du mehr Informationen findest. Allerdings ist das Tutorial kein vollständiger Programmierkurs!&lt;/p&gt;
 
 &lt;p style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px;"&gt;&lt;strong&gt;Übrigens!&lt;/strong&gt;&lt;br&gt;
 Programme für Minicomputer wie den Calliope Mini werden häufig auch &lt;strong&gt;Sketch&lt;/strong&gt;&amp;nbsp;genannt. Das ist English und bedeutet &lt;strong&gt;Skizze&lt;/strong&gt; oder &lt;strong&gt;Entwurf&lt;/strong&gt;.&lt;/p&gt;
@@ -19,10 +20,10 @@ Programme für Minicomputer wie den Calliope Mini werden häufig auch &lt;strong
 
 &lt;ol&gt;
 	&lt;li&gt;&lt;a href="?blocks.abz"&gt;Von Programmen und Blöcken&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;a href="?display.abz"&gt;Die Anzeige&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?display.abz"&gt;Die Anzeige&lt;/a&gt;, &lt;a href="?display_timing.abz"&gt;Mehrere Blöcke&lt;/a&gt;&lt;/li&gt;
 	&lt;li&gt;&lt;a href="?saveload.abz"&gt;Speichern und Laden von Sketches&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;&lt;a href="?blinker.abz"&gt;Ein Blinklicht&lt;/a&gt;&lt;/li&gt;
-	&lt;li&gt;...&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?blinker.abz"&gt;Ein Blinklicht&lt;/a&gt;&amp;nbsp;(Kopieren von Blöcken)&lt;/li&gt;
+	&lt;li&gt;&lt;a href="?misc.abz"&gt;Die andern Knöpfe&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/page&gt;</task>
 <system>calliopeC</system>
