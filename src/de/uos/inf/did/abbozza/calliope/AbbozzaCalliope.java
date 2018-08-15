@@ -16,8 +16,6 @@ import de.uos.inf.did.abbozza.core.AbbozzaServerException;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
 import de.uos.inf.did.abbozza.handler.SerialHandler;
 import java.awt.AWTException;
-import java.awt.Component;
-import java.awt.HeadlessException;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
@@ -26,19 +24,12 @@ import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.math.BigInteger;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 import java.nio.ByteBuffer;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +37,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.util.Timer;
-import javax.swing.JDialog;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -70,6 +60,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
     // protected String installPath;   // The path into which abbozza was installed
     protected String toolsPath;     // The path to tools needed for compilation
     protected String toolsDir;
+    protected String buildPath;     // The directory containing the buildsystem; defaults to <userPath>/build
     protected String arguments[];
     protected String additionalTools = null;
 
@@ -211,6 +202,12 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
      */
     public void setAdditionalPaths() {
         // installPath = config.getProperty("installPath");
+        
+        buildPath = expandPath(config.getProperty("buildPath"));
+        if (buildPath == null) {
+            buildPath = userPath + "/build";
+        }
+        
         sketchbookPath = expandPath(config.getProperty("sketchbookPath"));
         if (sketchbookPath == null) {
             sketchbookPath = "/sketches";
@@ -274,6 +271,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         AbbozzaLogger.info("toolsDir = " + toolsDir);
         AbbozzaLogger.info("toolsPath = " + toolsPath);
         AbbozzaLogger.info("userPath = " + userPath);
+        AbbozzaLogger.info("buildPath = " + buildPath);
         AbbozzaLogger.info("sketchbookPath = " + sketchbookPath);
         AbbozzaLogger.info("localJarPath = " + localJarPath);
         AbbozzaLogger.info("localPluginPath = " + localPluginPath);

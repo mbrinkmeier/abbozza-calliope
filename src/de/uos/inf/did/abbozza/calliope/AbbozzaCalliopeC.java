@@ -148,7 +148,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaLogger.info("Using Radio");
         }
 
-        _buildPath = userPath + "/build/" + this._boardName + "/";
+        _buildPath = buildPath + "/" + this._boardName + "/"; // userPath + "/build/" + this._boardName + "/";
 
         if (this._boardName.equals("microbit")) {
             _hexPath = _buildPath + "build/bbc-microbit-classic-gcc/source/abbozza-combined.hex";
@@ -363,7 +363,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             this.setBoardName("calliope");
         }
 
-        String buildPath = userPath + "/build/" + this._boardName + "/";
+        String _buildPath = buildPath + "/" + this._boardName + "/";
 
         String errMsg = "";
         String outMsg = "";
@@ -373,11 +373,11 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         ProcessBuilder procBuilder = null;
 
         if (osName.contains("Linux")) {
-            procBuilder = cleanProcLinux(buildPath);
+            procBuilder = cleanProcLinux(_buildPath);
         } else if (osName.contains("Mac")) {
-            procBuilder = cleanProcMac(buildPath);
+            procBuilder = cleanProcMac(_buildPath);
         } else if (osName.contains("Windows")) {
-            procBuilder = cleanProcWindows(buildPath);
+            procBuilder = cleanProcWindows(_buildPath);
         }
 
         if (procBuilder == null) {
@@ -385,7 +385,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }
 
         AbbozzaLogger.force("[clean] : ___");
-        AbbozzaLogger.force("[clean] : " + AbbozzaLocale.entry("msg.cleaning_buildsystem") + " " + buildPath);
+        AbbozzaLogger.force("[clean] : " + AbbozzaLocale.entry("msg.cleaning_buildsystem") + " " + _buildPath);
 
         try {
             procBuilder.redirectOutput(ProcessBuilder.Redirect.PIPE);
@@ -530,12 +530,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         AbbozzaLogger.info("Using " + buildbaseJarPath + " for initialization of build system");
 
         // Check if <userPath>/build/ exists
-        File buildDir = new File(userPath + "/build/");
+        File buildDir = new File(buildPath);
         AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
 
         if (!buildDir.exists()) {
             // Create the directory
-            AbbozzaLogger.err("Build directory " + userPath + "/build/ doesn't exist.");
+            AbbozzaLogger.err("Build directory " + buildPath + " doesn't exist.");
             buildDir.mkdirs();
             initBuild = true;
         } else {
