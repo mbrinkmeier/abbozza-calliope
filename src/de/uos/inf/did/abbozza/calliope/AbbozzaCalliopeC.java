@@ -229,6 +229,17 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaLogger.out("Compiling with path: " + procBuilder.environment().get("PATH"));
         }
 
+        String pluginSourcePath = abbozzaPath + "/build/" + this._boardName + "/source/lib/";
+        String pluginTargetPath = buildPath + "/source/lib/";
+        try {
+            // Copy files from <abbozzaPath>/build/<system>/source/lib (plugin libraries)
+            // to <buildPath>/<system>/source/lib
+            AbbozzaLogger.force("[compile] : ___ Copying plugin libraries from " + pluginSourcePath + " to " + pluginTargetPath);
+            FileTool.copyDirectory(new File(pluginSourcePath), new File(pluginTargetPath), false);
+        } catch (IOException ex) {
+            AbbozzaLogger.err("Could not copy files from " + pluginSourcePath + " to " + pluginTargetPath);
+        }
+
         try {
             procBuilder.redirectOutput(ProcessBuilder.Redirect.PIPE);
             procBuilder.redirectError(ProcessBuilder.Redirect.PIPE);
@@ -424,7 +435,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 outMsg = outMsg + "\n" + line;
             }
 
-            AbbozzaLogger.force("[compile] : Cleaning of buildsystem finished");
+            AbbozzaLogger.force("[clean] : Cleaning of buildsystem finished");
 
             return proc.exitValue();
 
@@ -452,6 +463,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         return procBuilder;
     }
 
+    
     /**
      * Execute yt clean on Mac OS.
      *
@@ -470,6 +482,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         return procBuilder;
     }
 
+    
     /**
      * Execute yt clean on Windows.
      *
@@ -494,6 +507,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         return procBuilder;
     }
 
+    
     /**
      * Do some additonal initialization: 1) Update/initialize from
      * &lt;buildinit&gt;/lib/buildbase.jar 2) Copy sources from
@@ -529,7 +543,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }
         AbbozzaLogger.info("Using " + buildbaseJarPath + " for initialization of build system");
 
-        // Check if <userPath>/build/ exists
+        // Check if buildPath exists
         File buildDir = new File(buildPath);
         AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
 
@@ -540,9 +554,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             initBuild = true;
         } else {
             // Check for init file in build directory
-            File initFile = new File(userPath + "/build/abz_init");
+            File initFile = new File(buildPath + "/abz_init");
             if (initFile.exists()) {
-                AbbozzaLogger.out("Initialization of build directory " + userPath + "/build required.");
+                AbbozzaLogger.out("Initialization of build directory " + buildPath + " required.");
                 initFile.delete();
                 buildDir.delete();
                 initBuild = true;
@@ -585,6 +599,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         AbbozzaSplashScreen.setText("");
     }
 
+    
     /**
      *
      * @param stream The stream from which the plugin is read
@@ -593,6 +608,24 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      */
     @Override
     public boolean installPluginFile(InputStream stream, String name) {
+        try {
+            File targetDir = new File(abbozzaPath + "/build/calliope/source/lib/");
+            if ( !targetDir.exists()) {
+                Files.createDirectories(targetDir.toPath());
+            }
+        } catch (IOException ex) {
+            AbbozzaLogger.err(abbozzaPath + "/build/calliope/source/lib/ couldn't be created");
+        }
+        
+        try {
+            File targetDir = new File(abbozzaPath + "/build/microbit/source/lib/");
+            if ( !targetDir.exists()) {
+                Files.createDirectories(targetDir.toPath());
+            }
+        } catch (IOException ex) {
+            AbbozzaLogger.err(abbozzaPath + "/build/microbit/source/lib/ couldn't be created");
+        }
+        
         File target = new File(abbozzaPath + "/build/calliope/source/lib/" + name);
         try {
             AbbozzaLogger.info("Copying " + name + " to " + target.toString());
@@ -615,6 +648,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }
         return true;
     }
+    
+    
 
     public void adaptConfigDialog(AbbozzaConfigDialog dialog) {
         dialog.addPanel(new PluginConfigPanel());
