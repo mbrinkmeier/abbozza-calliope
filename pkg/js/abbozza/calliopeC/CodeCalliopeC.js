@@ -204,7 +204,7 @@ AbbozzaCode['var_block'] = function (generator) {
         var index;
         while (this.getInput("DIM" + no)) {
             index = generator.valueToCode(this, 'DIM' + no);
-            code = code + "[constrain(" + index + ",0," + this.symbol[2][no] + ")]";
+            code = code + "[" + index + "]";
             no++;
         }
         return code;
