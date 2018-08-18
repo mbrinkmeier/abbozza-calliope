@@ -455,7 +455,7 @@ Abbozza.SerialTable = {
     this.appendValueInput("CHANNEL1")
         .setCheck(["BOOLEAN","NUMBER"])
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Kanal 2")
+        .appendField(_("serial.CHANNEL") + " 2")
         .appendField(new Blockly.FieldDropdown(Abbozza.SerialTableMenu, 
             function(value) {
               switch (value) {
