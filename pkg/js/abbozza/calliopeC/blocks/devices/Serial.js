@@ -439,18 +439,17 @@ Abbozza.SerialTable = {
     this.appendValueInput("CHANNEL0")
         .setCheck(["BOOLEAN","NUMBER"])
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Kanal 1")
+        .appendField(_("serial.CHANNEL") + " 1")
         .appendField(new Blockly.FieldDropdown(Abbozza.SerialTableMenu, 
             function(value) {
               switch (value) {
                 case "0" :
                     thisblock.getInput("CHANNEL0").setCheck(["BOOLEAN","NUMBER"]);
                     break;
-                case "1" :
-                case "2" :
-                case "3" :
+                default :
                     thisblock.getInput("CHANNEL0").setCheck(["NUMBER","BOOLEAN"]);
                 }                
+                thisblock.render();
             }
         ),"CHANNEL0_TYPE");
     this.appendValueInput("CHANNEL1")
@@ -463,66 +462,58 @@ Abbozza.SerialTable = {
                 case "0" :
                     thisblock.getInput("CHANNEL1").setCheck(["BOOLEAN","NUMBER"]);
                     break;
-                case "1" :
-                case "2" :
-                case "3" :
-                case "4" :
+                default :
                     thisblock.getInput("CHANNEL1").setCheck(["NUMBER","BOOLEAN"]);
                 }                
+                thisblock.render();
             }
         ),"CHANNEL1_TYPE");
     this.appendValueInput("CHANNEL2")
         .setCheck(["BOOLEAN","NUMBER"])
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Kanal 3")
+        .appendField(_("serial.CHANNEL") + " 3")
         .appendField(new Blockly.FieldDropdown(Abbozza.SerialTableMenu, 
             function(value) {
               switch (value) {
                 case "0" :
                     thisblock.getInput("CHANNEL2").setCheck(["BOOLEAN","NUMBER"]);
                     break;
-                case "1" :
-                case "2" :
-                case "3" :
-                case "4" :
+                default : 
                     thisblock.getInput("CHANNEL2").setCheck(["NUMBER","BOOLEAN"]);
                 }                
+                thisblock.render();
             }
         ),"CHANNEL2_TYPE");
     this.appendValueInput("CHANNEL3")
         .setCheck(["BOOLEAN","NUMBER"])
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Kanal 4")
+        .appendField(_("serial.CHANNEL") + " 4")
         .appendField(new Blockly.FieldDropdown(Abbozza.SerialTableMenu, 
             function(value) {
               switch (value) {
                 case "0" :
                     thisblock.getInput("CHANNEL3").setCheck(["BOOLEAN","NUMBER"]);
                     break;
-                case "1" :
-                case "2" :
-                case "3" :
-                case "4" :
+                default :
                     thisblock.getInput("CHANNEL3").setCheck(["NUMBER","BOOLEAN"]);
                 }                
+                thisblock.render();
             }
         ),"CHANNEL3_TYPE");
     this.appendValueInput("CHANNEL4")
         .setCheck(["BOOLEAN","NUMBER"])
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("Kanal 5")
+        .appendField(_("serial.CHANNEL") + " 5")
         .appendField(new Blockly.FieldDropdown(Abbozza.SerialTableMenu, 
             function(value) {
               switch (value) {
                 case "0" :
                     thisblock.getInput("CHANNEL4").setCheck(["BOOLEAN","NUMBER"]);
                     break;
-                case "1" :
-                case "2" :
-                case "3" :
-                case "4" :
+                default: 
                     thisblock.getInput("CHANNEL4").setCheck(["NUMBER","BOOLEAN"]);
                 }                
+                thisblock.render();
             }
         ),"CHANNEL4_TYPE");
     this.setOutput(false);
