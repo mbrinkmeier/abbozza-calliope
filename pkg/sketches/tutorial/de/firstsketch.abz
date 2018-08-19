@@ -50,7 +50,7 @@
 </block>
 <description/>
 <options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
-<task height="400" main="?tutorial.abz" prev="?saveload.abz" width="600">&lt;page&gt;&lt;h1&gt;Ein erstes Programm ...&lt;/h1&gt;
+<task height="400" main="?start.abz" prev="?saveload.abz" width="600">&lt;page&gt;&lt;h1&gt;Ein erstes Programm ...&lt;/h1&gt;
 
 &lt;p&gt;Links siehst Du ein Programm. Übertrage es auf den Calliope Mini und probiere es aus.&lt;/p&gt;
 &lt;/page&gt;&lt;page&gt;&lt;h1&gt;... genauer erklärt&lt;/h1&gt;

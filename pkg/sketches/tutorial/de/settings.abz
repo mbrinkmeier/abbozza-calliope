@@ -1,0 +1,37 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="100" y="20">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=true,option.devices=false,option.parser=false,option.messages=false,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=false}</options>
+<task height="400" main="?start.abz" next="?monitor.abz" prev="?misc.abz" width="600">&lt;page&gt;&lt;h1&gt;Die Einstellungen&lt;/h1&gt;
+
+&lt;p&gt;Der Knopf&amp;nbsp;&lt;img alt="" src="img/settings.png" style="width: 20px; height: 20px;"&gt;&amp;nbsp;öffnet einen Dialog mit vier Seiten.&lt;/p&gt;
+
+&lt;p&gt;Auf der Seite &lt;strong&gt;Optionen und Features&lt;/strong&gt; lassen sich Blöcke aktivieren und deaktivieren. Aktiviere &lt;strong&gt;Fortgeschrittene Blöcke!&lt;/strong&gt;&amp;nbsp;Nach dem Speichern findest Du zusätzliche Blöcke im Menü und eine zusätzliche Kategorie &lt;strong&gt;Ein- und Ausgabe&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Wähle einen Block aus &lt;strong&gt;Ein- und Ausgabe&lt;/strong&gt; und schiebe ihn auf die Arbeitsfläche.&lt;/p&gt;
+
+&lt;p&gt;Deaktivierst Du &lt;strong&gt;Fortgeschrittene Blöcke&lt;/strong&gt; wieder, verschwinden die Blöcke aus dem Menü. Aber der Block auf der Arbeitsfläche bleibt.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Aufgaben&lt;/h1&gt;
+
+&lt;p&gt;Auf der Seite &lt;strong&gt;Aufgaben&lt;/strong&gt; kann ein Verzeichnis eingestellt werden, in dem Aufgaben hinterlegt werden können. Es ist ein anderes Verzeichnis als das in dem Sketches gespeichert werden.&lt;/p&gt;
+
+&lt;p&gt;Dieses Feature ist insbesondere für den Einsatz im Unterricht und Workshops gedacht. Die Aufgaben werden aus dem Aufgabenverzeichnis geladen. Aber die Lösungen werden im &lt;strong&gt;Sketchbook-Verzeichnis&lt;/strong&gt; gespeichert.&lt;/p&gt;
+
+&lt;p&gt;Das Sketchbook-Verzeichnis ist das Verzeichnis &lt;span style="font-family:Courier New,Courier,monospace;"&gt;sketches&lt;/span&gt; im Nutzerverzeichnis.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Server und Browser&lt;/h1&gt;
+
+&lt;p&gt;Auf der Seite &lt;strong&gt;Server und Browser&lt;/strong&gt;&amp;nbsp;kann man einige technische Parameter verändern. Diese sind nur für Spezialisten gedacht. Wir empfhlen Dir sie nicht zu verändern.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Plugins&lt;/h1&gt;
+
+&lt;p&gt;Auf der Seite &lt;strong&gt;Plugins&lt;/strong&gt; kannst Du Plugins installieren, die neue Blöcke,&amp;nbsp;Komponenten und Werkzeuge hinzufügen.&lt;/p&gt;
+
+&lt;p&gt;Wähle das gewünschte Plugin aus der Liste aus und drücke &lt;strong&gt;Installieren&lt;/strong&gt;. Danach solltest Du abbozza! neu starten, damit das Plugin aktiviert werden kann. Das kannst Du auf der Seite &lt;strong&gt;Features und Optionen&lt;/strong&gt; tun.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

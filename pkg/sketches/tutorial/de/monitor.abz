@@ -1,0 +1,62 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="100" y="20">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+<statement name="STATEMENTS">
+<block id="Hy1*2[#{B%nNS!`T70U{" type="serial_baud">
+<field name="DEVICE">USB</field>
+<field name="BAUD">115200</field>
+<next>
+<block id="8/n@2nZvw9%/J,G:Dt#2" type="loop_endless">
+<statement name="STATEMENTS">
+<block id="M=;E*u1~8DiieE7Q+zw2" type="cond_if">
+<value name="CONDITION">
+<block id="2ZM76!#lksW,t=lODSt;" type="serial_available">
+<field name="DEVICE">USB</field>
+</block>
+</value>
+<statement name="STATEMENTS">
+<block id="yY((~aq_K+*)Peg,Zld_" type="display_scroll">
+<value name="TEXT">
+<block id="Z@{lQPON0}.FLfFBbqAf" type="serial_readln">
+<field name="DEVICE">USB</field>
+</block>
+</value>
+</block>
+</statement>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=true,option.devices=false,option.parser=false,option.messages=false,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=false}</options>
+<task height="400" main="?start.abz" prev="?settings.abz" width="600">&lt;page&gt;&lt;h1&gt;Der Monitor&lt;/h1&gt;
+
+&lt;p&gt;Der Knopf&amp;nbsp;&lt;img alt="" src="img/serial.png" style="width: 20px; height: 20px;"&gt;&amp;nbsp;öffnet den &lt;strong&gt;seriellen Monitor&lt;/strong&gt;. Dieses Fenster ermöglicht es mit dem Calliope Mini zu "sprechen", wenn er per USB-Kabel an den Computer angeschlossen ist.&lt;/p&gt;
+
+&lt;p&gt;Das Programm lässt Dich z.B. Nachrichten auf dem Calliope Mini anzeigen.&lt;/p&gt;
+
+&lt;p&gt;Übertrage das Programm mit&amp;nbsp;&lt;img alt="" src="img/upload.png" style="width: 20px; height: 20px;"&gt;&amp;nbsp;auf den Calliope Mini.&lt;/p&gt;
+
+&lt;p&gt;Öffne mit &lt;img alt="" src="img/serial.png" style="width: 20px; height: 20px;"&gt;&amp;nbsp;den seriellen Monitor. Es erscheint der folgende Dialog:&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/monitor.png" style="width: 200px; height: 151px;"&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Eine Nachricht&lt;/h1&gt;
+
+&lt;p&gt;Gib in der &lt;strong&gt;Eingabezeile&lt;/strong&gt; (siehe Bild) irgendeinen Text ein und drücke &lt;strong&gt;Enter&lt;/strong&gt;. Der Calliope Mini zeigt den Text als Laufschrift an.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/monitor_input.png" style="width: 299px; height: 229px;"&gt;&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Mehr dazu ...&lt;/h1&gt;
+
+&lt;p&gt;... findest Du &lt;a href="?http://inf-didaktik.rz.uos.de/downloads/abbozza/material/calliope/sketches/USB.abj"&gt;hier zum direkten Start&lt;/a&gt;, falls Du Verbindung zum Internet hast,&amp;nbsp;oder &lt;a href="http://inf-didaktik.rz.uos.de/downloads/abbozza/material/calliope/sketches/USB.abj"&gt;als Download&lt;/a&gt;.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

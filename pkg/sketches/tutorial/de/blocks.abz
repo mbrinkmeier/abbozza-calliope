@@ -15,7 +15,7 @@
 </block>
 <description/>
 <options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
-<task height="400" main="?tutorial.abz" next="?display.abz" prev="?tutorial.abz" width="600">&lt;page&gt;&lt;h1&gt;Von Programmen und Blöcken&lt;/h1&gt;
+<task height="400" main="?start.abz" next="?display.abz" prev="?start.abz" width="600">&lt;page&gt;&lt;h1&gt;Von Programmen und Blöcken&lt;/h1&gt;
 
 &lt;p&gt;Ein abbozza! Sketch besteht aus einer Reihe von &lt;strong&gt;Blöcken&lt;/strong&gt;. Sie können wie Teile eines Puzzles miteinander kombiniert werden.&lt;/p&gt;
 
@@ -46,7 +46,7 @@
 &lt;p&gt;Den Text des Text-Blocks kannst Du verändern. Klicke ihn an und gebe über die Tastatur einen anderen Text ein.&lt;/p&gt;
 &lt;/page&gt;&lt;page&gt;&lt;h1&gt;Probiere das Programm aus&lt;/h1&gt;
 
-&lt;p&gt;Dein Programm sollte&amp;nbsp;&lt;img alt="" src="/sketches/tutorial/de/blocks.png" style="float: right; width: 200px; height: 67px; margin-left: 10px; margin-right: 10px;"&gt;jetzt ungefähr so aussehen, wie das Bild rechts.&lt;/p&gt;
+&lt;p&gt;Dein Programm sollte&amp;nbsp;&lt;img alt="" src="/task/blocks.png" style="float: right; width: 200px; height: 67px; margin-left: 10px; margin-right: 10px;"&gt;jetzt ungefähr so aussehen, wie das Bild rechts.&lt;/p&gt;
 
 &lt;p&gt;Wenn ja, bist Du soweit, dass Du es auf den Calliope Mini übertragen kannst.&lt;/p&gt;
 

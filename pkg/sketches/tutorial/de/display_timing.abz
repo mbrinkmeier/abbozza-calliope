@@ -66,7 +66,7 @@
 </block>
 <description/>
 <options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
-<task height="400" main="?tutorial.abz" next="?saveload.abz" prev="?display.abz" width="600">&lt;page&gt;&lt;h1&gt;Alles gleichzeitig?&lt;/h1&gt;
+<task height="400" main="?start.abz" next="?saveload.abz" prev="?display.abz" width="600">&lt;page&gt;&lt;h1&gt;Alles gleichzeitig?&lt;/h1&gt;
 
 &lt;p&gt;Wenn Du das Programm auf den Calliope überträgst, was wird dann Deiner Meinung nach geschehen?&lt;/p&gt;
 
@@ -97,7 +97,7 @@
 
 &lt;p&gt;Dafür findest Du unter &lt;strong&gt;Kontrolle&lt;/strong&gt;&amp;nbsp;einen &lt;strong&gt;Warte-Block&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/wait.png" style="width: 151px; height: 41px;"&gt;&lt;/p&gt;
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/wait.png" style="width: 151px; height: 41px;"&gt;&lt;/p&gt;
 
 &lt;p&gt;Die Zahl gibt die Anzahl der &lt;strong&gt;Millisekunden&lt;/strong&gt; (ms) an, die der Calliope Mini warten soll. Füge den Block zwischen den beiden Bildern ein und trage &lt;strong&gt;1000&lt;/strong&gt;&amp;nbsp;ein. Dann probiere das Programm aus.&lt;/p&gt;
 
@@ -105,7 +105,7 @@
 Eine Sekunde (s) hat 1000 Millisekunden (ms).&lt;/div&gt;
 
 &lt;p&gt;Ändere das Programm so, dass der lachende Smiley 5 Sekunden lang zu sehen ist. Welchen Wert musst Du im Warten-Block eintragen?&lt;/p&gt;
-&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Die Lösung&lt;img alt="" src="sketches/tutorial/de/timing.png" style="height: 265px; width: 150px; float: right;"&gt;&lt;/h1&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Die Lösung&lt;img alt="" src="/task/timing.png" style="height: 265px; width: 150px; float: right;"&gt;&lt;/h1&gt;
 
 &lt;p&gt;Du musst &lt;strong&gt;5000&lt;/strong&gt;&amp;nbsp;im Warte-Block eintragen. Dein Programm sollte jetzt so aussehen, wie recht dargestellt.&lt;/p&gt;
 

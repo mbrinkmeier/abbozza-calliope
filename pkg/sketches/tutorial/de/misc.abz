@@ -16,12 +16,12 @@
 </statement>
 </block>
 <description/>
-<options apply="no" protected="no">{option.usb=false,option.events=false,option.serial=false,option.parser=false,option.operations=false,option.advanced=false,option.multArrays=false,option.colorDefault=true,option.noArrays=true,option.linArrays=false,option.pathToBoard=/media/michael/MINI,option.i2c=false,option.messages=false,option.colorType=false,option.radio=false,option.motors=false,option.devices=false,option.localVars=false,option.colorCategory=false}</options>
-<task height="448" main="?tutorial.abz" prev="?blinker.abz" width="588">&lt;page&gt;&lt;h1&gt;Die anderen Knöpfe&lt;/h1&gt;
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=true,option.multArrays=true,option.devices=false,option.parser=false,option.messages=false,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=false}</options>
+<task height="448" main="?start.abz" next="?settings.abz" prev="?blinker.abz" width="588">&lt;page&gt;&lt;h1&gt;Die anderen Knöpfe&lt;/h1&gt;
 
-&lt;p&gt;&lt;img alt="" src="img/settings.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Dieser Knopf&amp;nbsp;&amp;nbsp;öffnet das Fenster mit den Einstallungen. Dort kannst Du Blöcke an- und ausschalten und einige andere Dinge einstellen.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="img/settings.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Dieser Knopf&amp;nbsp;&amp;nbsp;öffnet das Fenster mit den Einstallungen. Dort kannst Du Blöcke an- und ausschalten und einige andere Dinge einstellen. &lt;a href="?settings.abz"&gt;Hier gibt es mehr Informationen dazu.&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="" src="img/info.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Der Knopf&amp;nbsp;öffnet ein kleines Menü mit drei weiteren Knöpfen&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="img/info.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Hier verbergen sich insgesamt drei Knöpfe:&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt="" src="img/info.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Dieser Knopf öffnet dieses &lt;strong&gt;Aufgabenfenster&lt;/strong&gt;&lt;/p&gt;
 
@@ -29,7 +29,7 @@
 
 &lt;p&gt;&lt;img alt="" src="img/graduate-cap.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;Mit diesem Knopf kannst Du dieses &lt;strong&gt;Tutorial&lt;/strong&gt; öffnen.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="" src="img/serial.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;öffnet den &lt;strong&gt;Monitor&lt;/strong&gt;. Er ermöglicht es, dass der Calliope Mini Daten an den PC schickt, dass Du dem Calliope Nachrichten schickst und das er Nachrichten aus dem Internet erhalten kann. Dazu an anderer Stelle mehr.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="img/serial.png" style="width: 24px; height: 24px;"&gt;&amp;nbsp;öffnet den &lt;strong&gt;Monitor&lt;/strong&gt;. Er ermöglicht es, dass der Calliope Mini Daten an den PC schickt, dass Du dem Calliope Nachrichten schickst und das er Nachrichten aus dem Internet erhalten kann. &lt;a href="?monitor.abz"&gt;Dazu hier&amp;nbsp;mehr&lt;/a&gt;.&lt;/p&gt;
 &lt;/page&gt;&lt;page&gt;&lt;h1&gt;Ein paar praktische Tipps&lt;/h1&gt;
 
 &lt;p&gt;Stört Dich dieses &lt;strong&gt;Aufgabenfenster,&lt;/strong&gt; dann kannst Du es mit dem Kreuz rechts oben schließen.&amp;nbsp;Mit&amp;nbsp;&lt;img alt="" src="img/info.png" style="width: 16px; height: 16px;"&gt;&amp;nbsp;kannst Du es wieder öffnen.&lt;/p&gt;

@@ -17,7 +17,7 @@
 </block>
 <description/>
 <options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
-<task height="448" main="?!sketches/tutorial/de/tutorial.abz" next="?!sketches/tutorial/de/firstsketch.abz" prev="?!sketches/tutorial/de/tutorial.abz" width="588">&lt;page&gt;&lt;h1&gt;Ein&amp;nbsp;Programm übertragen&lt;/h1&gt;
+<task height="448" main="?start.abz" next="?firstsketch.abz" prev="?start.abz" width="588">&lt;page&gt;&lt;h1&gt;Ein&amp;nbsp;Programm übertragen&lt;/h1&gt;
 
 &lt;p&gt;Links siehst Du ein&amp;nbsp;einfaches &lt;strong&gt;Programm&lt;/strong&gt;, dass auf dem Calliope einfach die Laufschrift &lt;em&gt;"Ich bin der Calliope Mini!"&lt;/em&gt;&amp;nbsp;anzeigen soll. Wir nennen die Programme häufig auch &lt;strong&gt;Sketch.&lt;/strong&gt;&lt;/p&gt;
 

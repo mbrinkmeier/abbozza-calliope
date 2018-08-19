@@ -8,7 +8,7 @@
 </block>
 <description/>
 <options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=false,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=false,option.noArrays=true}</options>
-<task height="568" main="?tutorial.abz" next="?display_timing.abz" prev="?blocks.abz" width="600">&lt;page&gt;&lt;h1&gt;&lt;img alt="" src="sketches/tutorial/de/calliope_display.png" style="float: right; width: 250px; height: 221px;"&gt;Die Anzeige&lt;/h1&gt;
+<task height="568" main="?start.abz" next="?display_timing.abz" prev="?blocks.abz" width="600">&lt;page&gt;&lt;h1&gt;&lt;img alt="" src="/task/calliope_display.png" style="float: right; width: 250px; height: 221px;"&gt;Die Anzeige&lt;/h1&gt;
 
 &lt;p&gt;Der Calliope Mini kann auf seiner &lt;strong&gt;Anzeige&lt;/strong&gt;&amp;nbsp;Texte und Bilder darstellen. Die Blöcke dafür findest Du unter &lt;strong&gt;Anzeige&lt;/strong&gt;&amp;nbsp;in dem Block-Menu auf der linken Seite.&lt;/p&gt;
 
@@ -17,7 +17,7 @@
 &lt;p&gt;&lt;strong&gt;Tipp:&lt;/strong&gt; Der Block ist ziemlich groß.&lt;/p&gt;
 &lt;/page&gt;&lt;page&gt;&lt;h1&gt;Ein Bild&lt;/h1&gt;
 
-&lt;p&gt;&lt;img alt="" src="sketches/tutorial/de/image.png" style="float: right; width: 140px; height: 176px;"&gt;Der gesuchte Block ist rechts dargestellt.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/task/image.png" style="float: right; width: 140px; height: 176px;"&gt;Der gesuchte Block ist rechts dargestellt.&lt;/p&gt;
 
 &lt;p&gt;Jedes der Schwarzen Quadrate steht für eine der LEDs in der Anzeige. Klicke eines davon an. Du kannst auswählen in welcher Helligkeit die LED leuchten soll.&lt;/p&gt;
 
@@ -28,13 +28,13 @@
 
 &lt;p&gt;Der Calliope Mini hat auch eine LED, die in verschiedenen Farben leuchten kann.&lt;/p&gt;
 
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/rgb.png" style="width: 150px; height: 31px;"&gt;&lt;/p&gt;
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/rgb.png" style="width: 150px; height: 31px;"&gt;&lt;/p&gt;
 
 &lt;p&gt;Unter Anzeige findest Du auch einen&amp;nbsp;Block, um die Farbe einzustellen. Suche ihn und füge ihn in dein Hauptprogramm ein. Du kannst ihn vor oder hinter Deinem Bild einfügen. Klicke auf das schwarze Feld und suche Dir eine Farbe aus.&lt;/p&gt;
 
 &lt;p&gt;Probiere Dein Programm aus.&lt;/p&gt;
 &lt;/page&gt;&lt;page&gt;&lt;h1&gt;Ein Programm mit mehreren Blöcken&lt;br&gt;
-&lt;img alt="" src="sketches/tutorial/de/image_rgb.png" style="float: right; width: 150px; height: 160px;"&gt;&lt;/h1&gt;
+&lt;img alt="" src="/task/image_rgb.png" style="float: right; width: 150px; height: 160px;"&gt;&lt;/h1&gt;
 
 &lt;p&gt;Dein Programm wird&amp;nbsp;so ähnlich aussehen, wie das Bild rechts.&lt;/p&gt;
 
@@ -43,21 +43,21 @@
 
 &lt;p&gt;Mit dem folgenden Block kannst Du Farben für die RGB-LED mischen:&lt;/p&gt;
 
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/rgb_mix.png" style="width: 200px; height: 104px;"&gt;&lt;/p&gt;
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/rgb_mix.png" style="width: 200px; height: 104px;"&gt;&lt;/p&gt;
 
 &lt;p&gt;Mit den drei Zahlen stellst Du ein, wieviel Rot, Grün und Blau die Farbe enthalten soll. Du kannst Werte von 0 bis 255 eintragen.&lt;/p&gt;
 
-&lt;p&gt;Die kleinen Lila Blöcke sind &lt;strong&gt;Zahlen-Blöcke&lt;/strong&gt;. Du findest Sie unter &lt;strong&gt;Mathe&lt;/strong&gt;.&lt;img alt="" src="sketches/tutorial/de/number.png" style="width: 70px; height: 37px; float: right;"&gt;&lt;/p&gt;
+&lt;p&gt;Die kleinen Lila Blöcke sind &lt;strong&gt;Zahlen-Blöcke&lt;/strong&gt;. Du findest Sie unter &lt;strong&gt;Mathe&lt;/strong&gt;.&lt;img alt="" src="/task/number.png" style="width: 70px; height: 37px; float: right;"&gt;&lt;/p&gt;
 
 &lt;p&gt;Versuche doch mal die Farben Lila, Gelb, Orange und Weiß zu mischen.&lt;/p&gt;
 &lt;/page&gt;&lt;page&gt;&lt;h1&gt;Vorbereitete Bilder&lt;/h1&gt;
 
 &lt;p&gt;Mit diesem Block kannst Du einige vorbereitete Bilder anzeigen lassen:&lt;/p&gt;
 
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/image_choice.png" style="width: 150px; height: 30px;"&gt;&lt;/p&gt;
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/image_choice.png" style="width: 150px; height: 30px;"&gt;&lt;/p&gt;
 
 &lt;p&gt;Probiere die einzelnen Bilder aus.&lt;/p&gt;
-&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Alles gleichzeitig?&lt;img alt="" src="sketches/tutorial/de/image_rgb.png" style="float: right; width: 150px; height: 160px;"&gt;&lt;/h1&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Alles gleichzeitig?&lt;img alt="" src="/task/image_rgb.png" style="float: right; width: 150px; height: 160px;"&gt;&lt;/h1&gt;
 
 &lt;p&gt;Wenn Du&amp;nbsp;mit den verschiedenen Blöcken experimentierst und mehrere davon gleichzeitig nutzt, kann es sein, dass nicht alles so funktioniert wie Du möchtest.&lt;/p&gt;
 
@@ -65,7 +65,7 @@
 
 &lt;p&gt;Das folgende Programm scheint aber nicht richtig zu funktionieren.Um das zu verstehen, gehe zum &lt;a href="?display_timing.abz"&gt;nächsten Schritt des Tutorials&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p style="text-align: center;"&gt;&lt;img alt="" src="sketches/tutorial/de/display_fail.png" style="width: 100px; height: 216px;"&gt;&lt;/p&gt;
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/display_fail.png" style="width: 100px; height: 216px;"&gt;&lt;/p&gt;
 &lt;/page&gt;</task>
 <system>calliopeC</system>
 </xml>
