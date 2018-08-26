@@ -1,0 +1,73 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="100" y="20">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols>
+<symbol len="[10]" name="feld" symboltype="0" type="NUMBER"/>
+</symbols>
+</mutation>
+<data>main</data>
+<statement name="STATEMENTS">
+<block id="VvY2_-1NG/WQ:pY/od)N" type="var_assign">
+<value name="LEFT">
+<block id="pCAg3d1MT#xLGd)46:pG" type="var_block">
+<mutation dimension="1"/>
+<field name="NAME">feld</field>
+<value name="DIM0">
+<block id="}Fstxuh_`N@x`Ab~70kC" type="math_number">
+<field name="VALUE">2</field>
+</block>
+</value>
+</block>
+</value>
+<value name="RIGHT">
+<block id="-jZ/T9*ah)YgO,mwF(!;" type="math_number">
+<field name="VALUE">42</field>
+</block>
+</value>
+<next>
+<block id="4o%^X`+V%.*dS{eOIC:a" type="display_scroll">
+<value name="TEXT">
+<block id="H-s}3-2c^rNj-:#w-25a" type="var_block">
+<mutation dimension="1"/>
+<field name="NAME">feld</field>
+<value name="DIM0">
+<block id="+v#@{pDo@hJ0}K{pAln," type="math_number">
+<field name="VALUE">2</field>
+</block>
+</value>
+</block>
+</value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=false,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.linArrays=true,option.localVars=false,option.serial=false,option.radio=false,option.colorType=false,option.colorCategory=false,option.advanced=true,option.noArrays=false}</options>
+<task height="400" main="?start.abz" prev="?variables.abz" width="600">&lt;page&gt;&lt;abbozza-hint block="main" dx="-86" dy="68" height="42" width="98"&gt;Drück' mich!&lt;/abbozza-hint&gt;
+&lt;h1&gt;Arrays / Reihungen / Felder&lt;/h1&gt;
+
+&lt;div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;"&gt;&lt;strong&gt;Eine Warnung vorweg!&lt;/strong&gt;&lt;br&gt;
+Dies ist keine Einführung in Arrays! Hier wird nur beschrieben, wie man in abbozza! Arrays verwenden kann.&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Array&lt;/strong&gt;, &lt;strong&gt;Reihung&lt;/strong&gt;&amp;nbsp;und &lt;strong&gt;Feld&lt;/strong&gt; sind verschiedene Begriffe für dasselbe Konzept: Eine Sequenz von Werten gleichen Typs wird gespeichert und kann über seine Position in der Reihenfolge verändert oder ausgelesen werden.&lt;/p&gt;
+
+&lt;p&gt;Um Arrays nutzen zu können, muss in den Einstellungen entweder die Option &lt;strong&gt;Eindimensionale Reihungen/Felder&lt;/strong&gt; oder &lt;strong&gt;Mehrdimensionale Reihungen/Felder&lt;/strong&gt; aktiviert sein.&lt;/p&gt;
+
+&lt;p&gt;Wie Variablen müssen Felder &lt;strong&gt;deklariert&lt;/strong&gt; werden. Im Beispielprogramm ist ein Array mit dem Namen &lt;span style="font-family:Courier New,Courier,monospace;"&gt;feld&lt;/span&gt; deklariert worden. Es hat die &lt;strong&gt;Länge&lt;/strong&gt; 10 und den Wert Zahl. D.h. es kann 10 Zahlen speichern. Diese sind von 0 bis 9 durchnummeriert.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Zuweisungen zu Arrays&lt;/h1&gt;
+
+&lt;p&gt;Man kann den einzelnen Einträgen eines Arrays mit demselben Block ein Wert zuweisen, wie einer normalen&amp;nbsp;Variablen. Allerdings erscheint ein zusätzlicher Input, indem die Nummer des jeweiligen Eintrages eingefügt wird. Die Position nennt man auch &lt;strong&gt;Index&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;In unserem Beispiel wird dem dritten Eintrag (Index 2) der Wert 42 zugewiesen. Anschließend wird der dritte Eintrag dargestellt.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Herausforderungen&lt;/h1&gt;
+
+&lt;p&gt;Weise dem fünften Eintrag (Index 4) den Wert 3 zu und gebe anschließend den Wert aus.&lt;/p&gt;
+
+&lt;p&gt;Weise dem vierten Eintrag (Index ???) den Wert 7 zu und gebe ihn aus.&lt;/p&gt;
+
+&lt;p&gt;Deklariere ein Array in dem Du 5 Text speichern kannst. Weise den Einträgen die Werte "A", "AB", "ABC", "ABCD" und "ABCDE" zu. Gebe Sie anschließend nacheinander aus.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

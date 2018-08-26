@@ -1,0 +1,78 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="146" y="30">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols>
+<symbol name="wert" symboltype="0" type="NUMBER"/>
+</symbols>
+</mutation>
+<data>main</data>
+<statement name="STATEMENTS">
+<block id="5|`^ScZ{8Y4@P+4-8V^=" type="var_assign">
+<value name="LEFT">
+<block id="a!8@-KJ#AW(eZ!KlPh{e" type="var_block">
+<field name="NAME">wert</field>
+</block>
+</value>
+<next>
+<block id="=+fWU}hbIz[vEal?{;Sx" type="display_scroll">
+<value name="TEXT">
+<block id="pVA8-[bI3Mj79B!Tk^TG" type="var_block">
+<field name="NAME">wert</field>
+</block>
+</value>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block id="AB4!L1qypz9Cr[ke1+c1" type="math_decimal" x="397" y="34">
+<field name="VALUE">3.14159</field>
+</block>
+<block id="Ed,%%oA@Gt5209Zfp+@l" type="text_const" x="393" y="76">
+<field name="CONTENT">Hallo!</field>
+</block>
+<block id="EEdA9#nO*pY}0z~*RS5," type="logic_const" x="397" y="117">
+<field name="NAME">TRUE</field>
+</block>
+<block id="8zd7SPEX5^~CZYRj`(|N" type="math_number" x="397" y="160">
+<field name="VALUE">42</field>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=true,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
+<task height="412" main="?start.abz" prev="?types.abz" width="600">&lt;page&gt;&lt;abbozza-hint block="main" dx="-183" dy="9" height="37" width="101"&gt;Drück mich!&lt;/abbozza-hint&gt;
+&lt;h1&gt;Variablen&lt;/h1&gt;
+
+&lt;div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;"&gt;&lt;strong&gt;Eine Warnung vorweg!&lt;/strong&gt;&lt;br&gt;
+Dies ist keine Einführung in das Konzept der Variablen! Die findest Du &lt;a href="https://inf-didaktik.rz.uos.de/abbozza/calliope/material.php"&gt;hier&lt;/a&gt;.&lt;/div&gt;
+
+&lt;p&gt;In abbozza! müssen Variablen &lt;strong&gt;deklariert&lt;/strong&gt; werden. Das Icon&amp;nbsp;&lt;img alt="" src="img/variable.png" style="width: 17px; height: 17px;"&gt;&amp;nbsp;am&amp;nbsp;&lt;strong&gt;Hauptprogramm &lt;/strong&gt;öffnet ein Fenster, indem man das kann.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/declaration.png" style="width: 300px; height: 172px;"&gt;&lt;/p&gt;
+
+&lt;p&gt;Im Beispielprogramm ist bereits eine Variable mit dem Namen &lt;span style="font-family:Courier New,Courier,monospace;"&gt;wert&lt;/span&gt; und dem Typ &lt;strong&gt;Zahl&lt;/strong&gt; deklariert.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Deklariere eine zusätzliche Variable &lt;span style="font-family:Courier New,Courier,monospace;"&gt;nachricht&lt;/span&gt; vom Typ &lt;strong&gt;Text&lt;/strong&gt;.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Zuweisen und verwenden von Werten&lt;/h1&gt;
+
+&lt;p&gt;Ist eine Variable deklariert, kann man ihr mit dem folgenden Block einen Wert &lt;strong&gt;zuweisen:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/assign.png" style="width: 197px; height: 41px;"&gt;&lt;/p&gt;
+
+&lt;p&gt;Stellt man den Namen der jeweiligen Variable ein, ändert sich die Form des Inputs.&lt;/p&gt;
+
+&lt;p&gt;Benutze die bereitliegenden Blöcke, um&amp;nbsp;&amp;nbsp;der Variable einen Wert zu zuweisen.&lt;/p&gt;
+
+&lt;p&gt;Um den Wert der Variablen zu verwenden, kann man den folgenden Block verwenden.&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;img alt="" src="/task/variable.png" style="width: 68px; height: 26px;"&gt;&lt;/p&gt;
+
+&lt;p&gt;Auch er ändert die Form des Anschlusses, wenn man die Variable einstellt.&lt;/p&gt;
+&lt;/page&gt;&lt;page&gt;&lt;h1&gt;Herausforderung&lt;/h1&gt;
+
+&lt;p&gt;Weise der vorhin von Dir deklarierten Variable&amp;nbsp;&lt;span style="font-family:Courier New,Courier,monospace;"&gt;nachricht&lt;/span&gt;&amp;nbsp;einen Wert zu. Lasse anschließend den Wert der Variable anzeigen.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>

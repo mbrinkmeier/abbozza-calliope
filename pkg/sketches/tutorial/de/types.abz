@@ -1,0 +1,61 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+<block deletable="false" id="main" inline="false" type="main" x="100" y="20">
+<mutation>
+<title>&lt;title&gt;</title>
+<symbols/>
+</mutation>
+<data>main</data>
+<statement name="STATEMENTS">
+<block id="=+fWU}hbIz[vEal?{;Sx" type="display_scroll">
+<next>
+<block id="*!6gjKe0EF!8ASa1H`I#" type="dev_rgb_led_set_color">
+<next>
+<block id="i54gGwukuI,XTa,?IR)c" type="cond_if">
+<value name="CONDITION">
+<block id="7Bk11sG)_LZh,:hUJqxp" type="logic_not"/>
+</value>
+<statement name="STATEMENTS">
+<block id="[O(yV;zgg%}Vo~kE:fQN" type="dev_rgb_led_set_color2">
+<field name="COLOR">#33cc00</field>
+</block>
+</statement>
+</block>
+</next>
+</block>
+</next>
+</block>
+</statement>
+</block>
+<block id="8zd7SPEX5^~CZYRj`(|N" type="math_number" x="355" y="32">
+<field name="VALUE">42</field>
+</block>
+<block id="AB4!L1qypz9Cr[ke1+c1" type="math_decimal" x="358" y="75">
+<field name="VALUE">3.14159</field>
+</block>
+<block id="Ed,%%oA@Gt5209Zfp+@l" type="text_const" x="359" y="119">
+<field name="CONTENT">Hallo!</field>
+</block>
+<block id="EEdA9#nO*pY}0z~*RS5," type="logic_const" x="360" y="161">
+<field name="NAME">TRUE</field>
+</block>
+<description/>
+<options apply="no" protected="no">{option.usb=false,option.operations=false,option.colorDefault=true,option.i2c=false,option.motors=false,option.events=true,option.multArrays=false,option.devices=false,option.parser=false,option.messages=false,option.pathToBoard=/media/michael/MINI,option.localVars=false,option.linArrays=false,option.radio=false,option.serial=false,option.colorType=false,option.advanced=false,option.colorCategory=false,option.noArrays=true}</options>
+<task height="400" main="?start.abz" next="?variables.abz" width="600">&lt;page&gt;&lt;h1&gt;Typen&lt;/h1&gt;
+
+&lt;p&gt;abbozza! kennt vier &lt;strong&gt;Basistypen:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;ganze &lt;b&gt;Zahlen (integer) &lt;/b&gt;mit runden Anschluss&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Dezimalzahlen (float)&lt;/strong&gt; mit rechteckigem Anschluss&lt;/li&gt;
+	&lt;li&gt;&lt;b&gt;Texte &lt;/b&gt;mit dreieckigen Anschluss&lt;img alt="" src="/task/type_text.png"&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;b&gt;Wahrheitswerte (boolean)&lt;/b&gt; mit Puzzle-Anschluss&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;b&gt;&lt;img alt="" src="/task/number_type.png" style="width: 52px; height: 33px; margin-left: 10px; margin-right: 10px;"&gt;&lt;img alt="" src="/task/decimal_type.png" style="width: 89px; height: 33px; margin-left: 10px; margin-right: 10px;"&gt;&lt;/b&gt;&lt;img alt="" src="/task/text_type.png" style="width: 104px; height: 30px; margin-left: 10px; margin-right: 10px;"&gt;&lt;b&gt;&lt;img alt="" src="/task/boolean_type.png" style="width: 78px; height: 31px; margin-left: 10px; margin-right: 10px;"&gt;&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Die Anschlüsse jeden Typs haben verschiedene Formen, an denen man erkennen kann, welcher Typ wo eingefügt werden kann. Manchmal sind auch weitere Typen möglich.&lt;/p&gt;
+
+&lt;p&gt;Probiere mit den bereitliegenden Blöcken aus, welche Blöcke wo passen.&lt;/p&gt;
+&lt;/page&gt;</task>
+<system>calliopeC</system>
+</xml>
