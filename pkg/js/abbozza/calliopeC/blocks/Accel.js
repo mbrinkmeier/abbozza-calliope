@@ -308,7 +308,7 @@ Abbozza.ThermometerGet = {
         this.setColour(ColorMgr.getCatColor("cat.DEVIN"));
         this.setPreviousStatement(false);
         this.setNextStatement(false);            
-        this.setOutput(true,"NUMBER");
+        this.setOutput(true,["NUMBER","DECIMAL"]);
         this.appendDummyInput()
             .appendField(_("dev.THERMOMETER_GET"))
         this.setTooltip('');
@@ -324,3 +324,27 @@ Abbozza.ThermometerGet = {
 }
 
 Blockly.Blocks['dev_thermometer_get'] = Abbozza.ThermometerGet;
+
+
+Abbozza.ThermometerGetFloat = {
+    init : function() {
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.DEVIN"));
+        this.setPreviousStatement(false);
+        this.setNextStatement(false);            
+        this.setOutput(true,"DECIMAL");
+        this.appendDummyInput()
+            .appendField(_("dev.THERMOMETER_GET"))
+        this.setTooltip('');
+    },
+    
+    generateCode : function(generator) {
+        generator.addSetupCode("abbozza.thermometer.updateSample();");
+        var code="";
+        // code = "abbozza.thermometer.getTemperature()";
+        code = "abbozza.getTemperatureFloat()";
+        return code;
+    }
+}
+
+Blockly.Blocks['dev_thermometer_get_float'] = Abbozza.ThermometerGetFloat;

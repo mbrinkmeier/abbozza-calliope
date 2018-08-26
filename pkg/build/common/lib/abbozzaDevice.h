@@ -72,6 +72,16 @@ class Abbozza : public MicroBit {
         
     public:
         void init();
+        
+        ManagedString toString(int value);
+        ManagedString toString(ManagedString value);
+        ManagedString toString(bool value);
+        ManagedString toString(float value);
+        ManagedString toString(double value);
+
+        ManagedString ftoa(float value);
+        ManagedString dtoa(double value);
+        
         int getPin(int pin);
         int getGesture();
         int getMicrophoneLevel();

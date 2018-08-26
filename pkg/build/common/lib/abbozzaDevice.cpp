@@ -27,6 +27,7 @@
 
 #include "MicroBit.h"
 #include "abbozzaDevice.h"
+#include <stdlib.h>
 
 
 /**
@@ -71,6 +72,89 @@ void Abbozza::init() {
     MicroBit::init();
     serial.setRxBufferSize(254);
 }
+
+
+
+ManagedString Abbozza::toString(int value) {
+    return ManagedString(value);
+}
+
+ManagedString Abbozza::toString(ManagedString value) {
+    return value;
+}
+
+ManagedString Abbozza::toString(bool value) {
+    return ManagedString(value);
+}
+
+ManagedString Abbozza::toString(float value) {
+    return ftoa(value);
+}
+
+ManagedString Abbozza::toString(double value) {
+    return dtoa(value);
+}
+
+/**
+ * Create a ManagedString from a float value
+ * 
+ * @param value The value to be representred as string.
+ * @return The string representation of value
+ */
+ManagedString Abbozza::ftoa(float value) {
+    return dtoa(value);
+}
+
+
+/**
+ * Create a ManagedString from a float value
+ * 
+ * @param value The value to be representred as string.
+ * @return The string representation of value
+ */
+ManagedString Abbozza::dtoa(double value) {
+    // Check for NaN
+    if ( isnan(value) ) {
+        return ManagedString("NaN");
+    }
+    
+    ManagedString res = ManagedString("");
+    
+    // Check for sign
+    if ( value < 0 ) {
+        value = -1.0 * value;
+        res = res + '-';
+    }
+
+    // Now convert positive value
+    int pre = round(floor(value));
+    res = res + ManagedString(pre);
+    res = res + ".";
+    
+    ManagedString buf = ManagedString("");
+    
+    double rem = value - pre;
+    int pos = 5;
+    while ((pos > 0) && (rem > 0.0) ) {
+        rem = rem * 10.0;
+        double f = floor(rem);
+        int d = round(f);
+        char digit = '0' + d;
+        if ( digit == '0' ) {
+            buf = buf + '0';
+        } else {
+            res = res + buf;
+            res = res + digit;
+            buf = ManagedString("");
+        }
+        rem = rem - f;
+        pos--;
+    }
+        
+    return res;        
+}
+
+
 
 /*
  * Get the pin number.

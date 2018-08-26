@@ -412,6 +412,9 @@
             </block>
         </category>
         
+        <category  id="cat.DEVIN">
+            <block type="dev_thermometer_get_float"></block>
+        </category>
     </feature>
 
     <!--- String parser -->

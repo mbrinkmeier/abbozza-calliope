@@ -404,12 +404,12 @@ AbbozzaGenerator.prototype.enforceType = function (code, enfType) {
             break;
         case "TEXT":
         case "STRING":
-            code = "ManagedString(" + code + ")";
+            code = "abbozza.toString(" + code + ")";
             break;
         case "DECIMAL":
             code = "((" + keyword("DECIMAL") + ") " + code + ")";
             break;
-        case "BBOLEAN":
+        case "BOOLEAN":
             code = "((bool) " + code + ")";
             break;
     }
