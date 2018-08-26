@@ -74,7 +74,7 @@ AbbozzaCode['loop_count_dir'] = ["for(#=#;###;#=#+#) {\n#\n}",["F_VAR","V_FROM",
                 "S_STATEMENTS"
 ]];
 
-AbbozzaCode['loop_count_dir_step'] = ["for(#=#;###;#=#+#) {\n#\n}",["F_VAR","V_FROM","F_VAR",
+AbbozzaCode['loop_count_dir_step'] = ["for(#=#;###;#=##) {\n#\n}",["F_VAR","V_FROM","F_VAR",
                 function(generator) {
                     var dir = generator.fieldToCode(this, "DIR");
                     var rel = "<=";
@@ -88,7 +88,9 @@ AbbozzaCode['loop_count_dir_step'] = ["for(#=#;###;#=#+#) {\n#\n}",["F_VAR","V_F
                     var dir = generator.fieldToCode(this, "DIR");
                     var step = generator.valueToCode(this,"STEP");
                     if ( dir == "DESC" ) {
-                        step = "(" + (-1 * step) + ")";
+                        step = "-" + step;
+                    } else {
+                        step = "+" + step;
                     }
                     return step;
                },
