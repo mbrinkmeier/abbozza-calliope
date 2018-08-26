@@ -83,7 +83,15 @@ AbbozzaCode['loop_count_dir_step'] = ["for(#=#;###;#=#+#) {\n#\n}",["F_VAR","V_F
                     }
                     return rel;
                 }
-                ,"V_TO","F_VAR","F_VAR","V_STEP",
+                ,"V_TO","F_VAR","F_VAR",
+                function(generator) {
+                    var dir = generator.fieldToCode(this, "DIR");
+                    var step = generator.valueToCode(this,"STEP");
+                    if ( dir == "DESC" ) {
+                        step = "(" + (-1 * step) + ")";
+                    }
+                    return step;
+               },
                 "S_STATEMENTS"
 ]];
 
