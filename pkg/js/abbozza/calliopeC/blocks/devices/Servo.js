@@ -88,7 +88,7 @@ Abbozza.DeviceServoSet = {
         var value = generator.valueToCode(this, "VALUE");
 
         if (device == null) {
-            ErrorMgr.addError(this, "UNKNOWN_DEVICE");
+            ErrorMgr.addError(this, _("err.UNKNOWN_DEVICE"));
             return;
         }
 
