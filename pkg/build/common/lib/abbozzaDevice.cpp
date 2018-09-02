@@ -342,6 +342,60 @@ int Abbozza::serialReadByte(PinName tx, PinName rx) {
     serialRedirect(tx,rx);
     return serial.read(ASYNC);
 }
+
+
+/**
+ * Write a 4-byte int the serial line
+ * 
+ * @param tx
+ * @param rx
+ * @param byte
+ */
+void Abbozza::serialWriteInt(int tx, int rx, int value){
+    uint8_t buf[4];
+    buf[0] = (value >> 24) % 256;
+    buf[1] = (value >> 16) % 256;
+    buf[2] = (value >> 8) % 256;
+    buf[3] = value % 256;
+    
+    serialRedirect(tx,rx);
+    serial.send(buf,4,ASYNC);
+}
+
+void Abbozza::serialWriteInt(PinName tx, PinName rx, int value){
+    uint8_t buf[4];
+    buf[0] = (value >> 24) % 256;
+    buf[1] = (value >> 16) % 256;
+    buf[2] = (value >> 8) % 256;
+    buf[3] = value % 256;
+
+    serialRedirect(tx,rx);
+    serial.send(buf,4,ASYNC);
+}
+
+/**
+ * Read a 4-byte int from the serial line
+ * 
+ * @param tx
+ * @param rx
+ * @return 
+ */
+int Abbozza::serialReadInt(int tx, int rx) {
+    uint8_t buf[4];
+    serialRedirect(tx,rx);
+    serial.read(buf,4,ASYNC);
+    return ( buf[0] << 24 ) | ( buf[1] << 16 ) | ( buf[2] << 8 ) | buf[3];
+}
+
+int Abbozza::serialReadInt(PinName tx, PinName rx) {
+    uint8_t buf[4];
+    serialRedirect(tx,rx);
+    serial.read(buf,4,ASYNC);
+    return ( buf[0] << 24 ) | ( buf[1] << 16 ) | ( buf[2] << 8 ) | buf[3];
+}
+
+
+
 /**
  * Check if the rx buffer contains bytes
  * 

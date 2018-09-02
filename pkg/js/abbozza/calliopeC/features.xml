@@ -463,6 +463,12 @@
                 </value>                
             </block>
             <block type="serial_read_byte"></block>
+            <block type="serial_write_int">
+                <value name ="VALUE">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>                
+            </block>
+            <block type="serial_read_int"></block>
             <block type="serial_table">
                 <value name="CHANNEL0">
                     <block type="math_number">

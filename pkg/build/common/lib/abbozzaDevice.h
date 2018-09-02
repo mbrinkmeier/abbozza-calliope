@@ -98,6 +98,10 @@ class Abbozza : public MicroBit {
         void serialWriteByte(PinName tx, PinName rx, int byte);
         int serialReadByte(int tx, int rx);
         int serialReadByte(PinName tx, PinName rx);
+        void serialWriteInt(int tx, int rx, int value);
+        void serialWriteInt(PinName tx, PinName rx, int value);
+        int serialReadInt(int tx, int rx);
+        int serialReadInt(PinName tx, PinName rx);
         bool serialIsAvailable(int tx, int rx);
         bool serialIsAvailable(PinName tx, PinName rx);
         void serialRedirect(int tx, int rx);

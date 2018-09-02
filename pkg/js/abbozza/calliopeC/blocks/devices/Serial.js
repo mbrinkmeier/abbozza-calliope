@@ -372,6 +372,96 @@ Blockly.Blocks['serial_read_byte'] = Abbozza.SerialReadByte;
 
 
 
+
+/**
+ * Writes a string with a newline to the serial port.
+ */
+Abbozza.SerialWriteInt = {
+   init: function() {
+     this.setHelpUrl(Abbozza.HELP_URL);
+    this.setColour(ColorMgr.getColor("cat.SERIAL"));
+    this.appendValueInput("VALUE")
+        .appendField(new Blockly.FieldImage("img/devices/comm32.png",16,16))     
+        .appendField(_("dev.SERIAL_WRITE_INT"))
+        .appendField(new SerialDropdown(this),"DEVICE")
+        .setCheck("NUMBER");
+    this.setOutput(false);  
+    this.setInputsInline(false);
+    this.setPreviousStatement(true,"STATEMENT");
+    this.setNextStatement(true,"STATEMENT");
+    this.setTooltip('');
+   },
+   
+   generateCode : function(generator) {
+       var rx = "USBRX";
+       var tx = "USBTX";
+       var name = generator.fieldToCode(this,"DEVICE");
+       
+       if ( name != "USB") {
+          var device = Abbozza.blockDevices.getDevice(name);
+
+          if (device == null) {
+              ErrorMgr.addError(this, _("err.UNKNOWN_DEVICE"));
+              return;
+          }
+
+          tx = generator.fieldToCode(device,"TX");
+          rx = generator.fieldToCode(device,"RX");
+       }
+
+       var code = "";       
+       var value = generator.valueToCode(this,"VALUE");
+       code = "abbozza.serialWriteInt(" + tx + "," + rx + "," + value + ");";
+       
+       return code;
+   }
+}
+
+Blockly.Blocks['serial_write_int'] = Abbozza.SerialWriteInt;
+
+
+Abbozza.SerialReadInt = {
+   init: function() {
+     this.setHelpUrl(Abbozza.HELP_URL);
+    this.setColour(ColorMgr.getColor("cat.SERIAL"));
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("img/devices/comm32.png",16,16))     
+        .appendField(_("dev.SERIAL_READ_INT"))
+        .appendField(new SerialDropdown(this),"DEVICE");
+    this.setOutput(true,"NUMBER");  
+    this.setInputsInline(false);
+    this.setPreviousStatement(false);
+    this.setNextStatement(false);
+    this.setTooltip('');
+   },
+   
+   generateCode : function(generator) {
+       var rx = "USBRX";
+       var tx = "USBTX";
+       var name = generator.fieldToCode(this,"DEVICE");
+       
+       if ( name != "USB") {
+          var device = Abbozza.blockDevices.getDevice(name);
+
+          if (device == null) {
+              ErrorMgr.addError(this, _("err.UNKNOWN_DEVICE"));
+              return;
+          }
+
+          tx = generator.fieldToCode(device,"TX");
+          rx = generator.fieldToCode(device,"RX");
+       }
+
+       var code = "";       
+       code = "abbozza.serialReadInt(" + tx + "," + rx + ")";
+       
+       return code;
+   }
+}
+
+Blockly.Blocks['serial_read_int'] = Abbozza.SerialReadInt;
+
+
 Abbozza.SerialAvailable = {
     init: function () {
         this.setHelpUrl(Abbozza.HELP_URL);
