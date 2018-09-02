@@ -205,6 +205,25 @@ int Abbozza::getMicrophoneLevel() {
 }
 
 /**
+ * Gets the roll in degree. Display up is zero. Tilted to the left are negative
+ * values, tilt to right positive ones.
+ * 
+ * @return The angle in degrees.
+ */
+int Abbozza::getRoll() {
+#ifdef TARGET_NRF51_CALLIOPE
+    int roll = accelerometer.getRoll();
+    if ( roll < 0 ) { 
+        return -180 - roll;
+    } else {
+        return 180 - roll;
+    }
+#else
+    return accelerometer.getRoll();
+#endif
+}
+
+/**
  * Register an event handler. If another handler was registered for the same
  * event type it is removed. This allows for dynamic changing of event handlers.
  * 

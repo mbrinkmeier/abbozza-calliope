@@ -32,7 +32,12 @@ Abbozza.AccelGet = {
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
             .appendField(_("dev.ACCEL_GET"))
-            .appendField(new Blockly.FieldDropdown([[_("dev.ACCEL_X"),"getX"],[_("dev.ACCEL_Y"),"getY"],[_("dev.ACCEL_Z"),"getZ"],[_("dev.ACCEL_PITCH"),"getPitch"],[_("dev.ACCEL_ROLL"),"getRoll"]]),"DIR");
+            .appendField(new Blockly.FieldDropdown([
+                    [_("dev.ACCEL_X"),"accelerometer.getX"],
+                    [_("dev.ACCEL_Y"),"accelerometer.getY"],
+                    [_("dev.ACCEL_Z"),"accelerometer.getZ"],
+                    [_("dev.ACCEL_PITCH"),"accelerometer.getPitch"],
+                    [_("dev.ACCEL_ROLL"),"getRoll"]]),"DIR");
         this.setTooltip('');
     },
     
@@ -41,7 +46,7 @@ Abbozza.AccelGet = {
         generator.addSetupCode("abbozza.accelerometer.updateSample();");
         var code="";
         var dir = generator.fieldToCode(this,"DIR");
-        code = "abbozza.accelerometer." + dir + "()";
+        code = "abbozza." + dir + "()";
         return code;
     }
 }
