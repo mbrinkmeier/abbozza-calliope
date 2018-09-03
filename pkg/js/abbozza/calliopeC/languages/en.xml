@@ -142,8 +142,6 @@
         
         
         <msg id="gui.view">View</msg>
-        <msg id="gui.inc_font_size">Increase font size</msg>
-        <msg id="gui.dec_font_size">Decrease font size</msg>
         
     </gui>
     <image>
