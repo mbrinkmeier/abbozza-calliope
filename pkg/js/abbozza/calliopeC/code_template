@@ -25,10 +25,7 @@ Abbozza abbozza;
 // Das Hauptprogramm
 int main() {
    abbozza.init();
-    
 ###setuphook###
-
 ###main###
-    
     release_fiber();
 }

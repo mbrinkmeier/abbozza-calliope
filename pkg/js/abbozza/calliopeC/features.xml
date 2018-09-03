@@ -34,6 +34,21 @@
                     <block type="math_number"><field name="VALUE">1000</field></block>
                 </value>
             </block-->            
+            <block type="loop_delay_millis">
+                <value name="TIME">
+                    <block type="math_number"><mutation confirmed="false"/>100</block>
+                </value>
+            </block>  
+            <block type="loop_delay_micros">
+                <value name="TIME">
+                    <block type="math_number"><mutation confirmed="false"/>100</block>
+                </value>
+            </block>  
+            <block type="loop_delay_seconds">
+                <value name="TIME">
+                    <block type="math_number"><mutation confirmed="false"/>100</block>
+                </value>
+            </block>  
         </category>
 
         <!-- Variables -->

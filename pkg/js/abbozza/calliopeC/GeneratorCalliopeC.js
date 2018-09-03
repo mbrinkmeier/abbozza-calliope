@@ -81,9 +81,11 @@ AbbozzaGenerator.prototype.initGenerator_ = function() {
 AbbozzaGenerator.prototype.checkOptions_ = function() {
     // Check if radio communication is required
     if (this.radioRequired == true) {
+      this.addDefinesCode("#define ABZPAUSE abbozza.sleep(0)")
       this.addDefinesCode("#define ABZ_RADIO");
       this.addSetupCode("abbozza.radio.enable();",true);
     } else {
+      this.addDefinesCode("#define ABZPAUSE wait_us(500)")
       this.addDefinesCode("#define ABZ_BLUETOOTH");
     }
 
