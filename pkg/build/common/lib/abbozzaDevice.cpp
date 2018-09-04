@@ -211,6 +211,7 @@ int Abbozza::getMicrophoneLevel() {
  * @return The angle in degrees.
  */
 int Abbozza::getRoll() {
+    accelerometer.updateSample();
 #ifdef TARGET_NRF51_CALLIOPE
     int roll = accelerometer.getRoll();
     if ( roll < 0 ) { 
@@ -222,6 +223,18 @@ int Abbozza::getRoll() {
     return accelerometer.getRoll();
 #endif
 }
+
+/**
+ * Gets the pitch in degree. Display up is zero. Tilted to the left are negative
+ * values, tilt to right positive ones.
+ * 
+ * @return The angle in degrees.
+ */
+int Abbozza::getPitch() {
+    accelerometer.updateSample();
+    return accelerometer.getPitch();
+}
+
 
 /**
  * Register an event handler. If another handler was registered for the same

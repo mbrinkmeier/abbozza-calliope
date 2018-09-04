@@ -36,14 +36,14 @@ Abbozza.AccelGet = {
                     [_("dev.ACCEL_X"),"accelerometer.getX"],
                     [_("dev.ACCEL_Y"),"accelerometer.getY"],
                     [_("dev.ACCEL_Z"),"accelerometer.getZ"],
-                    [_("dev.ACCEL_PITCH"),"accelerometer.getPitch"],
+                    [_("dev.ACCEL_PITCH"),"getPitch"],
                     [_("dev.ACCEL_ROLL"),"getRoll"]]),"DIR");
         this.setTooltip('');
     },
     
     generateCode : function(generator) {
         generator.addSetupCode("abbozza.accelerometer.configure();");
-        generator.addSetupCode("abbozza.accelerometer.updateSample();");
+        // generator.addSetupCode("abbozza.accelerometer.updateSample();");
         var code="";
         var dir = generator.fieldToCode(this,"DIR");
         code = "abbozza." + dir + "()";
@@ -220,7 +220,7 @@ Abbozza.CompassGetFS = {
     
     generateCode : function(generator) {
         generator.addSetupCode("abbozza.compass.configure();");
-        generator.addSetupCode("abbozza.compass.updateSample();");
+        // generator.addSetupCode("abbozza.compass.updateSample();");
         var code="";
         var dir = generator.fieldToCode(this,"DIR");
         code = "abbozza.compass." + dir + "()";

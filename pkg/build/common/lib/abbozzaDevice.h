@@ -88,6 +88,7 @@ class Abbozza : public MicroBit {
         void registerEventHandler(int id, int value, void (*handler)(MicroBitEvent));
         int readLightLevel();
         int getRoll();
+        int getPitch();
 
         void serialWriteLine(int tx, int rx, ManagedString line);
         void serialWriteLine(PinName tx, PinName rx, ManagedString line);
