@@ -38,8 +38,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipFile;
 
 /**
@@ -207,13 +211,22 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         String osName = System.getProperty("os.name");
 
         ProcessBuilder procBuilder = null;
-
+        
+        String _buildPath;
+        
+        try {
+            _buildPath = URLEncoder.encode(buildPath,"IOS8859-1");
+        } catch (UnsupportedEncodingException ex) {
+            AbbozzaLogger.err("AbbozzaCalliopeC : Encoding in UTF8 failed");
+            _buildPath = buildPath;
+        }
+        
         if (osName.contains("Linux")) {
-            procBuilder = buildProcLinux(buildPath);
+            procBuilder = buildProcLinux(_buildPath);
         } else if (osName.contains("Mac")) {
-            procBuilder = buildProcMac(buildPath);
+            procBuilder = buildProcMac(_buildPath);
         } else if (osName.contains("Windows")) {
-            procBuilder = buildProcWindows(buildPath);
+            procBuilder = buildProcWindows(_buildPath);
         }
 
         if (procBuilder == null) {
@@ -230,7 +243,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }
 
         String pluginSourcePath = abbozzaPath + "/build/" + this._boardName + "/source/lib/";
-        String pluginTargetPath = buildPath + "/source/lib/";
+        String pluginTargetPath = _buildPath + "source/lib/";
         try {
             // Copy files from <abbozzaPath>/build/<system>/source/lib (plugin libraries)
             // to <buildPath>/<system>/source/lib
@@ -255,12 +268,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             while (proc.isAlive()) {
                 if (error.ready()) {
                     line = error.readLine();
-                    AbbozzaLogger.force(line);
+                    AbbozzaLogger.force("[compile] : " + line);
                     errMsg = errMsg + "\n" + line;
                 }
                 if (out.ready()) {
                     line = out.readLine();
-                    AbbozzaLogger.force(line);
+                    AbbozzaLogger.force("[compile] : " + line);
                     outMsg = outMsg + "\n" + line;
                 }
             }
@@ -268,12 +281,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             // Read remaining output
             while (error.ready()) {
                 line = error.readLine();
-                AbbozzaLogger.force(line);
+                AbbozzaLogger.force("[compile] : " + line);
                 errMsg = errMsg + "\n" + line;
             }
             while (out.ready()) {
                 line = out.readLine();
-                AbbozzaLogger.force(line);
+                AbbozzaLogger.force("[compile] : " + line);
                 outMsg = outMsg + "\n" + line;
             }
 
@@ -575,7 +588,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             // Extract <abbozzapath>/lib/buildbase.jar
             File buildbasefile = new File(buildbaseJarPath);
             if (!buildbasefile.exists()) {
-                AbbozzaLogger.err("Could not find buildbase " + this._cmdOptBuildBase);
+                AbbozzaLogger.err("Could not find buildbase " + buildbaseJarPath);
                 buildbasefile = null;
             } else {
                 if ((buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild)) {
