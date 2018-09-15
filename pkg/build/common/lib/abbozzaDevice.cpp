@@ -277,6 +277,26 @@ int Abbozza::readLightLevel() {
 }
 
 /**
+ * Returns the serial status bytes
+ * 
+ * @return 
+ */
+int Abbozza::getSerialFlags() {
+    return serialFlags;
+}
+    
+
+/**
+ * Returns true if the last read integer was no number.
+ * 
+ * @return true if then las read number was incorrect
+ */
+bool Abbozza::serialWasNAN() {
+    return ( (serialFlags & SERIAL_NAN) > 0 );
+}
+
+
+/**
  * Write a string to the serial line, followed by a newline.
  * 
  * @param tx
@@ -377,36 +397,51 @@ int Abbozza::serialReadByte(PinName tx, PinName rx) {
 
 
 /**
- * Write a 4-byte int the serial line
+ * Write a 4-byte int to the serial line using the clacks format.
+ * In total 6 bytes are written. The start byte 42 ('*'), the four data bytes
+ * d3 to d0 (MSB)  and a checksum byte c = d3 xor d2 xor d1 xor d4.
  * 
  * @param tx
  * @param rx
  * @param byte
  */
 void Abbozza::serialWriteInt(int tx, int rx, int value){
-    uint8_t buf[4];
-    buf[0] = (value >> 24) % 256;
-    buf[1] = (value >> 16) % 256;
-    buf[2] = (value >> 8) % 256;
-    buf[3] = value % 256;
+    uint8_t buf[6];
     
+    buf[0] = 42;
+    buf[1] = (value >> 24) % 256;
+    buf[2] = (value >> 16) % 256;
+    buf[3] = (value >> 8) % 256;
+    buf[4] = value % 256;
+    buf[5] = buf[1] ^ buf[2] ^ buf[3] ^buf[4];
+            
     serialRedirect(tx,rx);
-    serial.send(buf,4,ASYNC);
+    serial.send(buf,6,ASYNC);
 }
 
 void Abbozza::serialWriteInt(PinName tx, PinName rx, int value){
-    uint8_t buf[4];
-    buf[0] = (value >> 24) % 256;
-    buf[1] = (value >> 16) % 256;
-    buf[2] = (value >> 8) % 256;
-    buf[3] = value % 256;
+    uint8_t buf[6];
+    
+    buf[0] = 42;
+    buf[1] = (value >> 24) % 256;
+    buf[2] = (value >> 16) % 256;
+    buf[3] = (value >> 8) % 256;
+    buf[4] = value % 256;
+    buf[5] = buf[1] ^ buf[2] ^ buf[3] ^buf[4];
 
     serialRedirect(tx,rx);
-    serial.send(buf,4,ASYNC);
+    serial.send(buf,6,ASYNC);
 }
 
 /**
- * Read a 4-byte int from the serial line
+ * Read a 4-byte int from the serial line using the clacks format.
+ * In total 6 bytes are read: 
+ * - the start byte 42
+ * - hhe four data bytes d3 .. d0 (MSB)
+ * - the checksum d3 xor d2 xor d1 xor d1
+ * 
+ * If the start byte is wrong, only one byte is read and the status
+ * SERIAL_NAN is set
  * 
  * @param tx
  * @param rx
@@ -415,14 +450,52 @@ void Abbozza::serialWriteInt(PinName tx, PinName rx, int value){
 int Abbozza::serialReadInt(int tx, int rx) {
     uint8_t buf[4];
     serialRedirect(tx,rx);
+   
+    // read and check the start byte
+    uint8_t start = serial.read();
+    if ( start != 42 ) {
+        serialFlags = serialFlags | SERIAL_NAN;
+        return 0;
+    }
+   
+    // read the data bytes
     serial.read(buf,4,ASYNC);
+    
+    // read the checksum
+    uint8_t checksum = serial.read();
+    if ( checksum != (buf[0] ^ buf[1] ^ buf[2] ^ buf[3]) ) {
+        serialFlags = serialFlags | SERIAL_NAN;
+        return 0;    
+    }
+    
+    serialFlags = serialFlags & (~SERIAL_NAN);
+    
     return ( buf[0] << 24 ) | ( buf[1] << 16 ) | ( buf[2] << 8 ) | buf[3];
 }
 
 int Abbozza::serialReadInt(PinName tx, PinName rx) {
     uint8_t buf[4];
     serialRedirect(tx,rx);
+   
+    // read and check the start byte
+    uint8_t start = serial.read();
+    if ( start != 42 ) {
+        serialFlags = serialFlags | SERIAL_NAN;
+        return 0;
+    }
+   
+    // read the data bytes
     serial.read(buf,4,ASYNC);
+    
+    // read the checksum
+    uint8_t checksum = serial.read();
+    if ( checksum != (buf[0] ^ buf[1] ^ buf[2] ^ buf[3]) ) {
+        serialFlags = serialFlags | SERIAL_NAN;
+        return 0;    
+    }
+    
+    serialFlags = serialFlags & (~SERIAL_NAN);
+    
     return ( buf[0] << 24 ) | ( buf[1] << 16 ) | ( buf[2] << 8 ) | buf[3];
 }
 

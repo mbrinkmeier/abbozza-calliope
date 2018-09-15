@@ -69,8 +69,12 @@ class Abbozza : public MicroBit {
         uint8_t i2cAddr = 0;
         bool __radioChecked = false;
         ManagedString __radioBuffer;
+        uint8_t serialFlags = 0;
+                
         
     public:
+        uint8_t const SERIAL_NAN = 0x01;
+        
         void init();
         
         ManagedString toString(int value);
@@ -110,6 +114,8 @@ class Abbozza : public MicroBit {
         void serialRedirect(PinName tx, PinName rx);
         void serialSetBaud(int tx, int rx, int baud);
         void serialSetBaud(PinName tx, PinName rx, int baud);
+        int getSerialFlags();
+        bool serialWasNAN();
         
         void i2cBeginTransmission(uint8_t addr);
         void i2cWriteByte(uint8_t value);
