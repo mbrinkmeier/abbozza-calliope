@@ -224,6 +224,17 @@ AbbozzaCode['var_assign'] = [ "# = #;" ,["V_LEFT","V_RIGHT"]];
 
 // Functions
 AbbozzaCode['func_decl'] = function (generator) {
+        var name = this.name;
+        if ( name == _("default.NAME") ) {
+            ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+        }
+            
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if ( !symbol || ((symbol[3] != symbols.FUN_SYMBOL) && (symbol[3] != symbols.ISR_SYMBOL)) ) {
+            ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+        }        
+        
         var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
 
         var code = "\n";
@@ -247,6 +258,7 @@ AbbozzaCode['func_decl'] = function (generator) {
         code = code + "\n}\n\n";
         return code;
     };
+    
 
 AbbozzaCode['func_call'] = function (generator) {
         var code = "";
