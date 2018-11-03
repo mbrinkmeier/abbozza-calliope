@@ -192,7 +192,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         super.setPaths();
         localJarPath = jarPath;
         globalJarPath = jarPath;
-        sketchbookPath = "/sketches";
+        sketchbookPath = userPath;
         localPluginPath = userPath + "/plugins";
         globalPluginPath = abbozzaPath + "/plugins"; // installPath + "/tools/Abbozza/plugins";
     }
@@ -210,7 +210,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         
         sketchbookPath = expandPath(config.getProperty("sketchbookPath"));
         if (sketchbookPath == null) {
-            sketchbookPath = "/sketches";
+            sketchbookPath = userPath;
         }
 
         toolsDir = expandPath(config.getProperty("toolsDir"));
