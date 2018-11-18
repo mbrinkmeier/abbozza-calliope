@@ -85,7 +85,7 @@ void AbbozzaParser::setCommand(ManagedString line) {
     currentCommand = line;
     cmdId = "";
     cmd = "";
-    if ( currentCommand.charAt(0) == '_' ) {
+    if (indexOf(currentCommand,' ') >= 0) {
         cmdId = parse_word();
     }
     cmd = parse_word();
@@ -129,6 +129,10 @@ ManagedString AbbozzaParser::parse_string() {
     return result;
 }
 
+
+ManagedString AbbozzaParser::getCmdId() {
+    return cmdId;
+}
 
 ManagedString AbbozzaParser::getCmd() {
     return cmd;
