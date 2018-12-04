@@ -138,6 +138,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             this.setBoardName("calliope");
         }
 
+        bluetooth = false;
         configFile = "config_radio.json";
 
         // Check for #define entries
@@ -155,9 +156,11 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         _buildPath = buildPath + "/" + this._boardName + "/"; // userPath + "/build/" + this._boardName + "/";
 
         if (this._boardName.equals("microbit")) {
-            _hexPath = _buildPath + "build/bbc-microbit-classic-gcc/source/abbozza-combined.hex";
+            // _hexPath = _buildPath + "build/bbc-microbit-classic-gcc/source/abbozza-combined.hex";
+            _hexPath = _buildPath + "build/abbozza-combined.hex";
         } else {
-            _hexPath = _buildPath + "build/calliope-mini-classic-gcc/source/abbozza-combined.hex";
+            // _hexPath = _buildPath + "build/calliope-mini-classic-gcc/source/abbozza-combined.hex";
+            _hexPath = _buildPath + "build/abbozza-combined.hex";
         }
         AbbozzaLogger.out("Build path set to " + _buildPath, AbbozzaLogger.INFO);
         AbbozzaLogger.out("Code generated", AbbozzaLogger.INFO);
@@ -361,7 +364,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         //    yottaInstall = "";
         // }
 
-        ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "yt", "-n", "--config", configFile, "build");
+        String ble = "BLUETOOTH=0";
+        if (bluetooth) {
+            ble="BLUETOOTH=1";
+        }
+        // ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "yt", "-n", "--config", configFile, "build");
+        ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "make", ble);
         // ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C",toolsDir + "/build.bat");
         procBuilder.directory(new File(buildPath));
 
@@ -503,10 +511,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * @return 0 if no error occured
      */
     public ProcessBuilder cleanProcWindows(String buildPath) {
-        // String yottaPath = System.getenv("YOTTA_PATH");
-        // String yottaInstall = System.getenv("YOTTA_INSTALL_LOCATION");
 
-        ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "yt", "-n", "clean");
+        // ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "yt", "-n", "clean");
+        ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "make", "clean");
         procBuilder.directory(new File(buildPath));
 
         // procBuilder.environment().put("PATH",  yottaPath + ";" + abbozzaPath + "\\lib\\srecord\\" + ";" + yottaInstall+"\\workspace\\Scripts\\" + ";" + System.getenv("PATH"));
@@ -539,7 +546,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
         // Check installed version
         String installedVersion = this.config.getProperty("version");
-        if ( this.isNewerThan(installedVersion) ) {
+        if ( !this.isNewerThan(installedVersion) ) {
             initBuild = true;
             AbbozzaLogger.info("Installed version (" + installedVersion + ") is older than available version (" + this.getSystemVersion() + ")");
         }
