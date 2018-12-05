@@ -335,8 +335,14 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * @return 0 if no error occured
      */
     public ProcessBuilder buildProcMac(String buildPath) {
+        String ble = "BLUETOOTH=0";
+        if (bluetooth) {
+            ble="BLUETOOTH=1";
+        }
         // ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
-        ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/build.sh", configFile);
+        // ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/build.sh", configFile);
+        ProcessBuilder procBuilder = new ProcessBuilder("make", ble);
+        
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
@@ -498,7 +504,8 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
      * @return 0 if no error occured
      */
     public ProcessBuilder cleanProcMac(String buildPath) {
-        ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/clean.sh");
+        // ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/clean.sh");
+        ProcessBuilder procBuilder = new ProcessBuilder("make","clean");
         procBuilder.directory(new File(buildPath));
 
         if (toolsPath != null) {
