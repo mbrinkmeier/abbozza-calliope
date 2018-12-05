@@ -910,7 +910,9 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
        String msg = parseConsoleText(message);
        this.consoleArea.setText(message);
        this.messageArea.setText(msg);
-   }
+       this.consoleArea.setCaretPosition(this.consoleArea.getDocument().getLength());       
+       this.messageArea.setCaretPosition(this.messageArea.getDocument().getLength());       
+    }
    
    public void appendConsoleText(String message) {
        String msg = parseConsoleText(message);
@@ -922,6 +924,8 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
        }
        this.consoleArea.setText(text + message);
        this.messageArea.setText(text2 + msg);
+       this.consoleArea.setCaretPosition(this.consoleArea.getDocument().getLength());       
+       this.messageArea.setCaretPosition(this.messageArea.getDocument().getLength());       
    }
    
    
