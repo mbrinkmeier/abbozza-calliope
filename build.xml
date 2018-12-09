@@ -87,7 +87,7 @@ nbproject/build-impl.xml file.
     <!--
         The building of the jar requires the construction of the buildbase
     -->
-    <target name="-post-jar" depends="buildbase">
+    <target name="-post-jar" depends="buildbase-install">
     </target> 
 
 
@@ -179,7 +179,7 @@ nbproject/build-impl.xml file.
     </target>
    
                         
-    <target name="installer-common" depends="default">
+    <target name="installer-common" depends="default,buildbase-install">
         <echo message="Cleaning up directory dist/install"/>
         <mkdir dir="dist/install"/>
         <mkdir dir="dist/install/plugins"/>
