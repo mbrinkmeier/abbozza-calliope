@@ -13,6 +13,7 @@ import de.uos.inf.did.abbozza.core.AbbozzaSplashScreen;
 import de.uos.inf.did.abbozza.calliope.handler.BoardChooserPanel;
 import de.uos.inf.did.abbozza.calliope.handler.BoardHandler;
 import de.uos.inf.did.abbozza.core.AbbozzaServerException;
+import de.uos.inf.did.abbozza.core.AbbozzaVersion;
 import de.uos.inf.did.abbozza.handler.JarDirHandler;
 import de.uos.inf.did.abbozza.handler.SerialHandler;
 import java.awt.AWTException;
@@ -49,12 +50,10 @@ import javax.swing.filechooser.FileSystemView;
  */
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
 
-    public static final int SYS_MAJOR = 1;
-    public static final int SYS_MINOR = 1;
-    public static final int SYS_REV = 5;
-    public static final int SYS_HOTFIX = 0;
-    public static final String SYS_REMARK = "(calliope)";
-    public static final String SYS_VERSION = SYS_MAJOR + "." + SYS_MINOR + "." + SYS_REV + "." + SYS_HOTFIX + " " + SYS_REMARK;
+    static {
+        AbbozzaVersion.setSystemVersion(1,1,6);
+        AbbozzaVersion.setSystemName("calliope");
+    }
 
     // Additional paths
     // protected String installPath;   // The path into which abbozza was installed
@@ -575,10 +574,6 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
 
     protected void quit() {
         System.exit(0);
-    }
-
-    public String getSystemVersion() {
-        return SYS_VERSION;
     }
 
     public void installUpdate(String version, String updateUrl) {

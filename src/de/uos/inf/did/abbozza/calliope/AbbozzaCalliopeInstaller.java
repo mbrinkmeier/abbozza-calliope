@@ -22,6 +22,7 @@
 package de.uos.inf.did.abbozza.calliope;
 
 import de.uos.inf.did.abbozza.core.AbbozzaLocale;
+import de.uos.inf.did.abbozza.core.AbbozzaVersion;
 import de.uos.inf.did.abbozza.install.AbbozzaLoggingFrame;
 import de.uos.inf.did.abbozza.install.InstallTool;
 import java.beans.PropertyChangeEvent;
@@ -29,22 +30,11 @@ import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.util.Enumeration;
 import java.util.Properties;
-import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -53,8 +43,6 @@ import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Caret;
-import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
 
 /**
@@ -68,6 +56,12 @@ public class AbbozzaCalliopeInstaller extends javax.swing.JFrame {
     private JarFile installerJar;
     private boolean globalInstall = false;
 
+    static {
+        AbbozzaVersion.setCommonVersion(1,1,6);
+        AbbozzaVersion.setSystemVersion(1,1,6);
+        AbbozzaVersion.setSystemName("calliope");
+    }
+    
     /**
      * Creates new form AbbozzaInstaller
      *
@@ -133,7 +127,7 @@ public class AbbozzaCalliopeInstaller extends javax.swing.JFrame {
         if (aD.exists()) {
             int result = JOptionPane.showConfirmDialog(this,
                     AbbozzaLocale.entry("MSG.ALREADY_INSTALLED") + "\n"
-                    + AbbozzaLocale.entry("MSG.CONTINUE_INSTALLATION") + "\n" + "( Version " + AbbozzaCalliope.SYS_VERSION + " )",
+                    + AbbozzaLocale.entry("MSG.CONTINUE_INSTALLATION") + "\n" + "( Version " + AbbozzaVersion.asString() + " )",
                     AbbozzaLocale.entry("GUI.TITLE"), JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.NO_OPTION) {
                 System.exit(1);
@@ -200,7 +194,7 @@ public class AbbozzaCalliopeInstaller extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText(AbbozzaCalliope.SYS_VERSION);
+        jLabel4.setText(AbbozzaVersion.asString());
         jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

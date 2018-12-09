@@ -7,116 +7,189 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="abbozza-calliope" default="default" basedir=".">
-    <description>Builds, tests, and runs the project abbozza-calliope.</description>
-    <import file="nbproject/build-impl.xml"/>
-    <!--
 
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
+<!--
 
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-single:       called before javac compilation of single file
-      -post-compile-single:      called after javac compilation of single file
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
-      -pre-jar:                  called before JAR building
-      -post-jar:                 called after JAR building
-      -post-clean:               called after cleaning build products
+There exist several targets which are by default empty and which can be 
+used for execution of your tasks. These targets are usually executed 
+before and after some main targets. They are: 
 
-    (Targets beginning with '-' are not intended to be called on their own.)
+  -pre-init:                 called before initialization of project properties
+  -post-init:                called after initialization of project properties
+  -pre-compile:              called before javac compilation
+  -post-compile:             called after javac compilation
+  -pre-compile-single:       called before javac compilation of single file
+  -post-compile-single:      called after javac compilation of single file
+  -pre-compile-test:         called before javac compilation of JUnit tests
+  -post-compile-test:        called after javac compilation of JUnit tests
+  -pre-compile-test-single:  called before javac compilation of single JUnit test
+  -post-compile-test-single: called after javac compilation of single JUunit test
+  -pre-jar:                  called before JAR building
+  -post-jar:                 called after JAR building
+  -post-clean:               called after cleaning build products
 
-    Example of inserting an obfuscator after compilation could look like this:
+(Targets beginning with '-' are not intended to be called on their own.)
 
-        <target name="-post-compile">
-            <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
-            </obfuscate>
-        </target>
+Example of inserting an obfuscator after compilation could look like this:
 
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
-
-
-    Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
-
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar:                  JAR building
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
-
-    An example of overriding the target for project execution could look like this:
-
-        <target name="run" depends="abbozza-calliope-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
-
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
-
-    -->    
-    
-    
-    <target name="buildbase">
-        <copy todir="buildsystem/calliope" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/calliope"/>
-        </copy>    
-        <copy todir="buildsystem/microbit" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/microbit"/>
-        </copy>    
-        <copy todir="buildsystem/calliope/source" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/common"/>
-        </copy>    
-        <copy todir="buildsystem/microbit/source" verbose="true" overwrite="true">
-            <fileset dir="pkg/build/common"/>
-        </copy>            
-
-        <jar destfile="dist/install/lib/buildbase.jar">
-            <fileset dir="buildsystem/"/>
-        </jar>        
+    <target name="-post-compile">
+        <obfuscate>
+            <fileset dir="${build.classes.dir}"/>
+        </obfuscate>
     </target>
+
+For list of available properties check the imported 
+nbproject/build-impl.xml file. 
+
+
+Another way to customize the build is by overriding existing main targets.
+The targets of interest are: 
+
+  -init-macrodef-javac:     defines macro for javac compilation
+  -init-macrodef-junit:     defines macro for junit execution
+  -init-macrodef-debug:     defines macro for class debugging
+  -init-macrodef-java:      defines macro for class execution
+  -do-jar:                  JAR building
+  run:                      execution of project 
+  -javadoc-build:           Javadoc generation
+  test-report:              JUnit report generation
+
+An example of overriding the target for project execution could look like this:
+
+    <target name="run" depends="abbozza-calliope-impl.jar">
+        <exec dir="bin" executable="launcher.exe">
+            <arg file="${dist.jar}"/>
+        </exec>
+    </target>
+
+Notice that the overridden target depends on the jar target and not only on 
+the compile target as the regular run target does. Again, for a list of available 
+properties which you can use, check the target you are overriding in the
+nbproject/build-impl.xml file. 
+
+-->    
+
+<project name="abbozza-calliope" default="default" basedir=".">
     
-    
+    <description>Builds the project abbozza-calliope.</description>
+    <import file="nbproject/build-impl.xml"/>
+   
+    <!--
+        Before the compilation the files from abbozza-common are requried.
+    -->
     <target name="-pre-compile">
+        <echo message="Fetching files from abbozza-common"/>
         <copy todir="build/classes/" overwrite="true">
-            <fileset dir="../abbozza-common/build/classes" includes="**/*" />
+            <fileset dir="../abbozza-common/build/classes" includes="**/*" excludes="de/uos/inf/did/abbozza/VERSION_SYSTEM" />
         </copy>
     </target>
-        
-    <target name="-pre-jar">
-        <!-- fetch common stuff -->
-        <copy todir="build/classes/" overwrite="true">
-            <fileset dir="../abbozza-common/build/classes" includes="**/*" />
-        </copy>        
+       
+    <!--
+        The building of the jar requires the construction of the buildbase
+    -->
+    <target name="-post-jar" depends="buildbase">
+    </target> 
+
+
+    <!-- ADDITIONAL TARGETS -->
+    
+    <target name="clean-downloads">
+        <echo message="Deleting downloads"/>
+        <delete>
+            <fileset dir="downloads" includes="**/*"/>
+        </delete>    
     </target>
     
     
-    
-    <target name="-post-jar" depends="buildbase">
+    <!-- 
+        This target builds the windows installer
+    --> 
+    <target name="installer-win" depends="installer-common,tools-win">
+        <echo message = "Building the Windows installer"/>
+ 
+        <jar destfile="dist/abbozza-calliope-install-win.jar">
+            <fileset dir="dist/install">
+                <include name="**/*" />
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="de.uos.inf.did.abbozza.calliope.AbbozzaCalliopeInstaller"/>
+            </manifest>
+        </jar>            
+    </target>
+
+    <target name="installer-linux" depends="installer-common,tools-linux">
+        <echo message = "Building the Linux installer"/>
+ 
+        <jar destfile="dist/abbozza-calliope-install-linux.jar">
+            <fileset dir="dist/install">
+                <include name="**/*" />
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="de.uos.inf.did.abbozza.calliope.AbbozzaCalliopeInstaller"/>
+            </manifest>
+        </jar>            
+    </target>
+   
+     
+    <target name="installer-macos" depends="installer-common,tools-mac">
+        <echo message = "Building the Mac installer"/>
+ 
+        <jar destfile="dist/abbozza-calliope-install-macos.jar">
+            <fileset dir="dist/install">
+                <include name="**/*" />
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="de.uos.inf.did.abbozza.calliope.AbbozzaCalliopeInstaller"/>
+            </manifest>
+        </jar>            
+    </target>    
+  
+
+    <target name="portable" depends="default,buildbase,get-tools-win">
+        <echo message="Preparing portable Windows version"/>
+        <mkdir dir="dist/portable/abbozzaCalliope"/>
+        <mkdir dir="dist/portable/abbozzaCalliope/plugins"/>
+        <copy todir="dist/portable/abbozzaCalliope/bin" overwrite="true">
+            <fileset dir="bin">
+                <include name="**/*"/>
+            </fileset>
+        </copy>    
+        <copy todir="dist/portable/abbozzaCalliope/lib" overwrite="true">
+            <fileset dir="lib">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+        <copy todir="dist/portable/abbozzaCalliope/build" overwrite="true">
+            <fileset dir="pkg/build">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+        <unzip src="downloads/tools-win.zip" dest="dist/portable/abbozzaCalliope"/>    
+        <copy todir="dist/portable/abbozzaCalliope/" overwrite="true">
+            <fileset dir="portable">
+                <include name="**/*"/>                
+            </fileset>
+        </copy>
+        <copy file="dist/abbozza-calliope.jar" todir="dist/portable/abbozzaCalliope/lib" overwrite="true"/>
+        <copy file="dist/install/lib/buildbase.jar" todir="dist/portable/abbozzaCalliope/lib" overwrite="true"/>
+
+        <zip destfile="dist/abbozzaCalliopePortableWin.zip">
+            <fileset dir="dist/portable/" />
+        </zip>
+    </target>
+   
+                        
+    <target name="installer-common" depends="default">
+        <echo message="Cleaning up directory dist/install"/>
         <mkdir dir="dist/install"/>
         <mkdir dir="dist/install/plugins"/>
         
+        <echo message="Preparing filesystem for installer jar"/>
         <copy todir="dist/install/bin" overwrite="true">
             <fileset dir="bin">
                 <include name="**/*"/>
             </fileset>
         </copy>    
-        
         
         <copy todir="dist/install/lib" overwrite="true">
             <fileset dir="lib">
@@ -130,12 +203,15 @@
             </fileset>
         </copy>
                 
-                
         <copy file="dist/abbozza-calliope.jar" tofile="dist/install/lib/abbozza-calliope.jar" overwrite="true"/>
         
-        
+        <copy todir="dist/install/de/uos/inf/did/abbozza/" overwrite="true">
+            <file file="build/classes/de/uos/inf/did/abbozza/VERSION_SYSTEM"/>
+            <file file="build/classes/de/uos/inf/did/abbozza/VERSION_COMMON"/>
+        </copy>        
         <copy todir="dist/install/de/uos/inf/did/abbozza/core/" overwrite="true">
             <file file="build/classes/de/uos/inf/did/abbozza/core/AbbozzaLocale.class"/>
+            <file file="build/classes/de/uos/inf/did/abbozza/core/AbbozzaVersion.class"/>
             <file file="build/classes/de/uos/inf/did/abbozza/core/AbbozzaLogger.class"/>
         </copy>        
         <copy todir="dist/install/de/uos/inf/did/abbozza/install/" overwrite="true">
@@ -151,20 +227,128 @@
         </copy>
         <copy todir="dist/install/de/uos/inf/did/abbozza/img/" overwrite="true">
             <fileset file="build/classes/de/uos/inf/did/abbozza/img/*"/>
-        </copy>
-                
-        <jar destfile="dist/abbozza-calliope-install.jar">
-            <fileset dir="dist/install">
-                <include name="**/*" />
-            </fileset>
-            <manifest>
-                <attribute name="Main-Class" value="de.uos.inf.did.abbozza.calliope.AbbozzaCalliopeInstaller"/>
-            </manifest>
-        </jar>    
-        
-        <!-- delete>
-            <fileset dir="dist/install" />
-        </delete -->
-        
-    </target> 
+        </copy>        
+    </target>
+    
+    <!-- HELPER TARGETS -->
+   
+    <!--
+        Construct the buildbase
+    -->
+    <target name="buildbase" depends="get-calliope-build">
+        <echo message="Copying abbozza! libraries to buildsystem"/>
+        <copy todir="buildsystem/calliope" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/calliope"/>
+        </copy>    
+        <copy todir="buildsystem/microbit" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/microbit"/>
+        </copy>    
+        <copy todir="buildsystem/calliope/source" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/common"/>
+        </copy>    
+        <copy todir="buildsystem/microbit/source" verbose="true" overwrite="true">
+            <fileset dir="pkg/build/common"/>
+        </copy>            
+    </target>
+
+    <target name="buildbase-install" depends="buildbase">
+        <echo message="Packing buildsystem.jar"/>
+        <jar destfile="dist/install/lib/buildbase.jar">
+            <fileset dir="buildsystem/"/>
+        </jar>                
+    </target>
+    
+    <!-- 
+        Target get-calliope-build
+        Download the build files, put them in the downloads directory and
+        extract it to buildsystem. In downloads they are kept until the
+        downloadable build files are new. 
+    --> 
+    <target name="get-calliope-build">
+        <echo message="Downloading calliope-build.zip (this may take a while) ..."/>
+        <get src="https://inf-didaktik.rz.uni-osnabrueck.de/downloads/abbozza/tools/calliopeC/calliope-build.zip" 
+             dest="downloads/calliope-build.zip" usetimestamp="true"/>
+        <echo message="Download finished! Unpacking to buildsystem ..."/>
+        <unzip src="downloads/calliope-build.zip" dest="buildsystem/"/>
+        <echo message="Unpacking finished ..."/>
+    </target>
+
+
+    <!--
+        Target checkos
+        Check the operating system and set properties.
+    -->
+    <target name="checkos">
+        <condition property="isWindows">
+            <or>
+                <equals arg1="${system}" arg2="win"/>
+                <and>
+                    <not>
+                        <isset property="system"/>
+                    </not>
+                    <os family="windows" />
+                </and>
+            </or>
+        </condition>
+        <condition property="isLinux">
+            <or>
+                <equals arg1="${system}" arg2="linux"/>
+                <and>
+                    <not>
+                        <isset property="system"/>
+                    </not>
+                    <os family="unix" />
+                </and>
+            </or>
+        </condition>
+        <condition property="isMac">
+            <or>
+                <equals arg1="${system}" arg2="mac"/>
+                <and>
+                    <not>
+                        <isset property="system"/>
+                    </not>
+                    <os family="mac" />
+                </and>
+            </or>
+        </condition>
+    </target>
+
+
+    <target name="get-tools-win" depends="checkos">
+        <echo message="Downloading Windows tools (this may take a while)"/>
+        <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-win.zip"
+             dest="downloads/tools-win.zip" usetimestamp="true" verbose="on">
+        </get>
+    </target>
+    
+    <target name="get-tools-linux" depends="checkos">
+        <echo message="Downloading Linux tools (this may take a while)"/>
+        <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-linux.zip"
+             dest="downloads/tools-linux.zip" usetimestamp="true" verbose="on">
+        </get>
+    </target>
+
+    <target name="get-tools-mac" depends="checkos">
+        <echo message="Downloading MacOs tools (this may take a while)"/>
+        <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-macos.zip"
+             dest="downloads/tools-macos.zip" usetimestamp="true" verbose="on">
+        </get>
+    </target>
+    
+    <target name="tools-win" depends="get-tools-win">
+        <echo message="Copying windows tools"/>
+        <copy file="downloads/tools-win.zip" tofile="dist/install/tools.zip" overwrite="true"/>                                
+    </target>
+
+    <target name="tools-linux" depends="get-tools-linux">
+        <echo message="Copying linux tools"/>
+        <copy file="downloads/tools-linux.zip" tofile="dist/install/tools.zip" overwrite="true"/>                        
+    </target>
+
+    <target name="tools-mac" depends="get-tools-mac">
+        <echo message="Copying macos tools"/>
+        <copy file="downloads/tools-macos.zip" tofile="dist/install/tools.zip" overwrite="true"/>                        
+    </target>
+
 </project>
