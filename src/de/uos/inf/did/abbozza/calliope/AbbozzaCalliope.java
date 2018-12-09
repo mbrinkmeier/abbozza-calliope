@@ -49,12 +49,7 @@ import javax.swing.filechooser.FileSystemView;
  * @author mbrinkmeier
  */
 public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandler {
-
-    static {
-        AbbozzaVersion.setSystemVersion(1,1,6);
-        AbbozzaVersion.setSystemName("calliope");
-    }
-
+    
     // Additional paths
     // protected String installPath;   // The path into which abbozza was installed
     protected String toolsPath;     // The path to tools needed for compilation
