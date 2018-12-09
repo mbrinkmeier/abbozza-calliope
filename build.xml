@@ -145,7 +145,7 @@ nbproject/build-impl.xml file.
     </target>    
   
 
-    <target name="portable" depends="default,buildbase,get-tools-win">
+    <target name="portable" depends="default,buildbase-install,get-tools-win">
         <echo message="Preparing portable Windows version"/>
         <mkdir dir="dist/portable/abbozzaCalliope"/>
         <mkdir dir="dist/portable/abbozzaCalliope/plugins"/>
