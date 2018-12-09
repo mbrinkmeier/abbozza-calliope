@@ -147,31 +147,31 @@ nbproject/build-impl.xml file.
 
     <target name="portable" depends="default,buildbase-install,get-tools-win">
         <echo message="Preparing portable Windows version"/>
-        <mkdir dir="dist/portable/abbozzaCalliope"/>
-        <mkdir dir="dist/portable/abbozzaCalliope/plugins"/>
-        <copy todir="dist/portable/abbozzaCalliope/bin" overwrite="true">
+        <mkdir dir="dist/portable/abbozza"/>
+        <mkdir dir="dist/portable/abbozza/plugins"/>
+        <copy todir="dist/portable/abbozza/bin" overwrite="true">
             <fileset dir="bin">
                 <include name="**/*"/>
             </fileset>
         </copy>    
-        <copy todir="dist/portable/abbozzaCalliope/lib" overwrite="true">
+        <copy todir="dist/portable/abbozza/lib" overwrite="true">
             <fileset dir="lib">
                 <include name="**/*"/>
             </fileset>
         </copy>
-        <copy todir="dist/portable/abbozzaCalliope/build" overwrite="true">
+        <copy todir="dist/portable/abbozza/build" overwrite="true">
             <fileset dir="pkg/build">
                 <include name="**/*"/>
             </fileset>
         </copy>
-        <unzip src="downloads/tools-win.zip" dest="dist/portable/abbozzaCalliope"/>    
-        <copy todir="dist/portable/abbozzaCalliope/" overwrite="true">
+        <unzip src="downloads/tools-win.zip" dest="dist/portable/abbozza"/>    
+        <copy todir="dist/portable/abbozza/" overwrite="true">
             <fileset dir="portable">
                 <include name="**/*"/>                
             </fileset>
         </copy>
-        <copy file="dist/abbozza-calliope.jar" todir="dist/portable/abbozzaCalliope/lib" overwrite="true"/>
-        <copy file="dist/install/lib/buildbase.jar" todir="dist/portable/abbozzaCalliope/lib" overwrite="true"/>
+        <copy file="dist/abbozza-calliope.jar" todir="dist/portable/abbozza/lib" overwrite="true"/>
+        <copy file="dist/install/lib/buildbase.jar" todir="dist/portable/abbozza/lib" overwrite="true"/>
 
         <zip destfile="dist/abbozzaCalliopePortableWin.zip">
             <fileset dir="dist/portable/" />
