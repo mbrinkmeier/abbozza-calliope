@@ -145,7 +145,7 @@ nbproject/build-impl.xml file.
     </target>    
   
 
-    <target name="portable" depends="default,buildbase-install,get-tools-win">
+    <target name="portable" depends="default,buildbase-install,get-tools-jre-win">
         <echo message="Preparing portable Windows version"/>
         <mkdir dir="dist/portable/abbozza"/>
         <mkdir dir="dist/portable/abbozza/plugins"/>
@@ -164,7 +164,7 @@ nbproject/build-impl.xml file.
                 <include name="**/*"/>
             </fileset>
         </copy>
-        <unzip src="downloads/tools-win.zip" dest="dist/portable/abbozza"/>    
+        <unzip src="downloads/tools-win.zip" dest="dist/portable/abbozza"/>   
         <copy todir="dist/portable/abbozza/" overwrite="true">
             <fileset dir="portable">
                 <include name="**/*"/>                
@@ -318,6 +318,13 @@ nbproject/build-impl.xml file.
     <target name="get-tools-win" depends="checkos">
         <echo message="Downloading Windows tools (this may take a while)"/>
         <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-win.zip"
+             dest="downloads/tools-win.zip" usetimestamp="true" verbose="on">
+        </get>
+    </target>
+
+    <target name="get-tools-jre-win" depends="checkos">
+        <echo message="Downloading Windows tools including JRE (this may take a while)"/>
+        <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-win-jre.zip"
              dest="downloads/tools-win.zip" usetimestamp="true" verbose="on">
         </get>
     </target>
