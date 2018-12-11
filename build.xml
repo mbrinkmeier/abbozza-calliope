@@ -325,7 +325,7 @@ nbproject/build-impl.xml file.
     <target name="get-tools-jre-win" depends="checkos">
         <echo message="Downloading Windows tools including JRE (this may take a while)"/>
         <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-win-jre.zip"
-             dest="downloads/tools-win.zip" usetimestamp="true" verbose="on">
+             dest="downloads/tools-win-jre.zip" usetimestamp="true" verbose="on">
         </get>
     </target>
     
