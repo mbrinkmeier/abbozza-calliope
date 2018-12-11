@@ -287,7 +287,9 @@ public class InstallWorker extends SwingWorker<String, String> {
         installTool.copyFromJar(installerJar, "bin/abbozzaMonitor.bat", installDir + "/bin/abbozzaMonitor.bat");
 
         // Icons
-        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/abbozza_icon_white"));
+        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/abbozza_calliope_icon"));
+        installTool.copyFromJar(installerJar, "lib/abbozza_calliope_icon.png", installDir + "/lib/abbozza_calliope_icon.png");
+        installTool.copyFromJar(installerJar, "lib/abbozza_calliope_icon.ico", installDir + "/lib/abbozza_calliope_icon.ico");
         installTool.copyFromJar(installerJar, "lib/abbozza_icon_white.png", installDir + "/lib/abbozza_icon_white.png");
         installTool.copyFromJar(installerJar, "lib/abbozza_icon_white.ico", installDir + "/lib/abbozza_icon_white.ico");
         publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/abbozza_icon_monitor"));
@@ -309,7 +311,7 @@ public class InstallWorker extends SwingWorker<String, String> {
             String installDir2 = userInstallDir.getAbsolutePath() + "/Contents/MacOS/";
             String installDir3 = userInstallDir.getAbsolutePath() + "/Contents/";
             createDir(installDir2, msgDoc);
-            installTool.copyFromJar(installerJar, "lib/abbozza.icns", installDir.getAbsolutePath() + "/abbozza.icns");
+            installTool.copyFromJar(installerJar, "lib/abbozza_calliope_icon.icns", installDir.getAbsolutePath() + "/abbozza_calliope_icon.icns");
             installTool.copyFromJar(installerJar, "lib/Info.plist", installDir3 + "/Info.plist");
             createFile(installDir2 + "abbozza", msgDoc);
             File starter = new File(installDir2 + "abbozza");
@@ -351,11 +353,7 @@ public class InstallWorker extends SwingWorker<String, String> {
         } else {
             installTool.addAppToMenu("abbozzaCalliopeC", "abbozza! Calliope C",
                     "abbozza! Calliope C",
-                    installDir + "/bin/abbozzaC" + scriptSuffix, installDir + "/lib/abbozza_icon_white" + iconSuffix, globalInstall);
-
-            // installTool.addAppToMenu("abbozzaCalliopeMicroPython", "abbozza! Calliope MicroPython",
-            //     "abbozza! Calliope MicroPython",
-            //     installDir + "/bin/abbozzaMicroPython" + scriptSuffix, installDir + "/lib/abbozza_icon_white" + iconSuffix, globalInstall);
+                    installDir + "/bin/abbozzaC" + scriptSuffix, installDir + "/lib/abbozza_calliope_icon" + iconSuffix, globalInstall);
             installTool.addAppToMenu("abbozzaMonitor", "abbozza! Monitor",
                     "abbozza! Monitor",
                     installDir + "/bin/abbozzaMonitor" + scriptSuffix, installDir + "/lib/abbozza_icon_monitor" + iconSuffix, globalInstall);
@@ -408,35 +406,6 @@ public class InstallWorker extends SwingWorker<String, String> {
         boolean microbitCompiled = false;
         boolean calliopeCompiled = false;
 
-        /*
-        if (yottaInstalled) {
-            int opt = JOptionPane.showConfirmDialog(frame,
-                    AbbozzaLocale.entry("MSG.PRECOMPILE", "Calliope Mini"),
-                    AbbozzaLocale.entry("GUI.TITLE"), JOptionPane.YES_NO_OPTION);
-            if (opt == JOptionPane.YES_OPTION) {
-                publish(AbbozzaLocale.entry("MSG.COMPILE_CALLIOPE"));
-                if (build(installDir.getAbsolutePath() + "/build/calliope/", installDir.getAbsolutePath(), msgDoc) != 0) {
-                    publish(AbbozzaLocale.entry("MSG.COMPILE_FAILED"));
-                } else {
-                    publish(AbbozzaLocale.entry("MSG.COMPILE_SUCCESS"));
-                    calliopeCompiled = true;
-                }
-            }
-
-            opt = JOptionPane.showConfirmDialog(frame,
-                    AbbozzaLocale.entry("MSG.PRECOMPILE", "micro:bit"),
-                    AbbozzaLocale.entry("GUI.TITLE"), JOptionPane.YES_NO_OPTION);
-            if (opt == JOptionPane.YES_OPTION) {
-                publish(AbbozzaLocale.entry("MSG.COMPILE_MICROBIT"));
-                if (build(installDir.getAbsolutePath() + "/build/microbit/", installDir.getAbsolutePath(), msgDoc) != 0) {
-                    publish(AbbozzaLocale.entry("MSG.COMPILE_FAILED"));
-                } else {
-                    publish(AbbozzaLocale.entry("MSG.COMPILE_SUCCESS"));
-                    microbitCompiled = true;
-                }
-            }
-        }
-         */
         publish(AbbozzaLocale.entry("MSG.SUCCESS"));
 
         logFrame.enableButton();
