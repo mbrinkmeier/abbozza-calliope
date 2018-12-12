@@ -78,6 +78,7 @@ nbproject/build-impl.xml file.
         Before the compilation the files from abbozza-common are requried.
     -->
     <target name="-pre-compile">
+        <mkdir dir="downloads"/>
         <echo message="Fetching files from abbozza-common"/>
         <copy todir="build/classes/" overwrite="true">
             <fileset dir="../abbozza-common/build/classes" includes="**/*" excludes="de/uos/inf/did/abbozza/VERSION_SYSTEM" />
