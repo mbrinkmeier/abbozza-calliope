@@ -217,7 +217,7 @@ public class AbbozzaCalliopeInstaller extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         mainPanel.add(jScrollPane1, gridBagConstraints);
 
-        installField.setText(installTool.getInstallPath(globalInstall)+"Calliope");
+        installField.setText(installTool.getInstallPath(globalInstall,"Calliope"));
         installField.setToolTipText("Das Sketchbook-Verzeichnis");
         installField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

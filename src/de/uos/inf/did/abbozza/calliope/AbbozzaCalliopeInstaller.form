@@ -126,7 +126,7 @@
         <Component class="javax.swing.JTextField" name="installField">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="installTool.getInstallPath(globalInstall)+&quot;Calliope&quot;" type="code"/>
+              <Connection code="installTool.getInstallPath(globalInstall,&quot;Calliope&quot;)" type="code"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Das Sketchbook-Verzeichnis"/>
           </Properties>
