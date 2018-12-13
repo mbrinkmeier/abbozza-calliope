@@ -311,7 +311,7 @@ public class InstallWorker extends SwingWorker<String, String> {
             String installDir2 = userInstallDir.getAbsolutePath() + "/Contents/MacOS/";
             String installDir3 = userInstallDir.getAbsolutePath() + "/Contents/";
             createDir(installDir2, msgDoc);
-            installTool.copyFromJar(installerJar, "lib/abbozza_calliope_icon.icns", installDir.getAbsolutePath() + "/abbozza_calliope_icon.icns");
+            installTool.copyFromJar(installerJar, "lib/abbozza_calliope_icon.icns", installDir3 + "/Resources/abbozza_calliope_icon.icns");
             installTool.copyFromJar(installerJar, "lib/Info.plist", installDir3 + "/Info.plist");
             createFile(installDir2 + "abbozza", msgDoc);
             File starter = new File(installDir2 + "abbozza");
@@ -335,7 +335,7 @@ public class InstallWorker extends SwingWorker<String, String> {
             installDir3 = userInstallDir.getParent() + "/abbozzaMonitor.app/Contents/";
             createDir(installDir2, msgDoc);
             createDir(installDir3 + "Resources", msgDoc);
-            installTool.copyFromJar(installerJar, "lib/abbozza_monitor.icns", installDir3 + "Resources/abbozza_monitor.icns");
+            installTool.copyFromJar(installerJar, "lib/abbozza_monitor.icns", installDir3 + "/sResources/abbozza_monitor.icns");
             installTool.copyFromJar(installerJar, "lib/Info.monitor.plist", installDir3 + "/Info.plist");
             createFile(installDir2 + "abbozzaMonitor", msgDoc);
             starter = new File(installDir2 + "abbozzaMonitor");
