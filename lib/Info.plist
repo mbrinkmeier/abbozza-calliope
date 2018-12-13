@@ -6,8 +6,8 @@
 	<string>abbozza! Calliope</string>
 	<key>CFBundleExecutable</key>
 	<string>abbozza</string>
-	<key>CFBundleIconFile</key>
-	<string>abbozza</string>
+	<key>CFBundleIconName</key>
+	<string>abbozza_calliope_icon</string>
 	<key>CFBundleIdentifier</key>
 	<string>de.uos.inf.abbozza.calliope</string>
 	<key>CFBundleName</key>
