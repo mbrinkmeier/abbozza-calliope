@@ -28,6 +28,7 @@ Abbozza.DeviceMotorOn = {
        this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getColor("cat.DEVOUT"));
         this.appendValueInput("PERCENT")
+                .appendField(new Blockly.FieldImage("img/devices/motor.png",16,16))        
                 .setAlign(Blockly.ALIGN_RIGHT)
                 .appendField(__("dev.MOTOR_ON",0))
                 .appendField(new Blockly.FieldDropdown(Abbozza.Motors),"MOTOR")
@@ -51,6 +52,7 @@ Abbozza.DeviceMotorOff = {
        this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getColor("cat.DEVOUT"));
         this.appendDummyInput()
+                .appendField(new Blockly.FieldImage("img/devices/motor.png",16,16))        
                 .setAlign(Blockly.ALIGN_RIGHT)
                 .appendField(__("dev.MOTOR_OFF",0))
                 .appendField(new Blockly.FieldDropdown(Abbozza.Motors),"MOTOR");
@@ -68,3 +70,78 @@ Abbozza.DeviceMotorOff = {
 
 Blockly.Blocks['dev_motor_on'] = Abbozza.DeviceMotorOn;
 Blockly.Blocks['dev_motor_off'] = Abbozza.DeviceMotorOff;
+
+
+
+/**
+ * Blocks for a bidirectional motor connected to Motor A and Motor B
+ */
+
+/**
+ * Setting the bidirectional motor to the given percentage
+ * 
+ * @type type
+ */
+Abbozza.DeviceBidiMotorOn = {
+    init: function () {
+       this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getColor("cat.DEVOUT"));
+        this.appendValueInput("PERCENT")
+                .appendField(new Blockly.FieldImage("img/devices/motor.png",16,16))        
+                .setAlign(Blockly.ALIGN_RIGHT)
+                .appendField(_("dev.BIDI_MOTOR_ON"))
+                .setCheck("NUMBER");
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+    generateCode: function (generator) {
+        var percent = generator.valueToCode(this,"PERCENT");
+        return "abbozza.soundmotor.motorOn(" + percent + ");";
+    }
+};
+
+
+
+Abbozza.DeviceBidiMotorBreak = {
+    init: function () {
+       this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getColor("cat.DEVOUT"));
+        this.appendDummyInput()
+                .appendField(new Blockly.FieldImage("img/devices/motor.png",16,16))        
+                .setAlign(Blockly.ALIGN_RIGHT)
+                .appendField(_("dev.BIDI_MOTOR_BRAKE"));
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+    generateCode: function (generator) {
+        return "abbozza.soundmotor.motorBreak();";
+    }
+};
+
+
+Abbozza.DeviceBidiMotorOff = {
+    init: function () {
+       this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getColor("cat.DEVOUT"));
+        this.appendDummyInput()
+                .appendField(new Blockly.FieldImage("img/devices/motor.png",16,16))        
+                .setAlign(Blockly.ALIGN_RIGHT)
+                .appendField(_("dev.BIDI_MOTOR_OFF"));
+        this.setInputsInline(false);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+    generateCode: function (generator) {
+        return "abbozza.soundmotor.motorSleep();";
+    }
+};
+
+
+Blockly.Blocks['dev_bidi_motor_on'] = Abbozza.DeviceBidiMotorOn;
+Blockly.Blocks['dev_bidi_motor_break'] = Abbozza.DeviceBidiMotorBreak;
+Blockly.Blocks['dev_bidi_motor_off'] = Abbozza.DeviceBidiMotorOff;

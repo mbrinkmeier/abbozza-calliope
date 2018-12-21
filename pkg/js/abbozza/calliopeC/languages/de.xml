@@ -77,6 +77,9 @@
 
         <msg id="dev.MOTOR_ON">Setze Motor # auf [Prozent] </msg>
         <msg id="dev.MOTOR_OFF">Stoppe Motor</msg>
+        <msg id="dev.BIDI_MOTOR_ON">Setze bidirektionalen Motor auf</msg>
+        <msg id="dev.BIDI_MOTOR_OFF">Schalte bidirektionalen Motor aus</msg>
+        <msg id="dev.BIDI_MOTOR_BRAKE">Bremse bidirektionalen Motor</msg>
 
         <msg id="dev.SERIAL_WRITELN">Sende Zeile über</msg>
         <msg id="dev.SERIAL_READLN">Lese Zeile von</msg>

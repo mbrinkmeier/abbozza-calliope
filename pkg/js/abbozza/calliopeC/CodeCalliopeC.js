@@ -222,6 +222,12 @@ AbbozzaCode['var_block'] = function (generator) {
     } 
 AbbozzaCode['var_assign'] = [ "# = #;" ,["V_LEFT","V_RIGHT"]];
 
+
+AbbozzaCode['var_int_step_up'] = ["#=#+1;",["F_VAR","F_VAR"]];
+AbbozzaCode['var_int_step_down'] = ["#=#-1;",["F_VAR","F_VAR"]];
+AbbozzaCode['var_int_change_by'] = ["#=#+#;",["F_VAR","F_VAR","V_VALUE"]];
+
+
 // Functions
 AbbozzaCode['func_decl'] = function (generator) {
         var name = this.name;

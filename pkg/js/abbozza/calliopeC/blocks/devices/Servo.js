@@ -31,7 +31,7 @@ Abbozza.DeviceServo = {
         // this.appendDummyInput()
         //         .appendField(_("dev.DEVICE"));
         this.appendDummyInput()
-                .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))
+                .appendField(new Blockly.FieldImage("img/devices/servo.png",16,16))        
                 .appendField(_("dev.SERVO"))
                 .appendField(new FieldDevNameInput("<default>", Abbozza.blockDevices, this), "NAME")
                 .appendField(_("dev.AT"))
@@ -67,6 +67,7 @@ Abbozza.DeviceServoSet = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getColor("cat.MOTOR"));
         this.appendValueInput("VALUE")
+                .appendField(new Blockly.FieldImage("img/devices/servo.png",16,16))        
                 .appendField(_("dev.SET"))
                 .appendField(_("dev.SERVO"))
                 .appendField(new DeviceDropdown(this, DEV_TYPE_SERVO), "NAME")

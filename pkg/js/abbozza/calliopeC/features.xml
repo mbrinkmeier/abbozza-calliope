@@ -59,6 +59,13 @@
                     <block type="var_block"></block>
                 </value>
             </block>
+            <block type="var_int_step_up"></block>
+            <block type="var_int_step_down"></block>
+            <block type="var_int_change_by">
+                <value name="VALUE">
+                    <block type="math_number"><mutation confirmed="false"/>100</block>
+                </value>
+            </block>
         </category>
 
         <!-- Operations -->
@@ -607,18 +614,25 @@
     <!-- Motors -->
     <feature id="feat.MOTORS" option="motors">
         <category id="cat.MOTOR">
-            <block type="dev_motor_on">
-                <value name="PERCENT">
-                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
-                </value> 
-            </block>
-            <block type="dev_motor_off"></block>
             <block type="dev_servo"></block>
             <block type="dev_servo_set">
                 <value name="VALUE">
                     <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>
             </block>
+            <block type="dev_motor_on">
+                <value name="PERCENT">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value> 
+            </block>
+            <block type="dev_motor_off"></block>
+            <block type="dev_bidi_motor_on">
+                <value name="PERCENT">
+                    <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
+                </value> 
+            </block>
+            <block type="dev_bidi_motor_break"></block>
+            <block type="dev_bidi_motor_off"></block>
         </category>
     </feature>-
             
