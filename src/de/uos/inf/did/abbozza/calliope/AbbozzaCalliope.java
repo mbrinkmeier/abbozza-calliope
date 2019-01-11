@@ -123,7 +123,7 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
         try {
             if (SystemTray.isSupported()) {
                 AbbozzaLogger.info("Setting system tray icon");
-                ImageIcon icon = new ImageIcon(AbbozzaCalliopeC.class.getResource("/img/abbozza_icon_white.png"));
+                ImageIcon icon = new ImageIcon(AbbozzaCalliopeC.class.getResource("/img/abbozza_calliope_icon.png"));
                 PopupMenu trayMenu = new PopupMenu();
                 MenuItem item = new MenuItem(AbbozzaLocale.entry("gui.startBrowser"));
                 item.addActionListener((ActionEvent e) -> {

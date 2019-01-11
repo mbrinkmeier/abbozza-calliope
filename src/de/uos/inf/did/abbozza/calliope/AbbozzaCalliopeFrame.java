@@ -81,7 +81,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         
         initComponents();
 
-        ImageIcon icon = new ImageIcon(AbbozzaCalliopeFrame.class.getResource("/img/abbozza_icon_white.png"));
+        ImageIcon icon = new ImageIcon(AbbozzaCalliopeFrame.class.getResource("/img/abbozza_calliope_icon.png"));
         this.setIconImage(icon.getImage());
         
         switch (AbbozzaLogger.getLevel()) {
