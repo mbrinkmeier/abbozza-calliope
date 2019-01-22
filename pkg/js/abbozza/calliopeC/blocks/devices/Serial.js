@@ -381,7 +381,7 @@ Abbozza.SerialWriteInt = {
      this.setHelpUrl(Abbozza.HELP_URL);
     this.setColour(ColorMgr.getColor("cat.SERIAL"));
     this.appendValueInput("VALUE")
-        .appendField(new Blockly.FieldImage("img/devices/comm32.png",16,16))     
+        .appendField(new Blockly.FieldImage("img/devices/oscill.png",16,16))     
         .appendField(_("dev.SERIAL_WRITE_INT"))
         .appendField(new SerialDropdown(this),"DEVICE")
         .setCheck("NUMBER");
@@ -425,7 +425,7 @@ Abbozza.SerialReadInt = {
      this.setHelpUrl(Abbozza.HELP_URL);
     this.setColour(ColorMgr.getColor("cat.SERIAL"));
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("img/devices/comm32.png",16,16))     
+        .appendField(new Blockly.FieldImage("img/devices/oscill.png",16,16))     
         .appendField(_("dev.SERIAL_READ_INT"))
         .appendField(new SerialDropdown(this),"DEVICE");
     this.setOutput(true,"NUMBER");  

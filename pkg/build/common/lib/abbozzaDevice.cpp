@@ -323,14 +323,14 @@ void Abbozza::serialWriteLine(PinName tx, PinName rx, ManagedString line) {
  * @return 
  */
 ManagedString Abbozza::serialReadLine(int tx, int rx) {
-serialRedirect(tx,rx);
-    return serial.readUntil(ManagedString("\n"));
+    serialRedirect(tx,rx);
+    return serial.readUntil(ManagedString("\n"),ASYNC);
 }
 
 
 ManagedString Abbozza::serialReadLine(PinName tx, PinName rx) {
-serialRedirect(tx,rx);
-    return serial.readUntil(ManagedString("\n"));
+    serialRedirect(tx,rx);
+    return serial.readUntil(ManagedString("\n"),ASYNC);
 }
 
 
