@@ -36,6 +36,7 @@ public:
     double parse_double();
     ManagedString parse_string();
     
+    ManagedString getCmdId();
     ManagedString getCmd();
     void execute();    
 
