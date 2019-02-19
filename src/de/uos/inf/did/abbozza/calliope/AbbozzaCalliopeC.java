@@ -542,12 +542,12 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
     
     /**
-     * Do some additonal initialization: 1) Update/initialize from
-     * &lt;buildinit&gt;/lib/buildbase.jar 2) Copy sources from
-     * &lt;buildinit&gt;/build
-     *
-     * &lt;buildinit&gt; is &lt;abbozzapath&gt;. It may be overriden by the
-     * command line option -B
+     * Do some additonal initialization: 
+     * 1) Update/initialize from &lt;buildinit&gt;/lib/buildbase.jar 
+     * 2) Copy sources from &lt;buildinit&gt;/build
+     * 
+     * &lt;buildinit&gt; is &lt;abbozzapath&gt;.
+     * It may be overriden by the command line option -B
      */
     @Override
     public void additionalInitialization() {
@@ -613,6 +613,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             } else {
                 if ((buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild)) {
                     AbbozzaSplashScreen.setText("Initializing build system. This may take a while!");
+                    AbbozzaLogger.out("Copying " + buildbasefile.getAbsolutePath() + " to " + buildDir);
+                    FileTool.copyDirectory(buildbasefile, new File(buildDir,"/buildbase.jar"), true);
+                    buildbasefile = new File(buildDir + "/buildbase.jar");
                     AbbozzaLogger.out("Extracting " + buildbasefile.getAbsolutePath());
                     // Extract buildbase.jar if newer or initialization required
                     ZipFile buildbase = new ZipFile(buildbasefile);
