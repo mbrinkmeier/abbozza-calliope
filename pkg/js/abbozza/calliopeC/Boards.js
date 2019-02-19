@@ -51,7 +51,13 @@ Board.load = function (query) {
     if ( query == false ) {
         Connection.getText("/abbozza/board",
             function (response) {
-                // var val = response.split("|");
+                var val = response.split("|");
+                if ( val[0] == "calliope" ) {
+                    Configuration.setParameter("option.calliope","true");
+                } else {
+                    Configuration.setParameter("option.calliope","false");
+                }
+                ToolboxMgr.rebuild(false);
                 // Abbozza.showInfoMessage(_("msg.board_found",[val[1],[2]]));
                 // Board._apply(response.split("|")[0]);
                 document.getElementById("connect").style.backgroundColor = "#00d000";
@@ -67,6 +73,12 @@ Board.load = function (query) {
             function (response) {
                 var val = response.split("|");
                 Abbozza.showInfoMessage(_("msg.board_found",[val[1],[2]]));
+                if ( val[0] == "calliope" ) {
+                    Configuration.setParameter("option.calliope","true");
+                } else {
+                    Configuration.setParameter("option.calliope","false");
+                }
+                ToolboxMgr.rebuild(false);
                 // Board._apply(response.split("|")[0]);
                 document.getElementById("connect").style.backgroundColor = "#00d000";
             },
@@ -76,8 +88,7 @@ Board.load = function (query) {
                 document.getElementById("connect").style.backgroundColor = "#d00000";
             }
         );
-        
-    }    
+    }
 }
 
 Board._isPWM = function(pin) {

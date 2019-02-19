@@ -224,21 +224,6 @@
             <block type="display_on"></block>
             <block type="display_off"></block>
             <block type="display_is_on"></block>
-            <block type="dev_rgb_led_set_color">
-                <value name ="RED">
-                    <block type="math_number"><mutation confirmed="false"/></block>
-                </value>
-                <value name ="GREEN">
-                    <block type="math_number"><mutation confirmed="false"/></block>
-                </value>
-                <value name ="BLUE">
-                    <block type="math_number"><mutation confirmed="false"/></block>
-                </value>
-                <value name ="WHITE">
-                    <block type="math_number"><mutation confirmed="false"/></block>
-                </value>
-            </block>
-            <block type="dev_rgb_led_set_color2"></block>
         </category>
 
 
@@ -256,7 +241,6 @@
             <block type="dev_compass_heading"></block>
             <block type="dev_compass_get_fs"></block>
             <block type="dev_thermometer_get"></block>
-            <block type="dev_microphone_get"></block>
             <block type="display_light_level"></block>
         </category>        	                                   
 
@@ -291,7 +275,28 @@
         </category>
     </feature>
 
-
+    <feature id="feat.CALLIOPE" option="calliope">
+        <category id="cat.DISPLAY">
+            <block type="dev_rgb_led_set_color">
+                <value name ="RED">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>
+                <value name ="GREEN">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>
+                <value name ="BLUE">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>
+                <value name ="WHITE">
+                    <block type="math_number"><mutation confirmed="false"/></block>
+                </value>
+            </block>
+            <block type="dev_rgb_led_set_color2"></block>
+        </category>
+        <category  id="cat.DEVIN">
+            <block type="dev_microphone_get"></block>
+        </category>        	                                   
+    </feature>
 
     <!-- Advanced blocks -->
     <feature id="feat.ADVANCED" option="advanced">

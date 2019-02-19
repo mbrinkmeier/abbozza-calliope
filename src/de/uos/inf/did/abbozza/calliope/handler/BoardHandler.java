@@ -94,13 +94,13 @@ public class BoardHandler extends AbstractHandler {
                 sendResponse(exchg, 201, "text/plain", "");
             } else {
                 AbbozzaLogger.debug("BoardHandler: Board not found. Using given path " + path);
-                sendResponse(exchg, 200, "text/plain", path);
+                sendResponse(exchg, 200, "text/plain", server.getBoardName() + "|" + path);
             }
         } else {
             // If board was found, use it
             server.setPathToBoard(dir.getCanonicalPath());
             AbbozzaLogger.debug("BoardHandler:  Board found at : " + dir.getCanonicalPath());
-            sendResponse(exchg, 200, "text/plain", dir.getCanonicalPath());
+            sendResponse(exchg, 200, "text/plain", server.getBoardName() + "|" + dir.getCanonicalPath());
         }
     }
 

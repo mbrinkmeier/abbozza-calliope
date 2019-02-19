@@ -474,6 +474,12 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                     String volume = FileSystemView.getFileSystemView().getSystemDisplayName(roots[i]);
                     if (volume.contains("MINI") || volume.contains("MICROBIT")) {
                         AbbozzaLogger.info("Board found at " + roots[i].getCanonicalPath());
+                        AbbozzaLogger.info(volume);
+                        if (volume.contains("MINI")) {
+                            setBoardName("calliope");
+                        } else {
+                            setBoardName("microbit");
+                        }
                         return roots[i].getCanonicalPath();
                     }
                 } catch (IOException ex) {
