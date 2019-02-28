@@ -18,50 +18,43 @@
  */
 
 Abbozza.EventButtonList = [
-    ["A","MICROBIT_ID_BUTTON_A"],
-    ["B","MICROBIT_ID_BUTTON_B"]
+    ["A", "MICROBIT_ID_BUTTON_A"],
+    ["B", "MICROBIT_ID_BUTTON_B"]
 ];
 
 
 Abbozza.EventButtonEventList = null;
 
-Abbozza.setEventMenu = function() {
+Abbozza.setEventMenu = function () {
     Abbozza.EventButtonEventList = [
-        [_("event.BUTTON_DOWN"),"MICROBIT_BUTTON_EVT_DOWN"],
-        [_("event.BUTTON_UP"),"MICROBIT_BUTTON_EVT_UP"],
-        [_("event.BUTTON_CLICK"),"MICROBIT_BUTTON_EVT_CLICK"],
-        [_("event.BUTTON_LONG_CLICK"),"MICROBIT_BUTTON_EVT_LONG_CLICK"],
-        [_("event.BUTTON_HOLD"),"MICROBIT_BUTTON_EVT_HOLD"],
-        [_("event.BUTTON_DOUBLE_CLICK"),"MICROBIT_BUTTON_EVT_DOUBLE_CLICK"],
-        [_("event.BUTTON_ANY"),"MICROBIT_BUTTON_EVT_ANY"]
+        [_("event.BUTTON_DOWN"), "MICROBIT_BUTTON_EVT_DOWN"],
+        [_("event.BUTTON_UP"), "MICROBIT_BUTTON_EVT_UP"],
+        [_("event.BUTTON_CLICK"), "MICROBIT_BUTTON_EVT_CLICK"],
+        [_("event.BUTTON_LONG_CLICK"), "MICROBIT_BUTTON_EVT_LONG_CLICK"],
+        [_("event.BUTTON_HOLD"), "MICROBIT_BUTTON_EVT_HOLD"],
+        [_("event.BUTTON_DOUBLE_CLICK"), "MICROBIT_BUTTON_EVT_DOUBLE_CLICK"],
+        [_("event.BUTTON_ANY"), "MICROBIT_BUTTON_EVT_ANY"]
     ];
-    
+
     Abbozza.EventIOEventList = [
-      [_("event.IO_ON_RISE"),"MICROBIT_PIN_EVT_RISE"],  
-      [_("event.IO_ON_FALL"),"MICROBIT_PIN_EVT_FALL"],  
-      [_("event.IO_ON_HI"),"MICROBIT_PIN_EVT_PULSE_HI"],  
-      [_("event.IO_ON_LO"),"MICROBIT_PIN_EVT_PULSE_LO"],  
-      [_("event.BUTTON_DOWN"),"MICROBIT_BUTTON_EVT_DOWN"],  
-      [_("event.BUTTON_UP"),"MICROBIT_BUTTON_EVT_UP"],
-      [_("event.BUTTON_CLICK"),"MICROBIT_BUTTON_EVT_CLICK"],
-      [_("event.BUTTON_LONG_CLICK"),"MICROBIT_BUTTON_EVT_LONG_CLICK"],
-      [_("event.BUTTON_HOLD"),"MICROBIT_BUTTON_EVT_HOLD"],
-      [_("event.BUTTON_DOUBLE_CLICK"),"MICROBIT_BUTTON_EVT_DOUBLE_CLICK"],
-      [_("event.BUTTON_ANY"),"MICROBIT_BUTTON_EVT_ANY"]
+        [_("event.IO_ON_RISE"), "MICROBIT_PIN_EVT_RISE"],
+        [_("event.IO_ON_FALL"), "MICROBIT_PIN_EVT_FALL"],
+        [_("event.IO_ON_HI"), "MICROBIT_PIN_EVT_PULSE_HI"],
+        [_("event.IO_ON_LO"), "MICROBIT_PIN_EVT_PULSE_LO"]
     ];
-    
+
     Abbozza.EventAccelEventList = [
-      [_("event.ACCEL_TILT_UP"),"MICROBIT_ACCELEROMETER_EVT_TILT_UP"],  
-      [_("event.ACCEL_TILT_DOWN"),"MICROBIT_ACCELEROMETER_EVT_TILT_DOWN"],  
-      [_("event.ACCEL_TILT_LEFT"),"MICROBIT_ACCELEROMETER_EVT_TILT_LEFT"],  
-      [_("event.ACCEL_TILT_RIGHT"),"MICROBIT_ACCELEROMETER_EVT_TILT_RIGHT"],  
-      [_("event.ACCEL_FACE_UP"),"MICROBIT_ACCELEROMETER_EVT_FACE_UP"],  
-      [_("event.ACCEL_FACE_DOWN"),"MICROBIT_ACCELEROMETER_EVT_FACE_DOWN"],  
-      [_("event.ACCEL_FREEFALL"),"MICROBIT_ACCELEROMETER_EVT_FREEFALL"],  
-      [_("event.ACCEL_3G"),"MICROBIT_ACCELEROMETER_EVT_3G"],  
-      [_("event.ACCEL_6G"),"MICROBIT_ACCELEROMETER_EVT_6G"],  
-      [_("event.ACCEL_8G"),"MICROBIT_ACCELEROMETER_EVT_8G"],  
-      [_("event.ACCEL_SHAKE"),"MICROBIT_ACCELEROMETER_EVT_SHAKE"]  
+        [_("event.ACCEL_TILT_UP"), "MICROBIT_ACCELEROMETER_EVT_TILT_UP"],
+        [_("event.ACCEL_TILT_DOWN"), "MICROBIT_ACCELEROMETER_EVT_TILT_DOWN"],
+        [_("event.ACCEL_TILT_LEFT"), "MICROBIT_ACCELEROMETER_EVT_TILT_LEFT"],
+        [_("event.ACCEL_TILT_RIGHT"), "MICROBIT_ACCELEROMETER_EVT_TILT_RIGHT"],
+        [_("event.ACCEL_FACE_UP"), "MICROBIT_ACCELEROMETER_EVT_FACE_UP"],
+        [_("event.ACCEL_FACE_DOWN"), "MICROBIT_ACCELEROMETER_EVT_FACE_DOWN"],
+        [_("event.ACCEL_FREEFALL"), "MICROBIT_ACCELEROMETER_EVT_FREEFALL"],
+        [_("event.ACCEL_3G"), "MICROBIT_ACCELEROMETER_EVT_3G"],
+        [_("event.ACCEL_6G"), "MICROBIT_ACCELEROMETER_EVT_6G"],
+        [_("event.ACCEL_8G"), "MICROBIT_ACCELEROMETER_EVT_8G"],
+        [_("event.ACCEL_SHAKE"), "MICROBIT_ACCELEROMETER_EVT_SHAKE"]
     ];
 }
 
@@ -96,10 +89,10 @@ Abbozza.EventHandler = {
         }));
         Abbozza.addDisposeHandler(this);
     },
-    
+
     setTitle: function (title) {
     },
-    
+
     nameHandler: function (name, oldName) {
         if (name != oldName) {
             var block = this.sourceBlock_;
@@ -107,7 +100,7 @@ Abbozza.EventHandler = {
             var rettype = block.getFieldValue("TYPE");
             block.symbols.parentDB.addFunction(name, type);
         }
-    },   
+    },
     setSymbolDB: function (db) {
         this.symbols = db;
         this.symbols.parentBlock = this;
@@ -117,7 +110,7 @@ Abbozza.EventHandler = {
         var code = "";
         var sig = "void " + this.name + "(MicroBitEvent __event__)";
         code = code + sig + " {\n";
-        code = code + generator.variablesToCode(this.symbols,"   ");
+        code = code + generator.variablesToCode(this.symbols, "   ");
         code = code + statements;
         code = code + "\n}\n\n";
         return code;
@@ -131,7 +124,7 @@ Abbozza.EventHandler = {
         var signature = _("event.HANDLER") + " " + this.name;
         return signature;
     },
-    
+
     compose: function (topBlock) {
         var nameField = topBlock.getField("NAME");
         if (nameField.editing == true)
@@ -143,20 +136,20 @@ Abbozza.EventHandler = {
 
         Abbozza.collectFunctions();
     },
-    
+
     decompose: function (workspace) {
         var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
-    
+
         // deactivate validator for initialization
         var val = topBlock.getField("NAME").getValidator();
         topBlock.getField("NAME").setValidator(null);
         topBlock.setFieldValue(this.name, "NAME");
         // reactivate validator
         topBlock.getField("NAME").setValidator(val);
-        
+
         return topBlock;
     },
-    
+
     mutationToDom: function () {
         var mutation = document.createElement('mutation');
         var child = document.createElement('name');
@@ -167,7 +160,7 @@ Abbozza.EventHandler = {
         mutation.appendChild(this.symbols.toDOM());
         return mutation;
     },
-    
+
     domToMutation: function (xmlElement) {
         var child;
         for (var i = 0; i < xmlElement.childNodes.length; i++) {
@@ -238,38 +231,39 @@ Abbozza.EventHandlerControl = {
  * @type type
  */
 Abbozza.EventButtonListen = {
-  init: function() {
-    if ( Abbozza.EventButtonEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.BUTTON_LISTEN",0))
-        .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonList), "BUTTON")
-    	.appendField(__("event.BUTTON_LISTEN",1))
-        .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonEventList), "EVENT")
-    	.appendField(__("event.BUTTON_LISTEN",2))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.BUTTON_LISTEN",3));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var button = generator.fieldToCode(this,"BUTTON"); 
-    var event =  generator.fieldToCode(this,"EVENT");
-    var name =  generator.fieldToCode(this,"ISR");
-    
+    init: function () {
+        if (Abbozza.EventButtonEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.BUTTON_LISTEN", 0))
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonList), "BUTTON")
+                .appendField(__("event.BUTTON_LISTEN", 1))
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonEventList), "EVENT")
+                .appendField(__("event.BUTTON_LISTEN", 2))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.BUTTON_LISTEN", 3));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
 
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    generateCode: function (generator) {
+        var button = generator.fieldToCode(this, "BUTTON");
+        var event = generator.fieldToCode(this, "EVENT");
+        var name = generator.fieldToCode(this, "ISR");
+
+
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        return "abbozza.registerEventHandler(" + button + "," + event + "," + name + ");";
     }
-    
-    return "abbozza.registerEventHandler(" + button + "," + event + "," + name + ");";
-  }
 }
 
 /**
@@ -277,53 +271,54 @@ Abbozza.EventButtonListen = {
  * @type type
  */
 Abbozza.EventIOListen = {
-  init: function() {
-    if ( Abbozza.EventIOEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.IO_LISTEN",0))
-        .appendField(new PinDropdown(), "PIN")
-    	.appendField(__("event.IO_LISTEN",1))
-        .appendField(new Blockly.FieldDropdown(Abbozza.EventIOEventList), "EVENT")
-    	.appendField(__("event.IO_LISTEN",2))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.IO_LISTEN",3));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var pin = generator.fieldToCode(this,"PIN"); 
-    console.log(pin);
-    var event =  generator.fieldToCode(this,"EVENT");
-    var name =  generator.fieldToCode(this,"ISR");
-    
+    init: function () {
+        if (Abbozza.EventIOEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.IO_LISTEN", 0))
+                .appendField(new PinDropdown(), "PIN")
+                .appendField(__("event.IO_LISTEN", 1))
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventIOEventList), "EVENT")
+                .appendField(__("event.IO_LISTEN", 2))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.IO_LISTEN", 3));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
 
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    generateCode: function (generator) {
+        var pin = generator.fieldToCode(this, "PIN");
+        console.log(pin);
+        var event = generator.fieldToCode(this, "EVENT");
+        var name = generator.fieldToCode(this, "ISR");
+
+
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        var type;
+        if ((event == "MICROBIT_PIN_EVT_RISE") || (event == "MICROBIT_PIN_EVT_FALL"))
+            type = "MICROBIT_PIN_EVENT_ON_EDGE";
+        else if ((event == "MICROBIT_PIN_EVT_HI") || (event == "MICROBIT_PIN_EVT_LO"))
+            type = "MICROBIT_PIN_EVENT_ON_PULSE";
+        else if (event == "NONE")
+            type = "MICROBIT_PIN_EVENT_NONE";
+        else
+            type = "MICROBIT_PIN_EVENT_ON_TOUCH";
+
+        var code = "abbozza.io.pin[" + pin + "].eventOn(" + type + ");";
+        if (event != "NONE") {
+            code = code + "\nabbozza.messageBus.listen(MICROBIT_ID_IO_" + pin + " ," + event + " ," + name + ");";
+        }
+        return code;
     }
-    
-    var type;
-    if ((event == "MICROBIT_PIN_EVT_RISE") || ( event == "MICROBIT_PIN_EVT_FALL"))
-        type = "MICROBIT_PIN_EVENT_ON_EDGE";
-    else if ((event == "MICROBIT_PIN_EVT_HI") || ( event == "MICROBIT_PIN_EVT_LO"))
-        type = "MICROBIT_PIN_EVENT_ON_PULSE";
-    else if (event == "NONE")
-        type = "MICROBIT_PIN_EVENT_NONE";
-    else    
-        type = "MICROBIT_PIN_EVENT_ON_TOUCH";
-    
-    var code = "abbozza.io.pin[" + pin +"].eventOn("+ type + ");";
-    if ( event != "NONE" ) {
-        code = code + "\nabbozza.messageBus.listen(MICROBIT_ID_IO_" + pin + " ," + event + " ," + name + ");";
-    }
-    return code;
-  }
 }
 
 /**
@@ -331,30 +326,31 @@ Abbozza.EventIOListen = {
  * @type type
  */
 Abbozza.EventRadioListen = {
-  init: function() {
-    if ( Abbozza.EventRadioEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.RADIO_LISTEN",0))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.RADIO_LISTEN",1));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var name =  generator.fieldToCode(this,"ISR");
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    init: function () {
+        if (Abbozza.EventRadioEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.RADIO_LISTEN", 0))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.RADIO_LISTEN", 1));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+
+    generateCode: function (generator) {
+        var name = generator.fieldToCode(this, "ISR");
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        return "abbozza.registerEventHandler(MICROBIT_ID_RADIO,MICROBIT_RADIO_EVT_DATAGRAM," + name + ");";
     }
-    
-    return "abbozza.registerEventHandler(MICROBIT_ID_RADIO,MICROBIT_RADIO_EVT_DATAGRAM," + name + ");";
-  }
 }
 
 
@@ -363,30 +359,31 @@ Abbozza.EventRadioListen = {
  * @type type
  */
 Abbozza.EventThermoListen = {
-  init: function() {
-    if ( Abbozza.EventRadioEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.THERMO_LISTEN",0))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.THERMO_LISTEN",1));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var name =  generator.fieldToCode(this,"ISR");
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    init: function () {
+        if (Abbozza.EventRadioEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.THERMO_LISTEN", 0))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.THERMO_LISTEN", 1));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+
+    generateCode: function (generator) {
+        var name = generator.fieldToCode(this, "ISR");
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        return "abbozza.registerEventHandler(MICROBIT_ID_THERMOMETER,MICROBIT_THERMOMETER_EVT_UPDATE," + name + ");";
     }
-    
-    return "abbozza.registerEventHandler(MICROBIT_ID_THERMOMETER,MICROBIT_THERMOMETER_EVT_UPDATE," + name + ");";
-  }
 }
 
 
@@ -395,30 +392,31 @@ Abbozza.EventThermoListen = {
  * @type type
  */
 Abbozza.EventCompassListen = {
-  init: function() {
-    if ( Abbozza.EventRadioEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.COMPASS_LISTEN",0))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.COMPASS_LISTEN",1));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var name =  generator.fieldToCode(this,"ISR");
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    init: function () {
+        if (Abbozza.EventRadioEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.COMPASS_LISTEN", 0))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.COMPASS_LISTEN", 1));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+
+    generateCode: function (generator) {
+        var name = generator.fieldToCode(this, "ISR");
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        return "abbozza.registerEventHandler(MICROBIT_ID_COMPASS,MICROBIT_COMPASS_EVT_DATA_UPDATE," + name + ");";
     }
-    
-    return "abbozza.registerEventHandler(MICROBIT_ID_COMPASS,MICROBIT_COMPASS_EVT_DATA_UPDATE," + name + ");";
-  }
 }
 
 /**
@@ -426,34 +424,35 @@ Abbozza.EventCompassListen = {
  * @type type
  */
 Abbozza.EventAccelListen = {
-  init: function() {
-    if ( Abbozza.EventAccelEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.ACCEL_LISTEN",0))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.ACCEL_LISTEN",1))
-        .appendField(new Blockly.FieldDropdown(Abbozza.EventAccelEventList), "EVENT")
-    	.appendField(__("event.ACCEL_LISTEN",2));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var event =  generator.fieldToCode(this,"EVENT");
-    var name =  generator.fieldToCode(this,"ISR");
-    
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    init: function () {
+        if (Abbozza.EventAccelEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.ACCEL_LISTEN", 0))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.ACCEL_LISTEN", 1))
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventAccelEventList), "EVENT")
+                .appendField(__("event.ACCEL_LISTEN", 2));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+
+    generateCode: function (generator) {
+        var event = generator.fieldToCode(this, "EVENT");
+        var name = generator.fieldToCode(this, "ISR");
+
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        return "abbozza.registerEventHandler(MICROBIT_ID_ACCELEROMETER," + event + "," + name + ");";
     }
-    
-    return "abbozza.registerEventHandler(MICROBIT_ID_ACCELEROMETER," + event + "," + name + ");";
-  }
 }
 
 /**
@@ -461,31 +460,32 @@ Abbozza.EventAccelListen = {
  * @type type
  */
 Abbozza.EventAnimEndListen = {
-  init: function() {
-    if ( Abbozza.EventAccelEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.ANIM_ENDE_LISTEN",0))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.ANIM_END_LISTEN",1));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var name =  generator.fieldToCode(this,"ISR");
-    
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    init: function () {
+        if (Abbozza.EventAccelEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.ANIM_ENDE_LISTEN", 0))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.ANIM_END_LISTEN", 1));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+
+    generateCode: function (generator) {
+        var name = generator.fieldToCode(this, "ISR");
+
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        return "abbozza.registerEventHandler(MICROBIT_ID_DISPLAY,MICROBIT_DISPLAY_EVT_ANIMATION_COMPLETE," + name + ");";
     }
-    
-    return "abbozza.registerEventHandler(MICROBIT_ID_DISPLAY,MICROBIT_DISPLAY_EVT_ANIMATION_COMPLETE," + name + ");";
-  }
 }
 
 /**
@@ -493,31 +493,32 @@ Abbozza.EventAnimEndListen = {
  * @type type
  */
 Abbozza.EventSerialLineListen = {
-  init: function() {
-    if ( Abbozza.EventAccelEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(__("event.SERIAL_LINE_LISTEN",0))
-        .appendField(new FunctionDropdown(this, null,true), "ISR")
-    	.appendField(__("event.SERIAL_LINE_LISTEN",1));
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var name =  generator.fieldToCode(this,"ISR");
-    
-    var symbols = this.getRootBlock().symbols;
-    var symbol = symbols.exists(name);
-    if ( !symbol || symbol[3] != symbols.ISR_SYMBOL) {
-        ErrorMgr.addError(this,_("err.WRONG_NAME")+": " + name );
+    init: function () {
+        if (Abbozza.EventAccelEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.SERIAL_LINE_LISTEN", 0))
+                .appendField(new FunctionDropdown(this, null, true), "ISR")
+                .appendField(__("event.SERIAL_LINE_LISTEN", 1));
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+
+    generateCode: function (generator) {
+        var name = generator.fieldToCode(this, "ISR");
+
+        var symbols = this.getRootBlock().symbols;
+        var symbol = symbols.exists(name);
+        if (!symbol || symbol[3] != symbols.ISR_SYMBOL) {
+            ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
+        }
+
+        return "abbozza.serial.eventOn(\"\\n\");\nabbozza.registerEventHandler(MICROBIT_ID_SERIAL,MICROBIT_SERIAL_EVT_DELIM_MATCH," + name + ");";
     }
-    
-    return "abbozza.serial.eventOn(\"\\n\");\nabbozza.registerEventHandler(MICROBIT_ID_SERIAL,MICROBIT_SERIAL_EVT_DELIM_MATCH," + name + ");";
-  }
 }
 
 /**
@@ -525,25 +526,26 @@ Abbozza.EventSerialLineListen = {
  * @type type
  */
 Abbozza.EventIOIgnore = {
-  init: function() {
-    if ( Abbozza.EventIOEventList == null ) Abbozza.setEventMenu();
-    this.setHelpUrl(Abbozza.HELP_URL);
-    this.setColour(ColorMgr.getCatColor("cat.INT"));
-    this.appendDummyInput()
-    	.appendField(_("event.IO_IGNORE"))
-        .appendField(new PinDropdown(), "PIN");
-    this.setInputsInline(true);   
-    this.setPreviousStatement(true,"STATEMENT");
-    this.setNextStatement(true,"STATEMENT");
-    this.setTooltip('');
-  },
-  
-  generateCode : function(generator) {
-    var pin = generator.fieldToCode(this,"PIN"); 
-        
-    var code = "abbozza.io.pin[" + pin +"].eventOn(MICROBIT_PiN_EVENT_NONE);";
-    return code;
-  }
+    init: function () {
+        if (Abbozza.EventIOEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(_("event.IO_IGNORE"))
+                .appendField(new PinDropdown(), "PIN");
+        this.setInputsInline(true);
+        this.setPreviousStatement(true, "STATEMENT");
+        this.setNextStatement(true, "STATEMENT");
+        this.setTooltip('');
+    },
+
+    generateCode: function (generator) {
+        var pin = generator.fieldToCode(this, "PIN");
+
+        var code = "abbozza.io.pin[" + pin + "].eventOn(MICROBIT_PiN_EVENT_NONE);";
+        return code;
+    }
 }
 
 Blockly.Blocks['int_isr_control'] = Abbozza.EventHandlerControl;
@@ -557,173 +559,293 @@ Blockly.Blocks['event_accel_listen'] = Abbozza.EventAccelListen;
 Blockly.Blocks['event_anim_end_listen'] = Abbozza.EventAnimEndListen;
 Blockly.Blocks['event_serial_line_listen'] = Abbozza.EventSerialLineListen;
 
-// Blockly.Blocks['event_io_ignore'] = Abbozza.EventIOIgnore;
 
 
 
-///**
-// * This prototype creates an event-handler block providing
-// * a series of choosable events.
-// * 
-// * eventList is an Array containing entries like : 
-// * [<handler name>, <msgBusID>,  <event id>, <display text> ]
-// * 
-// * @param {type} entries An array containig all possible options
-// * @returns {Abbozza.Event}
-// */
-//Abbozza.Event = function(eventList) {
-//    this.eventList = eventList;
-//    this.fieldMenu = [];
-//    for ( var i = 0; i < this.eventList.length; i ++ ) {
-//      var entry=["",""];
-//      entry[0] = this.eventList[3];
-//      entry[1] = this.eventList[1];
-//      this.fieldMenu.push(entry);
-//    }
-//    console.log(this.fieldMenu);
-//    this.symbols = null;
-//    this.name = "<name>";
-//    this.rettype = "VOID";
-//}
-//
-//
-///**
-// * This operation generates the Block
-// * 
-// * @returns {undefined}
-// */
-//Abbozza.Event.prototype.init = function() {
-//  var thisBlock = this;
-//  this.symbols = new SymbolDB(this.workspace.globalSymbols);
-//  this.symbols.parentBlock = this;
-//  this.setHelpUrl(Abbozza.HELP_URL);
-//  this.setColour(ColorMgr.getColor("cat.INT"));
-//  // The head line is
-//  this.appendDummyInput()
-//      .appendField(_("gui.when"))
-//        .appendField(new Blockly.FieldDropdown(this.fieldMenu), "EVENT");
-//  this.appendStatementInput("STATEMENTS")
-//      .setCheck("STATEMENT");
-//  this.setTooltip('');
-//  this.setMutator(new DynamicMutator(function () {
-//    if (Configuration.getParameter("option.noArrays") == "true") {
-//      return ['devices_num_noconn', 'devices_string_noconn', 'devices_decimal_noconn', 'devices_boolean_noconn'];
-//    } else if (Configuration.getParameter("option.linArrays") == "true") {
-//      return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension_noconn'];
-//    } else {
-//      return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension'];
-//    }
-//  }));
-//  Abbozza.addDisposeHandler(this);
-//}
-//
-//
-//Abbozza.Event.prototype.nameHandler = function (name, oldName) {
-//  if (name != oldName) {
-//    var block = this.sourceBlock_;
-//    block.symbols.parentDB.delete(oldName);
-//    var rettype = block.getFieldValue("TYPE");
-//    block.symbols.parentDB.addFunction(name, type);
-//  }
-//}
-//
-//
-//Abbozza.Event.prototype.setSymbolDB = function (db) {
-//    this.symbols = db;
-//    this.symbols.parentBlock = this;
-//}    
-//    
-//    
-//Abbozza.Event.prototype.generateCode = function (generator) {
-//    var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
-//    var code = "";
-//    var name = this.getFieldValue("EVENT");
-//    var data = null;
-//    var i = 0;
-//    while ( (data == null )  && ( i <= this.eventList.length ) ) {
-//      if ( name == this.eventList[i][0] ) {
-//          data = this.eventList[i];
-//      } else {
-//          i = i +1;
-//      }
-//    }
-//    if ( data == null ) return;
-//    console.log(data);
-//    var msgBusID = data[1];
-//    var eventID = data[2];
-//    
-//    var sig = "void " + name + "(MicroBitEvent __event__)";
-//    code = code + sig + " {\n";
-//    code = code + generator.variablesToCode(this.symbols,"   ");
-//    code = code + statements;
-//    code = code + "\n}\n\n";
-//
-//    var initCode = "abbozza.registerEventHandler(";
-//    initCode += msgBusID + "," + eventID + "," + name + ");\n"
-//    
-//    generator.initHookCode = generator.initHookCode + initCode;
-//    
-//    return code;
-//}
-//
-//
-//Abbozza.Event.prototype.getSignature = function () {
-//    var data = this.getFieldValue("EVENT");
-//    var signature = "void " + data[2] + "(MicroBitEvent __event__)";
-//    return signature;
-//}
-//
-//Abbozza.Event.prototype.getBlockSignature = function () {
-//    var signature = _("event.HANDLER") + " " + this.name;
-//    return signature;
-//}
-//    
-//Abbozza.Event.prototype.compose = function (topBlock) {
-//  Abbozza.composeSymbols(topBlock, this);  
-//  Abbozza.collectFunctions();
-//}
-//    
-//Abbozza.Event.prototype.decompose = function (workspace) {
-//  var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
-//      return topBlock;
-//}
-//    
-//Abbozza.Event.prototype.mutationToDom = function () {
-//  var mutation = document.createElement('mutation');
-//  var child = document.createElement('name');
-//  child.setAttribute("name", this.name);
-//  mutation.appendChild(child);
-//  child = document.createElement('type');
-//  mutation.appendChild(child);
-//  mutation.appendChild(this.symbols.toDOM());
-//  return mutation;
-//}
-//    
-//Abbozza.Event.prototype.domToMutation = function (xmlElement) {
-//  var child;
-//  for (var i = 0; i < xmlElement.childNodes.length; i++) {
-//    child = xmlElement.childNodes[i];
-//    if (child.tagName == 'symbols') {
-//      if (this.symbols == null) {
-//        this.setSymbolDB(new SymbolDB(null, this));
-//      }
-//      this.symbols.fromDOM(child);
-//    } else if (child.tagName == "name") {
-//      this.name = child.getAttribute("name");
-//    } else if (child.tagName == "type") {
-//      this.rettype = child.getAttribute("type");
-//    }
-//  }
-//}
-//
-//
-//Abbozza.Event.prototype.onDispose = function () {
-//  Abbozza.globalSymbols.delete(this.name);
-//}
-//
-//Blockly.Blocks['event_isr_on_button'] = new Abbozza.Event([
-//  [ "__onButtonAPressed","MICROBIT_ID_BUTTON_A","MICROBIT_BUTTON_EVT_DOWN","Button A pressed"],
-//  [ "__onButtonBPressed","MICROBIT_ID_BUTTON_B","MICROBIT_BUTTON_EVT_DOWN","Button B pressed"]
-//]);
+Abbozza.EventButtonHandler = {
+    init: function () {
+        var thisBlock = this;
+        this.symbols = new SymbolDB(this.workspace.globalSymbols);
+        this.symbols.parentBlock = this;
+         if (Abbozza.EventButtonEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.BUTTON_HANDLER", 0))
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonList), "BUTTON")
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonEventList), "EVENT");
+        this.appendStatementInput("STATEMENTS")
+                .setCheck("STATEMENT");
+        this.setInputsInline(true);
+        this.setPreviousStatement(false);
+        this.setNextStatement(false);
+        this.setTooltip('');
+        this.setMutator(new DynamicMutator(function () {
+            if (Configuration.getParameter("option.noArrays") == "true") {
+                return ['devices_num_noconn', 'devices_string_noconn', 'devices_decimal_noconn', 'devices_boolean_noconn'];
+            } else if (Configuration.getParameter("option.linArrays") == "true") {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension_noconn'];
+            } else {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension'];
+            }
+        }));
+    },
 
-// @TODO event_isr_control
+    generateCode: function (generator) {
+        var button = generator.fieldToCode(this, "BUTTON");
+        var event = generator.fieldToCode(this, "EVENT");
+        var name = "__" + button + "_" + event + "__";
+        this.name = name;
+
+        if ( !generator.checkUniquness(name) ) {
+            ErrorMgr.addError(this,_("err.not_unique"));
+            return null;
+        }
+ 
+        var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
+        var code = "";
+        var sig = "void " + name + "(MicroBitEvent __event__)";
+        code = code + sig + " {\n";
+        code = code + generator.variablesToCode(this.symbols, "   ");
+        code = code + statements;
+        code = code + "\n}\n\n";
+
+        generator.addSetupCode("abbozza.registerEventHandler(" + button + "," + event + "," + name + ");");
+
+        return code;
+    },
+
+    compose: function (topBlock) {
+        Abbozza.composeSymbols(topBlock, this);
+    },
+
+    decompose: function (workspace) {
+        var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
+        return topBlock;
+    },
+
+    mutationToDom: function () {
+        var mutation = document.createElement('mutation');
+        mutation.appendChild(this.symbols.toDOM());
+        return mutation;
+    },
+
+    domToMutation: function (xmlElement) {
+        var child;
+        for (var i = 0; i < xmlElement.childNodes.length; i++) {
+            child = xmlElement.childNodes[i];
+            if (child.tagName == 'symbols') {
+                if (this.symbols == null) {
+                    this.setSymbolDB(new SymbolDB(null, this));
+                }
+                this.symbols.fromDOM(child);
+            }
+        }
+    },
+    getSignature: function () {
+        // var signature = _("event.HANDLER") + " " + this.name;
+        var signature = "void " + this.name + "(MicroBitEvent __event__)";
+        return signature;
+    }
+
+}
+
+Blockly.Blocks['event_isr_button_handler'] = Abbozza.EventButtonHandler;
+
+
+Abbozza.EventAccelHandler = {
+    init: function () {
+        var thisBlock = this;
+        this.symbols = new SymbolDB(this.workspace.globalSymbols);
+        this.symbols.parentBlock = this;
+         if (Abbozza.EventButtonEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.ACCEL_HANDLER", 0))
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventAccelEventList), "EVENT");
+        this.appendStatementInput("STATEMENTS")
+                .setCheck("STATEMENT");
+        this.setInputsInline(true);
+        this.setPreviousStatement(false);
+        this.setNextStatement(false);
+        this.setTooltip('');
+        this.setMutator(new DynamicMutator(function () {
+            if (Configuration.getParameter("option.noArrays") == "true") {
+                return ['devices_num_noconn', 'devices_string_noconn', 'devices_decimal_noconn', 'devices_boolean_noconn'];
+            } else if (Configuration.getParameter("option.linArrays") == "true") {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension_noconn'];
+            } else {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension'];
+            }
+        }));
+    },
+
+    generateCode: function (generator) {
+        var event = generator.fieldToCode(this, "EVENT");
+        var name = "__" + event + "__";
+        this.name = name;
+
+        if ( !generator.checkUniquness(name) ) {
+            ErrorMgr.addError(this,_("err.not_unique"));
+            return null;
+        }
+ 
+        var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
+        var code = "";
+        var sig = "void " + name + "(MicroBitEvent __event__)";
+        code = code + sig + " {\n";
+        code = code + generator.variablesToCode(this.symbols, "   ");
+        code = code + statements;
+        code = code + "\n}\n\n";
+
+        generator.addSetupCode("abbozza.registerEventHandler(MICROBIT_ID_ACCELEROMETER," + event + "," + name + ");");
+
+        return code;
+    },
+
+    compose: function (topBlock) {
+        Abbozza.composeSymbols(topBlock, this);
+    },
+
+    decompose: function (workspace) {
+        var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
+        return topBlock;
+    },
+
+    mutationToDom: function () {
+        var mutation = document.createElement('mutation');
+        mutation.appendChild(this.symbols.toDOM());
+        return mutation;
+    },
+
+    domToMutation: function (xmlElement) {
+        var child;
+        for (var i = 0; i < xmlElement.childNodes.length; i++) {
+            child = xmlElement.childNodes[i];
+            if (child.tagName == 'symbols') {
+                if (this.symbols == null) {
+                    this.setSymbolDB(new SymbolDB(null, this));
+                }
+                this.symbols.fromDOM(child);
+            }
+        }
+    },
+    getSignature: function () {
+        // var signature = _("event.HANDLER") + " " + this.name;
+        var signature = "void " + this.name + "(MicroBitEvent __event__)";
+        return signature;
+    }
+
+}
+
+Blockly.Blocks['event_isr_accel_handler'] = Abbozza.EventAccelHandler;
+
+
+Abbozza.EventIOHandler = {
+    init: function () {
+        var thisBlock = this;
+        this.symbols = new SymbolDB(this.workspace.globalSymbols);
+        this.symbols.parentBlock = this;
+         if (Abbozza.EventButtonEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(__("event.IO_HANDLER", 0))
+                .appendField(new PinDropdown(), "PIN")
+                .appendField(new Blockly.FieldDropdown(Abbozza.EventIOEventList), "EVENT");
+        this.appendStatementInput("STATEMENTS")
+                .setCheck("STATEMENT");
+        this.setInputsInline(true);
+        this.setPreviousStatement(false);
+        this.setNextStatement(false);
+        this.setTooltip('');
+        this.setMutator(new DynamicMutator(function () {
+            if (Configuration.getParameter("option.noArrays") == "true") {
+                return ['devices_num_noconn', 'devices_string_noconn', 'devices_decimal_noconn', 'devices_boolean_noconn'];
+            } else if (Configuration.getParameter("option.linArrays") == "true") {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension_noconn'];
+            } else {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension'];
+            }
+        }));
+    },
+
+    generateCode: function (generator) {
+        var pin = generator.fieldToCode(this, "PIN");
+        var event = generator.fieldToCode(this, "EVENT");
+
+        var type;
+        if ((event == "MICROBIT_PIN_EVT_RISE") || (event == "MICROBIT_PIN_EVT_FALL"))
+            type = "MICROBIT_PIN_EVENT_ON_EDGE";
+        else if ((event == "MICROBIT_PIN_EVT_HI") || (event == "MICROBIT_PIN_EVT_LO"))
+            type = "MICROBIT_PIN_EVENT_ON_PULSE";
+        else if (event == "NONE")
+            type = "MICROBIT_PIN_EVENT_NONE";
+        else
+            type = "MICROBIT_PIN_EVENT_ON_TOUCH";
+
+        var name = "__" + event + "__";   
+        this.name = name;
+
+        if ( !generator.checkUniquness(name) ) {
+            ErrorMgr.addError(this,_("err.not_unique"));
+            return null;
+        }        
+ 
+        var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
+        var code = "";
+        var sig = "void " + name + "(MicroBitEvent __event__)";
+        code = code + sig + " {\n";
+        code = code + generator.variablesToCode(this.symbols, "   ");
+        code = code + statements;
+        code = code + "\n}\n\n";
+
+        var scode = "abbozza.io.pin[" + pin + "].eventOn(" + type + ");";
+        if (event != "NONE") {
+            scode = scode + "\nabbozza.messageBus.listen(MICROBIT_ID_IO_" + pin + " ," + event + " ," + name + ");";
+        }
+        generator.addSetupCode(scode);
+
+        return code;
+    },
+
+    compose: function (topBlock) {
+        Abbozza.composeSymbols(topBlock, this);
+    },
+
+    decompose: function (workspace) {
+        var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
+        return topBlock;
+    },
+
+    mutationToDom: function () {
+        var mutation = document.createElement('mutation');
+        mutation.appendChild(this.symbols.toDOM());
+        return mutation;
+    },
+
+    domToMutation: function (xmlElement) {
+        var child;
+        for (var i = 0; i < xmlElement.childNodes.length; i++) {
+            child = xmlElement.childNodes[i];
+            if (child.tagName == 'symbols') {
+                if (this.symbols == null) {
+                    this.setSymbolDB(new SymbolDB(null, this));
+                }
+                this.symbols.fromDOM(child);
+            }
+        }
+    },
+    getSignature: function () {
+        // var signature = _("event.HANDLER") + " " + this.name;
+        var signature = "void " + this.name + "(MicroBitEvent __event__)";
+        return signature;
+    }
+
+}
+
+Blockly.Blocks['event_isr_io_handler'] = Abbozza.EventIOHandler;

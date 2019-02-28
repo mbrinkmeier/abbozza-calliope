@@ -265,6 +265,12 @@
             <block type="dev_speaker_mute"></block>
         </category>
 
+        <category id="cat.EVENTS">
+            <block type="event_isr_button_handler"></block>
+            <block type="event_isr_accel_handler"></block>
+            <block type="event_isr_io_handler"></block>
+        </category>
+            
         <category id="cat.MOTOR">
         </category>
 

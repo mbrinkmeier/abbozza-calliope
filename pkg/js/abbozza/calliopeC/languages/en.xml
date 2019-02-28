@@ -86,6 +86,11 @@
 
         <msg id="dev.CHECK_MSG">Check message from</msg>
 
+        <msg id="event.BUTTON_HANDLER">If button #</msg>
+        <msg id="event.ACCEL_HANDLER">If Calliope #</msg>
+        <msg id="event.IO_HANDLER">If Signal on</msg>
+
+        
         <msg id="event.HANDLER">Event Handler</msg>
         <msg id="event.BUTTON_LISTEN">If button # # call #</msg>
         <msg id="event.BUTTON_UP">is released</msg>

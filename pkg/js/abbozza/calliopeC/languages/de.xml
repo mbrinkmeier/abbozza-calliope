@@ -92,6 +92,10 @@
 
         <msg id="dev.CHECK_MSG">Prüfe Nachricht von</msg>
         
+        <msg id="event.BUTTON_HANDLER">Wenn Knopf</msg>
+        <msg id="event.ACCEL_HANDLER">Wenn Calliope</msg>
+        <msg id="event.IO_HANDLER">Wenn das Signal an</msg>
+
         <msg id="event.HANDLER">Ereignishandler</msg>
         <msg id="event.BUTTON_LISTEN">Falls Knopf # # führe # aus</msg>
         <msg id="event.BUTTON_UP">losgelassen wird</msg>
@@ -109,17 +113,17 @@
         <msg id="event.IO_IGNORE">Ignoriere Ereignisse an</msg>
         
         <msg id="event.ACCEL_LISTEN">Führe # aus, wenn der Calliope Mini # wurde.</msg>
-        <msg id="event.ACCEL_TILT_UP">nach oben geneigt</msg>
-        <msg id="event.ACCEL_TILT_DOWN">nach unten geneigt</msg>
-        <msg id="event.ACCEL_TILT_LEFT">nach links geneigt</msg>
-        <msg id="event.ACCEL_TILT_RIGHT">nach rechts geneigt</msg>
-        <msg id="event.ACCEL_FACE_UP">auf die Rückseite gelegt</msg>
-        <msg id="event.ACCEL_FACE_DOWN">auf die Vorderseite gelegt</msg>
-        <msg id="event.ACCEL_FREEFALL">fallen gelassen</msg>
-        <msg id="event.ACCEL_3G">mit 3G beschleunigt</msg>
-        <msg id="event.ACCEL_6G">mit 6G beschleunigt</msg>
-        <msg id="event.ACCEL_8G">mit 8G beschleunigt</msg>
-        <msg id="event.ACCEL_SHAKE">geschüttelt</msg>
+        <msg id="event.ACCEL_TILT_UP">nach vorne geneigt wird</msg>
+        <msg id="event.ACCEL_TILT_DOWN">nach hinten geneigt wird</msg>
+        <msg id="event.ACCEL_TILT_LEFT">nach links geneigt wird</msg>
+        <msg id="event.ACCEL_TILT_RIGHT">nach rechts geneigt wird</msg>
+        <msg id="event.ACCEL_FACE_UP">auf die Rückseite gelegt wird</msg>
+        <msg id="event.ACCEL_FACE_DOWN">auf die Vorderseite gelegt wird</msg>
+        <msg id="event.ACCEL_FREEFALL">fallen gelassen wird</msg>
+        <msg id="event.ACCEL_3G">mit 3G beschleunigt wird</msg>
+        <msg id="event.ACCEL_6G">mit 6G beschleunigt wird</msg>
+        <msg id="event.ACCEL_8G">mit 8G beschleunigt wird</msg>
+        <msg id="event.ACCEL_SHAKE">geschüttelt wird</msg>
         
         <msg id="event.RADIO_LISTEN">Führe # aus, wenn eine Nachricht über Funk empfangen wurde</msg>
         <msg id="event.SERIAL_LINE_LISTEN">Führe # aus, wenn eine Nachricht über die serielle Schnittstelle empfangen wurde</msg>
