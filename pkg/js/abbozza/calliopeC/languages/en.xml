@@ -87,7 +87,8 @@
         <msg id="dev.CHECK_MSG">Check message from</msg>
 
         <msg id="event.BUTTON_HANDLER">If button #</msg>
-        <msg id="event.ACCEL_HANDLER">If Calliope #</msg>
+        <msg id="event.ACCEL_HANDLER">If Calliope is moved</msg>
+        <msg id="event.GESTURE_HANDLER">If Calliope #</msg>
         <msg id="event.IO_HANDLER">If Signal on</msg>
 
         

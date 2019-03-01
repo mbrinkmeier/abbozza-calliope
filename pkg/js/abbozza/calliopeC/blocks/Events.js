@@ -451,7 +451,7 @@ Abbozza.EventAccelListen = {
             ErrorMgr.addError(this, _("err.WRONG_NAME") + ": " + name);
         }
 
-        return "abbozza.registerEventHandler(MICROBIT_ID_ACCELEROMETER," + event + "," + name + ");";
+        return "abbozza.registerEventHandler(MICROBIT_ID_GESTURE," + event + "," + name + ");";
     }
 }
 
@@ -654,7 +654,7 @@ Abbozza.EventButtonHandler = {
 Blockly.Blocks['event_isr_button_handler'] = Abbozza.EventButtonHandler;
 
 
-Abbozza.EventAccelHandler = {
+Abbozza.EventGestureHandler = {
     init: function () {
         var thisBlock = this;
         this.symbols = new SymbolDB(this.workspace.globalSymbols);
@@ -664,7 +664,7 @@ Abbozza.EventAccelHandler = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getCatColor("cat.INT"));
         this.appendDummyInput()
-                .appendField(__("event.ACCEL_HANDLER", 0))
+                .appendField(__("event.GESTURE_HANDLER", 0))
                 .appendField(new Blockly.FieldDropdown(Abbozza.EventAccelEventList), "EVENT");
         this.appendStatementInput("STATEMENTS")
                 .setCheck("STATEMENT");
@@ -686,6 +686,95 @@ Abbozza.EventAccelHandler = {
     generateCode: function (generator) {
         var event = generator.fieldToCode(this, "EVENT");
         var name = "__" + event + "__";
+        this.name = name;
+
+        if ( !generator.checkUniquness(name) ) {
+            ErrorMgr.addError(this,_("err.not_unique"));
+            return null;
+        }
+ 
+        var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
+        var code = "";
+        var sig = "void " + name + "(MicroBitEvent __event__)";
+        code = code + sig + " {\n";
+        code = code + generator.variablesToCode(this.symbols, "   ");
+        code = code + statements;
+        code = code + "\n}\n\n";
+
+        generator.addSetupCode("abbozza.registerEventHandler(MICROBIT_ID_GESTURE," + event + "," + name + ");");
+
+        return code;
+    },
+
+    compose: function (topBlock) {
+        Abbozza.composeSymbols(topBlock, this);
+    },
+
+    decompose: function (workspace) {
+        var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
+        return topBlock;
+    },
+
+    mutationToDom: function () {
+        var mutation = document.createElement('mutation');
+        mutation.appendChild(this.symbols.toDOM());
+        return mutation;
+    },
+
+    domToMutation: function (xmlElement) {
+        var child;
+        for (var i = 0; i < xmlElement.childNodes.length; i++) {
+            child = xmlElement.childNodes[i];
+            if (child.tagName == 'symbols') {
+                if (this.symbols == null) {
+                    this.setSymbolDB(new SymbolDB(null, this));
+                }
+                this.symbols.fromDOM(child);
+            }
+        }
+    },
+    getSignature: function () {
+        // var signature = _("event.HANDLER") + " " + this.name;
+        var signature = "void " + this.name + "(MicroBitEvent __event__)";
+        return signature;
+    }
+
+}
+
+Blockly.Blocks['event_isr_gesture_handler'] = Abbozza.EventGestureHandler;
+
+
+Abbozza.EventAccelHandler = {
+    init: function () {
+        var thisBlock = this;
+        this.symbols = new SymbolDB(this.workspace.globalSymbols);
+        this.symbols.parentBlock = this;
+         if (Abbozza.EventButtonEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+                .appendField(_("event.ACCEL_HANDLER"));
+        this.appendStatementInput("STATEMENTS")
+                .setCheck("STATEMENT");
+        this.setInputsInline(true);
+        this.setPreviousStatement(false);
+        this.setNextStatement(false);
+        this.setTooltip('');
+        this.setMutator(new DynamicMutator(function () {
+            if (Configuration.getParameter("option.noArrays") == "true") {
+                return ['devices_num_noconn', 'devices_string_noconn', 'devices_decimal_noconn', 'devices_boolean_noconn'];
+            } else if (Configuration.getParameter("option.linArrays") == "true") {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension_noconn'];
+            } else {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension'];
+            }
+        }));
+    },
+
+    generateCode: function (generator) {
+        var event = "MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE";
+        var name = "__MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE__";
         this.name = name;
 
         if ( !generator.checkUniquness(name) ) {

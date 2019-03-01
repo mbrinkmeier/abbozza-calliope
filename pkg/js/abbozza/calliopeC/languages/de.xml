@@ -93,7 +93,8 @@
         <msg id="dev.CHECK_MSG">Prüfe Nachricht von</msg>
         
         <msg id="event.BUTTON_HANDLER">Wenn Knopf</msg>
-        <msg id="event.ACCEL_HANDLER">Wenn Calliope</msg>
+        <msg id="event.ACCEL_HANDLER">Wenn der Calliope bewegt wird</msg>
+        <msg id="event.GESTURE_HANDLER">Wenn Calliope</msg>
         <msg id="event.IO_HANDLER">Wenn das Signal an</msg>
 
         <msg id="event.HANDLER">Ereignishandler</msg>
