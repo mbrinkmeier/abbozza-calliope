@@ -8,9 +8,11 @@
 ifeq ($(shell echo $$OS),$$OS)
     MAKEDIR = if not exist "$(1)" mkdir "$(1)"
     RM = rmdir /S /Q "$(1)"
+    DEL = del $(1)
 else
     MAKEDIR = '$(SHELL)' -c "mkdir -p \"$(1)\""
     RM = '$(SHELL)' -c "rm -rf \"$(1)\""
+    DEL = '$(SHELL)' -c "rm $(1)"
 endif
 
 OBJDIR := build
@@ -29,6 +31,7 @@ Makefile : ;
 % :: $(OBJDIR) ; :
 clean :
 	$(call RM,$(OBJDIR))
+	$(call DEL,source/lib/*.o)
 
 else
 
@@ -211,9 +214,8 @@ SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/bluetooth/MicroBitTemperatureSer
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/bluetooth/MicroBitUARTService.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/asm/CortexContextSwitch.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit/source/MicroBit.o
-SYS_OBJECTS += ../source/lib/abbozzaDevice.o
-SYS_OBJECTS += ../source/lib/abbozzaParser.o
-SYS_OBJECTS += ../source/lib/abbozzaStringParser.o
+SYS_OBJECTS += $(patsubst %.cpp,%.o, $(wildcard ../source/lib/*.cpp))
+SYS_OBJECTS += $(patsubst %.c,%.o, $(wildcard ../source/lib/*.c))
 
 INCPREFIX=../yotta_modules
 
