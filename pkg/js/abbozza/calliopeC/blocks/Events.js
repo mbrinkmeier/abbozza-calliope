@@ -559,9 +559,15 @@ Blockly.Blocks['event_accel_listen'] = Abbozza.EventAccelListen;
 Blockly.Blocks['event_anim_end_listen'] = Abbozza.EventAnimEndListen;
 Blockly.Blocks['event_serial_line_listen'] = Abbozza.EventSerialLineListen;
 
+/*
+ * Simplified Event Handlers
+ */
 
-
-
+/**
+ * The Block for hndling button events.
+ * 
+ * @type type
+ */
 Abbozza.EventButtonHandler = {
     init: function () {
         var thisBlock = this;
@@ -595,7 +601,7 @@ Abbozza.EventButtonHandler = {
     generateCode: function (generator) {
         var button = generator.fieldToCode(this, "BUTTON");
         var event = generator.fieldToCode(this, "EVENT");
-        var name = "__" + button + "_" + event + "__";
+        var name = "__" + _(button) + "_" + _(event) + "__";
         this.name = name;
 
         if ( !generator.checkUniquness(name) ) {
@@ -685,7 +691,7 @@ Abbozza.EventGestureHandler = {
 
     generateCode: function (generator) {
         var event = generator.fieldToCode(this, "EVENT");
-        var name = "__" + event + "__";
+        var name = "__" + _("event") + "__";
         this.name = name;
 
         if ( !generator.checkUniquness(name) ) {
@@ -774,7 +780,7 @@ Abbozza.EventAccelHandler = {
 
     generateCode: function (generator) {
         var event = "MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE";
-        var name = "__MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE__";
+        var name = "__" + _("MICROBIT_ACCELEROMETER_EVT_DATA_UPDATE") + "__";
         this.name = name;
 
         if ( !generator.checkUniquness(name) ) {
@@ -791,6 +797,7 @@ Abbozza.EventAccelHandler = {
         code = code + "\n}\n\n";
 
         generator.addSetupCode("abbozza.registerEventHandler(MICROBIT_ID_ACCELEROMETER," + event + "," + name + ");");
+        generator.addSetupCode("abbozza.accelerometer.updateSample();");
 
         return code;
     },
@@ -832,7 +839,11 @@ Abbozza.EventAccelHandler = {
 
 Blockly.Blocks['event_isr_accel_handler'] = Abbozza.EventAccelHandler;
 
-
+/**
+ * The simplified IO Event Handler
+ *
+ * @type type
+ */
 Abbozza.EventIOHandler = {
     init: function () {
         var thisBlock = this;
@@ -877,7 +888,7 @@ Abbozza.EventIOHandler = {
         else
             type = "MICROBIT_PIN_EVENT_ON_TOUCH";
 
-        var name = "__" + event + "__";   
+        var name = "__" + _(event) + "__";   
         this.name = name;
 
         if ( !generator.checkUniquness(name) ) {
@@ -898,6 +909,7 @@ Abbozza.EventIOHandler = {
             scode = scode + "\nabbozza.messageBus.listen(MICROBIT_ID_IO_" + pin + " ," + event + " ," + name + ");";
         }
         generator.addSetupCode(scode);
+        generator.addSetupCode("abbozza.io.updateSample();");
 
         return code;
     },

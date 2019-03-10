@@ -229,4 +229,26 @@
     <error>
         <msg id="err.COMPARISON_NOT_ALLOWED">Vergleich nicht erlaubt</msg>
     </error>
+    <event>
+        <msg id="MICROBIT_ID_BUTTON_A">Knopf_A</msg>
+        <msg id="MICROBIT_ID_BUTTON_B">Knopf_B</msg> 
+        <msg id="MICROBIT_BUTTON_EVT_DOWN">gedrueckt</msg> 
+        <msg id="MICROBIT_BUTTON_EVT_UP">losgelassen</msg> 
+        <msg id="MICROBIT_BUTTON_EVT_CLICK">geklickt</msg> 
+        <msg id="MICROBIT_BUTTON_EVT_LONG_CLICK">lang_geklickt</msg> 
+        <msg id="MICROBIT_BUTTON_EVT_HOLD">gehalten</msg> 
+        <msg id="MICROBIT_BUTTON_EVT_DOUBLE_CLICK">doppel_geklickt</msg> 
+        <msg id="MICROBIT_BUTTON_EVT_ANY">geaendert</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_UP">nach_vorne_gekippt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_DOWN">nach_hinten_gekippt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_LEFT">nach_links_gekippt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_RIGTH">nach_rechts_gekippt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_FACE_UP">nach_oben_gedreht</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_FACE_DOWN">nach_unten_gedreht</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_FFREEFALL">gefallen</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_3G">3G_beschleunigt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_6G">6G_beschleunigt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_8G">8G_beschleunigt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_SHAKE">geschuettelt</msg> 
+    </event>
 </language>    
