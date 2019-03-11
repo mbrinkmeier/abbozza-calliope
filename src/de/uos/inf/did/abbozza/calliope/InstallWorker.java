@@ -216,6 +216,14 @@ public class InstallWorker extends SwingWorker<String, String> {
         installTool.copyFromJar(installerJar, "lib/autocomplete.jar", installDir + "/lib/autocomplete.jar");
         installTool.copyFromJar(installerJar, "lib/license_autocomplete.txt", installDir + "/lib/license_autocomplete.txt");
 
+        // slf4j
+        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/slf4j-api-1.7.25.jar"));
+        installTool.copyFromJar(installerJar, "lib/slf4j-api-1.7.25.jar", installDir + "/lib/slf4j-api-1.7.25.jar");
+
+        // websockets
+        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/websockets.jar"));
+        installTool.copyFromJar(installerJar, "lib/websockets.jar", installDir + "/lib/websockets.jar");
+
         // srecord
         publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/srecord/"));
         installTool.copyDirFromJar(installerJar, "lib/srecord/", installDir + "/lib/srecord/");
