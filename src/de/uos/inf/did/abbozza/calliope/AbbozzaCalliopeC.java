@@ -341,7 +341,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         }
         // ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
         // ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/build.sh", configFile);
-        ProcessBuilder procBuilder = new ProcessBuilder("sh","make", ble);
+        ProcessBuilder procBuilder = new ProcessBuilder("sh","-c","make", ble);
         
         procBuilder.directory(new File(buildPath));
 

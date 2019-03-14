@@ -197,9 +197,9 @@ public class InstallWorker extends SwingWorker<String, String> {
         publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/buildbase.jar"));
         installTool.copyFromJar(installerJar, "lib/buildbase.jar", installDir + "/lib/buildbase.jar");
 
-        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/jssc-2.8.0.jar"));
-        installTool.copyFromJar(installerJar, "lib/jssc-2.8.0.jar", installDir + "/lib/jssc-2.8.0.jar");
-        installTool.copyFromJar(installerJar, "lib/license_jssc.txt", installDir + "/lib/license_jssc.txt");
+        // publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/jssc-2.8.0.jar"));
+        // installTool.copyFromJar(installerJar, "lib/jssc-2.8.0.jar", installDir + "/lib/jssc-2.8.0.jar");
+        // installTool.copyFromJar(installerJar, "lib/license_jssc.txt", installDir + "/lib/license_jssc.txt");
 
         // apache commons-io
         publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/commons-io-2.5.jar"));
@@ -217,12 +217,12 @@ public class InstallWorker extends SwingWorker<String, String> {
         installTool.copyFromJar(installerJar, "lib/license_autocomplete.txt", installDir + "/lib/license_autocomplete.txt");
 
         // slf4j
-        // publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/slf4j-api-1.7.25.jar"));
-        // installTool.copyFromJar(installerJar, "lib/slf4j-api-1.7.25.jar", installDir + "/lib/slf4j-api-1.7.25.jar");
+        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/slf4j-api-1.7.25.jar"));
+        installTool.copyFromJar(installerJar, "lib/slf4j-api-1.7.25.jar", installDir + "/lib/slf4j-api-1.7.25.jar");
 
         // websockets
-        // publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/websockets.jar"));
-        // installTool.copyFromJar(installerJar, "lib/websockets.jar", installDir + "/lib/websockets.jar");
+        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/websockets.jar"));
+        installTool.copyFromJar(installerJar, "lib/websockets.jar", installDir + "/lib/websockets.jar");
 
         // jSerialComm
         publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/jSerialComm-2.4.2.jar"));
