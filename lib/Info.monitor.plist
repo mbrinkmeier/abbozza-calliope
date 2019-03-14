@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>abbozzaMonitor</string>
 	<key>CFBundleIconFile</key>
-	<string>abbozza_monitor.icnss</string>
+	<string>abbozza_monitor.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>de.uos.inf.abbozza.calliope.monitor</string>
 	<key>CFBundleName</key>
