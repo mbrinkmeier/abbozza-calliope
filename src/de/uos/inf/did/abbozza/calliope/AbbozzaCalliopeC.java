@@ -620,7 +620,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                     // Extract buildbase.jar if newer or initialization required
                     ZipFile buildbase = new ZipFile(buildbasefile);
                     FileTool.extractJar(buildbase, buildDir);
-                    this.cleanBuildSystem();
+                   // this.cleanBuildSystem();
                     this.config.setProperty("version",this.getSystemVersion());
                 } else {
                     AbbozzaSplashScreen.setText("Build system up to date!");

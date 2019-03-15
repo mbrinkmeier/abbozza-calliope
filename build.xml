@@ -156,6 +156,11 @@ nbproject/build-impl.xml file.
             </fileset>
         </copy>    
         <copy todir="dist/portable/abbozzaCalliope/lib" overwrite="true">
+            <fileset dir="../abbozza-common/lib/lib">
+                <include name="**/*"/>
+            </fileset>
+        </copy>
+        <copy todir="dist/portable/abbozzaCalliope/lib" overwrite="true">
             <fileset dir="lib">
                 <include name="**/*"/>
             </fileset>
