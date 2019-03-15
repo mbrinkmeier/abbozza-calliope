@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>abbozza</string>
 	<key>CFBundleIconFile</key>
-	<string>abbozza_calliope_icon.icnss</string>
+	<string>abbozza_calliope_icon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>de.uos.inf.abbozza.calliope</string>
 	<key>CFBundleName</key>
