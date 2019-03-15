@@ -72,7 +72,13 @@
         <category id="cat.FUNC">
         </category>
 
-        
+        <category id="cat.EVENTS" color="#FF2000">
+            <block type="event_isr_button_handler"></block>
+            <block type="event_isr_gesture_handler"></block>
+            <block type="event_isr_io_handler"></block>
+        </category>
+
+                
         <!-- The basic boolean logic -->
         <category id="cat.LOGIC">
             <block type="logic_const"></block>
@@ -231,8 +237,10 @@
         </category>
 
         <category  id="cat.DEVIN">
+            <block type="event_isr_button_handler"></block>
             <block type="dev_button_pressed"></block>
             <block type="dev_pin_touched"></block>
+            <block type="event_isr_gesture_handler"></block>
             <block type="dev_accel_get"></block>
             <block type="dev_accel_gesture"></block>
             <block type="dev_accel_was_gesture"></block>
@@ -265,11 +273,6 @@
             <block type="dev_speaker_mute"></block>
         </category>
 
-        <category id="cat.EVENTS">
-            <block type="event_isr_button_handler"></block>
-            <block type="event_isr_gesture_handler"></block>
-            <block type="event_isr_io_handler"></block>
-        </category>
             
         <category id="cat.MOTOR">
         </category>
@@ -413,6 +416,7 @@
         </category>
                 
         <category id="cat.INOUT">
+            <block type="event_isr_io_handler"></block>
             <block type="inout_pin"></block>
             <block type="inout_level"></block>
             <block type="inout_digital_read">
