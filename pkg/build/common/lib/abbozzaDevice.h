@@ -54,6 +54,35 @@ extern const uint8_t __yes[];
 extern MicroBitImage Image_YES;
 extern const uint8_t __no[];
 extern MicroBitImage Image_NO;
+
+extern const uint8_t __arrow_n[];
+extern MicroBitImage Image_ARROW_N;
+extern const uint8_t __arrow_ne[];
+extern MicroBitImage Image_ARROW_NE;
+extern const uint8_t __arrow_e[];
+extern MicroBitImage Image_ARROW_E;
+extern const uint8_t __arrow_se[];
+extern MicroBitImage Image_ARROW_SE;
+extern const uint8_t __arrow_s[];
+extern MicroBitImage Image_ARROW_S;
+extern const uint8_t __arrow_sw[];
+extern MicroBitImage Image_ARROW_SW;
+extern const uint8_t __arrow_w[];
+extern MicroBitImage Image_ARROW_W;
+extern const uint8_t __arrow_nw[];
+extern MicroBitImage Image_ARROW_NW;
+extern const uint8_t __arrow_chessboard[];
+extern MicroBitImage Image_CHESSBOARD;
+extern const uint8_t __diamond[];
+extern MicroBitImage Image_DIAMOND;
+extern const uint8_t __diamond_small[];
+extern MicroBitImage Image_DIAMOND_SMALL;
+extern const uint8_t __square[];
+extern MicroBitImage Image_SQUARE;
+extern const uint8_t __square_small[];
+extern MicroBitImage Image_SQUARE_SMALL;
+
+
 extern uint8_t __abz_image_data[31];
 
 /*

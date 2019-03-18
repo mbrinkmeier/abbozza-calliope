@@ -42,7 +42,7 @@ MicroBitImage Image_HEART_SMALL((ImageData*) __small_heart);
 const uint8_t __happy[] __attribute__ ((aligned (4))) = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,255,0,255,0, 0,0,0,0,0, 255,0,0,0,255, 0,255,255,255,0 };
 MicroBitImage Image_HAPPY((ImageData*) __happy);
 
-const uint8_t __smiley[] __attribute__ ((aligned (4))) = { 0xff,0xff,5,0,5,0,  0,0,0,0,0, 0,255,0,255,0, 0,0,0,0,0, 0,255,255,255,0, 0,0,0,0,0 };
+const uint8_t __smiley[] __attribute__ ((aligned (4))) = { 0xff,0xff,5,0,5,0,  0,0,0,0,0, 0,255,0,255,0, 255,0,0,0,255, 0,255,255,255,0, 0,0,0,0,0 };
 MicroBitImage Image_SMILEY((ImageData*) __smiley);
 
 const uint8_t __sad[] __attribute__ ((aligned (4))) = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,255,0,255,0, 0,0,0,0,0, 0,255,255,255,0, 255,0,0,0,255 };
@@ -62,6 +62,97 @@ MicroBitImage Image_YES((ImageData*) __yes);
 
 const uint8_t __no[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0, 255,0,0,0,255, 0,255,0,255,0, 0,0,255,0,0, 0,255,0,255,0, 255,0,0,0,255 };
 MicroBitImage Image_NO((ImageData*) __no);
+
+const uint8_t __arrow_n[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,    0,  0,255,  0,  0, 
+                                                                                      0,255,255,255,  0, 
+                                                                                    255,  0,255,  0,255, 
+                                                                                      0,  0,255,  0,  0, 
+                                                                                      0,  0,255,  0,  0 };
+MicroBitImage Image_ARROW_N((ImageData*) __arrow_n);
+
+const uint8_t __arrow_ne[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,   0,  0,255,255,255, 
+                                                                                      0,  0,  0,255,255, 
+                                                                                      0,  0,255,  0,255, 
+                                                                                      0,255,  0,  0,  0, 
+                                                                                    255,  0,  0,  0,  0 };
+MicroBitImage Image_ARROW_NE((ImageData*) __arrow_ne);
+
+const uint8_t __arrow_e[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,    0,  0,255,  0,  0, 
+                                                                                      0,  0,  0,255,  0, 
+                                                                                    255,255,255,255,255, 
+                                                                                      0,  0,  0,255,  0, 
+                                                                                      0,  0,255,  0,  0 };
+MicroBitImage Image_ARROW_E((ImageData*) __arrow_e);
+
+const uint8_t __arrow_se[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0, 255,  0,  0,  0,  0, 
+                                                                                      0,255,  0,  0,  0, 
+                                                                                      0,  0,255,  0,255, 
+                                                                                      0,  0,  0,255,255, 
+                                                                                      0,  0,255,255,255 };
+MicroBitImage Image_ARROW_SE((ImageData*) __arrow_se);
+
+const uint8_t __arrow_s[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,    0,  0,255,  0,  0, 
+                                                                                      0,  0,255,  0,  0, 
+                                                                                    255,  0,255,  0,255, 
+                                                                                      0,255,255,255,  0, 
+                                                                                      0,  0,255,  0,  0 };
+MicroBitImage Image_ARROW_S((ImageData*) __arrow_s);
+
+const uint8_t __arrow_sw[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,   0,  0,  0,  0,255, 
+                                                                                      0,  0,  0,255,  0, 
+                                                                                    255,  0,255,  0,  0, 
+                                                                                    255,255,  0,  0,  0, 
+                                                                                    255,255,255,  0,  0 };
+MicroBitImage Image_ARROW_SW((ImageData*) __arrow_sw);
+
+const uint8_t __arrow_w[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,    0,  0,255,  0,  0, 
+                                                                                      0,255,  0,  0,  0, 
+                                                                                    255,255,255,255,255, 
+                                                                                      0,255,  0,  0,  0, 
+                                                                                      0,  0,255,  0,  0 };
+MicroBitImage Image_ARROW_W((ImageData*) __arrow_w);
+
+const uint8_t __arrow_nw[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0, 255,255,255,  0,  0, 
+                                                                                    255,255,  0,  0,  0, 
+                                                                                    255,  0,255,  0,  0, 
+                                                                                      0,  0,  0,255,  0, 
+                                                                                      0,  0,  0,  0,255 };
+MicroBitImage Image_ARROW_NW((ImageData*) __arrow_nw);
+
+const uint8_t __chessboard[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,255,  0,255,  0,255, 
+                                                                                       0,255,  0,255,  0, 
+                                                                                     255,  0,255,  0,255, 
+                                                                                       0,255,  0,255,  0, 
+                                                                                     255,  0,255,  0,255 };
+MicroBitImage Image_CHESSBOARD((ImageData*) __chessboard);
+
+const uint8_t __diamond[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,      0,  0,255,  0,  0, 
+                                                                                        0,255,  0,255,  0, 
+                                                                                      255,  0,  0,  0,255, 
+                                                                                        0,255,  0,255,  0, 
+                                                                                        0,  0,255,  0,  0 };
+MicroBitImage Image_DIAMOND((ImageData*) __diamond);
+
+const uint8_t __diamond_small[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,  0,  0,  0,  0,  0, 
+                                                                                          0,  0,255,  0,  0, 
+                                                                                          0,255,  0,255,  0, 
+                                                                                          0,  0,255,  0,  0, 
+                                                                                          0,  0,  0,  0,  0 };
+MicroBitImage Image_DIAMOND_SMALL((ImageData*) __diamond_small);
+
+const uint8_t __square[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,     255,255,255,255,255, 
+                                                                                      255,  0,  0,  0,255, 
+                                                                                      255,  0,  0,  0,255, 
+                                                                                      255,  0,  0,  0,255, 
+                                                                                      255,255,255,255,255 };
+MicroBitImage Image_SQUARE((ImageData*) __square);
+
+const uint8_t __square_small[] __attribute__ ((aligned (4))) = { 0xff, 0xff, 5, 0, 5,0,   0,  0,  0,  0,  0, 
+                                                                                          0,255,255,255 ,  0, 
+                                                                                          0,255,  0,255,  0, 
+                                                                                          0,255,255,255,  0, 
+                                                                                          0,  0,  0,  0,  0 };
+MicroBitImage Image_SQUARE_SMALL((ImageData*) __square_small);
 
 uint8_t __abz_image_data[31] = { 0xff,0xff,5,0,5,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0};
 

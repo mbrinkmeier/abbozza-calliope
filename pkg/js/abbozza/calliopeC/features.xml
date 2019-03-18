@@ -75,7 +75,6 @@
         <category id="cat.EVENTS" color="#FF2000">
             <block type="event_isr_button_handler"></block>
             <block type="event_isr_gesture_handler"></block>
-            <block type="event_isr_io_handler"></block>
         </category>
 
                 
@@ -416,7 +415,6 @@
         </category>
                 
         <category id="cat.INOUT">
-            <block type="event_isr_io_handler"></block>
             <block type="inout_pin"></block>
             <block type="inout_level"></block>
             <block type="inout_digital_read">
@@ -484,6 +482,10 @@
 
     <!-- serial communication -->
     <feature id="feat.USB" option="usb,serial">
+        <category id="cat.EVENTS" color="#FF2000">
+            <block type="event_isr_serial_line_handler"></block>
+        </category>
+
         <category id="cat.SERIAL">
             <block type="serial_baud"></block>
             <block type="serial_available"></block>
@@ -499,6 +501,7 @@
                     <block type="math_number"><mutation confirmed="false"/></block>
                 </value>                
             </block>
+            <block type="event_isr_serial_line_handler"></block>
             <block type="serial_read_byte"></block>
             <block type="serial_write_int">
                 <value name ="VALUE">
@@ -557,6 +560,10 @@
                                     	
     <!-- Communication via radio -->
     <feature id="feat.RADIO" option="radio">
+        <category id="cat.EVENTS" color="#FF2000">
+            <block type="event_isr_radio_handler"></block>
+        </category>
+
         <category id="cat.RADIO">
             <block type="radio_available"></block>
             <block type="radio_receive_store"></block>
@@ -589,6 +596,7 @@
                     <block type="math_number"><mutation confirmed="false"/><field name="VALUE">0</field></block>
                 </value>                 
             </block>
+            <block type="event_isr_radio_handler"></block>
             <!--block type="radio_parse"></block>
             <block type="radio_number"></block>
             <block type="radio_decimal"></block>

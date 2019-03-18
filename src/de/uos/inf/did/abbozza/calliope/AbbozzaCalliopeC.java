@@ -28,6 +28,7 @@ import de.uos.inf.did.abbozza.core.AbbozzaLocale;
 import de.uos.inf.did.abbozza.core.AbbozzaLogger;
 import de.uos.inf.did.abbozza.core.AbbozzaServer;
 import de.uos.inf.did.abbozza.core.AbbozzaSplashScreen;
+import de.uos.inf.did.abbozza.handler.DiagnoseHandler;
 import de.uos.inf.did.abbozza.plugin.PluginConfigPanel;
 import de.uos.inf.did.abbozza.tools.FileTool;
 import java.io.BufferedReader;
@@ -42,8 +43,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.ZipFile;
 
 /**
@@ -153,7 +152,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             AbbozzaLogger.info("Using Radio");
         }
 
-        _buildPath = buildPath + "/" + this._boardName + "/"; // userPath + "/build/" + this._boardName + "/";
+        _buildPath = buildPath + "/" + this._boardName + "/"; 
 
         if (this._boardName.equals("microbit")) {
             // _hexPath = _buildPath + "build/bbc-microbit-classic-gcc/source/abbozza-combined.hex";
@@ -315,6 +314,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         if (bluetooth) {
             ble="BLUETOOTH=1";
         }
+        
         // ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
         // ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/build.sh", configFile);
         ProcessBuilder procBuilder = new ProcessBuilder("sh","-c","make",ble);
@@ -339,6 +339,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         if (bluetooth) {
             ble="BLUETOOTH=1";
         }
+                
         // ProcessBuilder procBuilder = new ProcessBuilder("yt", "-n", "--config", configFile, "build");
         // ProcessBuilder procBuilder = new ProcessBuilder(toolsDir + "/build.sh", configFile);
         ProcessBuilder procBuilder = new ProcessBuilder("sh","-c","make", ble);
@@ -379,6 +380,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         if (bluetooth) {
             ble="BLUETOOTH=1";
         }
+               
         // ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "yt", "-n", "--config", configFile, "build");
         ProcessBuilder procBuilder = new ProcessBuilder("cmd", "/C", "make", ble);
         // ProcessBuilder procBuilder = new ProcessBuilder("cmd","/C",toolsDir + "/build.bat");
@@ -705,6 +707,30 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         } else {
             super.applyCommandlineOption(option, par);
         }
+    }
+
+    @Override
+    public boolean canChangeSketchbookPath() {
+        return true;
+    }
+
+        /**
+     * Run the system specific diagnose. Return the result als HTML String
+     * 
+     * @return The result of the diagnose as HTML String
+     */
+    public String runSystemDiagnose(DiagnoseHandler handler) {
+        String result = "<H2>abboza! Calliope diagnose</H2>";
+
+        result += "<ul>";
+        
+        result += "<li><tt>buildPath Calliope : " + this.buildPath + "/calliope</tt>";
+        result += handler.checkWritableDir(this.buildPath + "/calliope");
+        result += "</li>";
+
+        result +="</ul>";
+        
+        return result;
     }
 
 }

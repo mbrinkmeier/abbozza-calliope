@@ -34,28 +34,21 @@
  * @type Array
  */
 Abbozza.Images = [
-"Image.HEART",
-"Image.HEART_SMALL",
-"Image.HAPPY",
+// "Image.HAPPY",
 "Image.SMILEY",
 "Image.SAD",
 "Image.SURPRISED",
 "Image.BEARD",
 "Image.MOUSTACHE",
 "Image.YES",
-"Image.NO" /*,
-"Image.CLOCK12",
-"Image.CLOCK11",
-"Image.CLOCK10",
-"Image.CLOCK9",
-"Image.CLOCK8",
-"Image.CLOCK7",
-"Image.CLOCK6",
-"Image.CLOCK5",
-"Image.CLOCK4",
-"Image.CLOCK3",
-"Image.CLOCK2",
-"Image.CLOCK1",
+"Image.NO",
+"Image.CHESSBOARD",
+"Image.HEART",
+"Image.HEART_SMALL",
+"Image.DIAMOND",
+"Image.DIAMOND_SMALL",
+"Image.SQUARE",
+"Image.SQUARE_SMALL",
 "Image.ARROW_N",
 "Image.ARROW_NE",
 "Image.ARROW_E",
@@ -63,14 +56,8 @@ Abbozza.Images = [
 "Image.ARROW_S",
 "Image.ARROW_SW",
 "Image.ARROW_W",
-"Image.ARROW_NW",
-"Image.TRIANGLE",
-"Image.TRIANGLE_LEFT",
-"Image.CHESSBOARD",
-"Image.DIAMOND",
-"Image.DIAMOND_SMALL",
-"Image.SQUARE",
-"Image.SQUARE_SMALL",
+"Image.ARROW_NW"
+ /*,
 "Image.RABBIT",
 "Image.COW",
 "Image.MUSIC_CROTCHET",
@@ -92,7 +79,25 @@ Abbozza.Images = [
 "Image.GIRAFFE",
 "Image.SKULL",
 "Image.UMBRELLA",
-"Image.SNAKE" */
+"Image.SNAKE"
+
+"Image.TRIANGLE",
+"Image.TRIANGLE_LEFT",
+"Image.TRIANGLE_RIGHT",
+
+"Image.CLOCK12",
+"Image.CLOCK11",
+"Image.CLOCK10",
+"Image.CLOCK9",
+"Image.CLOCK8",
+"Image.CLOCK7",
+"Image.CLOCK6",
+"Image.CLOCK5",
+"Image.CLOCK4",
+"Image.CLOCK3",
+"Image.CLOCK2",
+"Image.CLOCK1"
+*/
 ]
 
 /**
@@ -112,6 +117,7 @@ Abbozza.DisplayPrint = {
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");            
         this.appendValueInput("TEXT")
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
             .appendField(_("block.print"))
             .setCheck(["STRING","NUMBER","DECIMAL","BOOLEAN"]);
         this.setTooltip('');
@@ -138,6 +144,7 @@ Abbozza.DisplayScroll = {
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");            
         this.appendValueInput("TEXT")
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
             .appendField(_("block.scroll"))
             .setCheck(["STRING","NUMBER","DECIMAL","BOOLEAN"]);
         this.setTooltip('');
@@ -164,6 +171,7 @@ Abbozza.DisplayScrollAsync = {
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");            
         this.appendValueInput("TEXT")
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
             .appendField(__("block.scrollAsync",0))
             .setCheck(["STRING","NUMBER","DECIMAL","BOOLEAN"]);
         this.appendDummyInput()
@@ -198,6 +206,7 @@ Abbozza.DisplaySetPixel = {
                     .setColumns(5)
                     .setText("");        
         this.appendValueInput("COL")
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
            .appendField(__("block.setPixel",0))
            .setCheck("NUMBER");
         this.appendValueInput("ROW")
@@ -236,6 +245,7 @@ Abbozza.DisplayGetPixel = {
         this.setInputsInline(true);
         this.setOutput(true,"NUMBER");
         this.appendValueInput("COL")
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
            .appendField(__("block.getPixel",0))
            .setCheck("NUMBER");
         this.appendValueInput("ROW")
@@ -268,6 +278,7 @@ Abbozza.DisplayClear = {
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");
         this.appendDummyInput()
+           .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
            .appendField(_("block.displayClear"));
         this.setTooltip('');
     },
@@ -294,6 +305,7 @@ Abbozza.DisplayOn = {
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
            .appendField(_("block.displayOn"));
         this.setTooltip('');
     },
@@ -320,6 +332,7 @@ Abbozza.DisplayOff = {
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
            .appendField(_("block.displayOff"));
         this.setTooltip('');
     },
@@ -346,6 +359,7 @@ Abbozza.DisplayIsOn = {
         this.setNextStatement(false);
         this.setOutput(true,"BOOLEAN");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
            .appendField(_("block.displayIsOn"));
         this.setTooltip('');
     },
@@ -372,6 +386,7 @@ Abbozza.DisplayCoord = {
         this.setNextStatement(false);            
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
                 .appendField(new Blockly.FieldDropdown([["0","0"],["1","1"],["2","2"],["3","3"],["4","4"]]),"VALUE");
         this.setTooltip('');        
     },
@@ -431,6 +446,7 @@ Abbozza.DisplayColor = {
                     .setColumns(5)
                     .setText("");        
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
             .appendField(colorField,"COLOR");        
         this.setTooltip('');        
     },
@@ -469,6 +485,7 @@ Abbozza.DisplayShowInternalImage = {
         this.setNextStatement(true,"STATEMENT");            
         this.setOutput(false);
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
                 .appendField(_("block.displayImage"))
                 .appendField(new Blockly.FieldDropdown(this.getMenu),"IMAGE");
         this.setTooltip('');
@@ -496,8 +513,10 @@ Abbozza.DisplayImage = {
         this.setColour(ColorMgr.getCatColor("cat.DISPLAY"));
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");
-        this.appendDummyInput().appendField(_("block.displayMatrix"));
-        for (var row = 0; row < 5; row++) {
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
+            .appendField(_("block.displayMatrix"));
+            for (var row = 0; row < 5; row++) {
             var input = this.appendDummyInput();
             for (var col = 0; col < 5; col++) {
                 var field = new Blockly.FieldColour("#000000");
@@ -571,6 +590,7 @@ Abbozza.DisplayShowImage = {
         this.setPreviousStatement(true,"STATEMENT");
         this.setNextStatement(true,"STATEMENT");
         this.appendValueInput("IMAGE")
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
             .appendField(_("block.displayMatrix"))
             .setCheck(["STRING","IMAGE"]);
         this.setTooltip('');
@@ -602,6 +622,7 @@ Abbozza.DisplayLightLevel = {
         this.setInputsInline(true);
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
            .appendField(_("block.getLightLevel"));
         this.setTooltip('');
     },

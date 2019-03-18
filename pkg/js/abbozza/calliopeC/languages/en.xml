@@ -125,6 +125,9 @@
         <msg id="event.SERIAL_LINE_LISTEN">Call #, if a message is received via serial connection</msg>
         <msg id="event.THERMO_LISTEN">Call #, if the temperature changes</msg>
         <msg id="event.COMPASS_LISTEN">Call #, if the compass changes</msg>
+
+        <msg id="event.radio_handler">If message received via radio</msg>
+        <msg id="event.serial_line_handler">If line received via USB</msg>
     </blocks>
     <categories>
         <msg id="cat.DISPLAY">Display</msg>
@@ -224,8 +227,12 @@
         <msg id="err.COMPARISON_NOT_ALLOWED">Comparison not allowed</msg>
     </error>
     <event>
-        <msg id="MICROBIT_ID_BUTTON_A">Button_A</msg>
-        <msg id="MICROBIT_ID_BUTTON_B">Button_B</msg> 
+        <msg id="MICROBIT_ID_BUTTON_A">button_A</msg>
+        <msg id="MICROBIT_ID_BUTTON_B">button_B</msg> 
+        <msg id="MICROBIT_ID_IO_P0">P0</msg> 
+        <msg id="MICROBIT_ID_IO_P1">P1</msg> 
+        <msg id="MICROBIT_ID_IO_P2">P2</msg> 
+        <msg id="MICROBIT_ID_IO_P3">P3</msg> 
         <msg id="MICROBIT_BUTTON_EVT_DOWN">pressed</msg> 
         <msg id="MICROBIT_BUTTON_EVT_UP">released</msg> 
         <msg id="MICROBIT_BUTTON_EVT_CLICK">clicked</msg> 
@@ -236,7 +243,7 @@
         <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_UP">tilted_up</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_DOWN">tilted_down</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_LEFT">tilted_left</msg> 
-        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_RIGTH">tilted_right</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_RIGHT">tilted_right</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_FACE_UP">turned_face_up</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_FACE_DOWN">turned_face_down</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_FFREEFALL">fallen</msg> 
@@ -244,5 +251,11 @@
         <msg id="MICROBIT_ACCELEROMETER_EVT_6G">6G_accelerated</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_8G">8G_accelerated</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_SHAKE">shaken</msg> 
+        <msg id="MICROBIT_PIN_EVT_RISE">signal_rises</msg> 
+        <msg id="MICROBIT_PIN_EVT_FALL">signal_falls</msg> 
+        <msg id="MICROBIT_PIN_EVT_HI">signal_hi</msg> 
+        <msg id="MICROBIT_PIN_EVT_LO">signal_low</msg> 
+        <msg id="microbit_radio_evt_datagram">received_on_radio</msg>
+        <msg id="microbit_serial_evt_delim_match">line_received_on_usb</msg>
     </event>
 </language> 

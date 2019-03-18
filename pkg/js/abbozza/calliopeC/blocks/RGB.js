@@ -28,6 +28,7 @@ Abbozza.DeviceRGBLedSetColor = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getColor("cat.DISPLAY"));
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
             .appendField(__("dev.SETRGBLED",0))
             .appendField(__("dev.SETRGBLED",1));
         this.appendValueInput("RED")
@@ -75,6 +76,7 @@ Abbozza.DeviceRGBLedSetColor2 = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getColor("cat.DISPLAY"));
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/output32.png",16,16))     
             .appendField(__("dev.SETRGBLED",0))
             .appendField(__("dev.SETRGBLED",1))
             .appendField(new Blockly.FieldColour("#000000"), "COLOR");        

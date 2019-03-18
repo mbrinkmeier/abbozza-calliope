@@ -130,6 +130,9 @@
         <msg id="event.SERIAL_LINE_LISTEN">Führe # aus, wenn eine Nachricht über die serielle Schnittstelle empfangen wurde</msg>
         <msg id="event.THERMO_LISTEN">Führe # aus, wenn sich die Temperatur ändert</msg>
         <msg id="event.COMPASS_LISTEN">Führe # aus, wenn der Kompass-Wert sich ändert</msg>
+        
+        <msg id="event.radio_handler">Falls Nachricht über Funk empfangen wurde</msg>
+        <msg id="event.serial_line_handler">Falls Zeile über USB empfangen wurde</msg>
     </blocks>
     <categories>
         <msg id="cat.DISPLAY">Anzeige</msg>
@@ -232,6 +235,10 @@
     <event>
         <msg id="MICROBIT_ID_BUTTON_A">Knopf_A</msg>
         <msg id="MICROBIT_ID_BUTTON_B">Knopf_B</msg> 
+        <msg id="MICROBIT_ID_IO_P0">P0</msg> 
+        <msg id="MICROBIT_ID_IO_P1">P1</msg> 
+        <msg id="MICROBIT_ID_IO_P2">P2</msg> 
+        <msg id="MICROBIT_ID_IO_P3">P3</msg> 
         <msg id="MICROBIT_BUTTON_EVT_DOWN">gedrueckt</msg> 
         <msg id="MICROBIT_BUTTON_EVT_UP">losgelassen</msg> 
         <msg id="MICROBIT_BUTTON_EVT_CLICK">geklickt</msg> 
@@ -242,7 +249,7 @@
         <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_UP">nach_vorne_gekippt</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_DOWN">nach_hinten_gekippt</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_LEFT">nach_links_gekippt</msg> 
-        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_RIGTH">nach_rechts_gekippt</msg> 
+        <msg id="MICROBIT_ACCELEROMETER_EVT_TILT_RIGHT">nach_rechts_gekippt</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_FACE_UP">nach_oben_gedreht</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_FACE_DOWN">nach_unten_gedreht</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_FFREEFALL">gefallen</msg> 
@@ -250,5 +257,11 @@
         <msg id="MICROBIT_ACCELEROMETER_EVT_6G">6G_beschleunigt</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_8G">8G_beschleunigt</msg> 
         <msg id="MICROBIT_ACCELEROMETER_EVT_SHAKE">geschuettelt</msg> 
+        <msg id="MICROBIT_PIN_EVT_RISE">signal_steigt</msg> 
+        <msg id="MICROBIT_PIN_EVT_FALL">signal_faellt</msg> 
+        <msg id="MICROBIT_PIN_EVT_HI">signal_hoch</msg> 
+        <msg id="MICROBIT_PIN_EVT_LO">signal_niedrig</msg> 
+        <msg id="microbit_radio_evt_datagram">ueber_funk_empfangen</msg>
+        <msg id="microbit_serial_evt_delim_match">zeile_uber_usb_empfangen</msg>
     </event>
 </language>    

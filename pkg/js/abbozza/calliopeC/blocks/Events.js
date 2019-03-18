@@ -19,7 +19,12 @@
 
 Abbozza.EventButtonList = [
     ["A", "MICROBIT_ID_BUTTON_A"],
-    ["B", "MICROBIT_ID_BUTTON_B"]
+    ["B", "MICROBIT_ID_BUTTON_B"],
+    /*
+    ["P0", "MICROBIT_ID_IO_P0"],
+    ["P1", "MICROBIT_ID_IO_P1"],
+    ["P2", "MICROBIT_ID_IO_P2"],
+    ["P3", "MICROBIT_ID_IO_P3"]*/
 ];
 
 
@@ -578,6 +583,7 @@ Abbozza.EventButtonHandler = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getCatColor("cat.INT"));
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
                 .appendField(__("event.BUTTON_HANDLER", 0))
                 .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonList), "BUTTON")
                 .appendField(new Blockly.FieldDropdown(Abbozza.EventButtonEventList), "EVENT");
@@ -670,6 +676,7 @@ Abbozza.EventGestureHandler = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getCatColor("cat.INT"));
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
                 .appendField(__("event.GESTURE_HANDLER", 0))
                 .appendField(new Blockly.FieldDropdown(Abbozza.EventAccelEventList), "EVENT");
         this.appendStatementInput("STATEMENTS")
@@ -691,7 +698,7 @@ Abbozza.EventGestureHandler = {
 
     generateCode: function (generator) {
         var event = generator.fieldToCode(this, "EVENT");
-        var name = "__" + _("event") + "__";
+        var name = "__" + _(event) + "__";
         this.name = name;
 
         if ( !generator.checkUniquness(name) ) {
@@ -750,6 +757,7 @@ Abbozza.EventGestureHandler = {
 Blockly.Blocks['event_isr_gesture_handler'] = Abbozza.EventGestureHandler;
 
 
+
 Abbozza.EventAccelHandler = {
     init: function () {
         var thisBlock = this;
@@ -760,7 +768,8 @@ Abbozza.EventAccelHandler = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getCatColor("cat.INT"));
         this.appendDummyInput()
-                .appendField(_("event.ACCEL_HANDLER"));
+            .appendField(new Blockly.FieldImage("img/devices/input.svg",16,16))     
+            .appendField(_("event.ACCEL_HANDLER"));
         this.appendStatementInput("STATEMENTS")
                 .setCheck("STATEMENT");
         this.setInputsInline(true);
@@ -854,6 +863,7 @@ Abbozza.EventIOHandler = {
         this.setHelpUrl(Abbozza.HELP_URL);
         this.setColour(ColorMgr.getCatColor("cat.INT"));
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/io.png",16,16))     
                 .appendField(__("event.IO_HANDLER", 0))
                 .appendField(new PinDropdown(), "PIN")
                 .appendField(new Blockly.FieldDropdown(Abbozza.EventIOEventList), "EVENT");
@@ -888,7 +898,7 @@ Abbozza.EventIOHandler = {
         else
             type = "MICROBIT_PIN_EVENT_ON_TOUCH";
 
-        var name = "__" + _(event) + "__";   
+        var name = "__" + pin + "_" + _(event) + "__";   
         this.name = name;
 
         if ( !generator.checkUniquness(name) ) {
@@ -909,7 +919,6 @@ Abbozza.EventIOHandler = {
             scode = scode + "\nabbozza.messageBus.listen(MICROBIT_ID_IO_" + pin + " ," + event + " ," + name + ");";
         }
         generator.addSetupCode(scode);
-        generator.addSetupCode("abbozza.io.updateSample();");
 
         return code;
     },
@@ -950,3 +959,199 @@ Abbozza.EventIOHandler = {
 }
 
 Blockly.Blocks['event_isr_io_handler'] = Abbozza.EventIOHandler;
+
+
+
+/**
+ * The simplified Radio Event Handler
+ *
+ * @type type
+ */
+Abbozza.EventRadioHandler = {
+    init: function () {
+        var thisBlock = this;
+        this.symbols = new SymbolDB(this.workspace.globalSymbols);
+        this.symbols.parentBlock = this;
+         if (Abbozza.EventButtonEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/radio.png",16,16))     
+            .appendField(_("event.RADIO_HANDLER"));
+        this.appendStatementInput("STATEMENTS")
+                .setCheck("STATEMENT");
+        this.setInputsInline(true);
+        this.setPreviousStatement(false);
+        this.setNextStatement(false);
+        this.setTooltip('');
+        this.setMutator(new DynamicMutator(function () {
+            if (Configuration.getParameter("option.noArrays") == "true") {
+                return ['devices_num_noconn', 'devices_string_noconn', 'devices_decimal_noconn', 'devices_boolean_noconn'];
+            } else if (Configuration.getParameter("option.linArrays") == "true") {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension_noconn'];
+            } else {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension'];
+            }
+        }));
+    },
+
+    generateCode: function (generator) {
+        var name = "__" + _("MICROBIT_RADIO_EVT_DATAGRAM") + "__";   
+        this.name = name;
+
+        if ( !generator.checkUniquness(name) ) {
+            ErrorMgr.addError(this,_("err.not_unique"));
+            return null;
+        }        
+ 
+        generator.radioRequired = true;
+
+        var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
+        var code = "";
+        var sig = "void " + name + "(MicroBitEvent __event__)";
+        code = code + sig + " {\n";
+        code = code + generator.variablesToCode(this.symbols, "   ");
+        code = code + statements;
+        code = code + "\n}\n\n";
+
+        var scode = "\nabbozza.messageBus.listen(MICROBIT_ID_RADIO,  MICROBIT_RADIO_EVT_DATAGRAM," + name + ");";
+        generator.addSetupCode(scode);
+        generator.addSetupCode("abbozza.radio.enable();");
+
+        return code;
+    },
+
+    compose: function (topBlock) {
+        Abbozza.composeSymbols(topBlock, this);
+    },
+
+    decompose: function (workspace) {
+        var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
+        return topBlock;
+    },
+
+    mutationToDom: function () {
+        var mutation = document.createElement('mutation');
+        mutation.appendChild(this.symbols.toDOM());
+        return mutation;
+    },
+
+    domToMutation: function (xmlElement) {
+        var child;
+        for (var i = 0; i < xmlElement.childNodes.length; i++) {
+            child = xmlElement.childNodes[i];
+            if (child.tagName == 'symbols') {
+                if (this.symbols == null) {
+                    this.setSymbolDB(new SymbolDB(null, this));
+                }
+                this.symbols.fromDOM(child);
+            }
+        }
+    },
+    getSignature: function () {
+        // var signature = _("event.HANDLER") + " " + this.name;
+        var signature = "void " + this.name + "(MicroBitEvent __event__)";
+        return signature;
+    }
+}
+
+Blockly.Blocks['event_isr_radio_handler'] = Abbozza.EventRadioHandler;
+
+
+/**
+ * The simplified Radio Event Handler
+ *
+ * @type type
+ */
+Abbozza.EventSerialLineHandler = {
+    init: function () {
+        var thisBlock = this;
+        this.symbols = new SymbolDB(this.workspace.globalSymbols);
+        this.symbols.parentBlock = this;
+         if (Abbozza.EventButtonEventList == null)
+            Abbozza.setEventMenu();
+        this.setHelpUrl(Abbozza.HELP_URL);
+        this.setColour(ColorMgr.getCatColor("cat.INT"));
+        this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/usb.png",16,16))     
+            .appendField(_("event.SERIAL_LINE_HANDLER"));
+        this.appendStatementInput("STATEMENTS")
+                .setCheck("STATEMENT");
+        this.setInputsInline(true);
+        this.setPreviousStatement(false);
+        this.setNextStatement(false);
+        this.setTooltip('');
+        this.setMutator(new DynamicMutator(function () {
+            if (Configuration.getParameter("option.noArrays") == "true") {
+                return ['devices_num_noconn', 'devices_string_noconn', 'devices_decimal_noconn', 'devices_boolean_noconn'];
+            } else if (Configuration.getParameter("option.linArrays") == "true") {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension_noconn'];
+            } else {
+                return ['devices_num', 'devices_string', 'devices_decimal', 'devices_boolean', 'arr_dimension'];
+            }
+        }));
+    },
+
+    generateCode: function (generator) {
+        var name = "__" + _("MICROBIT_SERIAL_EVT_DELIM_MATCH") + "__";   
+        this.name = name;
+
+        if ( !generator.checkUniquness(name) ) {
+            ErrorMgr.addError(this,_("err.not_unique"));
+            return null;
+        }        
+ 
+        generator.radioRequired = true;
+
+        var statements = generator.statementToCode(this, 'STATEMENTS', "   ");
+        var code = "";
+        var sig = "void " + name + "(MicroBitEvent __event__)";
+        code = code + sig + " {\n";
+        code = code + generator.variablesToCode(this.symbols, "   ");
+        code = code + statements;
+        code = code + "\n}\n\n";
+
+        generator.serialRequired = true;
+        var scode = "\nabbozza.serial.eventOn('\\n');\n";
+        scode += "abbozza.messageBus.listen(MICROBIT_ID_SERIAL,  MICROBIT_SERIAL_EVT_DELIM_MATCH," + name + ");";
+        generator.addSetupCode(scode);
+
+        return code;
+    },
+
+    compose: function (topBlock) {
+        Abbozza.composeSymbols(topBlock, this);
+    },
+
+    decompose: function (workspace) {
+        var topBlock = Abbozza.decomposeSymbols(workspace, this, _("LOCALVARS"), false);
+        return topBlock;
+    },
+
+    mutationToDom: function () {
+        var mutation = document.createElement('mutation');
+        mutation.appendChild(this.symbols.toDOM());
+        return mutation;
+    },
+
+    domToMutation: function (xmlElement) {
+        var child;
+        for (var i = 0; i < xmlElement.childNodes.length; i++) {
+            child = xmlElement.childNodes[i];
+            if (child.tagName == 'symbols') {
+                if (this.symbols == null) {
+                    this.setSymbolDB(new SymbolDB(null, this));
+                }
+                this.symbols.fromDOM(child);
+            }
+        }
+    },
+    getSignature: function () {
+        // var signature = _("event.HANDLER") + " " + this.name;
+        var signature = "void " + this.name + "(MicroBitEvent __event__)";
+        return signature;
+    }
+}
+
+Blockly.Blocks['event_isr_serial_line_handler'] = Abbozza.EventSerialLineHandler;

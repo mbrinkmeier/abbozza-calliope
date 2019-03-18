@@ -31,6 +31,7 @@ Abbozza.ButtonPressed = {
         this.setNextStatement(false);            
         this.setOutput(true,"BOOLEAN");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(new Blockly.FieldDropdown([[_("dev.BUTTON_A"),"abbozza.buttonA"],[_("dev.BUTTON_B"),"abbozza.buttonB"]]),"BUTTON")
             .appendField(_("dev.PRESSED"));
         this.setTooltip('');
@@ -55,6 +56,7 @@ Abbozza.PinTouched = {
         this.setNextStatement(false);            
         this.setOutput(true,"BOOLEAN");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(new PinDropdown(PinDropdown.TOUCH),"CONTACT")
             .appendField(_("dev.TOUCHED"));
         this.setTooltip('');

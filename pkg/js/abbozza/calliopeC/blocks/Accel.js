@@ -31,6 +31,7 @@ Abbozza.AccelGet = {
         this.setNextStatement(false);            
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.ACCEL_GET"))
             .appendField(new Blockly.FieldDropdown([
                     [_("dev.ACCEL_X"),"accelerometer.getX"],
@@ -78,6 +79,7 @@ Abbozza.AccelGesture = {
         this.setNextStatement(false);            
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.ACCEL_GESTURE"));
         this.setTooltip('');
     },
@@ -139,6 +141,7 @@ Abbozza.AccelWasGesture = {
         this.setNextStatement(false);            
         this.setOutput(true,"BOOLEAN");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.ACCEL_WAS_GESTURE"))
             .appendField(new Blockly.FieldDropdown([
     [_("dev.UP"),"MICROBIT_ACCELEROMETER_EVT_TILT_UP"],
@@ -177,6 +180,7 @@ Abbozza.Gesture = {
         this.setNextStatement(false);            
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.GESTURE"))
             .appendField(new Blockly.FieldDropdown([
                 [_("dev.UP"),"MICROBIT_ACCELEROMETER_EVT_TILT_UP"],
@@ -213,6 +217,7 @@ Abbozza.CompassGetFS = {
         this.setNextStatement(false);            
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.COMPASS_GET_FS"))
             .appendField(new Blockly.FieldDropdown([[_("dev.COMPASS_X"),"getX"],[_("dev.COMPASS_Y"),"getY"],[_("dev.COMPASS_Z"),"getZ"],[_("dev.COMPASS_OVERALL"),"getFieldStrength"]]),"DIR");
         this.setTooltip('');
@@ -241,6 +246,7 @@ Abbozza.CompassHeading = {
         this.setNextStatement(false);            
         this.setOutput(true,"NUMBER");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.COMPASS_HEADING"))
         this.setTooltip('');
     },
@@ -265,6 +271,7 @@ Abbozza.CompassCalibrate = {
         this.setNextStatement(true,"STATEMENT");            
         this.setOutput(false);
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.COMPASS_CALIBRATE"))
         this.setTooltip('');
     },
@@ -290,6 +297,7 @@ Abbozza.CompassIsCalibrated = {
         this.setNextStatement(false);            
         this.setOutput(true,"BOOLEAN");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.COMPASS_IS_CALIBRATED"))
         this.setTooltip('');
     },
@@ -315,6 +323,7 @@ Abbozza.ThermometerGet = {
         this.setNextStatement(false);            
         this.setOutput(true,["NUMBER","DECIMAL"]);
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.THERMOMETER_GET"))
         this.setTooltip('');
     },
@@ -339,6 +348,7 @@ Abbozza.ThermometerGetFloat = {
         this.setNextStatement(false);            
         this.setOutput(true,"DECIMAL");
         this.appendDummyInput()
+            .appendField(new Blockly.FieldImage("img/devices/input32.png",16,16))     
             .appendField(_("dev.THERMOMETER_GET"))
         this.setTooltip('');
     },

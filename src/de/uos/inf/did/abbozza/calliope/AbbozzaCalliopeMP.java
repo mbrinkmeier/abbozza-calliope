@@ -22,17 +22,7 @@
  */
 package de.uos.inf.did.abbozza.calliope;
 
-import de.uos.inf.did.abbozza.core.AbbozzaLogger;
-import de.uos.inf.did.abbozza.core.AbbozzaServer;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -43,5 +33,10 @@ public class AbbozzaCalliopeMP extends AbbozzaCalliope {
     @Override
     public boolean installPluginFile(InputStream stream, String name) {
         return true;
+    }
+
+    @Override
+    public boolean canChangeSketchbookPath() {
+        return false;
     }
 }
