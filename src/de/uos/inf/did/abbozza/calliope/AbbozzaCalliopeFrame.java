@@ -372,7 +372,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         toolbar.setMinimumSize(new java.awt.Dimension(18, 18));
 
         compileButton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        compileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/generate.png"))); // NOI18N
+        compileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/generate32.png"))); // NOI18N
         compileButton.setToolTipText(AbbozzaLocale.entry("gui.compile"));
         compileButton.setFocusable(false);
         compileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -385,7 +385,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         toolbar.add(compileButton);
 
         uploadButton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        uploadButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/upload.png"))); // NOI18N
+        uploadButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/upload32.png"))); // NOI18N
         uploadButton.setToolTipText(AbbozzaLocale.entry("gui.upload"));
         uploadButton.setFocusable(false);
         uploadButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -399,7 +399,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         toolbar.add(jSeparator5);
 
         loadButton.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        loadButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/load.png"))); // NOI18N
+        loadButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/load32.png"))); // NOI18N
         loadButton.setToolTipText(AbbozzaLocale.entry("gui.load_sketch"));
         loadButton.setFocusable(false);
         loadButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -411,7 +411,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         });
         toolbar.add(loadButton);
 
-        saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/save.png"))); // NOI18N
+        saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/save32.png"))); // NOI18N
         saveButton.setToolTipText(AbbozzaLocale.entry("gui.save_sketch")
         );
         saveButton.setFocusable(false);
@@ -425,7 +425,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         toolbar.add(saveButton);
         toolbar.add(jSeparator7);
 
-        serialButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/serial.png"))); // NOI18N
+        serialButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/serial32.png"))); // NOI18N
         serialButton.setToolTipText(AbbozzaLocale.entry("gui.serial_button"));
         serialButton.setFocusable(false);
         serialButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -438,7 +438,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         toolbar.add(serialButton);
         toolbar.add(jSeparator9);
 
-        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/connect.png"))); // NOI18N
+        connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/connect32.png"))); // NOI18N
         connectButton.setToolTipText(AbbozzaLocale.entry("gui.connect_button"));
         connectButton.setFocusable(false);
         connectButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

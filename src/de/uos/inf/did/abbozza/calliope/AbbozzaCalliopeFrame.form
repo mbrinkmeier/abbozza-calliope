@@ -473,7 +473,7 @@
                       <Font name="Dialog" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/generate.png"/>
+                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/generate32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="AbbozzaLocale.entry(&quot;gui.compile&quot;)" type="code"/>
@@ -492,7 +492,7 @@
                       <Font name="Dialog" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/upload.png"/>
+                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/upload32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="AbbozzaLocale.entry(&quot;gui.upload&quot;)" type="code"/>
@@ -513,7 +513,7 @@
                       <Font name="Dialog" size="12" style="0"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/load.png"/>
+                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/load32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="AbbozzaLocale.entry(&quot;gui.load_sketch&quot;)" type="code"/>
@@ -529,7 +529,7 @@
                 <Component class="javax.swing.JButton" name="saveButton">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/save.png"/>
+                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/save32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="AbbozzaLocale.entry(&quot;gui.save_sketch&quot;)&#xa;" type="code"/>
@@ -547,7 +547,7 @@
                 <Component class="javax.swing.JButton" name="serialButton">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/serial.png"/>
+                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/serial32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="AbbozzaLocale.entry(&quot;gui.serial_button&quot;)" type="code"/>
@@ -565,7 +565,7 @@
                 <Component class="javax.swing.JButton" name="connectButton">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/connect.png"/>
+                      <Image iconType="3" name="/de/uos/inf/did/abbozza/calliope/icons/connect32.png"/>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="AbbozzaLocale.entry(&quot;gui.connect_button&quot;)" type="code"/>
