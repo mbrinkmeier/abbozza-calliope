@@ -158,11 +158,9 @@ class Abbozza : public MicroBit {
         bool radioAvailable();
         ManagedString radioRecv();
         
-        #ifdef TARGET_NRF51_CALLIOPE    
         int getTemperature();
         float getTemperatureFloat();
-        #endif
-        
+       
 };
 
 

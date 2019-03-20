@@ -31,6 +31,7 @@ Makefile : ;
 % :: $(OBJDIR) ; :
 clean :
 	$(call RM,$(OBJDIR))
+	$(call DEL,source/*.o)
 	$(call DEL,source/lib/*.o)
 
 else
@@ -160,8 +161,8 @@ SYS_OBJECTS += $(OBJPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/uti
 SYS_OBJECTS += $(OBJPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/util/app_util_platform.o
 SYS_OBJECTS += $(OBJPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/util/sdk_mapped_flags.o
 SYS_OBJECTS += $(OBJPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/fds/fds.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/types/CoordinateSystem.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/types/MicroBitImage.o
-SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/types/Matrix4.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/types/ManagedString.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/types/RefCounted.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/types/MicroBitEvent.o
@@ -174,7 +175,12 @@ SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/core/MicroBitFont.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/core/MicroBitDevice.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/core/MicroBitCompat.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/core/MicroBitSystemTimer.o
-SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/CalliopeRGB.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/core/MicroBitUtil.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/FXOS8700.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/LSM303Accelerometer.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/LSM303Magnetometer.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MAG3110.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MMA8653.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/TimedInterruptIn.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitAccelerometer.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitCompassCalibrator.o
@@ -184,10 +190,9 @@ SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitPin.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitButton.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitLightSensor.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitRadioDatagram.o
-SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/CalliopeSoundMotor.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitFile.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitI2C.o
-SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitAccelerometer-bmx.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitAccelerometer.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitFlash.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitQuadratureDecoder.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitMultiButton.o
@@ -199,7 +204,7 @@ SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitMessageBus.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitRadioEvent.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitRadio.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitThermometer.o
-SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitCompass-bmx.o
+SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/MicroBitCompass.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/drivers/DynamicPwm.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/bluetooth/MicroBitLEDService.o
 SYS_OBJECTS += $(OBJPREFIX)/microbit-dal/source/bluetooth/MicroBitMagnetometerService.o
@@ -235,7 +240,7 @@ INCLUDE_PATHS += -I$(INCPREFIX)/mbed-classic/hal/
 INCLUDE_PATHS += -I$(INCPREFIX)/mbed-classic/targets/cmsis/
 INCLUDE_PATHS += -I$(INCPREFIX)/mbed-classic/targets/cmsis/TARGET_NORDIC/TARGET_MCU_NRF51822/
 INCLUDE_PATHS += -I$(INCPREFIX)/mbed-classic/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/
-INCLUDE_PATHS += -I$(INCPREFIX)/mbed-classic/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/TARGET_NRF51_CALLIOPE/
+INCLUDE_PATHS += -I$(INCPREFIX)/mbed-classic/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/TARGET_NRF51_MICROBIT/
 INCLUDE_PATHS += -I$(INCPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/bootloader_dfu/
 INCLUDE_PATHS += -I$(INCPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/fds/
 INCLUDE_PATHS += -I$(INCPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/util/
@@ -267,7 +272,7 @@ INCLUDE_PATHS += -I$(INCPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries
 
 LIBRARY_PATHS := -L../yotta_modules/mbed-classic/targets/cmsis/TARGET_NORDIC/TARGET_MCU_NRF51822/TOOLCHAIN_GCC_ARM/TARGET_MCU_NRF51_16K_S110/
 LIBRARIES :=
-LINKER_SCRIPT ?=  ../yotta_targets/calliope-mini-classic-gcc/ld/NRF51822.ld
+LINKER_SCRIPT ?=  ../yotta_targets/bbc-microbit-classic-gcc/ld/NRF51822.ld
 
 # Objects and Paths
 ###############################################################################
@@ -295,7 +300,6 @@ C_FLAGS += -DTARGET_LIKE_MBED
 C_FLAGS += -DTARGET_NRF51822
 C_FLAGS += -DDEVICE_PORTINOUT=1
 C_FLAGS += -D__MBED_CMSIS_RTOS_CM
-C_FLAGS += -DTARGET_NRF51_CALLIOPE
 C_FLAGS += -D__CMSIS_RTOS
 C_FLAGS += -DTARGET_MCU_NRF51_16K
 C_FLAGS += -DTOOLCHAIN_GCC
@@ -364,7 +368,6 @@ CXX_FLAGS += -DTARGET_LIKE_MBED
 CXX_FLAGS += -DTARGET_NRF51822
 CXX_FLAGS += -DDEVICE_PORTINOUT=1
 CXX_FLAGS += -D__MBED_CMSIS_RTOS_CM
-CXX_FLAGS += -DTARGET_NRF51_CALLIOPE
 CXX_FLAGS += -D__CMSIS_RTOS
 CXX_FLAGS += -DTARGET_MCU_NRF51_16K
 CXX_FLAGS += -DTOOLCHAIN_GCC
@@ -543,7 +546,7 @@ $(PROJECT).hex: $(PROJECT).elf
 
 $(PROJECT)-combined.hex: $(PROJECT).hex
 #	 +@echo "NOTE: the $(SREC_CAT) binary is required to be present in your PATH. Please see http://srecord.sourceforge.net/ for more information."
-	$(SREC_CAT) ../yotta_targets/calliope-mini-classic-gcc/bootloader/BLE_BOOTLOADER_RESERVED.hex -intel ../yotta_targets/calliope-mini-classic-gcc/softdevice/s110_nrf51822_8.0.0_softdevice.hex -intel abbozza.hex -intel -o abbozza-combined.hex -intel --line-length=44
+	$(SREC_CAT) ../yotta_targets/bbc-microbit-classic-gcc/bootloader/BLE_BOOTLOADER_RESERVED.hex -intel ../yotta_targets/bbc-microbit-classic-gcc/softdevice/s110_nrf51822_8.0.0_softdevice.hex -intel abbozza.hex -intel -o abbozza-combined.hex -intel --line-length=44
 	+@echo "===== hex file ready to flash: $(OBJDIR)/$@ ====="
 
 

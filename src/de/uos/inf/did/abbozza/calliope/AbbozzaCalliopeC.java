@@ -44,6 +44,7 @@ import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.zip.ZipFile;
+import javax.swing.JOptionPane;
 
 /**
  * This class implements all system specific operations for tha Calliope Mini.
@@ -611,6 +612,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             File buildbasefile = new File(buildbaseJarPath);
             if (!buildbasefile.exists()) {
                 AbbozzaLogger.err("Could not find buildbase " + buildbaseJarPath);
+                JOptionPane.showMessageDialog(null, "Cant' find " + buildbasefile.getAbsolutePath(), "abbozza! Critical Error", JOptionPane.ERROR_MESSAGE);
                 buildbasefile = null;
             } else {
                 if ((buildDir.lastModified() < buildbasefile.lastModified()) || (initBuild)) {
@@ -631,6 +633,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
         } catch (IOException ex) {
             AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
+            JOptionPane.showMessageDialog(null,"Error during extraction of " + buildbaseJarPath +"\n" + ex.getLocalizedMessage(),"abbozza! Critical Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
 

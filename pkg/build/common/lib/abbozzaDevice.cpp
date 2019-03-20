@@ -752,6 +752,7 @@ ManagedString Abbozza::radioRecv() {
 
 
 int Abbozza::getTemperature() {
+#ifdef TARGET_NRF51_CALLIOPE    
     int res;
     char cmd = BMX055_ACC_D_TEMP;
     char val = 255;
@@ -768,9 +769,13 @@ int Abbozza::getTemperature() {
     if ( res != 0 ) return 255;
     
     return val;
+#else
+    return thermometer.getTemperature();
+#endif
 }
 
 float Abbozza::getTemperatureFloat() {
+#ifdef TARGET_NRF51_CALLIOPE    
     int res;
     char cmd = BMX055_ACC_D_TEMP;
     char val = 255;
@@ -788,7 +793,11 @@ float Abbozza::getTemperatureFloat() {
     if ( res != 0 ) return 255.0;
     
     return temp;
+#else
+    return 1.0 * thermometer.getTemperature();
+#endif
 }
+
 
 // Missing operators for Managed Strings
 // bool operator!=(ManagedString& a, const ManagedString& b) {
