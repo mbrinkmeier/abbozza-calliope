@@ -52,10 +52,12 @@ Board.load = function (query) {
         Connection.getText("/abbozza/board",
             function (response) {
                 var val = response.split("|");
-                if ( val[0] == "calliope" ) {
-                    Configuration.setParameter("option.calliope","true");
-                } else {
+                if ( val[0] == "microbit" ) {
                     Configuration.setParameter("option.calliope","false");
+                    document.getElementById("connect_img").src = "img/connect_microbit.png";
+                } else {
+                    Configuration.setParameter("option.calliope","true");
+                    document.getElementById("connect_img").src = "img/connect_calliope.png";
                 }
                 ToolboxMgr.rebuild(false);
                 // Abbozza.showInfoMessage(_("msg.board_found",[val[1],[2]]));
@@ -73,10 +75,12 @@ Board.load = function (query) {
             function (response) {
                 var val = response.split("|");
                 Abbozza.showInfoMessage(_("msg.board_found",[val[1],[2]]));
-                if ( val[0] == "calliope" ) {
-                    Configuration.setParameter("option.calliope","true");
-                } else {
+                if ( val[0] == "microbit" ) {
                     Configuration.setParameter("option.calliope","false");
+                    document.getElementById("connect_img").src = "img/connect_microbit.png";
+                } else {
+                    Configuration.setParameter("option.calliope","true");
+                    document.getElementById("connect_img").src = "img/connect_calliope.png";
                 }
                 ToolboxMgr.rebuild(false);
                 // Board._apply(response.split("|")[0]);

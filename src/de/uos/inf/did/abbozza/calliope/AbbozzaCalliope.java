@@ -501,10 +501,10 @@ public abstract class AbbozzaCalliope extends AbbozzaServer implements HttpHandl
                     if (volume.contains("MINI") || volume.contains("MICROBIT")) {
                         volume = volume.split(" ")[2];
                         AbbozzaLogger.info("[BoardHandler.findBoard] Board found at " + volume);
-                        if (volume.contains("MINI")) {
-                            setBoardName("calliope");
-                        } else {
+                        if (volume.contains("MICROBIT")) {
                             setBoardName("microbit");
+                        } else {
+                            setBoardName("calliope");
                         }
                         return volume;
                     }

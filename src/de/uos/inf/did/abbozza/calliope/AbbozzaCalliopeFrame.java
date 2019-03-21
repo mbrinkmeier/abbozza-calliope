@@ -83,7 +83,7 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
 
         ImageIcon icon = new ImageIcon(AbbozzaCalliopeFrame.class.getResource("/img/abbozza_calliope_icon.png"));
         this.setIconImage(icon.getImage());
-        
+
         switch (AbbozzaLogger.getLevel()) {
             case AbbozzaLogger.NONE : 
                 this.noneMenuItem.setSelected(true); 
@@ -109,6 +109,13 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
             connectButton.setBackground(Color.green);            
         }
 
+        AbbozzaCalliope abbozza = (AbbozzaCalliope) AbbozzaServer.getInstance();
+        if ( "microbit".equals(abbozza.getBoardName()) ) {
+            this.connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/connect_microbit32.png")));
+        } else {
+            this.connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/connect_calliope32.png")));
+        }
+        
         sourceArea = new RSyntaxTextArea(50, 120);
         sourceArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
         sourceArea.setCodeFoldingEnabled(true);        
@@ -734,6 +741,11 @@ public class AbbozzaCalliopeFrame  extends javax.swing.JFrame implements Abbozza
         } else {
             abbozza.setPathToBoard(boardPath);
             this.connectButton.setBackground(Color.green);
+        }
+        if ( "microbit".equals(abbozza.getBoardName()) ) {
+            this.connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/connect_microbit32.png")));
+        } else {
+            this.connectButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/uos/inf/did/abbozza/calliope/icons/connect_calliope32.png")));
         }
     }//GEN-LAST:event_connectActionPerformed
 
