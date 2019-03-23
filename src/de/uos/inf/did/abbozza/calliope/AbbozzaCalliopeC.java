@@ -623,7 +623,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                     AbbozzaLogger.out("Extracting " + buildbasefile.getAbsolutePath());
                     // Extract buildbase.jar if newer or initialization required
                     ZipFile buildbase = new ZipFile(buildbasefile);
-                    FileTool.extractJar(buildbase, buildDir);
+                    FileTool.extractJarCorrectingTime(buildbase, buildDir);
                    // this.cleanBuildSystem();
                     this.config.setProperty("version",this.getSystemVersion());
                 } else {
