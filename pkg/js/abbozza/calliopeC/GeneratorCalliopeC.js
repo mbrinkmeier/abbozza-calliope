@@ -66,7 +66,7 @@ AbbozzaGenerator.prototype.initGenerator_ = function() {
     this.startMonitor = false;
 
     // Sets the flag for the radio
-    this.radioRequired = false;
+    this.radioRequired = true;
     
     // The counter for user defined images
     this.imageCounter = 0;    
