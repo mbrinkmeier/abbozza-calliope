@@ -291,7 +291,7 @@ AbbozzaGenerator.prototype.parametersToCode = function(symbols,prefix) {
 /**
  * This operation adds a type cast to the given code.
  */
-AbbozzaGenerator.prototype.enforceType = function(code,enfType) {
+AbbozzaGenerator.prototype.enforceType = function(code,enfType,origType) {
 	switch(enfType) {
 		case "NUMBER":
 			code =  keyword("NUMBER") + "(" + code +")";

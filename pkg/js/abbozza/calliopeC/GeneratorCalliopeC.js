@@ -399,20 +399,32 @@ AbbozzaGenerator.prototype.parametersToCode = function (symbols, prefix) {
 /**
  * This operation adds a type cast to the given code.
  */
-AbbozzaGenerator.prototype.enforceType = function (code, enfType) {
+AbbozzaGenerator.prototype.enforceType = function (code, enfType, origType) {
     switch (enfType) {
         case "NUMBER":
-            code = "((" + keyword("NUMBER") + ") " + code + ")";
+            if ( (origType == "TEXT") || (origType == "STRING")) {
+               code = "atoi(" + code + ".toCharArray())";
+            } else {
+               code = "((" + keyword("NUMBER") + ") " + code + ")";
+            }
             break;
         case "TEXT":
         case "STRING":
             code = "abbozza.toString(" + code + ")";
             break;
         case "DECIMAL":
-            code = "((" + keyword("DECIMAL") + ") " + code + ")";
+            if ( (origType == "TEXT") || (origType == "STRING")) {
+               code = "atof(" + code + ".toCharArray())";
+            } else {
+                code = "((" + keyword("DECIMAL") + ") " + code + ")";
+            }
             break;
         case "BOOLEAN":
-            code = "((bool) " + code + ")";
+            if ( (origType == "TEXT") || (origType == "STRING")) {
+               code = "((bool) atoi(" + code + ".toCharArray()))";
+            } else {
+                code = "((bool) " + code + ")";
+            }
             break;
     }
     return code;
