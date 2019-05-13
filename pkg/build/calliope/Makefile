@@ -24,19 +24,22 @@ MAKETARGET = '$(MAKE)' --no-print-directory -C $(OBJDIR) -f '$(mkfile_path)' \
 		'SRCDIR=$(CURDIR)' $(MAKECMDGOALS)
 .PHONY: $(OBJDIR) clean
 all:
+	+@echo Using Makefile at $(mkfile_path)
+	+@echo Using precompiled objects in $(ABBOZZAPATH) for compilation
 	+@$(call MAKEDIR,$(OBJDIR))
 	+@$(MAKETARGET)
 $(OBJDIR): all
 Makefile : ;
 % :: $(OBJDIR) ; :
 clean :
+	+@echo Cleaning $(CURDIR)
+	$(call DEL,$(wildcard source/lib/*.o))
 	$(call RM,$(OBJDIR))
-	$(call DEL,source/lib/*.o)
 
 else
 
 # trick rules into thinking we are in the root, when we are in the bulid dir
-VPATH = ..
+VPATH = ..:$(ABBOZZAPATH)/calliope/yotta_modules
 
 # Boiler-plate
 ###############################################################################
@@ -51,7 +54,7 @@ PROJECT := abbozza
 
 OBJECTS += source/abbozza.o
 
-OBJPREFIX = yotta_modules
+OBJPREFIX = $(ABBOZZAPATH)/calliope/build/yotta_modules
 
 SYS_OBJECTS += $(OBJPREFIX)/mbed-classic/common/assert.o
 SYS_OBJECTS += $(OBJPREFIX)/mbed-classic/common/error.o
@@ -217,7 +220,7 @@ SYS_OBJECTS += $(OBJPREFIX)/microbit/source/MicroBit.o
 SYS_OBJECTS += $(patsubst %.cpp,%.o, $(wildcard ../source/lib/*.cpp))
 SYS_OBJECTS += $(patsubst %.c,%.o, $(wildcard ../source/lib/*.c))
 
-INCPREFIX=../yotta_modules
+INCPREFIX=$(ABBOZZAPATH)/calliope/yotta_modules
 
 INCLUDE_PATHS += -I.
 INCLUDE_PATHS += -I..
@@ -265,9 +268,9 @@ INCLUDE_PATHS += -I$(INCPREFIX)/ble-nrf51822/source/btle/
 INCLUDE_PATHS += -I$(INCPREFIX)/nrf51-sdk/source/nordic_sdk/components/libraries/bootloader_dfu/hci_transport/
 
 
-LIBRARY_PATHS := -L../yotta_modules/mbed-classic/targets/cmsis/TARGET_NORDIC/TARGET_MCU_NRF51822/TOOLCHAIN_GCC_ARM/TARGET_MCU_NRF51_16K_S110/
+LIBRARY_PATHS := -L$(ABBOZZAPATH)/calliope/yotta_modules/mbed-classic/targets/cmsis/TARGET_NORDIC/TARGET_MCU_NRF51822/TOOLCHAIN_GCC_ARM/TARGET_MCU_NRF51_16K_S110/
 LIBRARIES :=
-LINKER_SCRIPT ?=  ../yotta_targets/calliope-mini-classic-gcc/ld/NRF51822.ld
+LINKER_SCRIPT ?=  $(ABBOZZAPATH)/calliope/yotta_targets/calliope-mini-classic-gcc/ld/NRF51822.ld
 
 # Objects and Paths
 ###############################################################################
@@ -498,7 +501,7 @@ LD_SYS_LIBS :=-Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -Wl,--en
 
 all: $(PROJECT).bin $(PROJECT)-combined.hex size
 
-	
+
 .s.o:
 	+@$(call MAKEDIR,$(dir $@))
 	+@echo "Assemble: $(notdir $<)"
@@ -543,7 +546,7 @@ $(PROJECT).hex: $(PROJECT).elf
 
 $(PROJECT)-combined.hex: $(PROJECT).hex
 #	 +@echo "NOTE: the $(SREC_CAT) binary is required to be present in your PATH. Please see http://srecord.sourceforge.net/ for more information."
-	$(SREC_CAT) ../yotta_targets/calliope-mini-classic-gcc/bootloader/BLE_BOOTLOADER_RESERVED.hex -intel ../yotta_targets/calliope-mini-classic-gcc/softdevice/s110_nrf51822_8.0.0_softdevice.hex -intel abbozza.hex -intel -o abbozza-combined.hex -intel --line-length=44
+	$(SREC_CAT) $(ABBOZZAPATH)/calliope/yotta_targets/calliope-mini-classic-gcc/bootloader/BLE_BOOTLOADER_RESERVED.hex -intel $(ABBOZZAPATH)/calliope/yotta_targets/calliope-mini-classic-gcc/softdevice/s110_nrf51822_8.0.0_softdevice.hex -intel abbozza.hex -intel -o abbozza-combined.hex -intel --line-length=44
 	+@echo "===== hex file ready to flash: $(OBJDIR)/$@ ====="
 
 

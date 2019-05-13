@@ -54,9 +54,11 @@ import javax.swing.JOptionPane;
 public class AbbozzaCalliopeC extends AbbozzaCalliope {
 
     protected String _buildPath;
+    protected String _objectPath;
     protected String _hexPath;
     protected int _exitValue;
     protected String _cmdOptBuildBase = null; // the build base given by the command options
+    protected String _cmdOptObjects = null;   // the path to the precompiled object files
     protected boolean _cmdOptInitBuildBase = false; // the build base given by the command options
 
     protected boolean bluetooth = false;
@@ -325,6 +327,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             String path = procBuilder.environment().get("PATH");
             procBuilder.environment().put("PATH", toolsPath + ":" + path);
         }
+        procBuilder.environment().put("ABBOZZAPATH", this._objectPath );
 
         return procBuilder;
     }
@@ -354,6 +357,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             String path = procBuilder.environment().get("PATH");
             procBuilder.environment().put("PATH", "/usr/local/bin:" + path);
         }
+        procBuilder.environment().put("ABBOZZAPATH", this._objectPath );
 
         AbbozzaLogger.info("SYSTEM PATH: " + System.clearProperty("PATH"));
         AbbozzaLogger.info("BUILDER PATH: " + procBuilder.environment().get("PATH"));
@@ -394,6 +398,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             String path = procBuilder.environment().get("Path");
             procBuilder.environment().put("Path", toolsPath + ";" + path);
         }
+        procBuilder.environment().put("ABBOZZAPATH", this._objectPath );
 
         return procBuilder;
     }
@@ -578,7 +583,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
             buildbaseJarPath = abbozzaPath + "/lib/buildbase.jar";
         }
         AbbozzaLogger.info("Using " + buildbaseJarPath + " for initialization of build system");
-
+        
         // Check if buildPath exists
         File buildDir = new File(buildPath);
         AbbozzaLogger.out("Checking build directory " + buildDir.getAbsolutePath() + " ...");
@@ -631,6 +636,16 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
                 }
             }
 
+            AbbozzaLogger.info("Using " + buildbaseJarPath + " for initialization of build system");
+
+            // Determine the object path
+            if ( this._cmdOptObjects != null ) {
+                this._objectPath = this._cmdOptObjects;
+            } else {
+                this._objectPath = AbbozzaServer.getInstance().getAbbozzaPath() + "/build";
+            }
+            AbbozzaLogger.info("Using object files at " + this._objectPath + " for compilation");
+            
         } catch (IOException ex) {
             AbbozzaLogger.err("[FATAL] " + ex.getLocalizedMessage());
             JOptionPane.showMessageDialog(null,"Error during extraction of " + buildbaseJarPath +"\n" + ex.getLocalizedMessage(),"abbozza! Critical Error", JOptionPane.ERROR_MESSAGE);
@@ -707,6 +722,9 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
         if (option.equals("-B")) {
             this._cmdOptBuildBase = par;
             AbbozzaLogger.info("Using path " + this._cmdOptBuildBase + " as base for build initialization");
+        } else if (option.equals("-O")) {
+            this._cmdOptObjects = par;
+            AbbozzaLogger.info("Using object path " + this._cmdOptObjects + " for compiling");
         } else {
             super.applyCommandlineOption(option, par);
         }

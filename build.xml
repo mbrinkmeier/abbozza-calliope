@@ -75,7 +75,7 @@ nbproject/build-impl.xml file.
     <import file="nbproject/build-impl.xml"/>
    
     <!--
-        Before the compilation the files from abbozza-common are requried.
+        Before the compilation the files from abbozza-common are required.
     -->
     <target name="-pre-compile">
         <mkdir dir="downloads"/>
@@ -94,6 +94,13 @@ nbproject/build-impl.xml file.
 
     <!-- ADDITIONAL TARGETS -->
     
+    <!--
+        Remove the downloaded archoves:
+        - calliope-build.zip
+        - tools-win.zip
+        - tools-linux.zip
+        - tools-macos.zip
+    -->
     <target name="clean-downloads">
         <echo message="Deleting downloads"/>
         <delete>
@@ -107,7 +114,6 @@ nbproject/build-impl.xml file.
     --> 
     <target name="installer-win" depends="installer-common,tools-win">
         <echo message = "Building the Windows installer"/>
- 
         <jar destfile="dist/abbozza-calliope-install-win.jar">
             <fileset dir="dist/install">
                 <include name="**/*" />
@@ -118,9 +124,11 @@ nbproject/build-impl.xml file.
         </jar>            
     </target>
 
+    <!--
+       This target builds the linux installer
+    -->
     <target name="installer-linux" depends="installer-common,tools-linux">
         <echo message = "Building the Linux installer"/>
- 
         <jar destfile="dist/abbozza-calliope-install-linux.jar">
             <fileset dir="dist/install">
                 <include name="**/*" />
@@ -132,9 +140,11 @@ nbproject/build-impl.xml file.
     </target>
    
      
+    <!--
+       This target builds the macos installer
+    -->
     <target name="installer-macos" depends="installer-common,tools-mac">
         <echo message = "Building the Mac installer"/>
- 
         <jar destfile="dist/abbozza-calliope-install-macos.jar">
             <fileset dir="dist/install">
                 <include name="**/*" />
@@ -145,16 +155,22 @@ nbproject/build-impl.xml file.
         </jar>            
     </target>    
   
-
-    <target name="portable" depends="default,buildbase-install,get-tools-jre-win">
+    <!--
+       Build the portable version for windows
+    -->
+    <target name="portable" depends="default,buildbase-install,get-tools-jre-win,get-calliope-build">
         <echo message="Preparing portable Windows version"/>
+        <!-- Create base dir -->
         <mkdir dir="dist/portable/abbozzaCalliope"/>
+        <!-- Create plugin dir -->
         <mkdir dir="dist/portable/abbozzaCalliope/plugins"/>
+        <!-- Copy scripts from bin -->
         <copy todir="dist/portable/abbozzaCalliope/bin" overwrite="true">
             <fileset dir="bin">
                 <include name="**/*"/>
             </fileset>
         </copy>    
+        <!-- Copy lib directory -->
         <copy todir="dist/portable/abbozzaCalliope/lib" overwrite="true">
             <fileset dir="../abbozza-common/lib/lib">
                 <include name="**/*"/>
@@ -165,11 +181,11 @@ nbproject/build-impl.xml file.
                 <include name="**/*"/>
             </fileset>
         </copy>
-        <copy todir="dist/portable/abbozzaCalliope/build" overwrite="true">
-            <fileset dir="pkg/build">
-                <include name="**/*"/>
-            </fileset>
-        </copy>
+        
+        <!-- Copy build system -->
+        <mkdir dir="dist/portable/abbozzaCalliope/build"/>
+        <unzip src="downloads/calliope-build.zip" dest="dist/portable/abbozzaCalliope/build"/>   
+        
         <unzip src="downloads/tools-win.zip" dest="dist/portable/abbozzaCalliope"/>   
         <copy todir="dist/portable/abbozzaCalliope/" overwrite="true">
             <fileset dir="portable">
@@ -209,6 +225,12 @@ nbproject/build-impl.xml file.
                 <include name="**/*"/>
             </fileset>
         </copy>    
+        
+        <copy todir="dist/install/build" overwrite="true">
+            <fileset dir="buildsystem">
+                <include name = "**/*"/>
+            </fileset>
+        </copy>
         
         <copy todir="dist/install/" overwrite="true">
             <fileset dir="install">
@@ -250,16 +272,16 @@ nbproject/build-impl.xml file.
     -->
     <target name="buildbase" depends="get-calliope-build">
         <echo message="Copying abbozza! libraries to buildsystem"/>
-        <copy todir="buildsystem/calliope" verbose="true" overwrite="true">
+        <copy todir="source/calliope" verbose="true" overwrite="true">
             <fileset dir="pkg/build/calliope"/>
         </copy>    
-        <copy todir="buildsystem/microbit" verbose="true" overwrite="true">
+        <copy todir="source/microbit" verbose="true" overwrite="true">
             <fileset dir="pkg/build/microbit"/>
         </copy>    
-        <copy todir="buildsystem/calliope/source" verbose="true" overwrite="true">
+        <copy todir="source/calliope/source" verbose="true" overwrite="true">
             <fileset dir="pkg/build/common"/>
         </copy>    
-        <copy todir="buildsystem/microbit/source" verbose="true" overwrite="true">
+        <copy todir="source/microbit/source" verbose="true" overwrite="true">
             <fileset dir="pkg/build/common"/>
         </copy>            
     </target>
@@ -267,7 +289,7 @@ nbproject/build-impl.xml file.
     <target name="buildbase-install" depends="buildbase">
         <echo message="Packing buildsystem.jar"/>
         <jar destfile="dist/install/lib/buildbase.jar">
-            <fileset dir="buildsystem/"/>
+            <fileset dir="source/"/>
         </jar>                
     </target>
     
@@ -281,9 +303,8 @@ nbproject/build-impl.xml file.
         <echo message="Downloading calliope-build.zip (this may take a while) ..."/>
         <get src="https://inf-didaktik.rz.uni-osnabrueck.de/downloads/abbozza/tools/calliopeC/calliope-build.zip" 
              dest="downloads/calliope-build.zip" usetimestamp="true"/>
-        <echo message="Download finished! Unpacking to buildsystem ..."/>
-        <unzip src="downloads/calliope-build.zip" dest="buildsystem/"/>
-        <echo message="Unpacking finished ..."/>
+        <echo message="Download finished! Copying to install directory ..."/>
+        <copy file="downloads/calliope-build.zip" tofile="dist/install/lib/calliope-build.zip" overwrite="true"/>                        
     </target>
 
 
@@ -328,6 +349,7 @@ nbproject/build-impl.xml file.
     </target>
 
 
+    <!-- Get the windows tools -->
     <target name="get-tools-win" depends="checkos">
         <echo message="Downloading Windows tools (this may take a while)"/>
         <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-win.zip"
@@ -335,6 +357,7 @@ nbproject/build-impl.xml file.
         </get>
     </target>
 
+    <!-- Get the windows tools with jre -->
     <target name="get-tools-jre-win" depends="checkos">
         <echo message="Downloading Windows tools including JRE (this may take a while)"/>
         <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-win-jre.zip"
@@ -342,6 +365,7 @@ nbproject/build-impl.xml file.
         </get>
     </target>
     
+    <!-- get the linux tools -->
     <target name="get-tools-linux" depends="checkos">
         <echo message="Downloading Linux tools (this may take a while)"/>
         <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-linux.zip"
@@ -349,6 +373,7 @@ nbproject/build-impl.xml file.
         </get>
     </target>
 
+    <!-- get the mac tools -->
     <target name="get-tools-mac" depends="checkos">
         <echo message="Downloading MacOs tools (this may take a while)"/>
         <get src="https://inf-didaktik.rz.uos.de/downloads/abbozza/tools/calliopeC/tools-macos.zip"
@@ -356,19 +381,22 @@ nbproject/build-impl.xml file.
         </get>
     </target>
     
+    <!-- prepare the loos for windows -->
     <target name="tools-win" depends="get-tools-win">
         <echo message="Copying windows tools"/>
-        <copy file="downloads/tools-win.zip" tofile="dist/install/tools.zip" overwrite="true"/>                                
+        <copy file="downloads/tools-win.zip" tofile="dist/install/lib/tools.zip" overwrite="true"/>                                
     </target>
 
+    <!-- Prepare the tools for linux -->
     <target name="tools-linux" depends="get-tools-linux">
         <echo message="Copying linux tools"/>
-        <copy file="downloads/tools-linux.zip" tofile="dist/install/tools.zip" overwrite="true"/>                        
+        <copy file="downloads/tools-linux.zip" tofile="dist/install/lib/tools.zip" overwrite="true"/>                        
     </target>
 
+    <!-- Prepare the tools for mac -->
     <target name="tools-mac" depends="get-tools-mac">
         <echo message="Copying macos tools"/>
-        <copy file="downloads/tools-macos.zip" tofile="dist/install/tools.zip" overwrite="true"/>                        
+        <copy file="downloads/tools-macos.zip" tofile="dist/install/lib/tools.zip" overwrite="true"/>                        
     </target>
 
 </project>

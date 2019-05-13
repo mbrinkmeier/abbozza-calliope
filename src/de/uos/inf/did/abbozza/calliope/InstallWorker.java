@@ -232,25 +232,21 @@ public class InstallWorker extends SwingWorker<String, String> {
         publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/srecord/"));
         installTool.copyDirFromJar(installerJar, "lib/srecord/", installDir + "/lib/srecord/");
 
-        // The build system
-        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/build/"));
-        installTool.copyDirFromJar(installerJar, "build/", installDir + "/build/", true);
-
         // String osname = System.getProperty("os.name").toLowerCase();
-        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/tools.zip"));
+        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/lib/tools.zip"));
 
         ZipFile zip = null;
 
-        if (!installTool.copyFromJar(installerJar, "tools.zip", installDir + "/tools.zip")) {
+        if (!installTool.copyFromJar(installerJar, "lib/tools.zip", installDir + "/lib/tools.zip")) {
             publish("... tools.zip not found in " + installerJar.getName());
             publish("... Checking if tools.zip exists in " + installDir);
         }
         
-        File zipFile = new File(installDir + "/tools.zip");
+        File zipFile = new File(installDir + "/lib/tools.zip");
         if (zipFile.exists()) {
-            publish("... Extracting " + installDir + "/tools.zip");
+            publish("... Extracting " + installDir + "/lib/tools.zip");
 
-            zip = new ZipFile(installDir + "/tools.zip");
+            zip = new ZipFile(installDir + "/lib/tools.zip");
 
             if (zip != null) {
                 int progress = 0;
@@ -283,12 +279,59 @@ public class InstallWorker extends SwingWorker<String, String> {
                 }
             }
         } else {
-            publish("... No tools.zip in " + installDir + ". Checking for " +installDir + "/tools ..");
+            publish("... No tools.zip in " + installDir + "/lib. Checking for " +installDir + "/tools ..");
             File toolsDir = new File(installDir + "/tools");
             if (!toolsDir.exists()) {
                 publish("Tools not installed!");
             }
         }
+
+        publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/calliope-build.zip"));
+        zip = null;
+        if (!installTool.copyFromJar(installerJar, "lib/calliope-build.zip", installDir + "/lib/calliope-build.zip")) {
+            publish("... calliope-build.zip not found in " + installerJar.getName());
+        }
+
+        zipFile = new File(installDir + "/lib/calliope-build.zip");
+        if (zipFile.exists()) {
+            publish("... Extracting " + installDir + "/lib/calliope-build.zip");
+
+            zip = new ZipFile(installDir + "/lib/calliope-build.zip");
+
+            if (zip != null) {
+                int progress = 0;
+                int progressMax = zip.size();
+                Enumeration<ZipEntry> entries = (Enumeration<ZipEntry>) zip.entries();
+
+                while (entries.hasMoreElements()) {
+                    ZipEntry entry = entries.nextElement();
+                    String name = entry.getName();
+                    // publish("... Extracting " + name);
+                    progress++;
+
+                    // publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/" + name));
+                    File target = new File(installDir + "/build/" + name);
+                    setProgress(progress * 100 / progressMax);
+
+                    // publish(AbbozzaLocale.entry("MSG.WRITING", name));
+                    // publish("|");
+                    if (entry.isDirectory()) {
+                        target.mkdir();
+                    } else {
+                        Files.createDirectories(target.toPath().getParent());
+                        Files.copy(zip.getInputStream(entry), target.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    }
+                }
+            }
+        } else {
+            publish("... No calliope-build.zip in " + installDir + "/lib. Checking for " +installDir + "/build  ..");
+            File toolsDir = new File(installDir + "/build");
+            if (!toolsDir.exists()) {
+                publish("Build files not installed!");
+            }
+        }
+
+        
         
         // Scripts
         publish(AbbozzaLocale.entry("MSG.WRITING", installDir + "/bin/abbozzaC.[sh|bat]"));
