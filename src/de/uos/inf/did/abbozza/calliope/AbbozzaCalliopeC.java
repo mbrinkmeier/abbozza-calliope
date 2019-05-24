@@ -28,6 +28,7 @@ import de.uos.inf.did.abbozza.core.AbbozzaLocale;
 import de.uos.inf.did.abbozza.core.AbbozzaLogger;
 import de.uos.inf.did.abbozza.core.AbbozzaServer;
 import de.uos.inf.did.abbozza.core.AbbozzaSplashScreen;
+import de.uos.inf.did.abbozza.core.AbbozzaVersion;
 import de.uos.inf.did.abbozza.handler.DiagnoseHandler;
 import de.uos.inf.did.abbozza.plugin.PluginConfigPanel;
 import de.uos.inf.did.abbozza.tools.FileTool;
@@ -35,6 +36,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -560,7 +562,7 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     @Override
     public void additionalInitialization() {
 
-        AbbozzaSplashScreen.setText("Updating build directory.  This may take a while!");
+        AbbozzaSplashScreen.setText("Updating build directory. This may take a while!");
 
         // Check if build system has to be initialized
         boolean initBuild = this._cmdOptInitBuildBase;
