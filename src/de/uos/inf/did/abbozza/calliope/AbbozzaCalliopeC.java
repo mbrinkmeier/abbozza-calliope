@@ -563,13 +563,15 @@ public class AbbozzaCalliopeC extends AbbozzaCalliope {
     public void additionalInitialization() {
 
         AbbozzaSplashScreen.setText("Updating build directory. This may take a while!");
+        AbbozzaLogger.info("Updating build directory. This may take a while!");
 
         // Check if build system has to be initialized
         boolean initBuild = this._cmdOptInitBuildBase;
 
         // Check installed version
         String installedVersion = this.config.getProperty("version");
-        if ( !this.isNewerThan(installedVersion) ) {
+        AbbozzaLogger.info("Version read from config is " + installedVersion);
+        if ( this.isNewerThan(installedVersion) ) {
             initBuild = true;
             AbbozzaLogger.info("Installed version (" + installedVersion + ") is older than available version (" + this.getSystemVersion() + ")");
         }
