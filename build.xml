@@ -226,11 +226,11 @@ nbproject/build-impl.xml file.
             </fileset>
         </copy>    
         
-        <copy todir="dist/install/build" overwrite="true">
+        <!-- copy todir="dist/install/build" overwrite="true">
             <fileset dir="buildsystem">
                 <include name = "**/*"/>
             </fileset>
-        </copy>
+        </copy -->
         
         <copy todir="dist/install/" overwrite="true">
             <fileset dir="install">
@@ -287,7 +287,7 @@ nbproject/build-impl.xml file.
     </target>
 
     <target name="buildbase-install" depends="buildbase">
-        <echo message="Packing buildsystem.jar"/>
+        <echo message="Packing buildbase.jar"/>
         <jar destfile="dist/install/lib/buildbase.jar">
             <fileset dir="source/"/>
         </jar>                
