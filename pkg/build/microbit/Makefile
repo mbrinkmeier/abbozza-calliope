@@ -229,6 +229,7 @@ INCPREFIX=$(ABBOZZAPATH)/microbit/yotta_modules
 
 INCLUDE_PATHS += -I.
 INCLUDE_PATHS += -I..
+INCLUDE_PATHS += -I../source
 INCLUDE_PATHS += -I../source/lib
 INCLUDE_PATHS += -I$(INCPREFIX)/microbit/inc
 INCLUDE_PATHS += -I$(INCPREFIX)/microbit-dal/inc/bluetooth
